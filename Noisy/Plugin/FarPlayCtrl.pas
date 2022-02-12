@@ -6,8 +6,8 @@ unit FarPlayCtrl;
 {* Noisy - Noisy Player Far plugin                                            *}
 {* 2008-2014, Max Rusov                                                       *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
-{* Процедуры взаимодействия с плеером                                         *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
+{* РџСЂРѕС†РµРґСѓСЂС‹ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ РїР»РµРµСЂРѕРј                                         *}
 {******************************************************************************}
 
 interface

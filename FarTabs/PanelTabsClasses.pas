@@ -131,8 +131,8 @@ interface
       FHotkey   :TChar;
       FHotPos   :Integer;
 
-      FCurrent  :TString;     { Текущий Item на данном Tab'е }
-      FSelected :TStringList; { Список выделенных элементов }
+      FCurrent  :TString;     { РўРµРєСѓС‰РёР№ Item РЅР° РґР°РЅРЅРѕРј Tab'Рµ }
+      FSelected :TStringList; { РЎРїРёСЃРѕРє РІС‹РґРµР»РµРЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ }
 
       FFmtCaption :TString;
 
@@ -157,9 +157,9 @@ interface
       procedure RestoreFile(const AFileName :TString);
 
     private
-      FName     :TString;    { Имя набора = имя ветки реестра}
-      FCurrent  :Integer;    { Текущий Tab (для нефиксированных табов) }
-      FAllWidth :Integer;    { Ширина панели табов при последнем вызове RealignTabs }
+      FName     :TString;    { РРјСЏ РЅР°Р±РѕСЂР° = РёРјСЏ РІРµС‚РєРё СЂРµРµСЃС‚СЂР°}
+      FCurrent  :Integer;    { РўРµРєСѓС‰РёР№ Tab (РґР»СЏ РЅРµС„РёРєСЃРёСЂРѕРІР°РЅРЅС‹С… С‚Р°Р±РѕРІ) }
+      FAllWidth :Integer;    { РЁРёСЂРёРЅР° РїР°РЅРµР»Рё С‚Р°Р±РѕРІ РїСЂРё РїРѕСЃР»РµРґРЅРµРј РІС‹Р·РѕРІРµ RealignTabs }
     end;
 
 
@@ -215,7 +215,7 @@ interface
       FTrackPressed  :Boolean;
       FTracked       :Boolean;
      {$else}
-      FLastClickTime :DWORD;        { Для отслеживания DblClick }
+      FLastClickTime :DWORD;        { Р”Р»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ DblClick }
       FLastClickPos  :TPoint;
       FLastClickType :TClickType;
      {$endif bUseProcessConsoleInput}
@@ -339,7 +339,7 @@ interface
 
       vPtr := PTChar(ACmdStr);
       while vPtr^ <> #0 do begin
-        { Частично совместимо с метасимволами стандартных ассоциации FAR }
+        { Р§Р°СЃС‚РёС‡РЅРѕ СЃРѕРІРјРµСЃС‚РёРјРѕ СЃ РјРµС‚Р°СЃРёРјРІРѕР»Р°РјРё СЃС‚Р°РЅРґР°СЂС‚РЅС‹С… Р°СЃСЃРѕС†РёР°С†РёРё FAR }
         if vPtr^ = '!' then begin
           Inc(vPtr);
           if vPtr^ = '!' then begin
@@ -380,7 +380,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Копипаста с MoreHistory....                                                 }
+ { РљРѕРїРёРїР°СЃС‚Р° СЃ MoreHistory....                                                 }
 
   function GetNearestExistFolder(const APath :TString) :TString;
   var
@@ -876,7 +876,7 @@ interface
     FCaption := ACaption;
     FFolder := AFolder;
     FSelected := TStringList.Create;
-    FSelected.Sorted := True; { Для ускорения FarPanelSetSelectedItems }
+    FSelected.Sorted := True; { Р”Р»СЏ СѓСЃРєРѕСЂРµРЅРёСЏ FarPanelSetSelectedItems }
   end;
 
 
@@ -1079,11 +1079,11 @@ interface
     end;
 
     if optShowButton then
-      { Вычитаем размер кнопочки }
+      { Р’С‹С‡РёС‚Р°РµРј СЂР°Р·РјРµСЂ РєРЅРѕРїРѕС‡РєРё }
       Dec(ANewWidth, 3);
 
     if X > ANewWidth then begin
-      { Алгоритм тормозной, но пока - покатит }
+      { РђР»РіРѕСЂРёС‚Рј С‚РѕСЂРјРѕР·РЅРѕР№, РЅРѕ РїРѕРєР° - РїРѕРєР°С‚РёС‚ }
       for I := 0 to X - ANewWidth - 1 do
         if not LocReduceTab then
           Break;
@@ -1122,11 +1122,11 @@ interface
         vConfig.IntValue(cCurrentRegKey, FCurrent);
 
         if not AOnlyCurrent then begin
-          { Сохраняем табы }
+          { РЎРѕС…СЂР°РЅСЏРµРј С‚Р°Р±С‹ }
           for I := 0 to Count - 1 do
             LocWriteTab(I, Items[I]);
 
-          { Удаляем лишние табы }
+          { РЈРґР°Р»СЏРµРј Р»РёС€РЅРёРµ С‚Р°Р±С‹ }
           if vConfig.OpenKey(vPath) then begin
             I := Count;
             while vConfig.DeleteKey( cTabRegFolder + Int2Str(I) ) do
@@ -1395,7 +1395,7 @@ interface
 
 
   function TTabsManager.CanPaintTabs(ACheckCursor :Boolean = False) :Boolean;
-    { Вызывается из дополнительного потока. Не должна использовать не-threadsafe функции}
+    { Р’С‹Р·С‹РІР°РµС‚СЃСЏ РёР· РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРіРѕ РїРѕС‚РѕРєР°. РќРµ РґРѕР»Р¶РЅР° РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµ-threadsafe С„СѓРЅРєС†РёРё}
   var
     vWinType :Integer;
     vCursorInfo :TConsoleCursorInfo;
@@ -1413,15 +1413,15 @@ interface
         GetConsoleCursorInfo(hStdOut, vCursorInfo);
 //      TraceF('Cursor=%d', [Byte(vCursorInfo.bVisible)]);
         if not vCursorInfo.bVisible then
-          { Нет курсора - значит активна не панель. Этой проверкой отсекаем ситуацию, }
-          { когда активно меню и т.п., что не определяется с помощью ACTL_GETWINDOWINFO/ACTL_GETWINDOWTYPE }
+          { РќРµС‚ РєСѓСЂСЃРѕСЂР° - Р·РЅР°С‡РёС‚ Р°РєС‚РёРІРЅР° РЅРµ РїР°РЅРµР»СЊ. Р­С‚РѕР№ РїСЂРѕРІРµСЂРєРѕР№ РѕС‚СЃРµРєР°РµРј СЃРёС‚СѓР°С†РёСЋ, }
+          { РєРѕРіРґР° Р°РєС‚РёРІРЅРѕ РјРµРЅСЋ Рё С‚.Рї., С‡С‚Рѕ РЅРµ РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃ РїРѕРјРѕС‰СЊСЋ ACTL_GETWINDOWINFO/ACTL_GETWINDOWTYPE }
           Exit;
       end;
 
 //    vStr := GetConsoleTitleStr;
 //    TraceF('Title=%s', [vStr]);
 //    if (vStr = '') or (vStr[1] <> '{') then
-//      { Этой проверкой отсекаем ситуацию, когда из под Far'а запущена консольная программа }
+//      { Р­С‚РѕР№ РїСЂРѕРІРµСЂРєРѕР№ РѕС‚СЃРµРєР°РµРј СЃРёС‚СѓР°С†РёСЋ, РєРѕРіРґР° РёР· РїРѕРґ Far'Р° Р·Р°РїСѓС‰РµРЅР° РєРѕРЅСЃРѕР»СЊРЅР°СЏ РїСЂРѕРіСЂР°РјРјР° }
 //      Exit;
 
       Result := True;
@@ -1486,7 +1486,7 @@ interface
         if not vVisible {or not vInfo.Focus} then
           Exit;
         if vInfo.PanelRect.Bottom + 1 >= vCmdLineY then
-          { Нет места для табов }
+          { РќРµС‚ РјРµСЃС‚Р° РґР»СЏ С‚Р°Р±РѕРІ }
           Exit;
 
         if not vMaximized then
@@ -1565,14 +1565,14 @@ interface
         if vTabs.FCurrent < vTabs.Count then begin
           vTab := vTabs[vTabs.FCurrent];
           if not vTab.IsFixed then begin
-            { Таб, следящий за сменой позиции... }
+            { РўР°Р±, СЃР»РµРґСЏС‰РёР№ Р·Р° СЃРјРµРЅРѕР№ РїРѕР·РёС†РёРё... }
             vCurrentIndex := vTabs.FCurrent;
             if not StrEqual(vTab.FFolder, vFolders[AKind]) then begin
               if vFolders[AKind] <> '' then begin
                 vTab.FFolder := vFolders[AKind];
                 vTabs.FAllWidth := -1;
               end else
-                { Плагин. Пока не поддерживается. }
+                { РџР»Р°РіРёРЅ. РџРѕРєР° РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ. }
                 vCurrentIndex := -1;
             end;
           end;
@@ -2166,7 +2166,7 @@ interface
         end;
       end;
 
-      { Чтобы выбрать событие отпускания мыши (?)... }
+      { Р§С‚РѕР±С‹ РІС‹Р±СЂР°С‚СЊ СЃРѕР±С‹С‚РёРµ РѕС‚РїСѓСЃРєР°РЅРёСЏ РјС‹С€Рё (?)... }
 //    if vRButton then
         CheckForEsc;
 

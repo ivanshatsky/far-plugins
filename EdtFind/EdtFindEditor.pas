@@ -285,7 +285,7 @@ interface
       end else
       begin
         if gMatchRow1 < vRow1 then begin
-          { Обрезание сверху }
+          { РћР±СЂРµР·Р°РЅРёРµ СЃРІРµСЂС…Сѓ }
           I := 0;
           while (I < gMatches.Count) and (PEdtSelection(gMatches.PItems[I]).FRow < vRow1) do
             Inc(I);
@@ -295,7 +295,7 @@ interface
         end;
 
         if gMatchRow2 > vRow2 then begin
-          { Обрезание снизу }
+          { РћР±СЂРµР·Р°РЅРёРµ СЃРЅРёР·Сѓ }
           I := 0;
           while (I < gMatches.Count) and (PEdtSelection(gMatches.PItems[gMatches.Count - I - 1]).FRow >= vRow2) do
             Inc(I);
@@ -305,7 +305,7 @@ interface
         end;
 
         if vRow2 > gMatchRow2 then begin
-          { Дополнение снизу }
+          { Р”РѕРїРѕР»РЅРµРЅРёРµ СЃРЅРёР·Сѓ }
           vRow := gMatchRow2;
           vCol := 0;
           EditorFind(gMatchStr, gMatchOpt, gBracket, vRow, vCol, vFindLen, {Forward:}True, [], gMatchRow2, vRow2, gMatches);
@@ -313,7 +313,7 @@ interface
         end;
 
         if vRow1 < gMatchRow1 then begin
-          { Дополнение сверху }
+          { Р”РѕРїРѕР»РЅРµРЅРёРµ СЃРІРµСЂС…Сѓ }
           vCount := gMatches.Count;
 
           vRow := vRow1;
@@ -370,7 +370,7 @@ interface
       if ATopLine = 0 then
         vHeight := vInfo.WindowSizeY
       else
-        vHeight := ATopLine - 1{Строка состояния редактора};
+        vHeight := ATopLine - 1{РЎС‚СЂРѕРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР°};
       if ACenter or ((ARow < vInfo.TopScreenLine) or (ARow >= vInfo.TopScreenLine + vHeight)) then
         vNewTop := RangeLimit(ARow - (vHeight div 3), 0, vInfo.TotalLines - vInfo.WindowSizeY );
 
@@ -643,7 +643,7 @@ interface
   var
     vFinder :TFinder;
   begin
-    { Проверяем валидность регулярного выражения... }
+    { РџСЂРѕРІРµСЂСЏРµРј РІР°Р»РёРґРЅРѕСЃС‚СЊ СЂРµРіСѓР»СЏСЂРЅРѕРіРѕ РІС‹СЂР°Р¶РµРЅРёСЏ... }
     vFinder := TFinder.CreateEx(AStr, AOpt, 0);
     FreeObj(vFinder);
 
@@ -816,7 +816,7 @@ interface
       while True do begin
 
         if not vPrompt and (gProgressLast = 0) then
-          { Инициализируем сквозной прогресс-индикатор }
+          { РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЃРєРІРѕР·РЅРѕР№ РїСЂРѕРіСЂРµСЃСЃ-РёРЅРґРёРєР°С‚РѕСЂ }
           gProgressLast := GetTickCount;
 
        {$ifdef bTrace}
@@ -854,17 +854,17 @@ interface
           if vStrInfo.StringLength < vCol + vFindLen then
             Wrong;
 
-          { Формирование строки замены (c учетом регулярных выражений замены)... }
+          { Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ СЃС‚СЂРѕРєРё Р·Р°РјРµРЅС‹ (c СѓС‡РµС‚РѕРј СЂРµРіСѓР»СЏСЂРЅС‹С… РІС‹СЂР°Р¶РµРЅРёР№ Р·Р°РјРµРЅС‹)... }
           vFinder.Replace(vStrInfo.StringText, vStrInfo.StringLength, AReplStr);
 
           vReplace := True;
           if vPrompt then begin
-            { Спрашиваем... }
+            { РЎРїСЂР°С€РёРІР°РµРј... }
             GotoPosition(vRow, vCol, vCol + vFindLen, vCol, {ACenter:}True {optCenterAlways}, vEdtInfo.WindowSizeY * 2 div 3);
             LocShow(vRow, vCol, IntMax(vFindLen, 1));
 
-            SetString(vStr1, vStrInfo.StringText + vCol, vFindLen); { Искомая строка }
-            SetString(vStr2, vFinder.RepBuf + vFinder.RepBeg, vFinder.RepLen); {Заменяющая строка}
+            SetString(vStr1, vStrInfo.StringText + vCol, vFindLen); { РСЃРєРѕРјР°СЏ СЃС‚СЂРѕРєР° }
+            SetString(vStr2, vFinder.RepBuf + vFinder.RepBeg, vFinder.RepLen); {Р—Р°РјРµРЅСЏСЋС‰Р°СЏ СЃС‚СЂРѕРєР°}
 
             vRes := ShowMessage(GetMsgStr(strConfirm), Format(GetMsgStr(strReplaceWith1), [vStr1, vStr2]) + #10 +
               GetMsgStr(strReplaceBut) + #10 + GetMsgStr(strAllBut) + #10 + GetMsgStr(strSkipBut) + #10 + GetMsgStr(strCancelBut1),
@@ -882,11 +882,11 @@ interface
             vStart := 0;
            {$endif bTrace}
           end else
-            { Иначе просто позиционируемся, чтобы лучше работало Undo... }
+            { РРЅР°С‡Рµ РїСЂРѕСЃС‚Рѕ РїРѕР·РёС†РёРѕРЅРёСЂСѓРµРјСЃСЏ, С‡С‚РѕР±С‹ Р»СѓС‡С€Рµ СЂР°Р±РѕС‚Р°Р»Рѕ Undo... }
             GotoPosition(vRow, -1, -1, vCol, False);
 
           if vReplace then begin
-            { Заменяем... }
+            { Р—Р°РјРµРЅСЏРµРј... }
            {$ifdef Far3}
             vStrSet.StructSize := SizeOf(vStrSet);
            {$endif Far3}
@@ -907,12 +907,12 @@ interface
             if AForward then begin
               Inc(vCol, vFinder.RepLen);
               if vFindLen = 0 then
-                Inc(vCol); { Чтобы избежать зацикливания... }
+                Inc(vCol); { Р§С‚РѕР±С‹ РёР·Р±РµР¶Р°С‚СЊ Р·Р°С†РёРєР»РёРІР°РЅРёСЏ... }
             end else
               Dec(vCol);
           end else
           begin
-            { Пропускаем... }
+            { РџСЂРѕРїСѓСЃРєР°РµРј... }
             if AForward then
               Inc(vCol)
             else
@@ -921,7 +921,7 @@ interface
 
         end else
         begin
-          { Вхождение не найдено. Начинаем сначала, или прекращаем поиск... }
+          { Р’С…РѕР¶РґРµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ. РќР°С‡РёРЅР°РµРј СЃРЅР°С‡Р°Р»Р°, РёР»Рё РїСЂРµРєСЂР°С‰Р°РµРј РїРѕРёСЃРє... }
           if vLoopSearch and not vLoop then begin
 
             if gFoundCount > 0 then begin
@@ -1049,20 +1049,20 @@ interface
       with vHelper do
         if FRow1 <= FRow2 then begin
           if ((FRow1 >= vRow1) and (FRow1 <= vRow2)) or ((vRow1 >= FRow1) and (vRow1 <= FRow2)) then begin
-            { Диапазоны пересекаются }
+            { Р”РёР°РїР°Р·РѕРЅС‹ РїРµСЂРµСЃРµРєР°СЋС‚СЃСЏ }
             vRow1 := IntMin(vRow1, FRow1);
             vRow2 := IntMax(vRow2, FRow2);
           end else
           begin
-            { Диапазоны не пересекаются }
+            { Р”РёР°РїР°Р·РѕРЅС‹ РЅРµ РїРµСЂРµСЃРµРєР°СЋС‚СЃСЏ }
 //          TraceF('Clear1: %d-%d', [FRow1, FRow2]);
             for i := FRow1 to FRow2 do
               FarEditorDelColor(i, -1, 0);
           end;
         end;
 
-      { Диапазон, видимый на экране очищается всегда, потому что мы не можем }
-      { отследить, какие элементы вышли за пределы экрана при модификациях... }
+      { Р”РёР°РїР°Р·РѕРЅ, РІРёРґРёРјС‹Р№ РЅР° СЌРєСЂР°РЅРµ РѕС‡РёС‰Р°РµС‚СЃСЏ РІСЃРµРіРґР°, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РјС‹ РЅРµ РјРѕР¶РµРј }
+      { РѕС‚СЃР»РµРґРёС‚СЊ, РєР°РєРёРµ СЌР»РµРјРµРЅС‚С‹ РІС‹С€Р»Рё Р·Р° РїСЂРµРґРµР»С‹ СЌРєСЂР°РЅР° РїСЂРё РјРѕРґРёС„РёРєР°С†РёСЏС…... }
 //    TraceF('Clear2: %d-%d', [vRow1, vRow2]);
       for i := vRow1 to vRow2 do
         FarEditorDelColor(i, -1, 0);
@@ -1168,7 +1168,7 @@ interface
 
   procedure RefreshEdtMatches;
   begin
-    gMatchRow2 := 0;  { Поддерживать }
+    gMatchRow2 := 0;  { РџРѕРґРґРµСЂР¶РёРІР°С‚СЊ }
   end;
 
  {$endif bAdvSelect}

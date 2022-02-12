@@ -192,7 +192,7 @@ interface
       FNumber    :Integer;
       FTitle     :TString;
       FGroupMode :Integer;    { 1-No group. 2-By Family }
-      FGroupAll  :Boolean;    { Групировать не TrueType шрифты }
+      FGroupAll  :Boolean;    { Р“СЂСѓРїРёСЂРѕРІР°С‚СЊ РЅРµ TrueType С€СЂРёС„С‚С‹ }
       FPath      :TString;
       FIndex     :TExList;
       FFonts     :TFontsList;
@@ -291,7 +291,7 @@ interface
 
   function GetFontRegPath :TString;
   begin
-    {!!! В зависимости от версии windows... }
+    {!!! Р’ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІРµСЂСЃРёРё windows... }
     Result := 'Software\Microsoft\Windows NT\CurrentVersion\Fonts';
   end;
 
@@ -1076,7 +1076,7 @@ interface
   begin
     FIndex.Clear;
     if FGroupMode = 1 then begin
-      { Линейный список... }
+      { Р›РёРЅРµР№РЅС‹Р№ СЃРїРёСЃРѕРє... }
       if FPath = '' then begin
         for I := 0 to FFonts.Count - 1 do begin
           vFont := FFonts[I];
@@ -1090,7 +1090,7 @@ interface
       end;
     end else
     begin
-      { Групировка по фамилиям... }
+      { Р“СЂСѓРїРёСЂРѕРІРєР° РїРѕ С„Р°РјРёР»РёСЏРј... }
       if FPath = '' then begin
 
         for I := 0 to FFonts.Count - 1 do begin

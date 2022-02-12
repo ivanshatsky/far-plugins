@@ -6,8 +6,8 @@
 {$define bAdvSelect}
 {$define bComboMode}
 
-{-$define bFileFind}    { Поиск в файлах }
+{-$define bFileFind}    { РџРѕРёСЃРє РІ С„Р°Р№Р»Р°С… }
 
-{-$define bGetStrOpt}  { Не нужно, в новых версиях FAR }
+{-$define bGetStrOpt}  { РќРµ РЅСѓР¶РЅРѕ, РІ РЅРѕРІС‹С… РІРµСЂСЃРёСЏС… FAR }
 
 {------------------------------------------------------------------------------}

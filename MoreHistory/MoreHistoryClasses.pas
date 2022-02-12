@@ -58,7 +58,7 @@ interface
       FPath  :TString;
       FTime  :TDateTime;
       FFlags :Cardinal;
-      FAvail :Integer;         { Для поддержки недоступных путей (не сохраняется) }
+      FAvail :Integer;         { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё РЅРµРґРѕСЃС‚СѓРїРЅС‹С… РїСѓС‚РµР№ (РЅРµ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ) }
 
     public
       property Path :TString read FPath;
@@ -85,10 +85,10 @@ interface
       function IsValid :Boolean; override;
 
     private
-      FHits      :Integer;     { Количество обращений к каталогу }
-      FActTime   :TDateTime;   { Время последнего активного действие }
-      FActCount  :Integer;     { Количество активных действий }
-      FItemName  :TString;     { Текущий элемент панели (не сохраняется) }
+      FHits      :Integer;     { РљРѕР»РёС‡РµСЃС‚РІРѕ РѕР±СЂР°С‰РµРЅРёР№ Рє РєР°С‚Р°Р»РѕРіСѓ }
+      FActTime   :TDateTime;   { Р’СЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ Р°РєС‚РёРІРЅРѕРіРѕ РґРµР№СЃС‚РІРёРµ }
+      FActCount  :Integer;     { РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РєС‚РёРІРЅС‹С… РґРµР№СЃС‚РІРёР№ }
+      FItemName  :TString;     { РўРµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚ РїР°РЅРµР»Рё (РЅРµ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ) }
 
     public
       property Hits :Integer read FHits;
@@ -110,17 +110,17 @@ interface
       function IsValid :Boolean; override;
 
     private
-//    FPath      :TString;     { Имя файла }
-//    FTime      :TDateTime;   { Время последнего доступа }
-//    FFlags     :Integer;     { Редактирование/просмотр/флаги }
-      FHits      :Integer;     { Количество открытий файла }
-      FEdtTime   :TDateTime;   { Время последней модификации }
-      FSaveCount :Integer;     { Количество сохранений файла }
-      FModRow    :Integer;     { Место последней модификации }
+//    FPath      :TString;     { РРјСЏ С„Р°Р№Р»Р° }
+//    FTime      :TDateTime;   { Р’СЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РґРѕСЃС‚СѓРїР° }
+//    FFlags     :Integer;     { Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ/РїСЂРѕСЃРјРѕС‚СЂ/С„Р»Р°РіРё }
+      FHits      :Integer;     { РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС‚РєСЂС‹С‚РёР№ С„Р°Р№Р»Р° }
+      FEdtTime   :TDateTime;   { Р’СЂРµРјСЏ РїРѕСЃР»РµРґРЅРµР№ РјРѕРґРёС„РёРєР°С†РёРё }
+      FSaveCount :Integer;     { РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕС…СЂР°РЅРµРЅРёР№ С„Р°Р№Р»Р° }
+      FModRow    :Integer;     { РњРµСЃС‚Рѕ РїРѕСЃР»РµРґРЅРµР№ РјРѕРґРёС„РёРєР°С†РёРё }
       FModCol    :Integer;     { -/-/- }
-      FEncoding  :Word;        { Кодировка }
+      FEncoding  :Word;        { РљРѕРґРёСЂРѕРІРєР° }
 
-//    FEdtRow    :Integer;     { Место последнего редактирования (не сохраняется) }
+//    FEdtRow    :Integer;     { РњРµСЃС‚Рѕ РїРѕСЃР»РµРґРЅРµРіРѕ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ (РЅРµ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ) }
 //    FEdtCol    :Integer;
 
     public
@@ -166,8 +166,8 @@ interface
 
     private
       FSubMasks :TObjList;
-      FMask     :TString;     { Исходная маска }
-      FXMask    :TString;     { Маска после XLat преобразования }
+      FMask     :TString;     { РСЃС…РѕРґРЅР°СЏ РјР°СЃРєР° }
+      FXMask    :TString;     { РњР°СЃРєР° РїРѕСЃР»Рµ XLat РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ }
       FExact    :Boolean;
       FRegExp   :Boolean;
       FNot      :Boolean;
@@ -175,7 +175,7 @@ interface
     end;
 
 
-    { Базовый класс для историй }
+    { Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РёСЃС‚РѕСЂРёР№ }
 
     THistory = class(TBasis)
     public
@@ -229,7 +229,7 @@ interface
     end;
 
 
-    { История папок }
+    { РСЃС‚РѕСЂРёСЏ РїР°РїРѕРє }
 
     TFldAction = (
       faEnter,
@@ -254,7 +254,7 @@ interface
     end;
 
 
-    { История редактора }
+    { РСЃС‚РѕСЂРёСЏ СЂРµРґР°РєС‚РѕСЂР° }
 
     TEdtAction = (
       eaOpenView,
@@ -272,7 +272,7 @@ interface
     end;
 
 
-    { История команд }
+    { РСЃС‚РѕСЂРёСЏ РєРѕРјР°РЅРґ }
 
    {$ifdef bCmdHistory}
     TCmdHistory = class(THistory)
@@ -309,9 +309,9 @@ interface
   procedure OptionsMenu;
 
   var
-    GLastAdded  :TString;  { Последняя добавленная папка, для опциональной фильтрации (optHideCurrent) }
-    GSkipFolder :TString;  { Папка, которую не надо добавлять/двигать в истории (для GotoFolder) }
-//  GSkipFile   :TString;  { Имя файла, которое не надо добавлять в историю команд (запущенное по ассоциации) }
+    GLastAdded  :TString;  { РџРѕСЃР»РµРґРЅСЏСЏ РґРѕР±Р°РІР»РµРЅРЅР°СЏ РїР°РїРєР°, РґР»СЏ РѕРїС†РёРѕРЅР°Р»СЊРЅРѕР№ С„РёР»СЊС‚СЂР°С†РёРё (optHideCurrent) }
+    GSkipFolder :TString;  { РџР°РїРєР°, РєРѕС‚РѕСЂСѓСЋ РЅРµ РЅР°РґРѕ РґРѕР±Р°РІР»СЏС‚СЊ/РґРІРёРіР°С‚СЊ РІ РёСЃС‚РѕСЂРёРё (РґР»СЏ GotoFolder) }
+//  GSkipFile   :TString;  { РРјСЏ С„Р°Р№Р»Р°, РєРѕС‚РѕСЂРѕРµ РЅРµ РЅР°РґРѕ РґРѕР±Р°РІР»СЏС‚СЊ РІ РёСЃС‚РѕСЂРёСЋ РєРѕРјР°РЅРґ (Р·Р°РїСѓС‰РµРЅРЅРѕРµ РїРѕ Р°СЃСЃРѕС†РёР°С†РёРё) }
 
   var
     FldHistory :TFldHistory;
@@ -401,7 +401,7 @@ interface
    {$endif bTrace}
 
     if UpCompareSubStr('//', vFrmt) = 0  then begin
-      {FTP плагин}
+      {FTP РїР»Р°РіРёРЅ}
       if UpCompareSubStr('//Hosts', vFrmt) = 0 then
         Exit;
       Result := 'FTP:' + vFrmt;
@@ -419,7 +419,7 @@ interface
 //    StrEqual(vFrmt, 'PDA') or
 //    StrEqual(vFrmt, 'PPC')
     then
-      { "Правильные" плагины }
+      { "РџСЂР°РІРёР»СЊРЅС‹Рµ" РїР»Р°РіРёРЅС‹ }
       Result := vFrmt + ':' + vPath;
   end;
  {$endif Far3}
@@ -517,16 +517,16 @@ interface
     vRealFolder := IsFullFilePath(APath);
 
     if vRealFolder and vVisible and (vInfo.PanelType = PTYPE_FILEPANEL) then begin
-      { Установка каталога и файла через API }
+      { РЈСЃС‚Р°РЅРѕРІРєР° РєР°С‚Р°Р»РѕРіР° Рё С„Р°Р№Р»Р° С‡РµСЂРµР· API }
       FarPanelSetPath(vHandle, APath, AFileName);
 
       if vWinInfo.WindowType <> WTYPE_PANELS then
-        { Макросом переходим на панель... }
+        { РњР°РєСЂРѕСЃРѕРј РїРµСЂРµС…РѕРґРёРј РЅР° РїР°РЅРµР»СЊ... }
         FarPostMacro(FarKeyToMacro('F12 0'));
 
     end else
     begin
-      { ...или через макрос }
+      { ...РёР»Рё С‡РµСЂРµР· РјР°РєСЂРѕСЃ }
       vMacro := '';
 
       case vInfo.PanelType of
@@ -581,7 +581,7 @@ interface
  {-----------------------------------------------------------------------------}
 
   function NumMode(ANum :Integer) :Integer;
-    {-Для сопряжения числительных }
+    {-Р”Р»СЏ СЃРѕРїСЂСЏР¶РµРЅРёСЏ С‡РёСЃР»РёС‚РµР»СЊРЅС‹С… }
   const
     cModes :array[0..9] of Integer = (3, 4, 2, 2, 2, 3, 3, 3, 3, 3);
   begin
@@ -654,10 +654,10 @@ interface
     begin
       DecodeDate(vDate0, vYear, vMonth, vDay);
 
-      { День начала... }
-      vDateW0 := vDate0 - DayOfWeek(vDate0) + 1;       {...текущей недели }
-      vDateM0 := Trunc(EncodeDate(vYear, vMonth, 1));  {...текущего месяца }
-      vDateY0 := Trunc(EncodeDate(vYear, 1, 1));       {...текущего года }
+      { Р”РµРЅСЊ РЅР°С‡Р°Р»Р°... }
+      vDateW0 := vDate0 - DayOfWeek(vDate0) + 1;       {...С‚РµРєСѓС‰РµР№ РЅРµРґРµР»Рё }
+      vDateM0 := Trunc(EncodeDate(vYear, vMonth, 1));  {...С‚РµРєСѓС‰РµРіРѕ РјРµСЃСЏС†Р° }
+      vDateY0 := Trunc(EncodeDate(vYear, 1, 1));       {...С‚РµРєСѓС‰РµРіРѕ РіРѕРґР° }
 
       if vDateI > vDate0 then
         Result := GetMsgStr(strFuture)
@@ -1137,7 +1137,7 @@ interface
 
   function TCmdHistoryEntry.CompareKey(Key :Pointer; Context :TIntPtr) :Integer; {override;}
   begin
-    {TODO: поддержать режим сравнения только командной строки...}
+    {TODO: РїРѕРґРґРµСЂР¶Р°С‚СЊ СЂРµР¶РёРј СЃСЂР°РІРЅРµРЅРёСЏ С‚РѕР»СЊРєРѕ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё...}
     if optCaseSensCmdHist = 0 then
       Result := UpCompareStr(FPath, TString(Key))
     else
@@ -1189,11 +1189,11 @@ interface
 
     vPos := ChrPos(':', vPath);
     if (vPos <> 0) and not FileNameIsLocal(vPath) then
-      { Вызов плагина FAR через префикс }
+      { Р’С‹Р·РѕРІ РїР»Р°РіРёРЅР° FAR С‡РµСЂРµР· РїСЂРµС„РёРєСЃ }
       Result := copy(vPath, 1, vPos)
     else
     if (vStr^ <> #0) or ((ChrPos('.', vPath) = 0) and not IsFullFilePath(vPath)) then
-      { Вызов команды (так как есть аргументы или не похоже(?) на имя файла) }
+      { Р’С‹Р·РѕРІ РєРѕРјР°РЅРґС‹ (С‚Р°Рє РєР°Рє РµСЃС‚СЊ Р°СЂРіСѓРјРµРЅС‚С‹ РёР»Рё РЅРµ РїРѕС…РѕР¶Рµ(?) РЅР° РёРјСЏ С„Р°Р№Р»Р°) }
       Result := vPath
     else begin
       {!!!Localize}
@@ -1499,7 +1499,7 @@ interface
 
     vMemory := nil;
     try
-      { Подготавливаем данные к сохранению }
+      { РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ Рє СЃРѕС…СЂР°РЅРµРЅРёСЋ }
 
       LockHistory;
       try
@@ -1535,7 +1535,7 @@ interface
         UnlockHistory;
       end;
 
-      { Сохраняем данные }
+      { РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ }
 
       if not WinFolderExists(vFolder) then
         if not CreateDir(vFolder) then
@@ -1552,7 +1552,7 @@ interface
         end;
 
         if WinFileExists(vFileName) then begin
-          { Бэкапим старый файл }
+          { Р‘СЌРєР°РїРёРј СЃС‚Р°СЂС‹Р№ С„Р°Р№Р» }
           if WinFileExists(vBackupFileName) then
             if not DeleteFile(vBackupFileName) then
               Exit;
@@ -1692,7 +1692,7 @@ interface
 
   function TFldHistory.GetHistoryFileForRead :TString; {override;}
   begin
-    { Переименовали файл истории, чтобы не терять ее, если случайно запустится старая версия плагина... }
+    { РџРµСЂРµРёРјРµРЅРѕРІР°Р»Рё С„Р°Р№Р» РёСЃС‚РѕСЂРёРё, С‡С‚РѕР±С‹ РЅРµ С‚РµСЂСЏС‚СЊ РµРµ, РµСЃР»Рё СЃР»СѓС‡Р°Р№РЅРѕ Р·Р°РїСѓСЃС‚РёС‚СЃСЏ СЃС‚Р°СЂР°СЏ РІРµСЂСЃРёСЏ РїР»Р°РіРёРЅР°... }
     Result := AddFileName(GetHistoryFolder, FFileName);
     if not WinFileExists(Result) then
       Result := AddFileName(GetHistoryFolder, cFldHistFileName1);
@@ -1759,7 +1759,7 @@ interface
 
         if FHistory.Count > optHistoryLimit then
 //        FHistory.DeleteRange(0, FHistory.Count - optHistoryLimit);
-          FHistory.Delete(0); { Удаляем только один элемент, чтобы случайно не потерся большой кусок истории }
+          FHistory.Delete(0); { РЈРґР°Р»СЏРµРј С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЌР»РµРјРµРЅС‚, С‡С‚РѕР±С‹ СЃР»СѓС‡Р°Р№РЅРѕ РЅРµ РїРѕС‚РµСЂСЃСЏ Р±РѕР»СЊС€РѕР№ РєСѓСЃРѕРє РёСЃС‚РѕСЂРёРё }
         SetModified;
       end;
 
@@ -1890,7 +1890,7 @@ interface
         FHistory.Add(vEntry);
         if FHistory.Count > optHistoryLimit then
 //        FHistory.DeleteRange(0, FHistory.Count - optHistoryLimit);
-          FHistory.Delete(0); { Удаляем только один элемент, чтобы случайно не потерся большой кусок истории }
+          FHistory.Delete(0); { РЈРґР°Р»СЏРµРј С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЌР»РµРјРµРЅС‚, С‡С‚РѕР±С‹ СЃР»СѓС‡Р°Р№РЅРѕ РЅРµ РїРѕС‚РµСЂСЃСЏ Р±РѕР»СЊС€РѕР№ РєСѓСЃРѕРє РёСЃС‚РѕСЂРёРё }
         SetModified;
       end;
 
@@ -1951,11 +1951,11 @@ interface
 
     vPos := ChrPos(':', vPath);
     if (vPos <> 0) and not FileNameIsLocal(vPath) then
-      { Вызов плагина FAR через префикс }
+      { Р’С‹Р·РѕРІ РїР»Р°РіРёРЅР° FAR С‡РµСЂРµР· РїСЂРµС„РёРєСЃ }
       Result := copy(vPath, 1, vPos)
     else
     if (vStr^ <> #0) or ((ChrPos('.', vPath) = 0) and not IsFullFilePath(vPath)) then
-      { Вызов команды (так как есть аргументы или не похоже(?) на имя файла) }
+      { Р’С‹Р·РѕРІ РєРѕРјР°РЅРґС‹ (С‚Р°Рє РєР°Рє РµСЃС‚СЊ Р°СЂРіСѓРјРµРЅС‚С‹ РёР»Рё РЅРµ РїРѕС…РѕР¶Рµ(?) РЅР° РёРјСЏ С„Р°Р№Р»Р°) }
       Result := vPath
     else begin
       {!!!Localize}
@@ -2027,7 +2027,7 @@ interface
       FHistory.Add(vEntry);
       if FHistory.Count > optHistoryLimit then
 //      FHistory.DeleteRange(0, FHistory.Count - optHistoryLimit);
-        FHistory.Delete(0); { Удаляем только один элемент, чтобы случайно не потерся большой кусок истории }
+        FHistory.Delete(0); { РЈРґР°Р»СЏРµРј С‚РѕР»СЊРєРѕ РѕРґРёРЅ СЌР»РµРјРµРЅС‚, С‡С‚РѕР±С‹ СЃР»СѓС‡Р°Р№РЅРѕ РЅРµ РїРѕС‚РµСЂСЃСЏ Р±РѕР»СЊС€РѕР№ РєСѓСЃРѕРє РёСЃС‚РѕСЂРёРё }
       SetModified;
     end;
 

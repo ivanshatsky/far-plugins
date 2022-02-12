@@ -6,7 +6,7 @@ unit UCharMapHints;
 {* (c) 2011 Max Rusov                                                         *}
 {*                                                                            *}
 {* Unicode CharMap                                                            *}
-{* Интеграция с FAR Hints                                                     *}
+{* РРЅС‚РµРіСЂР°С†РёСЏ СЃ FAR Hints                                                     *}
 {******************************************************************************}
 
 interface
@@ -311,17 +311,17 @@ interface
       try
         vHandle := GetModuleHandle('FarHints.dll');
         if vHandle = 0 then
-          Exit; {FarHints не установлен}
+          Exit; {FarHints РЅРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅ}
 
         vGetApiProc := GetProcAddress( vHandle, 'GetFarHinstAPI' );
         if not Assigned(vGetApiProc) then
-          Exit; {FarHints неподходящей версии }
+          Exit; {FarHints РЅРµРїРѕРґС…РѕРґСЏС‰РµР№ РІРµСЂСЃРёРё }
 
         vFarHintsApi := IFarHintsApi(vGetApiProc);
 
         vFarHintsAPI.QueryInterface(IFarHintsIntegrationAPI, FIntegrationAPI);
         if not Assigned(FIntegrationAPI) then
-          Exit; {FarHints неподходящей версии }
+          Exit; {FarHints РЅРµРїРѕРґС…РѕРґСЏС‰РµР№ РІРµСЂСЃРёРё }
 
         FHintObject := THintPluginObject.Create;
         FIntegrationAPI.RegisterEmbeddedPlugin(FHintObject);

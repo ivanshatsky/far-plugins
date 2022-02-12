@@ -219,7 +219,7 @@ interface
   function TPlugin.CanProcess(const AItem :IFarItem) :Boolean;
   begin
     if AItem.Name = '' then
-      { Hint для диалога }
+      { Hint РґР»СЏ РґРёР°Р»РѕРіР° }
       Result := PF_ProcessDialog and FInfo.Flags <> 0
     else
       Result :=

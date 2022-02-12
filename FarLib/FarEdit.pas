@@ -2,7 +2,7 @@
 {* (c) 2010 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* TFarEdit - элемент диалога "редактор"                                      *}
+{* TFarEdit - СЌР»РµРјРµРЅС‚ РґРёР°Р»РѕРіР° "СЂРµРґР°РєС‚РѕСЂ"                                      *}
 {******************************************************************************}
 
 {$I Defines.inc}
@@ -91,16 +91,16 @@ interface
       function EventHandler(Msg :Integer; Param1 :Integer; Param2 :TIntPtr) :Integer; override;
 
     private
-      FEdtPos     :Integer;    { Позиция курсора в редактируемой колонке }
-      FEdtDelta   :Integer;    { Смещение в редактируемой колонке }
+      FEdtPos     :Integer;    { РџРѕР·РёС†РёСЏ РєСѓСЂСЃРѕСЂР° РІ СЂРµРґР°РєС‚РёСЂСѓРµРјРѕР№ РєРѕР»РѕРЅРєРµ }
+      FEdtDelta   :Integer;    { РЎРјРµС‰РµРЅРёРµ РІ СЂРµРґР°РєС‚РёСЂСѓРµРјРѕР№ РєРѕР»РѕРЅРєРµ }
       FMargin     :Integer;
       FCursorOn   :Boolean;
       FShowCursor :Boolean;
 
-      FSelBeg     :TPoint;     { Начало выделенного блока }
-      FSelEnd     :TPoint;     { Конец выделенного блока }
-      FSelShow    :Boolean;    { Виден ли выделенный блок? }
-      FSelMethod  :TSelMethod; { Вспомогательная, для процесса выделения }
+      FSelBeg     :TPoint;     { РќР°С‡Р°Р»Рѕ РІС‹РґРµР»РµРЅРЅРѕРіРѕ Р±Р»РѕРєР° }
+      FSelEnd     :TPoint;     { РљРѕРЅРµС† РІС‹РґРµР»РµРЅРЅРѕРіРѕ Р±Р»РѕРєР° }
+      FSelShow    :Boolean;    { Р’РёРґРµРЅ Р»Рё РІС‹РґРµР»РµРЅРЅС‹Р№ Р±Р»РѕРє? }
+      FSelMethod  :TSelMethod; { Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ, РґР»СЏ РїСЂРѕС†РµСЃСЃР° РІС‹РґРµР»РµРЅРёСЏ }
       FSelStart   :TPoint;     { -/-/- }
 
 
@@ -216,7 +216,7 @@ interface
   begin
     vWidth := FWidth - FMargin;
     if (FRowCount > FHeight) and not (goNoVScroller in FOptions) then
-      Dec(vWidth); { Есть скроллер }
+      Dec(vWidth); { Р•СЃС‚СЊ СЃРєСЂРѕР»Р»РµСЂ }
     vNewDelta := RangeLimit(FEdtDelta, APos - vWidth + 1, APos);
     EdtScrollTo(vNewDelta);
   end;
@@ -564,7 +564,7 @@ interface
         begin
 //        TraceF('DN_KILLFOCUS, Self=%p', [pointer(Self)]);
           SetCursor(False);
-//        ClearSelection;  Так не хорошо, KillFocus зачем-то приходит при клике мышкой...
+//        ClearSelection;  РўР°Рє РЅРµ С…РѕСЂРѕС€Рѕ, KillFocus Р·Р°С‡РµРј-С‚Рѕ РїСЂРёС…РѕРґРёС‚ РїСЂРё РєР»РёРєРµ РјС‹С€РєРѕР№...
           Result := -1;
         end;
     else

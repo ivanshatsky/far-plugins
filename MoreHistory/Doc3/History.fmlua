@@ -87,7 +87,7 @@ macro Key = "CtrlShiftE" Area = "Shell" Descr = "More history: Next command"
 
 
 ;;
-;; Стандартные истории
+;; РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РёСЃС‚РѕСЂРёРё
 ;;
 
 macro Key = "AltShiftF12" Area = "Shell Search" Descr = "Standart History: Folders"

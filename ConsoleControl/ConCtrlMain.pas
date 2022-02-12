@@ -37,7 +37,7 @@ interface
     cPalFileExt = 'pal';
     cPltFileExt = 'plt';
 
-    { Команды, доступные через префикс pal: }
+    { РљРѕРјР°РЅРґС‹, РґРѕСЃС‚СѓРїРЅС‹Рµ С‡РµСЂРµР· РїСЂРµС„РёРєСЃ pal: }
 //  cAddCmd   = 'Add';
 //  cEditCmd  = 'Edit';
     cScaleCmd = 'Scale';
@@ -278,7 +278,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Диалог                                                                      }
+ { Р”РёР°Р»РѕРі                                                                      }
  {-----------------------------------------------------------------------------}
 
   const
@@ -1106,7 +1106,7 @@ interface
       vInfo.srWindow.Bottom := vInfo.srWindow.Top + AWinSize.Y;
       SetConsoleScreenBufferInfoEx(hStdOut, @vInfo);
 
-      { Без этого глючит при увеличении размера консоли. Глюк Windows?... }
+      { Р‘РµР· СЌС‚РѕРіРѕ РіР»СЋС‡РёС‚ РїСЂРё СѓРІРµР»РёС‡РµРЅРёРё СЂР°Р·РјРµСЂР° РєРѕРЅСЃРѕР»Рё. Р“Р»СЋРє Windows?... }
       Dec(vInfo.srWindow.Right);
       Dec(vInfo.srWindow.Bottom);
       SetConsoleWindowInfo(hStdOut, True, vInfo.srWindow);

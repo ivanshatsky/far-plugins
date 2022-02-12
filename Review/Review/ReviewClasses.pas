@@ -8,7 +8,7 @@ unit ReviewClasses;
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -46,7 +46,7 @@ interface
   const
     CM_SetImage     = $B000;
     CM_Transform    = $B001;
-    CM_SetPage      = $B002; { Ручное переключение многостраничного изображения }
+    CM_SetPage      = $B002; { Р СѓС‡РЅРѕРµ РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ }
     CM_SetWinPos    = $B003;
     CM_SetVisible   = $B004;
     CM_SetMode      = $B005;
@@ -56,8 +56,8 @@ interface
     CM_TempMsg      = $B009;
     CM_SlideShow    = $B00A;
     CM_ReleaseImage = $B00B;
-    CM_RenderImage  = $B00C;  {Thumbs: Завершено извлечение эскиза (ThumbThread -> ThumbsWindow) }
-    CM_Select       = $B00D;  {Thumbs: Выделение изображений}
+    CM_RenderImage  = $B00C;  {Thumbs: Р—Р°РІРµСЂС€РµРЅРѕ РёР·РІР»РµС‡РµРЅРёРµ СЌСЃРєРёР·Р° (ThumbThread -> ThumbsWindow) }
+    CM_Select       = $B00D;  {Thumbs: Р’С‹РґРµР»РµРЅРёРµ РёР·РѕР±СЂР°Р¶РµРЅРёР№}
 
   const
     cScaleStep   = 1.01;
@@ -237,15 +237,15 @@ interface
       FImageOk      :Boolean;
 
       FMode         :TScaleMode;      {  }
-      FLnScale      :TFloat;          { Логарифмический масштаб }
-      FScale        :TFloat;          { Масштаб }
-      FDelta        :TPoint;          { Смещение (центра картинки от центра экрана) }
-      FDeltaScale   :TFloat;          { Масштаб смещения }
-      FMouseLock    :Integer;         { Масштабирование по позиции мыши }
+      FLnScale      :TFloat;          { Р›РѕРіР°СЂРёС„РјРёС‡РµСЃРєРёР№ РјР°СЃС€С‚Р°Р± }
+      FScale        :TFloat;          { РњР°СЃС€С‚Р°Р± }
+      FDelta        :TPoint;          { РЎРјРµС‰РµРЅРёРµ (С†РµРЅС‚СЂР° РєР°СЂС‚РёРЅРєРё РѕС‚ С†РµРЅС‚СЂР° СЌРєСЂР°РЅР°) }
+      FDeltaScale   :TFloat;          { РњР°СЃС€С‚Р°Р± СЃРјРµС‰РµРЅРёСЏ }
+      FMouseLock    :Integer;         { РњР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ РїРѕ РїРѕР·РёС†РёРё РјС‹С€Рё }
 
-      FSrcRect      :TRect;           { Область картинки, видимая на экране (м.б. меньше картинки) }
-      FDstRect      :TRect;           { Область экрана, отображающая картинку (м.б. меньше экрана, но не больше) }
-      FDstRect0     :TRect;           { Виртуальный прямоугольник всей картинки на экране (м.б. больше или меньше экрана) }
+      FSrcRect      :TRect;           { РћР±Р»Р°СЃС‚СЊ РєР°СЂС‚РёРЅРєРё, РІРёРґРёРјР°СЏ РЅР° СЌРєСЂР°РЅРµ (Рј.Р±. РјРµРЅСЊС€Рµ РєР°СЂС‚РёРЅРєРё) }
+      FDstRect      :TRect;           { РћР±Р»Р°СЃС‚СЊ СЌРєСЂР°РЅР°, РѕС‚РѕР±СЂР°Р¶Р°СЋС‰Р°СЏ РєР°СЂС‚РёРЅРєСѓ (Рј.Р±. РјРµРЅСЊС€Рµ СЌРєСЂР°РЅР°, РЅРѕ РЅРµ Р±РѕР»СЊС€Рµ) }
+      FDstRect0     :TRect;           { Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РІСЃРµР№ РєР°СЂС‚РёРЅРєРё РЅР° СЌРєСЂР°РЅРµ (Рј.Р±. Р±РѕР»СЊС€Рµ РёР»Рё РјРµРЅСЊС€Рµ СЌРєСЂР°РЅР°) }
 
       FDragged      :Boolean;
       FMousePos     :TPoint;
@@ -260,8 +260,8 @@ interface
       FSlideStart   :DWORD;
       FSlideDelay   :Integer;
 
-      FThumbStart   :DWORD;           { Для поддержки фонового декодирования при быстром листании }
-      FResizeStart  :DWORD;           { Для поддержки фонового декодирования при масштабировании }
+      FThumbStart   :DWORD;           { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё С„РѕРЅРѕРІРѕРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ РїСЂРё Р±С‹СЃС‚СЂРѕРј Р»РёСЃС‚Р°РЅРёРё }
+      FResizeStart  :DWORD;           { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё С„РѕРЅРѕРІРѕРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ РїСЂРё РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРё }
       FResizeSize   :TSize;
 
       FUseWinSize   :Boolean;
@@ -353,8 +353,8 @@ interface
       procedure ReleaseSource;
 
     private
-//    FDecoder     :TReviewDecoder;    { Выбранный декодер }
-//    FBitmap      :TReviewBitmap;     { Bitmap (только для не Selfdraw) }
+//    FDecoder     :TReviewDecoder;    { Р’С‹Р±СЂР°РЅРЅС‹Р№ РґРµРєРѕРґРµСЂ }
+//    FBitmap      :TReviewBitmap;     { Bitmap (С‚РѕР»СЊРєРѕ РґР»СЏ РЅРµ Selfdraw) }
       FIsThumbnail :Boolean;
       FSelected    :Integer;
 
@@ -434,20 +434,20 @@ interface
      {$endif bThumbs}
 
     private
-      FDecoders     :TObjList;           { Список декодеров }
+      FDecoders     :TObjList;           { РЎРїРёСЃРѕРє РґРµРєРѕРґРµСЂРѕРІ }
       FWinThread    :TReviewWinThread;
       FWindow       :TImageWindow;
-      FCommand      :Integer;            { Для навигации по плагинным панелям }
+      FCommand      :Integer;            { Р”Р»СЏ РЅР°РІРёРіР°С†РёРё РїРѕ РїР»Р°РіРёРЅРЅС‹Рј РїР°РЅРµР»СЏРј }
       FCmdFile      :TString;            { -/-/- }
-      FCache        :TObjList;           { Закэшированные изображения }
-      FFavDecoder   :TReviewDecoder;     { Предпочитаемый декодер }
+      FCache        :TObjList;           { Р—Р°РєСЌС€РёСЂРѕРІР°РЅРЅС‹Рµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ }
+      FFavDecoder   :TReviewDecoder;     { РџСЂРµРґРїРѕС‡РёС‚Р°РµРјС‹Р№ РґРµРєРѕРґРµСЂ }
 
       FBackBmp      :TReviewBitmap;
 
-      FForceFile    :TString;            { Файл для принудительной обработки в ViewerEvent }
+      FForceFile    :TString;            { Р¤Р°Р№Р» РґР»СЏ РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРё РІ ViewerEvent }
       FForceMode    :Integer;
 
-      FLastDecode   :DWORD;              { Для быстрой прокрутки }
+      FLastDecode   :DWORD;              { Р”Р»СЏ Р±С‹СЃС‚СЂРѕР№ РїСЂРѕРєСЂСѓС‚РєРё }
 
 //    FScreen        :THandle;
 //    FCursor        :HCursor;
@@ -496,7 +496,7 @@ interface
   var Review :TReviewManager;
 
 
-  { Модальное состояние... }
+  { РњРѕРґР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ... }
 
   type
     TModalStateDlg = class(TFarDialog)
@@ -513,7 +513,7 @@ interface
     protected
       FErrorStr  :TString;
       FPostKey   :Integer;
-      FHidden    :Boolean;  { Окно изображения временно скрыто... }
+      FHidden    :Boolean;  { РћРєРЅРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РІСЂРµРјРµРЅРЅРѕ СЃРєСЂС‹С‚Рѕ... }
 
       procedure ResizeDialog;
     end;
@@ -529,7 +529,7 @@ interface
       function MouseEvent(AID :Integer; const AMouse :TMouseEventRecord) :Boolean; override;
 
     private
-      FQuick     :Boolean;  { QuickView. Не используется. }
+      FQuick     :Boolean;  { QuickView. РќРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ. }
     end;
 
 
@@ -599,7 +599,7 @@ interface
 
 
   function ConsolePosToClientPoint(AX, AY :Integer) :TPoint;
-    { Пересчитываем консольные координаты в координаты клиентской области окна }
+    { РџРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РєРѕРЅСЃРѕР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР° }
   var
     vRect :TRect;
     vInfo :TConsoleScreenBufferInfo;
@@ -934,7 +934,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Диалог запроса числового значения                                           }
+ { Р”РёР°Р»РѕРі Р·Р°РїСЂРѕСЃР° С‡РёСЃР»РѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ                                           }
  {-----------------------------------------------------------------------------}
 
   type
@@ -1001,7 +1001,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Диалог модального состояния                                                 }
+ { Р”РёР°Р»РѕРі РјРѕРґР°Р»СЊРЅРѕРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ                                                 }
  {-----------------------------------------------------------------------------}
 
   procedure TModalStateDlg.InitDialog; {override;}
@@ -1470,7 +1470,7 @@ interface
   begin
     Windows.GetClientRect(hFarWindow, vRect);
     if IsWindowVisible(Handle) and not RectEquals(vRect, FParentRect) then begin
-      { Корректируем размер окна, при изменении окна FAR }
+      { РљРѕСЂСЂРµРєС‚РёСЂСѓРµРј СЂР°Р·РјРµСЂ РѕРєРЅР°, РїСЂРё РёР·РјРµРЅРµРЅРёРё РѕРєРЅР° FAR }
       FParentRect := vRect;
       if not RectEmpty(vRect) then begin
         if FWinMode = wmNormal then
@@ -1484,7 +1484,7 @@ interface
     if FWinMode = wmQuickView then begin
       vArea := FarGetMacroArea;
       if vArea <> FLastArea then begin
-        { Прячем/показываем окно изображения, при изменении MacroArea (для QuickView) }
+        { РџСЂСЏС‡РµРј/РїРѕРєР°Р·С‹РІР°РµРј РѕРєРЅРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ, РїСЂРё РёР·РјРµРЅРµРЅРёРё MacroArea (РґР»СЏ QuickView) }
         FLastArea := vArea;
         if vArea in [MACROAREA_SHELL, MACROAREA_SEARCH, MACROAREA_OTHER{???}] then begin
           Show(SW_SHOWNA);
@@ -1495,14 +1495,14 @@ interface
     end;
 
     if FWinMode = wmFullscreen then
-      { Делаем FullScreen окно не Topmost, если FAR теряет фокус }
+      { Р”РµР»Р°РµРј FullScreen РѕРєРЅРѕ РЅРµ Topmost, РµСЃР»Рё FAR С‚РµСЂСЏРµС‚ С„РѕРєСѓСЃ }
       if not IsActiveConsole and (FFullScreenWin <> nil) and (GetWindowLong(FFullScreenWin.Handle, GWL_EXSTYLE) and WS_EX_TOPMOST <> 0) then begin
 //      TraceF('Make no topmost. FullScreenWin=%x, Console=%x...', [FullScreenWin.Handle, hConsoleTopWnd]);
         Windows.SetWindowPos(FFullScreenWin.Handle, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE or SWP_NOSIZE or SWP_NOACTIVATE);
       end;
 
     if FNeedSync and (TickCountDiff(GetTickCount, FSyncStart) > FSyncDelay) and (GLockSync = 0) and not ScrollKeyPressed then begin
-      { Асинхронный вызов в главном потоке (для обновления QuickView или для предварительного декодирования)... }
+      { РђСЃРёРЅС…СЂРѕРЅРЅС‹Р№ РІС‹Р·РѕРІ РІ РіР»Р°РІРЅРѕРј РїРѕС‚РѕРєРµ (РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ QuickView РёР»Рё РґР»СЏ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ)... }
       FNeedSync := False;
       FarAdvControl(ACTL_SYNCHRO, FSyncCmd);
     end;
@@ -1845,7 +1845,7 @@ interface
 
     if FMode = smAutoFit then begin
       if (vImgSize.CX <> 0) and (vImgSize.CY <> 0) then begin
-        { Подберем масштаб, чтобы изображение вписывалось в экран }
+        { РџРѕРґР±РµСЂРµРј РјР°СЃС€С‚Р°Р±, С‡С‚РѕР±С‹ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІРїРёСЃС‹РІР°Р»РѕСЃСЊ РІ СЌРєСЂР°РЅ }
         FScale := FloatMin( vWinSize.cx / vImgSize.cx, vWinSize.cy / vImgSize.cy);
         if FScale > (optInitialScale / 100) then
           FScale := (optInitialScale / 100);
@@ -1858,15 +1858,15 @@ interface
         FLnScale := 0;
     end;
 
-    { Размер отмасштабированной картинки }
+    { Р Р°Р·РјРµСЂ РѕС‚РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРЅРѕР№ РєР°СЂС‚РёРЅРєРё }
     vPicSize := Size(
       Round(vImgSize.cx * FScale),
       Round(vImgSize.cy * FScale)
     );
 
     if FDeltaScale <> FScale then begin
-      { Пересчитываем смещение, чтобы не смещалась точка изображения, находящаяся в фокусе - }
-      { в центре экрана или под курсором мыши }
+      { РџРµСЂРµСЃС‡РёС‚С‹РІР°РµРј СЃРјРµС‰РµРЅРёРµ, С‡С‚РѕР±С‹ РЅРµ СЃРјРµС‰Р°Р»Р°СЃСЊ С‚РѕС‡РєР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ, РЅР°С…РѕРґСЏС‰Р°СЏСЃСЏ РІ С„РѕРєСѓСЃРµ - }
+      { РІ С†РµРЅС‚СЂРµ СЌРєСЂР°РЅР° РёР»Рё РїРѕРґ РєСѓСЂСЃРѕСЂРѕРј РјС‹С€Рё }
 
       vDelta := Point(0, 0);
       if FMouseLock > 0 then begin
@@ -1953,11 +1953,11 @@ interface
       GetClipBox(DC, vClipRect);
 
       if FImageOk then begin
-        { Декодер рисует что-то в своем окне }
+        { Р”РµРєРѕРґРµСЂ СЂРёСЃСѓРµС‚ С‡С‚Рѕ-С‚Рѕ РІ СЃРІРѕРµРј РѕРєРЅРµ }
         vOwnDC := FImage.FSelfdraw and not FImage.FSelfPaint;
-        { Режим плитки, только не для Self-Draw}
+        { Р РµР¶РёРј РїР»РёС‚РєРё, С‚РѕР»СЊРєРѕ РЅРµ РґР»СЏ Self-Draw}
         vTileMode := optTileMode and not vOwnDC;
-        { Картинка заполняет весь экран }
+        { РљР°СЂС‚РёРЅРєР° Р·Р°РїРѕР»РЅСЏРµС‚ РІРµСЃСЊ СЌРєСЂР°РЅ }
         vFillAll := vTileMode or RectContainsRect(FDstRect, vClientRect);
 
         if (optShowInfo <> 0) and not vOwnDC then begin
@@ -1986,7 +1986,7 @@ interface
             DrawImage(DC, FImage, FSrcRect, FDstRect, False);
 
           if not vFillAll then begin
-            { Заливаем фон, исключая картинку, чтобы не мигала }
+            { Р—Р°Р»РёРІР°РµРј С„РѕРЅ, РёСЃРєР»СЋС‡Р°СЏ РєР°СЂС‚РёРЅРєСѓ, С‡С‚РѕР±С‹ РЅРµ РјРёРіР°Р»Р° }
             vSaveDC := SaveDC(DC);
             try
               with FDstRect do
@@ -2181,7 +2181,7 @@ interface
       else begin
         vBmpRect := ASrcRect;
         if (aImage.FBitmap.Size.CX <> vImgSize.cx) or (aImage.FBitmap.Size.CY <> vImgSize.cy) then
-          { Размер декодированного битмапа не равен декларируемому размеру изображения - масштабируем }
+          { Р Р°Р·РјРµСЂ РґРµРєРѕРґРёСЂРѕРІР°РЅРЅРѕРіРѕ Р±РёС‚РјР°РїР° РЅРµ СЂР°РІРµРЅ РґРµРєР»Р°СЂРёСЂСѓРµРјРѕРјСѓ СЂР°Р·РјРµСЂСѓ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ - РјР°СЃС€С‚Р°Р±РёСЂСѓРµРј }
           with ASrcRect do
             vBmpRect := Rect(LocScaleX(Left), LocScaleY(Top), LocScaleX(Right), LocScaleY(Bottom));
 
@@ -2194,7 +2194,7 @@ interface
 
           vIncrease := (vBmpRect.Right - vBmpRect.Left) < (ADstRect.Right - ADstRect.Left);
           if FHiQual then begin
-            { При уменьшении сглаживаем всегда, а при увеличении - только если включена опция optSmoothScale }
+            { РџСЂРё СѓРјРµРЅСЊС€РµРЅРёРё СЃРіР»Р°Р¶РёРІР°РµРј РІСЃРµРіРґР°, Р° РїСЂРё СѓРІРµР»РёС‡РµРЅРёРё - С‚РѕР»СЊРєРѕ РµСЃР»Рё РІРєР»СЋС‡РµРЅР° РѕРїС†РёСЏ optSmoothScale }
             vSmooth := not vIncrease or (vIncrease and optSmoothScale);
 
             if not aImage.FIsThumbnail and ((vIncrease and vSmooth) or (vTransparent and not vIncrease)) then begin
@@ -2212,7 +2212,7 @@ interface
             FDraftMode := False;
           end else
           begin
-            { Быстрый вывод - без сглаживания }
+            { Р‘С‹СЃС‚СЂС‹Р№ РІС‹РІРѕРґ - Р±РµР· СЃРіР»Р°Р¶РёРІР°РЅРёСЏ }
             if vTransparent and (FWinBPP < 32) then
               GpStretchDraw(ADC, ADstRect, aImage.FBitmap.BMP, vBmpRect, vTransparent, False)
             else
@@ -2591,7 +2591,7 @@ interface
     Result := inherited Idle;
 
     if FDraftMode and (TickCountDiff(GetTickCount, FDraftStart) > optDraftDelay) and not ScrollKeyPressed{???} then begin
-      { Перерисовываем изображение в высоком качестве, после прекращения прокуртки/масштабирования }
+      { РџРµСЂРµСЂРёСЃРѕРІС‹РІР°РµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ РІ РІС‹СЃРѕРєРѕРј РєР°С‡РµСЃС‚РІРµ, РїРѕСЃР»Рµ РїСЂРµРєСЂР°С‰РµРЅРёСЏ РїСЂРѕРєСѓСЂС‚РєРё/РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ }
       FDraftMode := False;
       FHiQual := True;
       Invalidate;  
@@ -2605,14 +2605,14 @@ interface
     end;
 
     if (FTempMsg <> '') and (TickCountDiff(GetTickCount, FMsgStart) > FMsgDelay) then begin
-      { Прячем надпись... }
+      { РџСЂСЏС‡РµРј РЅР°РґРїРёСЃСЊ... }
       FHiQual := not FDraftMode;
       FTempMsg := '';
       InvalidateMsgRect;
     end;
 
     if (FImage <> nil) and FAnimate then begin
-      { Анимация... }
+      { РђРЅРёРјР°С†РёСЏ... }
       vDelay := FImage.FDelay;
       if vDelay = 0 then
         vDelay := cDefAnimationStep;
@@ -2626,11 +2626,11 @@ interface
       { SlideShow }
       FSlideStart := 0;
       FSlideDelay := 0;
-      FarAdvControl(ACTL_SYNCHRO, SyncCmdNextSlide);  { Вызов GoNextSlide в главном потоке }
+      FarAdvControl(ACTL_SYNCHRO, SyncCmdNextSlide);  { Р’С‹Р·РѕРІ GoNextSlide РІ РіР»Р°РІРЅРѕРј РїРѕС‚РѕРєРµ }
     end;
 
     if (FImage <> nil) and (Fimage.FBitmap <> nil) then begin
-      { Даем декодеру возможность улучшить качество изображения, если он сначала вернул эскиз }
+      { Р”Р°РµРј РґРµРєРѕРґРµСЂСѓ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СѓР»СѓС‡С€РёС‚СЊ РєР°С‡РµСЃС‚РІРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ, РµСЃР»Рё РѕРЅ СЃРЅР°С‡Р°Р»Р° РІРµСЂРЅСѓР» СЌСЃРєРёР· }
       if AsyncDecode then begin
         RecalcRects;
         FHiQual := not FDraftMode;
@@ -2675,7 +2675,7 @@ interface
       end;
 
       if (FThumbStart <> 0) and (TickCountDiff(GetTickCount, FThumbStart) > ThumbDelay) and not ScrollKeyPressed then begin
-        { Если в настоящий момент показывается эскиз (и не продолжается быстрое листание), то запускаем задание на декодирование, если еще нет }
+        { Р•СЃР»Рё РІ РЅР°СЃС‚РѕСЏС‰РёР№ РјРѕРјРµРЅС‚ РїРѕРєР°Р·С‹РІР°РµС‚СЃСЏ СЌСЃРєРёР· (Рё РЅРµ РїСЂРѕРґРѕР»Р¶Р°РµС‚СЃСЏ Р±С‹СЃС‚СЂРѕРµ Р»РёСЃС‚Р°РЅРёРµ), С‚Рѕ Р·Р°РїСѓСЃРєР°РµРј Р·Р°РґР°РЅРёРµ РЅР° РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ, РµСЃР»Рё РµС‰Рµ РЅРµС‚ }
         FThumbStart := 0;
         if FImage.FIsThumbnail then
           FImage.SetAsyncTask(vBestSize);
@@ -2768,12 +2768,12 @@ interface
       Exit;
 
     if not GetFileInfo(FName, FTime, FSize) then
-      { Файл был удален?... }
+      { Р¤Р°Р№Р» Р±С‹Р» СѓРґР°Р»РµРЅ?... }
       Exit;
 
     if (FAsyncTask <> nil) or FIsThumbnail then
-      { Пока идет декодирование в отдельном потоке - не запрашиваем Tag'и, }
-      { это приведет либо к ошибке, либо к задержке... }
+      { РџРѕРєР° РёРґРµС‚ РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ РІ РѕС‚РґРµР»СЊРЅРѕРј РїРѕС‚РѕРєРµ - РЅРµ Р·Р°РїСЂР°С€РёРІР°РµРј Tag'Рё, }
+      { СЌС‚Рѕ РїСЂРёРІРµРґРµС‚ Р»РёР±Рѕ Рє РѕС€РёР±РєРµ, Р»РёР±Рѕ Рє Р·Р°РґРµСЂР¶РєРµ... }
       Exit;
 
     if LockSource then begin
@@ -2892,7 +2892,7 @@ interface
       end else
         vSize := Size(0, 0);
 
-      { Декодируем... }
+      { Р”РµРєРѕРґРёСЂСѓРµРј... }
       if optUseThumbnail = not (GetKeyState(VK_Shift) < 0) then
         vMode := dmThumbnailOrImage
       else
@@ -2910,7 +2910,7 @@ interface
 
       if not FSelfdraw then begin
         try
-          { Формируем Bitmap  }
+          { Р¤РѕСЂРјРёСЂСѓРµРј Bitmap  }
           FreeObj(FBitmap);
           FBitmap := TReviewBitmap.Create1(FDecoder.GetBitmapHandle(Self, FIsThumbnail), True);
           if FOrient > 1 then
@@ -3187,7 +3187,7 @@ interface
 
       vFastScroll := TickCountDiff(GetTickCount, FLastDecode) < FastListDelay;
       if vFastScroll then
-        { Отключаем эффект перехода }
+        { РћС‚РєР»СЋС‡Р°РµРј СЌС„С„РµРєС‚ РїРµСЂРµС…РѕРґР° }
         ADirect := 0;
 
       vImage := FindInCache(vName);
@@ -3219,7 +3219,7 @@ interface
       end else
       begin
         if vImage <> FCache.First then
-          { Изменилось направление просмотра }
+          { РР·РјРµРЅРёР»РѕСЃСЊ РЅР°РїСЂР°РІР»РµРЅРёРµ РїСЂРѕСЃРјРѕС‚СЂР° }
           if CurImage <> nil then
             CacheImage(CurImage);
 
@@ -3405,7 +3405,7 @@ interface
 
 
   function TReviewManager.CalcWinSize(AMode :Integer = -1) :TSize;
-    { Прогнозируем размер... }
+    { РџСЂРѕРіРЅРѕР·РёСЂСѓРµРј СЂР°Р·РјРµСЂ... }
   var
     vScaleMode :TScaleMode;
   begin
@@ -3475,9 +3475,9 @@ interface
   procedure TReviewManager.CloseWindowDelayed(ADelay :Integer);
   begin
     if FWinThread <> nil then begin
-      { Сразу, чтобы не оставалось мусора в Temp, при просмотре файлов в архиве }
+      { РЎСЂР°Р·Сѓ, С‡С‚РѕР±С‹ РЅРµ РѕСЃС‚Р°РІР°Р»РѕСЃСЊ РјСѓСЃРѕСЂР° РІ Temp, РїСЂРё РїСЂРѕСЃРјРѕС‚СЂРµ С„Р°Р№Р»РѕРІ РІ Р°СЂС…РёРІРµ }
       SendMessage(FWindow.Handle, CM_ReleaseImage, 0, 0);
-      { С задержкой, чтобы не промаргивал Viewer }
+      { РЎ Р·Р°РґРµСЂР¶РєРѕР№, С‡С‚РѕР±С‹ РЅРµ РїСЂРѕРјР°СЂРіРёРІР°Р» Viewer }
       SyncDelayed(SyncCmdClose, ADelay);
       ClearCache;
     end;
@@ -3693,7 +3693,7 @@ interface
   procedure TReviewManager.MyDecodeCallback(ASender :Pointer; APercent :Integer; var AContinue :Boolean);
   begin
     if GetCurrentThreadID <> MainThreadID then
-      { DecodePage вызывается из потока окна для анимированных изображений... }
+      { DecodePage РІС‹Р·С‹РІР°РµС‚СЃСЏ РёР· РїРѕС‚РѕРєР° РѕРєРЅР° РґР»СЏ Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№... }
       begin NOP; Exit; end;
 
     if (FDecodeStart <> 0) and (TickCountDiff(GetTickCount, FDecodeStart) > FDecodeStep) then begin
@@ -3928,7 +3928,7 @@ interface
   begin
     Result := False;
     if PFLAGS_REALNAMES and AInfo.Flags = 0 then begin
-      { Плагинная панель с "виртуальными" файлами, навигируемся через макросы... }
+      { РџР»Р°РіРёРЅРЅР°СЏ РїР°РЅРµР»СЊ СЃ "РІРёСЂС‚СѓР°Р»СЊРЅС‹РјРё" С„Р°Р№Р»Р°РјРё, РЅР°РІРёРіРёСЂСѓРµРјСЃСЏ С‡РµСЂРµР· РјР°РєСЂРѕСЃС‹... }
       if CanShowImage(AFileName) then begin
         FCommand := IntIf(ASlideDirect >= 2, GoCmdNext, GoCmdPrev);
         FCmdFile := AFileName;
@@ -4315,7 +4315,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Диалог модального состояния                                                 }
+ { Р”РёР°Р»РѕРі РјРѕРґР°Р»СЊРЅРѕРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ                                                 }
  {-----------------------------------------------------------------------------}
 
   procedure TViewModalDlg.Prepare; {override;}
@@ -4559,7 +4559,7 @@ interface
         Key_F12: Review.OpenThumbsView;
        {$endif bThumbs}
 
-        { Смещение }
+        { РЎРјРµС‰РµРЅРёРµ }
         Key_Left, Key_ShiftLeft, Key_NumPad4, Key_ShiftNumPad4:
           if not vImage.FMovie then
             LocMove(LocStep(+cMoveStep),  0)
@@ -4613,24 +4613,24 @@ interface
         Key_AltUp     : LocMovePage( 0, +1);
         Key_ALtDown   : LocMovePage( 0, -1);
 
-        { Переключение изображений }
+        { РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РёР·РѕР±СЂР°Р¶РµРЅРёР№ }
         Key_Home, Key_ShiftHome, Key_NumPad7 : LocNavigate(1, True);
         Key_End, Key_ShiftEnd, Key_NumPad1   : LocNavigate(2, False);
         Key_PgDn, Key_ShiftPgDn, Key_NumPad3 : LocNavigate(0, True);
         Key_PgUp, Key_ShiftPgUp, Key_NumPad9 : LocNavigate(0, False);
 
-        { Переключение страниц }
+        { РџРµСЂРµРєР»СЋС‡РµРЅРёРµ СЃС‚СЂР°РЅРёС† }
         Key_CtrlHome, Key_CtrlNumPad7 : Review.SetImagePage(0);
         Key_CtrlEnd, Key_CtrlNumPad1  : Review.SetImagePage(MaxInt);
         Key_CtrlPgDn, Key_CtrlNumPad3 : LocGotoPage(+1);
         Key_CtrlPgUp, Key_CtrlNumPad9 : LocGotoPage(-1);
 
-        { Переключение декодеров }
+        { РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РґРµРєРѕРґРµСЂРѕРІ }
         Key_AltHome  : Review.Redecode(rmBest);
         Key_AltPgDn  : Review.Redecode(rmNext);
         Key_AltPgUp  : Review.Redecode(rmPrev);
 
-        { Масштабирование }
+        { РњР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ }
         KEY_MULTIPLY      :
           if Review.Window.ScaleMode = smExact then
             Review.SetScale( smSetMode, smAutoFit, 0  )
@@ -4656,8 +4656,8 @@ interface
 //        Review.SetFullscreen(Review.Window.FWinMode = wmNormal);
           Review.SetFullscreen(-1);
 
-        Byte('.')           : Review.Rotate(1); { > - Поворот по часовой }
-        Byte(',')           : Review.Rotate(2); { < - Поворот против часовой }
+        Byte('.')           : Review.Rotate(1); { > - РџРѕРІРѕСЂРѕС‚ РїРѕ С‡Р°СЃРѕРІРѕР№ }
+        Byte(',')           : Review.Rotate(2); { < - РџРѕРІРѕСЂРѕС‚ РїСЂРѕС‚РёРІ С‡Р°СЃРѕРІРѕР№ }
         Key_Alt + Byte('.') : Review.Rotate(3); { Alt> - X-Flip }
         Key_Alt + Byte(',') : Review.Rotate(4); { Alt< - Y-Flip }
 

@@ -7,7 +7,7 @@ unit FarPlayMain;
 {* Noisy - Noisy Player Far plugin                                            *}
 {* 2008-2014, Max Rusov                                                       *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -378,7 +378,7 @@ interface
       vCmd := ExtractParamStr(vStr);
       if vCmd <> '' then begin
         if (Length(vCmd) >= 2) and (((vCmd[1] = '/') and (vCmd[2] = '/')) or ((vCmd[1] = '-') and (vCmd[2] = '-'))) then begin
-          { Команда плагина }
+          { РљРѕРјР°РЅРґР° РїР»Р°РіРёРЅР° }
           if vParamStr <> '' then begin
             RunPlayerCommand(vParamStr, vSetFolder);
             vSetFolder := False;
@@ -387,7 +387,7 @@ interface
           Delete(vCmd, 1, 2);
           RunPluginCommand(vCmd);
         end else
-          { Команда проигрывателя }
+          { РљРѕРјР°РЅРґР° РїСЂРѕРёРіСЂС‹РІР°С‚РµР»СЏ }
           vParamStr := AppendStrCh(vParamStr, '"' + vCmd + '"', ' ');
       end;
     end;
@@ -487,7 +487,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Экспортируемые процедуры                                                    }
+ { Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ РїСЂРѕС†РµРґСѓСЂС‹                                                    }
  {-----------------------------------------------------------------------------}
 
   procedure TNoisyPlug.Init; {override;}

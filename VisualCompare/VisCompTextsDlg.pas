@@ -381,7 +381,7 @@ interface
     SendMsg(DM_SHOWITEM, IdFrame, 0);
 
     if optTextHorzDiv then begin
-      { Горизонтальная раскладка }
+      { Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ СЂР°СЃРєР»Р°РґРєР° }
       vCenter := vRect.Top + (vRect.Bottom - vRect.Top) div 2;
       FHeadWidth1 := vRect.Right - vRect.Left;
       FHeadWidth2 := FHeadWidth1;
@@ -407,7 +407,7 @@ interface
       SendMsg(DM_SETITEMPOSITION, IdRows, @vRect1);
     end else
     begin
-      { Вертикальная раскладка }
+      { Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ СЂР°СЃРєР»Р°РґРєР° }
       vCenter := vRect.Left + (vRect.Right - vRect.Left) div 2;
 
       vRect1 := SRect(vRect.Left, vRect.Top, vCenter - 1, 1);
@@ -795,7 +795,7 @@ interface
       LocAddList(FFilter, FItems);
       FFilter.SortList(True, 0);
       if FRootItems <> FItems then
-        { Элемент ".." для выхода из группы }
+        { Р­Р»РµРјРµРЅС‚ ".." РґР»СЏ РІС‹С…РѕРґР° РёР· РіСЂСѓРїРїС‹ }
         FFilter.Add(nil, 0, 0, 0);
     end else
       LocAddUnfold(nil, FItems);
@@ -964,7 +964,7 @@ interface
     if vSide = -1 then
       begin Beep; Exit; end;
 
-    { Глючит, если в процессе просмотра/редактирования файла изменить размер консоли...}
+    { Р“Р»СЋС‡РёС‚, РµСЃР»Рё РІ РїСЂРѕС†РµСЃСЃРµ РїСЂРѕСЃРјРѕС‚СЂР°/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С„Р°Р№Р»Р° РёР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ РєРѕРЅСЃРѕР»Рё...}
 //  SendMsg(DM_ShowDialog, 0, 0);
     vSave := FARAPI.SaveScreen(0, 0, -1, -1);
     try
@@ -1097,7 +1097,7 @@ interface
         end;
       end;
 
-      FarCopyToClipboard(vRows.GetTextStrEx(''));  //#13#10 - Уже в составе строки
+      FarCopyToClipboard(vRows.GetTextStrEx(''));  //#13#10 - РЈР¶Рµ РІ СЃРѕСЃС‚Р°РІРµ СЃС‚СЂРѕРєРё
 
     finally
       FreeObj(vRows);
@@ -1390,7 +1390,7 @@ interface
      {$endif Far3}
 
       DN_DRAGGED:
-        { Запрещаем перемещение... }
+        { Р—Р°РїСЂРµС‰Р°РµРј РїРµСЂРµРјРµС‰РµРЅРёРµ... }
         Result := 0;
 
       DN_ENTERIDLE:
@@ -1404,7 +1404,7 @@ interface
       DN_RESIZECONSOLE: begin
         ResizeDialog;
         UpdateHeader;
-        UpdateFooter; { Чтобы центрировался status-line }
+        UpdateFooter; { Р§С‚РѕР±С‹ С†РµРЅС‚СЂРёСЂРѕРІР°Р»СЃСЏ status-line }
         vGrid := GetCurGrid;
         if vGrid <> nil then
           SetCurrent(vGrid, vGrid.CurRow, lmScroll);

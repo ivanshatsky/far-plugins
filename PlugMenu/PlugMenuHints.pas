@@ -6,7 +6,7 @@ unit PlugMenuHints;
 {* (c) 2008 Max Rusov                                                         *}
 {*                                                                            *}
 {* Unicode CharMap                                                            *}
-{* Интеграция с FAR Hints                                                     *}
+{* РРЅС‚РµРіСЂР°С†РёСЏ СЃ FAR Hints                                                     *}
 {******************************************************************************}
 
 interface
@@ -182,11 +182,11 @@ interface
       try
         vHandle := GetModuleHandle('FarHints.dll');
         if vHandle = 0 then
-          Exit; {FarHints не установлен}
+          Exit; {FarHints РЅРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅ}
 
         vGetApiProc := GetProcAddress( vHandle, 'GetFarHinstAPI' );
         if not Assigned(vGetApiProc) then
-          Exit; {FarHints неподходящей версии }
+          Exit; {FarHints РЅРµРїРѕРґС…РѕРґСЏС‰РµР№ РІРµСЂСЃРёРё }
 
         vFarHintsApi := IFarHintsAPI(vGetApiProc);
         if vFarHintsApi = nil then
@@ -194,7 +194,7 @@ interface
 
         vFarHintsAPI.QueryInterface(IFarHintsIntegrationAPI, FIntegrationAPI);
         if not Assigned(FIntegrationAPI) then
-          Exit; {FarHints неподходящей версии }
+          Exit; {FarHints РЅРµРїРѕРґС…РѕРґСЏС‰РµР№ РІРµСЂСЃРёРё }
 
         FHintObject := THintPluginObject.CreateEx(AOwner);
         FIntegrationAPI.RegisterEmbeddedPlugin(FHintObject);
@@ -223,7 +223,7 @@ interface
 
 initialization
 finalization
-  { Чтобы не было AV при закрытии по "крестику" }
+  { Р§С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ AV РїСЂРё Р·Р°РєСЂС‹С‚РёРё РїРѕ "РєСЂРµСЃС‚РёРєСѓ" }
   FHintRegistered := False;
   Pointer(FIntegrationAPI) := nil;
   pointer(FHintObject) := nil;

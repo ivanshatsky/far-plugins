@@ -6,7 +6,7 @@ unit ReviewGDIPlus;
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -34,7 +34,7 @@ interface
     cGDIPlusFormats = 'JPG,JPEG,JPE,PNG,GIF,TIF,TIFF,EXIF,BMP,DIB'; // EMF,WMF;
 
 //const
-//  cThumbSize = 128;           { Размер извлекаемого эскиза }
+//  cThumbSize = 128;           { Р Р°Р·РјРµСЂ РёР·РІР»РµРєР°РµРјРѕРіРѕ СЌСЃРєРёР·Р° }
 
 
   type
@@ -76,32 +76,32 @@ interface
     protected
       FRefCount    :Integer;
 
-      FSrcName     :TString;      { Имя файла }
-      FSrcBuf      :Pointer;      { Буфер файла, может быть nil, если файл слишком большой ( > cPreCacheLimit = 128 M ) }
+      FSrcName     :TString;      { РРјСЏ С„Р°Р№Р»Р° }
+      FSrcBuf      :Pointer;      { Р‘СѓС„РµСЂ С„Р°Р№Р»Р°, РјРѕР¶РµС‚ Р±С‹С‚СЊ nil, РµСЃР»Рё С„Р°Р№Р» СЃР»РёС€РєРѕРј Р±РѕР»СЊС€РѕР№ ( > cPreCacheLimit = 128 M ) }
       FSrcSize     :Integer;
-      FSrcImage    :TGPImageEx;   { Исходное изображение }
-      FOrient0     :Integer;      { Исходная ориентация }
-      FImgSize0    :TSize;        { Исходный размер картинки (текущей страницы) }
-      FImgSize     :TSize;        { Размер картинки с учетом ориентации }
-      FPixels      :Integer;      { Цветность (BPP) }
+      FSrcImage    :TGPImageEx;   { РСЃС…РѕРґРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FOrient0     :Integer;      { РСЃС…РѕРґРЅР°СЏ РѕСЂРёРµРЅС‚Р°С†РёСЏ }
+      FImgSize0    :TSize;        { РСЃС…РѕРґРЅС‹Р№ СЂР°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё (С‚РµРєСѓС‰РµР№ СЃС‚СЂР°РЅРёС†С‹) }
+      FImgSize     :TSize;        { Р Р°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё СЃ СѓС‡РµС‚РѕРј РѕСЂРёРµРЅС‚Р°С†РёРё }
+      FPixels      :Integer;      { Р¦РІРµС‚РЅРѕСЃС‚СЊ (BPP) }
       FFmtID       :TGUID;
       FFmtName     :TString;
-      FHasAlpha    :Boolean;      { Полупрозрачное изображение }
-      FDirectDraw  :Boolean;      { Анимированное изображение, не используем preview'шки }
+      FHasAlpha    :Boolean;      { РџРѕР»СѓРїСЂРѕР·СЂР°С‡РЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FDirectDraw  :Boolean;      { РђРЅРёРјРёСЂРѕРІР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ, РЅРµ РёСЃРїРѕР»СЊР·СѓРµРј preview'С€РєРё }
       FBkColor     :Integer;
 
-      FThumbBMP    :HBitmap;      { Изображение, буферизированное как Bitmap }
-      FThumbSize   :TSize;        { Размер Preview'шки }
-      FIsThumbnail :Boolean;      { Это превью (thumbnail) }
+      FThumbBMP    :HBitmap;      { РР·РѕР±СЂР°Р¶РµРЅРёРµ, Р±СѓС„РµСЂРёР·РёСЂРѕРІР°РЅРЅРѕРµ РєР°Рє Bitmap }
+      FThumbSize   :TSize;        { Р Р°Р·РјРµСЂ Preview'С€РєРё }
+      FIsThumbnail :Boolean;      { Р­С‚Рѕ РїСЂРµРІСЊСЋ (thumbnail) }
 
-      { Для поддержки анимированных изображений... }
+      { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№... }
       FFrames      :Integer;
       FFrame       :Integer;
       FDelCount    :Integer;
       FDelays      :PPropertyItem;
       FDimID       :TGUID;
 
-      { Для поддержки Tag-ов }
+      { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё Tag-РѕРІ }
       FStrTag      :TString;
       FInt64Tag    :Int64;
 
@@ -122,7 +122,7 @@ interface
       function CanWork(aLoad :Boolean) :boolean; override;
       function CreateView(const AFileName :TString; ABuf :Pointer; ABufSize :Integer) :TGPView; virtual;
 
-      { Функции декодирования }
+      { Р¤СѓРЅРєС†РёРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
       function pvdFileOpen(const AFileName :TString; AImage :TReviewImageRec) :Boolean; override;
       function pvdGetPageInfo(AImage :TReviewImageRec) :Boolean; override;
       function pvdPageDecode(AImage :TReviewImageRec; AWidth, AHeight :Integer; AMode :TDecodeMode;
@@ -132,7 +132,7 @@ interface
 
       function pvdTagInfo(AImage :TReviewImageRec; aCode :Integer; var aType :Integer; var aValue :Pointer) :Boolean; override;
 
-      { Эксклюзивные функции }
+      { Р­РєСЃРєР»СЋР·РёРІРЅС‹Рµ С„СѓРЅРєС†РёРё }
       function GetBitmapHandle(AImage :TReviewImageRec; var aIsThumbnail :Boolean) :HBitmap; override;
     end;
 
@@ -221,8 +221,8 @@ interface
  {-----------------------------------------------------------------------------}
 
   var
-    { GDIPlus не поддерживает многопоточную работу. Используем критическую секцию, }
-    { чтобы, по возможности, избежать блокировок... }
+    { GDIPlus РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅСѓСЋ СЂР°Р±РѕС‚Сѓ. РСЃРїРѕР»СЊР·СѓРµРј РєСЂРёС‚РёС‡РµСЃРєСѓСЋ СЃРµРєС†РёСЋ, }
+    { С‡С‚РѕР±С‹, РїРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё, РёР·Р±РµР¶Р°С‚СЊ Р±Р»РѕРєРёСЂРѕРІРѕРє... }
     GDIPlusCS :TRTLCriticalSection;
 
 
@@ -346,7 +346,7 @@ interface
 
         if (soExifRotation in aOptions) and (StrEqual(AFmtName, 'jpeg') or StrEqual(AFmtName, 'tiff')) then begin
 
-          { Поворот путем коррекции EXIF заголовка - loseless }
+          { РџРѕРІРѕСЂРѕС‚ РїСѓС‚РµРј РєРѕСЂСЂРµРєС†РёРё EXIF Р·Р°РіРѕР»РѕРІРєР° - loseless }
           if aOrient <> vOrient then
             SetTagValueInt(vImage, PropertyTagOrientation, aOrient);
 
@@ -354,7 +354,7 @@ interface
         if (soTransformation in aOptions) then begin
 
           if StrEqual(AFmtName, 'jpeg') then begin
-            { Поворт путем трансформации - может приводить к потерям... }
+            { РџРѕРІРѕСЂРѕС‚ РїСѓС‚РµРј С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёРё - РјРѕР¶РµС‚ РїСЂРёРІРѕРґРёС‚СЊ Рє РїРѕС‚РµСЂСЏРј... }
 
             vTransf := cTransform[aOrient];
             if vTransf <> EncoderValue(0) then begin
@@ -407,14 +407,14 @@ interface
       if optKeepDateOnSave {soKeepDate in aOptions} then
         vSrcDate := FileAge(AFileName);
 
-//    Небезопасно. DeleteFile не удаляет открытые файлы сразу, а помечает как удаленные...
+//    РќРµР±РµР·РѕРїР°СЃРЅРѕ. DeleteFile РЅРµ СѓРґР°Р»СЏРµС‚ РѕС‚РєСЂС‹С‚С‹Рµ С„Р°Р№Р»С‹ СЃСЂР°Р·Сѓ, Р° РїРѕРјРµС‡Р°РµС‚ РєР°Рє СѓРґР°Р»РµРЅРЅС‹Рµ...
 //    if WinFileExists(ANewName) then
 //      ApiCheck(DeleteFile(ANewName));
 //    ApiCheck(RenameFile(vTmpName, ANewName));
 
 //    ApiCheck(MoveFileEx(PTChar(vTmpName), PTChar(ANewName), MOVEFILE_REPLACE_EXISTING));
       if not MoveFileEx(PTChar(vTmpName), PTChar(ANewName), MOVEFILE_REPLACE_EXISTING) then begin
-        { Файл в режиме просмтора не может быть переописан, но может быть переименован }
+        { Р¤Р°Р№Р» РІ СЂРµР¶РёРјРµ РїСЂРѕСЃРјС‚РѕСЂР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРµСЂРµРѕРїРёСЃР°РЅ, РЅРѕ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРµСЂРµРёРјРµРЅРѕРІР°РЅ }
         vBakName := GetUniqName(ANewName, '~' + ExtractFileExtension(ANewName));
         ApiCheck(RenameFile(ANewName, vBakName));
         ApiCheck(RenameFile(vTmpName, ANewName));
@@ -631,10 +631,10 @@ interface
     FSrcImage.GetRawFormat(FFmtID);
     FFmtName := GetImgFmtName(FFmtID);
 
-    { Изображение полупрозрачное }
+    { РР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕР»СѓРїСЂРѕР·СЂР°С‡РЅРѕРµ }
     FHasAlpha := UINT(ImageFlagsHasAlpha) and FSrcImage.GetFlags <> 0;
 
-    { Подсчитываем количество фреймов в анимированном/многостраничном изображении }
+    { РџРѕРґСЃС‡РёС‚С‹РІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ С„СЂРµР№РјРѕРІ РІ Р°РЅРёРјРёСЂРѕРІР°РЅРЅРѕРј/РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅРѕРј РёР·РѕР±СЂР°Р¶РµРЅРёРё }
     FFrames := GetFrameCount(FSrcImage, @FDimID, @Pointer(FDelays), @FDelCount);
     FSrcImage.getLastStatus;
 
@@ -686,11 +686,11 @@ interface
   begin
     Result := False;
     if not IsEqualGUID(FFmtID, ImageFormatJPEG) then
-      { Эскизы поддерживаются только(?) для JPEG... }
+      { Р­СЃРєРёР·С‹ РїРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ(?) РґР»СЏ JPEG... }
       Exit;
 
     if FSrcImage.GetPropertyItemSize(PropertyTagThumbnailData) = 0 then
-      Exit; {Нет эскиза}
+      Exit; {РќРµС‚ СЌСЃРєРёР·Р°}
 
    {$ifdef bTrace}
     TraceBegF('GetThumbnail: %d x %d', [ADX, ADY]);
@@ -735,7 +735,7 @@ interface
     vThumb :HBitmap;
   begin
     vSize := FImgSize;
-    if (ADX > 0) and (ADY > 0) {and optUseWinSize При вызове} then
+    if (ADX > 0) and (ADY > 0) {and optUseWinSize РџСЂРё РІС‹Р·РѕРІРµ} then
 //    CorrectBoundEx(vSize, Size(ADX, ADY));
       vSize := Size(ADX, ADY);
 
@@ -933,7 +933,7 @@ interface
         if (FDelays <> nil) and (FFrame < FDelCount) then
           AImage.FDelay := PDelays(FDelays.Value)[FFrame] * 10;
 //      if AImage.FDelay = 0 then
-//        AImage.FDelay := cAnimationStep;  Перенес в ReviewClasses
+//        AImage.FDelay := cAnimationStep;  РџРµСЂРµРЅРµСЃ РІ ReviewClasses
       end;
 
       Result := True;

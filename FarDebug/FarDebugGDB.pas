@@ -197,24 +197,24 @@ interface
         AppErrorFmt('Can not run debugger "%s":'#10'%s', [optGDBName, E.Message]);
     end;
 
-    {Устанавливаем уникальный Prompt}
+    {РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СѓРЅРёРєР°Р»СЊРЅС‹Р№ Prompt}
     TerminatorChar := cCustomPrompt;
     RedirCall('set prompt ' + cCustomPrompt);
-    {Отказываемся от запросов подтверждений}
+    {РћС‚РєР°Р·С‹РІР°РµРјСЃСЏ РѕС‚ Р·Р°РїСЂРѕСЃРѕРІ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёР№}
     RedirCall('set confirm 0');
-    {Установка "бесконечного" количества строк на экране}
+    {РЈСЃС‚Р°РЅРѕРІРєР° "Р±РµСЃРєРѕРЅРµС‡РЅРѕРіРѕ" РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СЂРѕРє РЅР° СЌРєСЂР°РЅРµ}
     RedirCall('set height -1');
-    {Заканчивать печать массивов "char" на нулевом символе}
+    {Р—Р°РєР°РЅС‡РёРІР°С‚СЊ РїРµС‡Р°С‚СЊ РјР°СЃСЃРёРІРѕРІ "char" РЅР° РЅСѓР»РµРІРѕРј СЃРёРјРІРѕР»Рµ}
     RedirCall('set print null-stop 1');
-    {Установить "красивый" режим вывода элементов массива}
+    {РЈСЃС‚Р°РЅРѕРІРёС‚СЊ "РєСЂР°СЃРёРІС‹Р№" СЂРµР¶РёРј РІС‹РІРѕРґР° СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°}
     RedirCall('set print array 1');
-    {Установить "красивый" режим вывода структур}
+    {РЈСЃС‚Р°РЅРѕРІРёС‚СЊ "РєСЂР°СЃРёРІС‹Р№" СЂРµР¶РёРј РІС‹РІРѕРґР° СЃС‚СЂСѓРєС‚СѓСЂ}
     RedirCall('set print pretty 1');
-    {Установить вывод в новую консоль}
+    {РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РІС‹РІРѕРґ РІ РЅРѕРІСѓСЋ РєРѕРЅСЃРѕР»СЊ}
     RedirCall('set new-console 1');
-    { Запретить создавать новую группу }
+    { Р—Р°РїСЂРµС‚РёС‚СЊ СЃРѕР·РґР°РІР°С‚СЊ РЅРѕРІСѓСЋ РіСЂСѓРїРїСѓ }
     RedirCall('set new-group 0');
-    { Разворачивать стек при получении сигнала }
+    { Р Р°Р·РІРѕСЂР°С‡РёРІР°С‚СЊ СЃС‚РµРє РїСЂРё РїРѕР»СѓС‡РµРЅРёРё СЃРёРіРЅР°Р»Р° }
     RedirCall('set unwindonsignal on');
 
     vFileName := AddFileName(ExtractFilePath(FModuleName), cGlobalPresetsFileName);
@@ -234,7 +234,7 @@ interface
     InitGDBDebugger;
 
     // file with no argument makes GDB discard any information it has on both executable file and the symbol table.
-    // Без этого GDB иногда слетает при повторном запуске отладки...
+    // Р‘РµР· СЌС‚РѕРіРѕ GDB РёРЅРѕРіРґР° СЃР»РµС‚Р°РµС‚ РїСЂРё РїРѕРІС‚РѕСЂРЅРѕРј Р·Р°РїСѓСЃРєРµ РѕС‚Р»Р°РґРєРё...
     RedirCall('file');
 
     RedirCall('file "' + ConvertFileName(AName) + '"');
@@ -634,7 +634,7 @@ Line 761 of "FPTest.dpr" is at address 0x1001ab0 <Test1> but contains no code.
       if vRes <> '' then begin
 
         vPtr := PTChar(vRes);
-        ExtractNextLine(vPtr); { Пропускаем заголовок }
+        ExtractNextLine(vPtr); { РџСЂРѕРїСѓСЃРєР°РµРј Р·Р°РіРѕР»РѕРІРѕРє }
         while vPtr^ <> #0 do begin
           vStr := ExtractNextLine(vPtr);
 

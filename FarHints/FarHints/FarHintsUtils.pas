@@ -46,7 +46,7 @@ interface
 
  {$ifdef bThumbnail}
   function CanUseThumbnail :Boolean;
-    { False, ели не Vista'а }
+    { False, РµР»Рё РЅРµ Vista'Р° }
 
   procedure InitThumbnailThread;
   procedure DoneThumbnailThread;
@@ -100,11 +100,11 @@ interface
     Result := hFarWindow;
 
     if not IsWindowVisible(hFarWindow) then begin
-      { Запущено из-под ConEmu?... }
+      { Р—Р°РїСѓС‰РµРЅРѕ РёР·-РїРѕРґ ConEmu?... }
       hWnd := GetAncestor(hFarWindow, GA_PARENT);
 
       if (hWnd = 0) or (hWnd = GetDesktopWindow) then begin
-        { Новая версия ConEmu не делает SetParent... }
+        { РќРѕРІР°СЏ РІРµСЂСЃРёСЏ ConEmu РЅРµ РґРµР»Р°РµС‚ SetParent... }
         if hConEmuWnd = THandle(-1) then
           hConEmuWnd := CheckConEmuWnd;
         hWnd := hConEmuWnd;
@@ -380,7 +380,7 @@ interface
     FTaskCS.Enter;
     try
       if FResBitmap <> 0 then begin
-        { Удаляем невостребованный промежуточный результат }
+        { РЈРґР°Р»СЏРµРј РЅРµРІРѕСЃС‚СЂРµР±РѕРІР°РЅРЅС‹Р№ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ }
         DeleteObject(FResBitmap);
         FResBitmap := 0;
       end;
@@ -390,7 +390,7 @@ interface
         FResHasAlpha := vHasAlpha;
         FTaskState := tsComplete;
       end else
-        { Пока эскиз извлекался, была поставлена новая задача, результат никого не интересует }
+        { РџРѕРєР° СЌСЃРєРёР· РёР·РІР»РµРєР°Р»СЃСЏ, Р±С‹Р»Р° РїРѕСЃС‚Р°РІР»РµРЅР° РЅРѕРІР°СЏ Р·Р°РґР°С‡Р°, СЂРµР·СѓР»СЊС‚Р°С‚ РЅРёРєРѕРіРѕ РЅРµ РёРЅС‚РµСЂРµСЃСѓРµС‚ }
         DeleteObject(vBitmap);
 
     finally
@@ -460,7 +460,7 @@ interface
     AHasAlpha := False;
 
     vFlags := 0;
-    { Быстрый способ. Берем эскиз из кэша (но при этом может быть не того размера). }
+    { Р‘С‹СЃС‚СЂС‹Р№ СЃРїРѕСЃРѕР±. Р‘РµСЂРµРј СЌСЃРєРёР· РёР· РєСЌС€Р° (РЅРѕ РїСЂРё СЌС‚РѕРј РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµ С‚РѕРіРѕ СЂР°Р·РјРµСЂР°). }
     if Succeeded( FCache.GetThumbnail(vItem, FTaskSize, WTS_INCACHEONLY, @vBitmap, vFlags, nil) ) then begin
 
       if Succeeded( vBitmap.GetFormat(vFormat) ) then
@@ -472,19 +472,19 @@ interface
 //    TraceF('Cached bitmap: %d x %d', [vSize.cx, vSize.cy ]);
 
       if (vSize.cx >= FTaskSize) or (vSize.cy >= FTaskSize) then begin
-        { Извлеченный из кэша эскиз подходящего размера. Завершаем работу. }
+        { РР·РІР»РµС‡РµРЅРЅС‹Р№ РёР· РєСЌС€Р° СЌСЃРєРёР· РїРѕРґС…РѕРґСЏС‰РµРіРѕ СЂР°Р·РјРµСЂР°. Р—Р°РІРµСЂС€Р°РµРј СЂР°Р±РѕС‚Сѓ. }
         Result := vHBitmap;
         Exit;
       end;
     end;
 
-    { Медленный способ. Извлекаем эскиз. }
+    { РњРµРґР»РµРЅРЅС‹Р№ СЃРїРѕСЃРѕР±. РР·РІР»РµРєР°РµРј СЌСЃРєРёР·. }
     FTaskCS.Enter;
     try
       if Terminated or (FTaskState <> tsProceed) then
         Exit;
 
-      { Установим извлеченный из кэша эскиз в качестве промежуточного результата }
+      { РЈСЃС‚Р°РЅРѕРІРёРј РёР·РІР»РµС‡РµРЅРЅС‹Р№ РёР· РєСЌС€Р° СЌСЃРєРёР· РІ РєР°С‡РµСЃС‚РІРµ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅРѕРіРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р° }
       FResBitmap := vHBitmap;
       FResHasAlpha := AHasAlpha;
 
@@ -628,7 +628,7 @@ interface
             Exit;
           end;
         tsExtract:
-          { Пошли по медленному алгоритму, прекращаем ждать... }
+          { РџРѕС€Р»Рё РїРѕ РјРµРґР»РµРЅРЅРѕРјСѓ Р°Р»РіРѕСЂРёС‚РјСѓ, РїСЂРµРєСЂР°С‰Р°РµРј Р¶РґР°С‚СЊ... }
           Exit;
       end;
       if TickCountDiff(GetTickCount, vStart) > 100 then

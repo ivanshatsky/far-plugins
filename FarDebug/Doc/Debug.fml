@@ -1,19 +1,19 @@
 //
-// Макросы для плагина FarDebug
+// РњР°РєСЂРѕСЃС‹ РґР»СЏ РїР»Р°РіРёРЅР° FarDebug
 //
-// Устанавливают следующие кобинации клавиш:
+// РЈСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚ СЃР»РµРґСѓСЋС‰РёРµ РєРѕР±РёРЅР°С†РёРё РєР»Р°РІРёС€:
 //
-// Отладка
-//   Alt+Right     - Next (шаг с обходом процедуры)
-//   Alt+Down      - Step (шаг со входом в процедуру)
-//   Alt+Left      - Until (исполнить до строки)
-//   Alt+Up:Hold   - Leave (выйти из процедуры)
+// РћС‚Р»Р°РґРєР°
+//   Alt+Right     - Next (С€Р°Рі СЃ РѕР±С…РѕРґРѕРј РїСЂРѕС†РµРґСѓСЂС‹)
+//   Alt+Down      - Step (С€Р°Рі СЃРѕ РІС…РѕРґРѕРј РІ РїСЂРѕС†РµРґСѓСЂСѓ)
+//   Alt+Left      - Until (РёСЃРїРѕР»РЅРёС‚СЊ РґРѕ СЃС‚СЂРѕРєРё)
+//   Alt+Up:Hold   - Leave (РІС‹Р№С‚Рё РёР· РїСЂРѕС†РµРґСѓСЂС‹)
 //   Alt+PgDn      - Run 
-//   Alt+Home      - Locate (перейти на исполняемую строку)
+//   Alt+Home      - Locate (РїРµСЂРµР№С‚Рё РЅР° РёСЃРїРѕР»РЅСЏРµРјСѓСЋ СЃС‚СЂРѕРєСѓ)
 //   Alt+End       - Kill
 //   Alt+Del       - Toggle breakpoint
 //
-//  Окна:
+//  РћРєРЅР°:
 //   Alt+PgUp      - Main Menu
 //   Alt+PgUp:Hold - Sources
 //   Alt+B         - Breakpoints
@@ -91,7 +91,7 @@ macro Descr = "Debug: Evaluate" Area="Editor" Key="AltUp:Release"
   F11 
   $if (menu.select(#%FarDebug,2) > 0) 
     Enter 
-    $if (!(menu.itemstatus(checkhotkey("R")) & 8))   // Команда Evaluate всегда активна...
+    $if (!(menu.itemstatus(checkhotkey("R")) & 8))   // РљРѕРјР°РЅРґР° Evaluate РІСЃРµРіРґР° Р°РєС‚РёРІРЅР°...
       E $Exit
     $end
   $end
@@ -186,7 +186,7 @@ macro Descr = "Debug: Kill" Area="Shell Editor Viewer" Key="AltEnd"
 
 
 ;;------------------------------------------------------------------------------
-;; Окно Console
+;; РћРєРЅРѕ Console
 
 macro Descr = "Debug: Help in console" Area="Dialog.ConsoleDlg" Key="F1"
 {{
@@ -206,7 +206,7 @@ macro Descr = "Debug: Standart Help in console" Area="Dialog.ConsoleDlg" Key="Sh
 
 
 ;;------------------------------------------------------------------------------
-;; Окно Disassemble
+;; РћРєРЅРѕ Disassemble
 
 macro Descr = "Debug: CPU Home" Area="Dialog.DisasmDlgID" Key="AltHome" 
 {{

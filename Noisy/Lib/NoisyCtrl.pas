@@ -7,7 +7,7 @@ unit NoisyCtrl;
 {* (c) 2008 Max Rusov                                                         *}
 {*                                                                            *}
 {* Noisy Far plugin                                                           *}
-{* Процедуры взаимодействия с плеером                                         *}
+{* РџСЂРѕС†РµРґСѓСЂС‹ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ СЃ РїР»РµРµСЂРѕРј                                         *}
 {******************************************************************************}
 
 interface
@@ -166,7 +166,7 @@ interface
         AppErrorFmt('Not found:'#13'%s', [vPlayerName]);
 
       if ShellOpen(0, vPlayerName, AStr) then begin
-        { Подождем пока player не запустится...}
+        { РџРѕРґРѕР¶РґРµРј РїРѕРєР° player РЅРµ Р·Р°РїСѓСЃС‚РёС‚СЃСЏ...}
         vStart := GetTickCount;
         vWnd := FindWindow(WndClassName, nil);
         while (vWnd = 0) and (TickCountDiff(GetTickCount, vStart) < cWaitTimeout) do begin
@@ -223,7 +223,7 @@ interface
     vFormatInfo :PAudioFormatInfo;
   begin
     Result := False;
-    {!!! Синхронизация }
+    {!!! РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ }
     vHandle := OpenFileMapping(FILE_MAP_READ, False, InfoMemName);
 //  Trace('OpenFileMapping Handle=%p', [Pointer(vHandle)]);
     if vHandle = 0 then
@@ -232,7 +232,7 @@ interface
       vPtr := MapMemory(vHandle, False);
 //    Trace('Memory=%p', [Pointer(vPtr)]);
       try
-        {!!!Смотреть на размер структуры в памяти}
+        {!!!РЎРјРѕС‚СЂРµС‚СЊ РЅР° СЂР°Р·РјРµСЂ СЃС‚СЂСѓРєС‚СѓСЂС‹ РІ РїР°РјСЏС‚Рё}
         CopyMemory(@AInfo, vPtr, SizeOf(TPlayerInfo));
 
         if AUpdateFormats then begin
@@ -269,7 +269,7 @@ interface
     vLen :Integer;
   begin
     Result := '';
-    {!!! Синхронизация }
+    {!!! РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ }
     vHandle := OpenFileMapping(FILE_MAP_READ, False, PlaylistMemName);
     if vHandle = 0 then
       Exit {AppErrorID(strPlaylistIsEmpty)} ;

@@ -62,23 +62,23 @@ interface
   const
     HMargin = 3;
     VMargin = 2;
-    HSplit1 = 4;  { Щель между картинкой и надписью }
-    HSplit2 = 4;  { Щель между prompt'ом и строкой }
+    HSplit1 = 4;  { Р©РµР»СЊ РјРµР¶РґСѓ РєР°СЂС‚РёРЅРєРѕР№ Рё РЅР°РґРїРёСЃСЊСЋ }
+    HSplit2 = 4;  { Р©РµР»СЊ РјРµР¶РґСѓ prompt'РѕРј Рё СЃС‚СЂРѕРєРѕР№ }
 
     RegFolder         = 'FarHints';
     RegPluginsFolder  = 'Plugins';
     DefaultLang       = 'English';
 
   var
-    ShowHintFirstDelay  :Integer = 500;   {ms}    { Задержка появления мышиного хинта }
+    ShowHintFirstDelay  :Integer = 500;   {ms}    { Р—Р°РґРµСЂР¶РєР° РїРѕСЏРІР»РµРЅРёСЏ РјС‹С€РёРЅРѕРіРѕ С…РёРЅС‚Р° }
     ShowHintNextDelay   :Integer = 500;   {ms}
 
-    ShowHintFirstDelay1 :Integer = 1000;  {ms}    { Задержка появления клавиатурного хинта }
+    ShowHintFirstDelay1 :Integer = 1000;  {ms}    { Р—Р°РґРµСЂР¶РєР° РїРѕСЏРІР»РµРЅРёСЏ РєР»Р°РІРёР°С‚СѓСЂРЅРѕРіРѕ С…РёРЅС‚Р° }
 
-    HideHintDelay       :Integer = 100;   {ms}    { Чтобы успела отработать макрокоманда хинта }  {???}
-    HideHindAgeLock     :Integer = 100;   {ms}    { "Молодой" хинт не закрывается от нажатий }
+    HideHintDelay       :Integer = 100;   {ms}    { Р§С‚РѕР±С‹ СѓСЃРїРµР»Р° РѕС‚СЂР°Р±РѕС‚Р°С‚СЊ РјР°РєСЂРѕРєРѕРјР°РЅРґР° С…РёРЅС‚Р° }  {???}
+    HideHindAgeLock     :Integer = 100;   {ms}    { "РњРѕР»РѕРґРѕР№" С…РёРЅС‚ РЅРµ Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ РѕС‚ РЅР°Р¶Р°С‚РёР№ }
 
-    InfoHintPeriod      :Integer  = 3000; {ms}    { Время показа информационного хинта }
+    InfoHintPeriod      :Integer  = 3000; {ms}    { Р’СЂРµРјСЏ РїРѕРєР°Р·Р° РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅРѕРіРѕ С…РёРЅС‚Р° }
 
   var
     FarHintColor        :TColor = $FFFFFF; {clInfoBk;} { $80FFFF }
@@ -105,14 +105,14 @@ interface
     FarHintShowIcon     :Boolean = True;
     FarHintShowPrompt   :Boolean = True;
 
-    FarHintUseThumbnail :Boolean = True;   { Использовать Shell Thumbnail вместо иконок }
-    FarHintThumbSize1   :Integer = 128;    { Размер Thumbnail'ов для файлов  }
-    FarHintThumbSize2   :Integer = 96;     { Размер Thumbnail'ов для папок  }
-    FarHintIconOnThumb  :Boolean = True;   { Накладывать иконку на Thumbnail }
+    FarHintUseThumbnail :Boolean = True;   { РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Shell Thumbnail РІРјРµСЃС‚Рѕ РёРєРѕРЅРѕРє }
+    FarHintThumbSize1   :Integer = 128;    { Р Р°Р·РјРµСЂ Thumbnail'РѕРІ РґР»СЏ С„Р°Р№Р»РѕРІ  }
+    FarHintThumbSize2   :Integer = 96;     { Р Р°Р·РјРµСЂ Thumbnail'РѕРІ РґР»СЏ РїР°РїРѕРє  }
+    FarHintIconOnThumb  :Boolean = True;   { РќР°РєР»Р°РґС‹РІР°С‚СЊ РёРєРѕРЅРєСѓ РЅР° Thumbnail }
 
     FarHintsDateFormat  :TString = 'c';
 
-    FarHintsShowPeriod  :Integer = 150;    { Желаемое время плавного прявления (исчезания) хинта }
+    FarHintsShowPeriod  :Integer = 150;    { Р–РµР»Р°РµРјРѕРµ РІСЂРµРјСЏ РїР»Р°РІРЅРѕРіРѕ РїСЂСЏРІР»РµРЅРёСЏ (РёСЃС‡РµР·Р°РЅРёСЏ) С…РёРЅС‚Р° }
     FarHintSmothSteps   :Integer = 0;
     FarHintTransp       :Integer = 255;
 
@@ -126,7 +126,7 @@ interface
 
 
   type
-    { Режим вызова хинта: от мыши, от клавиатуры... }
+    { Р РµР¶РёРј РІС‹Р·РѕРІР° С…РёРЅС‚Р°: РѕС‚ РјС‹С€Рё, РѕС‚ РєР»Р°РІРёР°С‚СѓСЂС‹... }
     THintCallMode = (
       hcmNone,
       hcmMouse,
@@ -134,7 +134,7 @@ interface
       hcmInfo
     );
 
-    { Контекст вызова хинта: панель, диалог... }
+    { РљРѕРЅС‚РµРєСЃС‚ РІС‹Р·РѕРІР° С…РёРЅС‚Р°: РїР°РЅРµР»СЊ, РґРёР°Р»РѕРі... }
     THintCallContext = (
       hccNone,
       hccPanel,

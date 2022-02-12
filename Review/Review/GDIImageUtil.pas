@@ -8,7 +8,7 @@ unit GDIImageUtil;
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -73,7 +73,7 @@ interface
       FSize  :TSize;
       FBPP   :Integer;
       FOwn   :Boolean;
-      FMem   :Pointer;    { Битмап в памяти, после освобождения Handle }
+      FMem   :Pointer;    { Р‘РёС‚РјР°Рї РІ РїР°РјСЏС‚Рё, РїРѕСЃР»Рµ РѕСЃРІРѕР±РѕР¶РґРµРЅРёСЏ Handle }
 
       procedure DestroyHandles;
 
@@ -988,7 +988,7 @@ interface
 //       ADstRect.X, ADstRect.Y, ADstRect.Width, ADstRect.Height]);
 
     if Alpha then begin
-      { Иначе не сохраняется Alpha-канал...}
+      { РРЅР°С‡Рµ РЅРµ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ Alpha-РєР°РЅР°Р»...}
       vBmp := GpCreateBitmap(ASrcBmp);
       if vBmp = nil then
         vBmp := TGPBitmap.Create(ASrcBMP, 0);

@@ -997,7 +997,7 @@ type
       Reserved : array [0..1] of DWORD_PTR;
     );
     1 : (
-      { Для совместимости с Far3 }
+      { Р”Р»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃ Far3 }
       FileAttributes : DWORD;
       CreationTime : TFileTime;
       LastAccessTime : TFileTime;

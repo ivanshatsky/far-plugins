@@ -1,4 +1,4 @@
-{$I Defines.inc} { см. также \App\MaxTest\FarHintsIcons\DefApp.Pas }
+{$I Defines.inc} { СЃРј. С‚Р°РєР¶Рµ \App\MaxTest\FarHintsIcons\DefApp.Pas }
 
 {$ifdef bDelphi}
  {$E hll}

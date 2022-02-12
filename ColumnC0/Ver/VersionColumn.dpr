@@ -11,7 +11,7 @@ library VersionColumn;
 {* VersionColumn Far Plugin                                                   *}
 {* 2010-2014, Max Rusov                                                       *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 uses

@@ -304,7 +304,7 @@ interface
           KEY_CTRLENTER:
             SelectItem(2);
 
-          { Фильтрация }
+          { Р¤РёР»СЊС‚СЂР°С†РёСЏ }
           KEY_DEL, KEY_ALT, KEY_RALT:
             LocSetFilter('');
           KEY_BS:

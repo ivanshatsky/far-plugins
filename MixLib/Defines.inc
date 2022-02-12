@@ -1,16 +1,16 @@
 {------------------------------------------------------------------------------}
 
-{$Define Far3}                 { По умолчанию собирается версия для Far3 }
-{$Define Unicode}              { По умолчанию собирается Unicode версия }
+{$Define Far3}                 { РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРѕР±РёСЂР°РµС‚СЃСЏ РІРµСЂСЃРёСЏ РґР»СЏ Far3 }
+{$Define Unicode}              { РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРѕР±РёСЂР°РµС‚СЃСЏ Unicode РІРµСЂСЃРёСЏ }
 
 {$ifdef Debug}
-  { Отладка }
+  { РћС‚Р»Р°РґРєР° }
   {$Define bDebug}       
   {$Define bTrace}
   {$Define bAsserts}
   {$Define bMemCheck}
 {$else}
-  { Сборка }
+  { РЎР±РѕСЂРєР° }
   {$Define bRelease}
   {$Define bOptimization}
 {$endif bRelease}
@@ -28,7 +28,7 @@
 {$endif ANSI}
 
 {$ifdef Unicode}
-  {$Define bUnicode}           { Внутренности плагина - в unicode }
+  {$Define bUnicode}           { Р’РЅСѓС‚СЂРµРЅРЅРѕСЃС‚Рё РїР»Р°РіРёРЅР° - РІ unicode }
   {$Define bUnicodeFar}        { Far 2 API }
 {$endif Unicode}
 
@@ -39,7 +39,7 @@
 
   {$Define bFreePascal}
   {$Define bInline}
-  {-$Define bUnicodeStr}        { Поддерживается тип UnicodeString }
+  {-$Define bUnicodeStr}        { РџРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ С‚РёРї UnicodeString }
 
   {$ifdef CPUX86_64}
    {$Define b64}
@@ -171,15 +171,15 @@
 
   {$ifdef bDelphi12}
    {$Define bInline}
-   {$Define bUnicodeStr}  { Поддерживается тип UnicodeString }
+   {$Define bUnicodeStr}  { РџРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ С‚РёРї UnicodeString }
    {$Define bUnicodeRTL}
 
-   {$Undef bMemCheck}     { Пока не поддерживается }
+   {$Undef bMemCheck}     { РџРѕРєР° РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ }
   {$endif}
 
   {$ifdef b64}
    {$Define bDelphi64}
-   {$Define bStackX64}    { Новая модель стека, без использования RBP }
+   {$Define bStackX64}    { РќРѕРІР°СЏ РјРѕРґРµР»СЊ СЃС‚РµРєР°, Р±РµР· РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ RBP }
   {$else}
    {$Define bOldLocalCall}
   {$endif b64}
@@ -188,7 +188,7 @@
 
 
 {-$ifndef bUnicodeStr}
- {$Define bWideStr}       { Поддерживается тип WideString }
+ {$Define bWideStr}       { РџРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ С‚РёРї WideString }
 {-$endif bUnicodeStr}
 
 
@@ -198,18 +198,18 @@
 
 {------------------------------------------------------------------------------}
 
-{ Опции кодогенерации... }
+{ РћРїС†РёРё РєРѕРґРѕРіРµРЅРµСЂР°С†РёРё... }
 {$BoolEval Off}
 {$IOChecks Off}
 {$LongStrings On}
 {$MinEnumSize 1}
 
-{ Опции синтаксиса... }
+{ РћРїС†РёРё СЃРёРЅС‚Р°РєСЃРёСЃР°... }
 {$ExtendedSyntax On}
 {$TypedAddress On}
 {$WriteableConst Off}
 
-{ Только для коротких строк... }
+{ РўРѕР»СЊРєРѕ РґР»СЏ РєРѕСЂРѕС‚РєРёС… СЃС‚СЂРѕРє... }
 {$OpenStrings On}
 {$VarStringChecks On}
 

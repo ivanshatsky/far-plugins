@@ -254,42 +254,42 @@ interface
     );
 
   var
-    { Настройки, зависящие от режима}
-    optShowUnavail     :Boolean = True;   { Показывать недоступные файлы/каталоги }
-    optShowView        :Boolean = False;  { Показывать просматриваемые файлы }
-    optHierarchical    :Boolean = True;   { Иерархическое представление (зависит от упорядочивания) }
+    { РќР°СЃС‚СЂРѕР№РєРё, Р·Р°РІРёСЃСЏС‰РёРµ РѕС‚ СЂРµР¶РёРјР°}
+    optShowUnavail     :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РЅРµРґРѕСЃС‚СѓРїРЅС‹Рµ С„Р°Р№Р»С‹/РєР°С‚Р°Р»РѕРіРё }
+    optShowView        :Boolean = False;  { РџРѕРєР°Р·С‹РІР°С‚СЊ РїСЂРѕСЃРјР°С‚СЂРёРІР°РµРјС‹Рµ С„Р°Р№Р»С‹ }
+    optHierarchical    :Boolean = True;   { РРµСЂР°СЂС…РёС‡РµСЃРєРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ (Р·Р°РІРёСЃРёС‚ РѕС‚ СѓРїРѕСЂСЏРґРѕС‡РёРІР°РЅРёСЏ) }
     optSortMode        :Integer = 0;      {}
 
-    optSeparateName    :Boolean = True;   { Показывать раздельно имя файла и путь }
-    optShowFullPath    :Boolean = True;   { Показывать полный путь }
-    optShowDate        :Boolean = True;   { Показывать дату обращения }
-    optShowHits        :Boolean = False;  { Показывать количество обращений }
-    optShowModify      :Boolean = True;   { Показывать дату модификации }
-    optShowSaves       :Boolean = False;  { Показывать количество сохранений }
+    optSeparateName    :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ СЂР°Р·РґРµР»СЊРЅРѕ РёРјСЏ С„Р°Р№Р»Р° Рё РїСѓС‚СЊ }
+    optShowFullPath    :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РїРѕР»РЅС‹Р№ РїСѓС‚СЊ }
+    optShowDate        :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РґР°С‚Сѓ РѕР±СЂР°С‰РµРЅРёСЏ }
+    optShowHits        :Boolean = False;  { РџРѕРєР°Р·С‹РІР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РѕР±СЂР°С‰РµРЅРёР№ }
+    optShowModify      :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РґР°С‚Сѓ РјРѕРґРёС„РёРєР°С†РёРё }
+    optShowSaves       :Boolean = False;  { РџРѕРєР°Р·С‹РІР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕС…СЂР°РЅРµРЅРёР№ }
 
-    { Настройки, не зависящие от режима}
+    { РќР°СЃС‚СЂРѕР№РєРё, РЅРµ Р·Р°РІРёСЃСЏС‰РёРµ РѕС‚ СЂРµР¶РёРјР°}
     optShowGrid        :Boolean = False;
     optNewAtTop        :Boolean = True;
-    optHideCurrent     :Boolean = True;   { Скпывать текущую папку в истории папок }
-    optHilightUnavail  :Boolean = True;   { Подсвечивать недоступные пути }
+    optHideCurrent     :Boolean = True;   { РЎРєРїС‹РІР°С‚СЊ С‚РµРєСѓС‰СѓСЋ РїР°РїРєСѓ РІ РёСЃС‚РѕСЂРёРё РїР°РїРѕРє }
+    optHilightUnavail  :Boolean = True;   { РџРѕРґСЃРІРµС‡РёРІР°С‚СЊ РЅРµРґРѕСЃС‚СѓРїРЅС‹Рµ РїСѓС‚Рё }
 
-    optShowHints       :Boolean = True;   { Показывать подсказки через FarHints }
-    optFollowMouse     :Boolean = False;  { Курсор бегает за мышкой (как в меню) }
-    optWrapMode        :Boolean = False;  { Курсор бегает по кругу }
-    optXLatMask        :Boolean = True;   { Автоматическое XLAT преобразование при поиске }
-    optMaskByWord      :Boolean = True;   { Поиск с начала слов }
-    optSaveMask        :Boolean = False;  { Сохранение старой маски при повторном вызове плагина }
+    optShowHints       :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РїРѕРґСЃРєР°Р·РєРё С‡РµСЂРµР· FarHints }
+    optFollowMouse     :Boolean = False;  { РљСѓСЂСЃРѕСЂ Р±РµРіР°РµС‚ Р·Р° РјС‹С€РєРѕР№ (РєР°Рє РІ РјРµРЅСЋ) }
+    optWrapMode        :Boolean = False;  { РљСѓСЂСЃРѕСЂ Р±РµРіР°РµС‚ РїРѕ РєСЂСѓРіСѓ }
+    optXLatMask        :Boolean = True;   { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ XLAT РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РїСЂРё РїРѕРёСЃРєРµ }
+    optMaskByWord      :Boolean = True;   { РџРѕРёСЃРє СЃ РЅР°С‡Р°Р»Р° СЃР»РѕРІ }
+    optSaveMask        :Boolean = False;  { РЎРѕС…СЂР°РЅРµРЅРёРµ СЃС‚Р°СЂРѕР№ РјР°СЃРєРё РїСЂРё РїРѕРІС‚РѕСЂРЅРѕРј РІС‹Р·РѕРІРµ РїР»Р°РіРёРЅР° }
 
-    optMidnightHour    :Integer = 0;      { Время (час), начала нового дня (для группировки по времени) }
+    optMidnightHour    :Integer = 0;      { Р’СЂРµРјСЏ (С‡Р°СЃ), РЅР°С‡Р°Р»Р° РЅРѕРІРѕРіРѕ РґРЅСЏ (РґР»СЏ РіСЂСѓРїРїРёСЂРѕРІРєРё РїРѕ РІСЂРµРјРµРЅРё) }
     optDateFormat      :Integer = 0;
-    opdGroupByPeriod   :Boolean = True;   { Группировка по времени - по периодам (сегодня, вчера ... ), а не по датам }
+    opdGroupByPeriod   :Boolean = True;   { Р“СЂСѓРїРїРёСЂРѕРІРєР° РїРѕ РІСЂРµРјРµРЅРё - РїРѕ РїРµСЂРёРѕРґР°Рј (СЃРµРіРѕРґРЅСЏ, РІС‡РµСЂР° ... ), Р° РЅРµ РїРѕ РґР°С‚Р°Рј }
 
     optHistoryFolder   :TString = '';
     optHistoryLimit    :Integer = cDefHistoryLimit;
 //  optSkipTransit     :Boolean = True;
     optSkipQuickView   :Boolean = True;
-    optCaseSensCmdHist :Integer = 0;      { Регистро-чувствительная история команд (2 - только аргументы)}
-    optCmdExcludeFile  :Boolean = False;  { Исключать из истории файлы, запускаемые по ассоциации }
+    optCaseSensCmdHist :Integer = 0;      { Р РµРіРёСЃС‚СЂРѕ-С‡СѓРІСЃС‚РІРёС‚РµР»СЊРЅР°СЏ РёСЃС‚РѕСЂРёСЏ РєРѕРјР°РЅРґ (2 - С‚РѕР»СЊРєРѕ Р°СЂРіСѓРјРµРЅС‚С‹)}
+    optCmdExcludeFile  :Boolean = False;  { РСЃРєР»СЋС‡Р°С‚СЊ РёР· РёСЃС‚РѕСЂРёРё С„Р°Р№Р»С‹, Р·Р°РїСѓСЃРєР°РµРјС‹Рµ РїРѕ Р°СЃСЃРѕС†РёР°С†РёРё }
 
     optFldExclusions   :TString = '';
     optEdtExclusions   :TString = '%TEMP%\*';

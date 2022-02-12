@@ -147,7 +147,7 @@ interface
 
 
   const
-    { Команды, доступные через префикс tab: }
+    { РљРѕРјР°РЅРґС‹, РґРѕСЃС‚СѓРїРЅС‹Рµ С‡РµСЂРµР· РїСЂРµС„РёРєСЃ tab: }
     cAddCmd            = 'Add';
     cEditCmd           = 'Edit';
     cSaveCmd           = 'Save';

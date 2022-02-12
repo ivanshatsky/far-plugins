@@ -43,7 +43,7 @@ interface
  {-----------------------------------------------------------------------------}
 
   function LoadCursorFromFileW(lpFileName :PWideChar): HCURSOR; stdcall; external user32 name 'LoadCursorFromFileW';
-    { В стандартном Windows.pas этот прототип описан с ошибкой... }
+    { Р’ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРј Windows.pas СЌС‚РѕС‚ РїСЂРѕС‚РѕС‚РёРї РѕРїРёСЃР°РЅ СЃ РѕС€РёР±РєРѕР№... }
 
 
   function IntMax(L1, L2 :Integer) :Integer;
@@ -206,7 +206,7 @@ interface
  {-----------------------------------------------------------------------------}
 
   function GetFrameCount(ACursor :HCursor) :Integer;
-    { Не знаю, как иначе. Для примера - пойдет. }
+    { РќРµ Р·РЅР°СЋ, РєР°Рє РёРЅР°С‡Рµ. Р”Р»СЏ РїСЂРёРјРµСЂР° - РїРѕР№РґРµС‚. }
   var
     vDC :HDC;
   begin

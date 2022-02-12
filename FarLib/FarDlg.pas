@@ -6,7 +6,7 @@ unit FarDlg;
 {* (c) 2008 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* Объектная обертка для диалогов FAR                                         *}
+{* РћР±СЉРµРєС‚РЅР°СЏ РѕР±РµСЂС‚РєР° РґР»СЏ РґРёР°Р»РѕРіРѕРІ FAR                                         *}
 {******************************************************************************}
 
 interface
@@ -209,13 +209,13 @@ interface
 
   function TFarDialog.KeyDown(AID :Integer; AKey :Integer) :Boolean; {virtual;}
   begin
-    Result := False; { Не обработано, продолжить стандартную обработку }
+    Result := False; { РќРµ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ, РїСЂРѕРґРѕР»Р¶РёС‚СЊ СЃС‚Р°РЅРґР°СЂС‚РЅСѓСЋ РѕР±СЂР°Р±РѕС‚РєСѓ }
   end;
 
 
   function TFarDialog.MouseEvent(AID :Integer; const AMouse :TMouseEventRecord) :Boolean; {virtual;}
   begin
-    Result := False; { Не обработано, продолжить стандартную обработку }
+    Result := False; { РќРµ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ, РїСЂРѕРґРѕР»Р¶РёС‚СЊ СЃС‚Р°РЅРґР°СЂС‚РЅСѓСЋ РѕР±СЂР°Р±РѕС‚РєСѓ }
   end;
 
 
@@ -627,7 +627,7 @@ interface
 
 
   procedure TFarCustomControl.Redraw;
-(*  Так нельзя, остаются следы при закрытии диалога...
+(*  РўР°Рє РЅРµР»СЊР·СЏ, РѕСЃС‚Р°СЋС‚СЃСЏ СЃР»РµРґС‹ РїСЂРё Р·Р°РєСЂС‹С‚РёРё РґРёР°Р»РѕРіР°...
   var
     vItem :TFarDialogItem;
   begin

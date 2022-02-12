@@ -6,7 +6,7 @@ unit FarConfig;
 {* (c) 2011 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* Объектная обертка хранения настроек                                        *}
+{* РћР±СЉРµРєС‚РЅР°СЏ РѕР±РµСЂС‚РєР° С…СЂР°РЅРµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє                                        *}
 {******************************************************************************}
 
 interface
@@ -70,7 +70,7 @@ interface
   function FarGetValueStr(AHandle, AKey :THandle; const AName :TString; const ADefault :TString) :TString;
 
   function FarGetSetting(ARoot :Cardinal; const AName :TString) :Int64;
-    { См. Plugin3.pas - FSSF_xxx }
+    { РЎРј. Plugin3.pas - FSSF_xxx }
  {$endif Far3}
 
   function FarConfigGetStrValue(const APlugName, APath, AName, ADefault :TString) :TString;
@@ -87,46 +87,46 @@ interface
 
 
 (*
-API для хранения настроек:
+API РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє:
 
    int WINAPI SettingsControl(HANDLE hHandle, int Command, int Param1, INT_PTR Param2)
 
    Command:
 
    SCTL_CREATE            - hHandle - INVALID_HANDLE_VALUE.
-                            Param2 - FarSettingsCreate, на входе guid плагина, на выходе - хэндл настроек.
-                            При неудаче вернёт FALSE.
+                            Param2 - FarSettingsCreate, РЅР° РІС…РѕРґРµ guid РїР»Р°РіРёРЅР°, РЅР° РІС‹С…РѕРґРµ - С…СЌРЅРґР» РЅР°СЃС‚СЂРѕРµРє.
+                            РџСЂРё РЅРµСѓРґР°С‡Рµ РІРµСЂРЅС‘С‚ FALSE.
 
-   SCTL_FREE              - hHandle - HANDLE, который вернул SCTL_CREATE.
+   SCTL_FREE              - hHandle - HANDLE, РєРѕС‚РѕСЂС‹Р№ РІРµСЂРЅСѓР» SCTL_CREATE.
 
-   SCTL_SET               - hHandle - HANDLE, который вернул SCTL_CREATE.
-                            Param2 - указатель на FarSettingsItem.
-                            Root - задаёт место сохранения настроек. 0 - корень для плагина. подключи получаются при помощи SCTL_SUBKEY.
-                            Name - имя сохраняемого значения.
-                            Type - тип.
-                            Value - само значение.
+   SCTL_SET               - hHandle - HANDLE, РєРѕС‚РѕСЂС‹Р№ РІРµСЂРЅСѓР» SCTL_CREATE.
+                            Param2 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° FarSettingsItem.
+                            Root - Р·Р°РґР°С‘С‚ РјРµСЃС‚Рѕ СЃРѕС…СЂР°РЅРµРЅРёСЏ РЅР°СЃС‚СЂРѕРµРє. 0 - РєРѕСЂРµРЅСЊ РґР»СЏ РїР»Р°РіРёРЅР°. РїРѕРґРєР»СЋС‡Рё РїРѕР»СѓС‡Р°СЋС‚СЃСЏ РїСЂРё РїРѕРјРѕС‰Рё SCTL_SUBKEY.
+                            Name - РёРјСЏ СЃРѕС…СЂР°РЅСЏРµРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ.
+                            Type - С‚РёРї.
+                            Value - СЃР°РјРѕ Р·РЅР°С‡РµРЅРёРµ.
 
-   SCTL_GET               - hHandle - HANDLE, который вернул SCTL_CREATE.
-                            Param2 - указатель на FarSettingsItem.
-                            Value заполняет фар, остальное - плагин.
+   SCTL_GET               - hHandle - HANDLE, РєРѕС‚РѕСЂС‹Р№ РІРµСЂРЅСѓР» SCTL_CREATE.
+                            Param2 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° FarSettingsItem.
+                            Value Р·Р°РїРѕР»РЅСЏРµС‚ С„Р°СЂ, РѕСЃС‚Р°Р»СЊРЅРѕРµ - РїР»Р°РіРёРЅ.
 
-   SCTL_CREATESUBKEY, SCTL_OPENSUBKEY (было SCTL_SUBKEY)
-                            - hHandle - HANDLE, который вернул SCTL_CREATE.
-                            Param2 - указатель на FarSettingsValue.
-                            возвращает описатель подключа с именем Value для ключа с описателем Root.
+   SCTL_CREATESUBKEY, SCTL_OPENSUBKEY (Р±С‹Р»Рѕ SCTL_SUBKEY)
+                            - hHandle - HANDLE, РєРѕС‚РѕСЂС‹Р№ РІРµСЂРЅСѓР» SCTL_CREATE.
+                            Param2 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° FarSettingsValue.
+                            РІРѕР·РІСЂР°С‰Р°РµС‚ РѕРїРёСЃР°С‚РµР»СЊ РїРѕРґРєР»СЋС‡Р° СЃ РёРјРµРЅРµРј Value РґР»СЏ РєР»СЋС‡Р° СЃ РѕРїРёСЃР°С‚РµР»РµРј Root.
 
-   SCTL_ENUM              - получить спиок подключей и значений.
-                            hHandle - HANDLE, который вернул SCTL_CREATE.
-                            Param2 - указатель на FarSettingsEnum.
-                            Root - описатель ключа, откуда брать информацию.
-                            Count - количество возвращаемых элементов.
-                            Items - элементы.
+   SCTL_ENUM              - РїРѕР»СѓС‡РёС‚СЊ СЃРїРёРѕРє РїРѕРґРєР»СЋС‡РµР№ Рё Р·РЅР°С‡РµРЅРёР№.
+                            hHandle - HANDLE, РєРѕС‚РѕСЂС‹Р№ РІРµСЂРЅСѓР» SCTL_CREATE.
+                            Param2 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° FarSettingsEnum.
+                            Root - РѕРїРёСЃР°С‚РµР»СЊ РєР»СЋС‡Р°, РѕС‚РєСѓРґР° Р±СЂР°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ.
+                            Count - РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕР·РІСЂР°С‰Р°РµРјС‹С… СЌР»РµРјРµРЅС‚РѕРІ.
+                            Items - СЌР»РµРјРµРЅС‚С‹.
 
-   SCTL_DELETE            - удалить подключ или значение.
-                            hHandle - HANDLE, который вернул SCTL_CREATE.
-                            Param2 - указатель на FarSettingsValue.
-                            Root - описатель ключа, в котором находится удаляемое.
-                            Value - имя подключа или значения, которое надо удалить.
+   SCTL_DELETE            - СѓРґР°Р»РёС‚СЊ РїРѕРґРєР»СЋС‡ РёР»Рё Р·РЅР°С‡РµРЅРёРµ.
+                            hHandle - HANDLE, РєРѕС‚РѕСЂС‹Р№ РІРµСЂРЅСѓР» SCTL_CREATE.
+                            Param2 - СѓРєР°Р·Р°С‚РµР»СЊ РЅР° FarSettingsValue.
+                            Root - РѕРїРёСЃР°С‚РµР»СЊ РєР»СЋС‡Р°, РІ РєРѕС‚РѕСЂРѕРј РЅР°С…РѕРґРёС‚СЃСЏ СѓРґР°Р»СЏРµРјРѕРµ.
+                            Value - РёРјСЏ РїРѕРґРєР»СЋС‡Р° РёР»Рё Р·РЅР°С‡РµРЅРёСЏ, РєРѕС‚РѕСЂРѕРµ РЅР°РґРѕ СѓРґР°Р»РёС‚СЊ.
 *)
 
 

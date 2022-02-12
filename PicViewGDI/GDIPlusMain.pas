@@ -17,30 +17,30 @@ unit GDIPlusMain;
 {
 TODO:
 
-Требуется:
-  + Улучшение вида сообщений.
-  + Удаление сообщений об ошибках
-  + Более подробные сообщения об ошибках rendering'а
+РўСЂРµР±СѓРµС‚СЃСЏ:
+  + РЈР»СѓС‡С€РµРЅРёРµ РІРёРґР° СЃРѕРѕР±С‰РµРЅРёР№.
+  + РЈРґР°Р»РµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёР№ РѕР± РѕС€РёР±РєР°С…
+  + Р‘РѕР»РµРµ РїРѕРґСЂРѕР±РЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РѕС€РёР±РєР°С… rendering'Р°
 
-  + Запрет поворотов анимированных GIF'ов (или реализация?)
-  + Запрет сохранения многостраничных изображений (или реализация)
+  + Р—Р°РїСЂРµС‚ РїРѕРІРѕСЂРѕС‚РѕРІ Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… GIF'РѕРІ (РёР»Рё СЂРµР°Р»РёР·Р°С†РёСЏ?)
+  + Р—Р°РїСЂРµС‚ СЃРѕС…СЂР°РЅРµРЅРёСЏ РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№ (РёР»Рё СЂРµР°Р»РёР·Р°С†РёСЏ)
 
-  + Публикация настроек
+  + РџСѓР±Р»РёРєР°С†РёСЏ РЅР°СЃС‚СЂРѕРµРє
 
-Желательно:
-  + Заменить StretchBlt на вывод через GDI+?
+Р–РµР»Р°С‚РµР»СЊРЅРѕ:
+  + Р—Р°РјРµРЅРёС‚СЊ StretchBlt РЅР° РІС‹РІРѕРґ С‡РµСЂРµР· GDI+?
   
-  - Сохранение даты при сохранении изображений
-  - Не блокировать файл для многостраничных изображений
-  - Анализировать наличие эскизов
+  - РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°С‚С‹ РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё РёР·РѕР±СЂР°Р¶РµРЅРёР№
+  - РќРµ Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ С„Р°Р№Р» РґР»СЏ РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№
+  - РђРЅР°Р»РёР·РёСЂРѕРІР°С‚СЊ РЅР°Р»РёС‡РёРµ СЌСЃРєРёР·РѕРІ
 
-На будущее:
-  + Не рендерится большое повернутое изображение
-  + Оптимизация поворотов (без повторного рендеринга)
-  - Оптимизация для рендеринга многостраничных TIF'ов
-  - Оптимизация поворотов для многостраничных TIF'ов
-  - Анимация поворотов
-  - Настройка кнопок
+РќР° Р±СѓРґСѓС‰РµРµ:
+  + РќРµ СЂРµРЅРґРµСЂРёС‚СЃСЏ Р±РѕР»СЊС€РѕРµ РїРѕРІРµСЂРЅСѓС‚РѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ
+  + РћРїС‚РёРјРёР·Р°С†РёСЏ РїРѕРІРѕСЂРѕС‚РѕРІ (Р±РµР· РїРѕРІС‚РѕСЂРЅРѕРіРѕ СЂРµРЅРґРµСЂРёРЅРіР°)
+  - РћРїС‚РёРјРёР·Р°С†РёСЏ РґР»СЏ СЂРµРЅРґРµСЂРёРЅРіР° РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅС‹С… TIF'РѕРІ
+  - РћРїС‚РёРјРёР·Р°С†РёСЏ РїРѕРІРѕСЂРѕС‚РѕРІ РґР»СЏ РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅС‹С… TIF'РѕРІ
+  - РђРЅРёРјР°С†РёСЏ РїРѕРІРѕСЂРѕС‚РѕРІ
+  - РќР°СЃС‚СЂРѕР№РєР° РєРЅРѕРїРѕРє
   - Copy to clipboard
 }
 
@@ -69,31 +69,31 @@ interface
 
   const
     cAnimationStep     = 100;          {ms }
-    cThumbSize         = 128;          { Размер извлекаемого эскиза }
+    cThumbSize         = 128;          { Р Р°Р·РјРµСЂ РёР·РІР»РµРєР°РµРјРѕРіРѕ СЌСЃРєРёР·Р° }
     cRescalePerc       = 5;
 
-    { Увеличение размера эскиза больше размера оригинального изображения }
-    { Полезно, так как получается лучшее качество, чем при StretchBlt }
+    { РЈРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° СЌСЃРєРёР·Р° Р±РѕР»СЊС€Рµ СЂР°Р·РјРµСЂР° РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ }
+    { РџРѕР»РµР·РЅРѕ, С‚Р°Рє РєР°Рє РїРѕР»СѓС‡Р°РµС‚СЃСЏ Р»СѓС‡С€РµРµ РєР°С‡РµСЃС‚РІРѕ, С‡РµРј РїСЂРё StretchBlt }
 
-    cOverscaleK        = 1.0;          { Максимальный коэффициент увеличинного эскиза }
-    cOverscaleLimit    = 132;          { Ограничение размера увеличинного эскиза, в M }
+    cOverscaleK        = 1.0;          { РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚ СѓРІРµР»РёС‡РёРЅРЅРѕРіРѕ СЌСЃРєРёР·Р° }
+    cOverscaleLimit    = 132;          { РћРіСЂР°РЅРёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° СѓРІРµР»РёС‡РёРЅРЅРѕРіРѕ СЌСЃРєРёР·Р°, РІ M }
 
   var
-    WaitDelay        :Integer = 1000;  { Сколько ждем декодирование, прежде чем показать эскиз. Только при первом открытии. }
-    DraftDelay       :Integer = 125;   { Задержка для аккурaтной перерисовки }
-    StretchDelay     :Integer = 500;   { Задержка для масштабирования }
-    PrecacheDelay    :Integer = 100;   { Задержка для предварительного масштабирования }
+    WaitDelay        :Integer = 1000;  { РЎРєРѕР»СЊРєРѕ Р¶РґРµРј РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ, РїСЂРµР¶РґРµ С‡РµРј РїРѕРєР°Р·Р°С‚СЊ СЌСЃРєРёР·. РўРѕР»СЊРєРѕ РїСЂРё РїРµСЂРІРѕРј РѕС‚РєСЂС‹С‚РёРё. }
+    DraftDelay       :Integer = 125;   { Р—Р°РґРµСЂР¶РєР° РґР»СЏ Р°РєРєСѓСЂaС‚РЅРѕР№ РїРµСЂРµСЂРёСЃРѕРІРєРё }
+    StretchDelay     :Integer = 500;   { Р—Р°РґРµСЂР¶РєР° РґР»СЏ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ }
+    PrecacheDelay    :Integer = 100;   { Р—Р°РґРµСЂР¶РєР° РґР»СЏ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ }
     TmpMessageDelay  :Integer = 1500;
 
     FastListDelay    :Integer = 500;
-    ThumbDelay       :Integer = 250;   { Задержка до начала декодирования при перелистывании }
+    ThumbDelay       :Integer = 250;   { Р—Р°РґРµСЂР¶РєР° РґРѕ РЅР°С‡Р°Р»Р° РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ РїСЂРё РїРµСЂРµР»РёСЃС‚С‹РІР°РЅРёРё }
 
     UseThumbnail     :Boolean = True;
     DecodeOnReduce   :Boolean = False;
     RotateOnEXIF     :Boolean = True;
     EnableHook       :Boolean = True;
-    QuickRotate      :Boolean = True;   { Поворот без повторного декодирования }
-    SaveRotateEXIF   :Boolean = False;  { При сохранении повернутого изображения производится только коррекция EXIF заголовка }
+    QuickRotate      :Boolean = True;   { РџРѕРІРѕСЂРѕС‚ Р±РµР· РїРѕРІС‚РѕСЂРЅРѕРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
+    SaveRotateEXIF   :Boolean = False;  { РџСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё РїРѕРІРµСЂРЅСѓС‚РѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ С‚РѕР»СЊРєРѕ РєРѕСЂСЂРµРєС†РёСЏ EXIF Р·Р°РіРѕР»РѕРІРєР° }
 
 
   function pvdInit2(pInit :PpvdInitPlugin2) :integer; stdcall;
@@ -302,8 +302,8 @@ interface
  {-----------------------------------------------------------------------------}
 
   var
-    { GDIPlus не поддерживает многопоточную работу. Используем критическую секцию, }
-    { чтобы, по возможности, избежать блокировок... }
+    { GDIPlus РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅСѓСЋ СЂР°Р±РѕС‚Сѓ. РСЃРїРѕР»СЊР·СѓРµРј РєСЂРёС‚РёС‡РµСЃРєСѓСЋ СЃРµРєС†РёСЋ, }
+    { С‡С‚РѕР±С‹, РїРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё, РёР·Р±РµР¶Р°С‚СЊ Р±Р»РѕРєРёСЂРѕРІРѕРє... }
     GDIPlusCS :TRTLCriticalSection;
 
 
@@ -789,7 +789,7 @@ interface
     GWinSize       :TSize;
 
   var
-    GSmoothMode    :Boolean;      { Сглаженный вывод (переключается по Ctrl-T) }
+    GSmoothMode    :Boolean;      { РЎРіР»Р°Р¶РµРЅРЅС‹Р№ РІС‹РІРѕРґ (РїРµСЂРµРєР»СЋС‡Р°РµС‚СЃСЏ РїРѕ Ctrl-T) }
 
   type
     PDelays = ^TDelays;
@@ -830,31 +830,31 @@ interface
     private
       FRefCount    :Integer;
 
-      FID          :Integer;      { Уникальный идентификатор }
-      FSrcName     :TString;      { Имя файла }
-      FSrcImage    :TGPImageEx;   { Исходное изображение }
-      FOrient0     :Integer;      { Исходная ориентация }
-      FOrient      :Integer;      { Текущая ориентация }
-      FImgSize0    :TSize;        { Исходный размер картинки (текущей страницы) }
-      FImgSize     :TSize;        { Размер картинки с учетом ориентации }
-      FPixels      :Integer;      { Цветность (BPP) }
+      FID          :Integer;      { РЈРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ }
+      FSrcName     :TString;      { РРјСЏ С„Р°Р№Р»Р° }
+      FSrcImage    :TGPImageEx;   { РСЃС…РѕРґРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FOrient0     :Integer;      { РСЃС…РѕРґРЅР°СЏ РѕСЂРёРµРЅС‚Р°С†РёСЏ }
+      FOrient      :Integer;      { РўРµРєСѓС‰Р°СЏ РѕСЂРёРµРЅС‚Р°С†РёСЏ }
+      FImgSize0    :TSize;        { РСЃС…РѕРґРЅС‹Р№ СЂР°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё (С‚РµРєСѓС‰РµР№ СЃС‚СЂР°РЅРёС†С‹) }
+      FImgSize     :TSize;        { Р Р°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё СЃ СѓС‡РµС‚РѕРј РѕСЂРёРµРЅС‚Р°С†РёРё }
+      FPixels      :Integer;      { Р¦РІРµС‚РЅРѕСЃС‚СЊ (BPP) }
       FFmtID       :TGUID;
       FFmtName     :TString;
-      FHasAlpha    :Boolean;      { Полупрозрачное изображение }
-      FDirectDraw  :Boolean;      { Анимированное изображение, не используем preview'шки }
-//    FSmoothMode  :Boolean;      { Сглаженный вывод (переключается по Ctrl-T) }
-      FOverscaleK  :Double;       { Коэффициент максимального превышения масштаба эскиза }
+      FHasAlpha    :Boolean;      { РџРѕР»СѓРїСЂРѕР·СЂР°С‡РЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FDirectDraw  :Boolean;      { РђРЅРёРјРёСЂРѕРІР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ, РЅРµ РёСЃРїРѕР»СЊР·СѓРµРј preview'С€РєРё }
+//    FSmoothMode  :Boolean;      { РЎРіР»Р°Р¶РµРЅРЅС‹Р№ РІС‹РІРѕРґ (РїРµСЂРµРєР»СЋС‡Р°РµС‚СЃСЏ РїРѕ Ctrl-T) }
+      FOverscaleK  :Double;       { РљРѕСЌС„С„РёС†РёРµРЅС‚ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РїСЂРµРІС‹С€РµРЅРёСЏ РјР°СЃС€С‚Р°Р±Р° СЌСЃРєРёР·Р° }
 
-      FThumbImage  :TMemDC;       { Изображение, буферизированное как Bitmap }
-      FThumbSize   :TSize;        { Размер Preview'шки }
-      FIsThumbnail :Boolean;      { Это превью (thumbnail) }
+      FThumbImage  :TMemDC;       { РР·РѕР±СЂР°Р¶РµРЅРёРµ, Р±СѓС„РµСЂРёР·РёСЂРѕРІР°РЅРЅРѕРµ РєР°Рє Bitmap }
+      FThumbSize   :TSize;        { Р Р°Р·РјРµСЂ Preview'С€РєРё }
+      FIsThumbnail :Boolean;      { Р­С‚Рѕ РїСЂРµРІСЊСЋ (thumbnail) }
       FErrorMess   :TString;
       FTmpMess     :TString;
-      FTmpTime     :DWORD;        { Время удаления временного сообщения }
+      FTmpTime     :DWORD;        { Р’СЂРµРјСЏ СѓРґР°Р»РµРЅРёСЏ РІСЂРµРјРµРЅРЅРѕРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ }
 
-      FViewStart   :DWORD;        { Для поддержки предварительного декодирования }
+      FViewStart   :DWORD;        { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
 
-      FResizeStart :DWORD;        { Для поддержки фонового декодирования (при масштабировании или быстрой прокрутке) }
+      FResizeStart :DWORD;        { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё С„РѕРЅРѕРІРѕРіРѕ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ (РїСЂРё РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРё РёР»Рё Р±С‹СЃС‚СЂРѕР№ РїСЂРѕРєСЂСѓС‚РєРµ) }
       FResizeSize  :TSize;
 
       FDraftStart  :DWORD;
@@ -863,17 +863,17 @@ interface
       FPrevSrcRect :TRect;
       FPrevDstRect :TRect;
 
-      { Для поддержки анимированных изображений... }
+      { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№... }
       FFrames      :Integer;
       FFrame       :Integer;
       FDelCount    :Integer;
       FDelays      :PPropertyItem;
       FDimID       :TGUID;
 
-      { Поддержка фоновой декомпрессии картинок }
+      { РџРѕРґРґРµСЂР¶РєР° С„РѕРЅРѕРІРѕР№ РґРµРєРѕРјРїСЂРµСЃСЃРёРё РєР°СЂС‚РёРЅРѕРє }
       FAsyncTask   :TTask;
 
-      { Рисование }
+      { Р РёСЃРѕРІР°РЅРёРµ }
       FWnd          :HWND;
       FDC           :HDC;
 //    FPaintStruct  :TPaintStruct;
@@ -1014,10 +1014,10 @@ interface
     FSrcImage.GetRawFormat(FFmtID);
     FFmtName := GetImgFmtName(FFmtID);
 
-    { Изображение полупрозрачное }
+    { РР·РѕР±СЂР°Р¶РµРЅРёРµ РїРѕР»СѓРїСЂРѕР·СЂР°С‡РЅРѕРµ }
     FHasAlpha := UINT(ImageFlagsHasAlpha) and FSrcImage.GetFlags <> 0;
 
-    { Подсчитываем количество фреймов в анимированном/многостраничном изображении }
+    { РџРѕРґСЃС‡РёС‚С‹РІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ С„СЂРµР№РјРѕРІ РІ Р°РЅРёРјРёСЂРѕРІР°РЅРЅРѕРј/РјРЅРѕРіРѕСЃС‚СЂР°РЅРёС‡РЅРѕРј РёР·РѕР±СЂР°Р¶РµРЅРёРё }
     FFrames := GetFrameCount(FSrcImage, @FDimID, @Pointer(FDelays), @FDelCount);
 
     FDirectDraw := {FHasAlpha or} (FDelays <> nil);
@@ -1062,7 +1062,7 @@ interface
     Result := False;
 
    if not IsEqualGUID(FFmtID, ImageFormatJPEG) then
-     { Эскизы поддерживаются только(?) для JPEG... }
+     { Р­СЃРєРёР·С‹ РїРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ(?) РґР»СЏ JPEG... }
      Exit;
 
    {$ifdef bTrace}
@@ -1126,7 +1126,7 @@ interface
     Result := False;
     try
       if not FDirectDraw and QuickRotate then begin
-        { Поворачиваем уже декодированный эскиз }
+        { РџРѕРІРѕСЂР°С‡РёРІР°РµРј СѓР¶Рµ РґРµРєРѕРґРёСЂРѕРІР°РЅРЅС‹Р№ СЌСЃРєРёР· }
         FThumbImage.Transform(cTransform[ARotate]);
 
         if ARotate in [1, 2] then
@@ -1214,13 +1214,13 @@ interface
 
         if AExif and (IsEqualGUID(FFmtID, ImageFormatJPEG) or IsEqualGUID(FFmtID, ImageFormatTIFF)) then begin
 
-          { Поворот путем коррекции EXIF заголовка - loseless }
+          { РџРѕРІРѕСЂРѕС‚ РїСѓС‚РµРј РєРѕСЂСЂРµРєС†РёРё EXIF Р·Р°РіРѕР»РѕРІРєР° - loseless }
           if FOrient0 <> FOrient then
             SetExifTagValueInt(vImage, PropertyTagOrientation, FOrient);
 
         end else
         if IsEqualGUID(FFmtID, ImageFormatJPEG) then begin
-          { Поворт путем трансформации - может приводить к потерям... }
+          { РџРѕРІРѕСЂРѕС‚ РїСѓС‚РµРј С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёРё - РјРѕР¶РµС‚ РїСЂРёРІРѕРґРёС‚СЊ Рє РїРѕС‚РµСЂСЏРј... }
 
           vTransf := cTransform[FOrient];
           if vTransf <> EncoderValue(0) then begin
@@ -1420,7 +1420,7 @@ interface
 
       if Result > ImgSize then
         if GSmoothMode then
-          { Разрешаем декодирование с повышенным разрешением}
+          { Р Р°Р·СЂРµС€Р°РµРј РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ СЃ РїРѕРІС‹С€РµРЅРЅС‹Рј СЂР°Р·СЂРµС€РµРЅРёРµРј}
           Result := IntMin(Result, Round(ImgSize * FOverscaleK))
         else
           Result := ImgSize;
@@ -1454,7 +1454,7 @@ interface
       end;
 
       if not Result and not GSmoothMode then
-        { Был overscale, который стал нежелательным, из за выключения SmoothMode... }
+        { Р‘С‹Р» overscale, РєРѕС‚РѕСЂС‹Р№ СЃС‚Р°Р» РЅРµР¶РµР»Р°С‚РµР»СЊРЅС‹Рј, РёР· Р·Р° РІС‹РєР»СЋС‡РµРЅРёСЏ SmoothMode... }
         Result := (FThumbSize.CX > FImgSize.CX) or (FThumbSize.CY > FImgSize.CY);
     end;
 
@@ -1470,8 +1470,8 @@ interface
     if FDC = 0 then
       Exit;
 
-    { Запоминаем настройки отображения в глобальных переменных, для использования }
-    { во вспомогательных потоках. Не thread-safe'но, но не страшно... }
+    { Р—Р°РїРѕРјРёРЅР°РµРј РЅР°СЃС‚СЂРѕР№РєРё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ РіР»РѕР±Р°Р»СЊРЅС‹С… РїРµСЂРµРјРµРЅРЅС‹С…, РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ }
+    { РІРѕ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… РїРѕС‚РѕРєР°С…. РќРµ thread-safe'РЅРѕ, РЅРѕ РЅРµ СЃС‚СЂР°С€РЅРѕ... }
     GBackColor := AColor;
 
     vSrcRect := MakeRect(ASrcRect);
@@ -1493,18 +1493,18 @@ interface
 
       if (FThumbImage = nil) or (FIsThumbnail and (FAsyncTask = nil)) then begin
 
-        { Определяем режим "быстрой прокрутки"}
+        { РћРїСЂРµРґРµР»СЏРµРј СЂРµР¶РёРј "Р±С‹СЃС‚СЂРѕР№ РїСЂРѕРєСЂСѓС‚РєРё"}
         vFastScroll := (TickCountDiff(GetTickCount, GLastPaint) < FastListDelay);
         if vFastScroll then
           GLastPaint1 := GetTickCount;
 
         vScale := LocCalcScale(vSize.cx, vSize.cy);
         if (vScale > 90) and (vScale <= 100) then
-          { Выгоднее уже декодировать 100% }
+          { Р’С‹РіРѕРґРЅРµРµ СѓР¶Рµ РґРµРєРѕРґРёСЂРѕРІР°С‚СЊ 100% }
           vSize := FImgSize;
 
         if (FThumbImage = nil) or not vFastScroll then begin
-          { Запускаем фоновый декодер и ждем результата (но не долше, чем WaitDelay)}
+          { Р—Р°РїСѓСЃРєР°РµРј С„РѕРЅРѕРІС‹Р№ РґРµРєРѕРґРµСЂ Рё Р¶РґРµРј СЂРµР·СѓР»СЊС‚Р°С‚Р° (РЅРѕ РЅРµ РґРѕР»С€Рµ, С‡РµРј WaitDelay)}
           if FAsyncTask = nil then
             SetAsyncTask(vSize);
           vStart := GetTickCount;
@@ -1518,7 +1518,7 @@ interface
           end;
         end else
         begin
-          { "Быстрая прокрутка". Показываем превью, декодер отработает в фоне. }
+          { "Р‘С‹СЃС‚СЂР°СЏ РїСЂРѕРєСЂСѓС‚РєР°". РџРѕРєР°Р·С‹РІР°РµРј РїСЂРµРІСЊСЋ, РґРµРєРѕРґРµСЂ РѕС‚СЂР°Р±РѕС‚Р°РµС‚ РІ С„РѕРЅРµ. }
           FResizeStart := GetTickCount - DWORD(StretchDelay) + DWORD(ThumbDelay);
           FResizeSize := vSize;
         end;
@@ -1532,7 +1532,7 @@ interface
         if (FResizeStart = 0) or (FResizeSize.cx <> vSize.cx) or (FResizeSize.cy <> vSize.cy) then begin
 //        TraceF('Need resize! %d x %d', [FThumbSize.cx - vDX, FThumbSize.cy - vDY]);
           if FFirstDraw then
-            { Ошиблись с прогнозом при опрежающем декодировании. }
+            { РћС€РёР±Р»РёСЃСЊ СЃ РїСЂРѕРіРЅРѕР·РѕРј РїСЂРё РѕРїСЂРµР¶Р°СЋС‰РµРј РґРµРєРѕРґРёСЂРѕРІР°РЅРёРё. }
             SetAsyncTask(vSize)
           else begin
             FResizeStart := GetTickCount;
@@ -1554,7 +1554,7 @@ interface
         FPrevSrcRect := ASrcRect;
         FPrevDstRect := ADstRect;
 
-        { Возможна погрешность масштабирования в рдин пиксел, учтем, чтобы не делать лишний Stretch }
+        { Р’РѕР·РјРѕР¶РЅР° РїРѕРіСЂРµС€РЅРѕСЃС‚СЊ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ РІ СЂРґРёРЅ РїРёРєСЃРµР», СѓС‡С‚РµРј, С‡С‚РѕР±С‹ РЅРµ РґРµР»Р°С‚СЊ Р»РёС€РЅРёР№ Stretch }
         if (Abs(vDstRect.Width - vThmRect.Width) <= 1) and (Abs(vDstRect.Height - vThmRect.Height) <= 1) then begin
          {$ifdef bTrace}
 //        TraceF('BitBlt. Thumb=%d', [Byte(FIsThumbnail)]);
@@ -1568,10 +1568,10 @@ interface
           FDraftStart := 0;
         end else
         begin
-          { Масштабирование с уменьшением }
+          { РњР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ СЃ СѓРјРµРЅСЊС€РµРЅРёРµРј }
           vDecrease := vDstRect.Width < vThmRect.Width;
 
-          { При уменьшении масштаба всегда делаем сглаживание }
+          { РџСЂРё СѓРјРµРЅСЊС€РµРЅРёРё РјР°СЃС€С‚Р°Р±Р° РІСЃРµРіРґР° РґРµР»Р°РµРј СЃРіР»Р°Р¶РёРІР°РЅРёРµ }
           vNeedSmooth := (GSmoothMode or vDecrease) and not FIsThumbnail;
 
           vGDILocked := False;
@@ -1580,20 +1580,20 @@ interface
           try
 
             if FHiQual and vNeedSmooth and vGDILocked then begin
-              { Аккуратный, но медленный - режим масштабирования со сглаживанием }
-              { Уменьшаем при помощи GDI а увеличиваем - при помощи GDI+ }
-              { Так достигается оптимальное качество масштабирования }
-              { (выяснено экспериментальным путем) }
+              { РђРєРєСѓСЂР°С‚РЅС‹Р№, РЅРѕ РјРµРґР»РµРЅРЅС‹Р№ - СЂРµР¶РёРј РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ СЃРѕ СЃРіР»Р°Р¶РёРІР°РЅРёРµРј }
+              { РЈРјРµРЅСЊС€Р°РµРј РїСЂРё РїРѕРјРѕС‰Рё GDI Р° СѓРІРµР»РёС‡РёРІР°РµРј - РїСЂРё РїРѕРјРѕС‰Рё GDI+ }
+              { РўР°Рє РґРѕСЃС‚РёРіР°РµС‚СЃСЏ РѕРїС‚РёРјР°Р»СЊРЅРѕРµ РєР°С‡РµСЃС‚РІРѕ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ }
+              { (РІС‹СЏСЃРЅРµРЅРѕ СЌРєСЃРїРµСЂРёРјРµРЅС‚Р°Р»СЊРЅС‹Рј РїСѓС‚РµРј) }
               if vDecrease then
                 GDIStretchDraw(FDC, vDstRect, FThumbImage, vThmRect, True)
               else
                 GDIPlusStretchDraw(FDC, vDstRect, FThumbImage, vThmRect, True);
             end else
             begin
-              { Быстрый, но не аккуратный }
+              { Р‘С‹СЃС‚СЂС‹Р№, РЅРѕ РЅРµ Р°РєРєСѓСЂР°С‚РЅС‹Р№ }
               GDIStretchDraw(FDC, vDstRect, FThumbImage, vThmRect, False);
 
-              { Аккуратная перерисовка - с небольшой задержкой }
+              { РђРєРєСѓСЂР°С‚РЅР°СЏ РїРµСЂРµСЂРёСЃРѕРІРєР° - СЃ РЅРµР±РѕР»СЊС€РѕР№ Р·Р°РґРµСЂР¶РєРѕР№ }
               if vNeedSmooth then
                 FDraftStart := GetTickCount;
             end;
@@ -1610,7 +1610,7 @@ interface
         GradientFillRect(FDC, ADstRect, AColor, AColor, True);
     end;
 
-    { Заливаем фон, исключая картинку, чтобы не мигала }
+    { Р—Р°Р»РёРІР°РµРј С„РѕРЅ, РёСЃРєР»СЋС‡Р°СЏ РєР°СЂС‚РёРЅРєСѓ, С‡С‚РѕР±С‹ РЅРµ РјРёРіР°Р»Р° }
     vSaveDC := SaveDC(FDC);
     try
       with ADstRect do
@@ -1721,7 +1721,7 @@ interface
 
       if (FWnd <> 0) and (FDC = 0) then begin
         if (FResizeStart <> 0) and (TickCountDiff(GetTickCount, FResizeStart) > StretchDelay) then begin
-          { Асинхронное декодирование при масштабировании }
+          { РђСЃРёРЅС…СЂРѕРЅРЅРѕРµ РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ РїСЂРё РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРё }
           FResizeStart := 0;
           SetAsyncTask(FResizeSize);
         end;
@@ -1746,7 +1746,7 @@ interface
 
       if (FWnd = 0) and ((FThumbImage = nil) or FIsThumbnail) and (TickCountDiff(GetTickCount, GLastPaint1) > FastListDelay) then begin
         if (FViewStart <> 0) and (TickCountDiff(GetTickCount, FViewStart) > PrecacheDelay) then begin
-          { Опережающее декодировани (размер эскиза прогнозируем из расчета того что он вписывается в экран...) }
+          { РћРїРµСЂРµР¶Р°СЋС‰РµРµ РґРµРєРѕРґРёСЂРѕРІР°РЅРё (СЂР°Р·РјРµСЂ СЌСЃРєРёР·Р° РїСЂРѕРіРЅРѕР·РёСЂСѓРµРј РёР· СЂР°СЃС‡РµС‚Р° С‚РѕРіРѕ С‡С‚Рѕ РѕРЅ РІРїРёСЃС‹РІР°РµС‚СЃСЏ РІ СЌРєСЂР°РЅ...) }
           FViewStart := 0;
           vSize := FImgSize;
           CorrectBoundEx(vSize, GWinSize);
@@ -1896,8 +1896,8 @@ interface
             Beep;
           byte('T'):
             ActiveView.SetSmoothMode(not GSmoothMode);
-//        190 : LocRotate(1); { > - Поворот по часовой }
-//        188 : LocRotate(2); { < - Поворот против часовой }
+//        190 : LocRotate(1); { > - РџРѕРІРѕСЂРѕС‚ РїРѕ С‡Р°СЃРѕРІРѕР№ }
+//        188 : LocRotate(2); { < - РџРѕРІРѕСЂРѕС‚ РїСЂРѕС‚РёРІ С‡Р°СЃРѕРІРѕР№ }
           190 : LocRotate(3); { [ - X-Flip }
           188 : LocRotate(4); { ] - Y-Flip }
         end;
@@ -1916,8 +1916,8 @@ interface
         case WParam of
           VK_F2:
             LocSave(False);
-          190 : LocRotate(1); { > - Поворот по часовой }
-          188 : LocRotate(2); { < - Поворот против часовой }
+          190 : LocRotate(1); { > - РџРѕРІРѕСЂРѕС‚ РїРѕ С‡Р°СЃРѕРІРѕР№ }
+          188 : LocRotate(2); { < - РџРѕРІРѕСЂРѕС‚ РїСЂРѕС‚РёРІ С‡Р°СЃРѕРІРѕР№ }
         end;
 
       end;
@@ -1952,7 +1952,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Экспортируемые функции                                                      }
+ { Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ С„СѓРЅРєС†РёРё                                                      }
  {-----------------------------------------------------------------------------}
 
   function pvdInit2(pInit :PPVDInitPlugin2) :integer; stdcall;
@@ -2099,7 +2099,7 @@ interface
       pDecodeInfo.pImage := pImageContext;
 
       if not FDirectDraw and (FFrames = 1) then
-        ReleaseSrcImage { Больше не понадобится... }
+        ReleaseSrcImage { Р‘РѕР»СЊС€Рµ РЅРµ РїРѕРЅР°РґРѕР±РёС‚СЃСЏ... }
       else
         { FullCache... };
 
@@ -2128,7 +2128,7 @@ interface
 
  {-----------------------------------------------------------------------------}
 
-  // Инициализация контекста дисплея. Используется тот pContext, который был получен в pvdInit2
+  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРЅС‚РµРєСЃС‚Р° РґРёСЃРїР»РµСЏ. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕС‚ pContext, РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» РїРѕР»СѓС‡РµРЅ РІ pvdInit2
   function pvdDisplayInit2(pContext :Pointer; pDisplayInit :PPVDInfoDisplayInit2) :BOOL; stdcall;
   begin
    {$ifdef bTracePvd}
@@ -2142,7 +2142,7 @@ interface
   end;
 
 
-  // Прицепиться или отцепиться от окна вывода
+  // РџСЂРёС†РµРїРёС‚СЊСЃСЏ РёР»Рё РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РѕРєРЅР° РІС‹РІРѕРґР°
   function pvdDisplayAttach2(pContext :Pointer; pDisplayAttach :PPVDInfoDisplayAttach2) :BOOL; stdcall;
   begin
    {$ifdef bTracePvd}
@@ -2152,7 +2152,7 @@ interface
   end;
 
 
-  // Создать контекст для отображения картинки в pContext (перенос декодированных данных в видеопамять)
+  // РЎРѕР·РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё РІ pContext (РїРµСЂРµРЅРѕСЃ РґРµРєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С… РІ РІРёРґРµРѕРїР°РјСЏС‚СЊ)
   function pvdDisplayCreate2(pContext :Pointer; pDisplayCreate :PPVDInfoDisplayCreate2) :BOOL; stdcall;
   var
     vView :TView;
@@ -2167,7 +2167,7 @@ interface
   end;
 
 
-  // Собственно отрисовка. Функция должна при необходимости выполнять "Stretch"
+  // РЎРѕР±СЃС‚РІРµРЅРЅРѕ РѕС‚СЂРёСЃРѕРІРєР°. Р¤СѓРЅРєС†РёСЏ РґРѕР»Р¶РЅР° РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РІС‹РїРѕР»РЅСЏС‚СЊ "Stretch"
   function pvdDisplayPaint2(pContext :Pointer; pDisplayContext :Pointer; pDisplayPaint :PPVDInfoDisplayPaint2) :BOOL; stdcall;
   var
     vView :TView;
@@ -2193,7 +2193,7 @@ interface
   end;
 
 
-  // Закрыть контекст для отображения картинки (освободить видеопамять)
+  // Р—Р°РєСЂС‹С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё (РѕСЃРІРѕР±РѕРґРёС‚СЊ РІРёРґРµРѕРїР°РјСЏС‚СЊ)
   procedure pvdDisplayClose2(pContext :Pointer; pDisplayContext :Pointer); stdcall;
   var
     vView :TView;
@@ -2210,7 +2210,7 @@ interface
   end;
 
 
-  // Закрыть модуль вывода (освобождение интерфейсов DX, отцепиться от окна)
+  // Р—Р°РєСЂС‹С‚СЊ РјРѕРґСѓР»СЊ РІС‹РІРѕРґР° (РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РёРЅС‚РµСЂС„РµР№СЃРѕРІ DX, РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РѕРєРЅР°)
   procedure pvdDisplayExit2(pContext :Pointer); stdcall;
   begin
    {$ifdef bTracePvd}

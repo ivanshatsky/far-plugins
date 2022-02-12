@@ -172,7 +172,7 @@ interface
     optGrepMaximized  :Boolean = False;
     optGrepSortMode   :Integer = 1;
 
-    optXLatMask       :Boolean = True;   { Автоматическое XLAT преобразование при поиске }
+    optXLatMask       :Boolean = True;   { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ XLAT РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РїСЂРё РїРѕРёСЃРєРµ }
 
     optCurFindColor   :TFarColor;
     optMatchColor     :TFarColor;
@@ -200,7 +200,7 @@ interface
     gBracket :Integer;
 
     gLastIsReplace :Boolean;
-    gLastReplEmpty :Boolean;  { Затычка, чтобы диалог замены запоминал пустую строку замены }
+    gLastReplEmpty :Boolean;  { Р—Р°С‚С‹С‡РєР°, С‡С‚РѕР±С‹ РґРёР°Р»РѕРі Р·Р°РјРµРЅС‹ Р·Р°РїРѕРјРёРЅР°Р» РїСѓСЃС‚СѓСЋ СЃС‚СЂРѕРєСѓ Р·Р°РјРµРЅС‹ }
 
   var
     FRegRoot :TString;

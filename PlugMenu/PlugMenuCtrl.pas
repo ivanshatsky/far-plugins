@@ -207,8 +207,8 @@ interface
     FPluginsPath       :TString;
     FAddPluginsPaths   :TString;
 
-    FFarRegRoot        :TString;  { Software\FarX  или  Software\FarX\Users\Имя }
-    FRegRoot           :TString;  { Software\FarX\Plugins  или  Software\FarX\Users\Имя\Plugins }
+    FFarRegRoot        :TString;  { Software\FarX  РёР»Рё  Software\FarX\Users\РРјСЏ }
+    FRegRoot           :TString;  { Software\FarX\Plugins  РёР»Рё  Software\FarX\Users\РРјСЏ\Plugins }
     FCacheRoot         :TString;
     FHotkeysRoot       :TString;
     FCacheDllValue     :TString;
@@ -234,17 +234,17 @@ interface
     PluginShowHidden   :Integer = 0;
 
     PluginSortMode     :Integer = 0;
-    SortHiddenLast     :Boolean = True;   { Недоступные плагины в конце списка }
+    SortHiddenLast     :Boolean = True;   { РќРµРґРѕСЃС‚СѓРїРЅС‹Рµ РїР»Р°РіРёРЅС‹ РІ РєРѕРЅС†Рµ СЃРїРёСЃРєР° }
     PluginSortGroup    :Boolean = False;
 
-    optAutoShortcut    :Boolean = True;   { Автоматическое назначение HotKey'ев }
-    optXLatMask        :Boolean = True;   { Автоматическое XLAT преобразование при поиске }
-    optShowHints       :Boolean = True;   { Показывать подсказки (через FarHints) }
-    optShowTitles      :Boolean = True;   { Показывать заголовки колонок }
+    optAutoShortcut    :Boolean = True;   { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ РЅР°Р·РЅР°С‡РµРЅРёРµ HotKey'РµРІ }
+    optXLatMask        :Boolean = True;   { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ XLAT РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РїСЂРё РїРѕРёСЃРєРµ }
+    optShowHints       :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РїРѕРґСЃРєР°Р·РєРё (С‡РµСЂРµР· FarHints) }
+    optShowTitles      :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ Р·Р°РіРѕР»РѕРІРєРё РєРѕР»РѕРЅРѕРє }
     optFollowMouse     :Boolean = True;
     optWrapMode        :Boolean = True;
-    optShowOrigName    :Boolean = False;  { Показывать оригинальные имена (игнорировать переименования) }
-    optShowGrid        :Boolean = True;   { Показывать вертикальные линии }
+    optShowOrigName    :Boolean = False;  { РџРѕРєР°Р·С‹РІР°С‚СЊ РѕСЂРёРіРёРЅР°Р»СЊРЅС‹Рµ РёРјРµРЅР° (РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РїРµСЂРµРёРјРµРЅРѕРІР°РЅРёСЏ) }
+    optShowGrid        :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РІРµСЂС‚РёРєР°Р»СЊРЅС‹Рµ Р»РёРЅРёРё }
 
     optHiddenColor     :TFarColor;
     optFoundColor      :TFarColor;

@@ -452,7 +452,7 @@ interface
    {$endif Far3}
 
     if (FFolder = '') or IsFullFilePath(FName) then begin
-      { Временная панель. Имя содержит полный путь. }
+      { Р’СЂРµРјРµРЅРЅР°СЏ РїР°РЅРµР»СЊ. РРјСЏ СЃРѕРґРµСЂР¶РёС‚ РїРѕР»РЅС‹Р№ РїСѓС‚СЊ. }
       FFolder := ExtractFilePath(FName);
       FName := ExtractFileName(FName);
     end;
@@ -495,7 +495,7 @@ interface
         FindClose(vHandle);
       end;
     end else
-      { Корневой диск }
+      { РљРѕСЂРЅРµРІРѕР№ РґРёСЃРє }
       FName := AFolder;
 
     FAttrs := TExList.Create;
@@ -505,7 +505,7 @@ interface
   constructor TFarItem.CreateInfo(const AMessage :TString; ADummy :Integer);
   begin
     inherited Create;
-    FPlugin := True;  // Чтобы не пыталось обновить иконку...
+    FPlugin := True;  // Р§С‚РѕР±С‹ РЅРµ РїС‹С‚Р°Р»РѕСЃСЊ РѕР±РЅРѕРІРёС‚СЊ РёРєРѕРЅРєСѓ...
     FName := AMessage;
     FAttrs := TExList.Create;
     AddStringInfo('', AMessage);
@@ -765,18 +765,18 @@ interface
    {$endif bTrace1}
 
     if AItem <> nil then
-      { Обычный Hint для файловой или плагинной панели }
+      { РћР±С‹С‡РЅС‹Р№ Hint РґР»СЏ С„Р°Р№Р»РѕРІРѕР№ РёР»Рё РїР»Р°РіРёРЅРЅРѕР№ РїР°РЅРµР»Рё }
       vObj := TFarItem.CreateEx(APlugin, APrimary, ATitle, AFolder, AItem)
     else
-      { Либо хинт для каталога (дерево), либо хинт для диалога, если AFolder = '' }
+      { Р›РёР±Рѕ С…РёРЅС‚ РґР»СЏ РєР°С‚Р°Р»РѕРіР° (РґРµСЂРµРІРѕ), Р»РёР±Рѕ С…РёРЅС‚ РґР»СЏ РґРёР°Р»РѕРіР°, РµСЃР»Рё AFolder = '' }
       vObj := TFarItem.CreateFolder(AFolder);
 
-    { Координаты мыши (консольные) - нужны для диалогового хинта }
+    { РљРѕРѕСЂРґРёРЅР°С‚С‹ РјС‹С€Рё (РєРѕРЅСЃРѕР»СЊРЅС‹Рµ) - РЅСѓР¶РЅС‹ РґР»СЏ РґРёР°Р»РѕРіРѕРІРѕРіРѕ С…РёРЅС‚Р° }
     vObj.FMouseX := MouseX;
     vObj.FMouseY := MouseY;
 
-    { ItemRect - область "хинтования" (консольная). Для диалогового хинта }
-    { заранее неизвестна, будет назначена плагином через вызов SetItemRect. }
+    { ItemRect - РѕР±Р»Р°СЃС‚СЊ "С…РёРЅС‚РѕРІР°РЅРёСЏ" (РєРѕРЅСЃРѕР»СЊРЅР°СЏ). Р”Р»СЏ РґРёР°Р»РѕРіРѕРІРѕРіРѕ С…РёРЅС‚Р° }
+    { Р·Р°СЂР°РЅРµРµ РЅРµРёР·РІРµСЃС‚РЅР°, Р±СѓРґРµС‚ РЅР°Р·РЅР°С‡РµРЅР° РїР»Р°РіРёРЅРѕРј С‡РµСЂРµР· РІС‹Р·РѕРІ SetItemRect. }
     if AItemRect <> nil then
       vObj.FItemRect := AItemRect^
     else
@@ -785,7 +785,7 @@ interface
     vItem := vObj;
 
     if ACallMode = hcmCurrent then begin
-      { Затычка, для persistent-режима }
+      { Р—Р°С‚С‹С‡РєР°, РґР»СЏ persistent-СЂРµР¶РёРјР° }
       FCreateLock.Enter;
       try
         vEqual := False;
@@ -807,7 +807,7 @@ interface
 
    {$ifdef bThumbnail}
     if FarHintUseThumbnail and CanUseThumbnail then
-      {!!! Перенести в фоновый режим...}
+      {!!! РџРµСЂРµРЅРµСЃС‚Рё РІ С„РѕРЅРѕРІС‹Р№ СЂРµР¶РёРј...}
       InitThumbnailThread
     else
       DoneThumbnailThread;
@@ -816,8 +816,8 @@ interface
     if CurrentHintMode <> ACallMode then
       HideHint
     else
-      { Этот гарантирует, что у суб-плагина будет вызван DoneItem перед Process, }
-      { т.е. что суб-плагин работает только с одним экземпляром Item... }
+      { Р­С‚РѕС‚ РіР°СЂР°РЅС‚РёСЂСѓРµС‚, С‡С‚Рѕ Сѓ СЃСѓР±-РїР»Р°РіРёРЅР° Р±СѓРґРµС‚ РІС‹Р·РІР°РЅ DoneItem РїРµСЂРµРґ Process, }
+      { С‚.Рµ. С‡С‚Рѕ СЃСѓР±-РїР»Р°РіРёРЅ СЂР°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ СЃ РѕРґРЅРёРј СЌРєР·РµРјРїР»СЏСЂРѕРј Item... }
       DeinitHint;
 
     vPlugin := nil;
@@ -888,7 +888,7 @@ interface
         Sleep(0);
       FWindow := FWinThread.Window;
 
-      { Устанавливаем Hint, для использования в макросах }
+      { РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Hint, РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РјР°РєСЂРѕСЃР°С… }
       SetEnvironmentVariable('FarHint', '1');
     end;
   end;
@@ -904,7 +904,7 @@ interface
         SetEnvironmentVariable('FarHint', nil);
 
         FWinThread.Terminate;
-        { Не ждем, чтобы не тормозить поток на время угасания хинта... }
+        { РќРµ Р¶РґРµРј, С‡С‚РѕР±С‹ РЅРµ С‚РѕСЂРјРѕР·РёС‚СЊ РїРѕС‚РѕРє РЅР° РІСЂРµРјСЏ СѓРіР°СЃР°РЅРёСЏ С…РёРЅС‚Р°... }
 //      FWinThread.WaitFor;
 //      FreeObj(FWinThread);
 

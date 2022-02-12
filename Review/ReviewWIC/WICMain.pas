@@ -503,14 +503,14 @@ interface
       FCurFrame  :Integer;
       FSize      :TSize;
       FSize2     :TSize;
-      FPixFmt    :TGUID;        { Исходный формат цвета }
-      FPixBPP    :Integer;      { Исходная глубина цвета (BPP) }
-      FPixBPP2   :Integer;      { Сконветированная глубина цвета }
-      FAlpha     :Boolean;      { Наличие альфа-канала на странице }
+      FPixFmt    :TGUID;        { РСЃС…РѕРґРЅС‹Р№ С„РѕСЂРјР°С‚ С†РІРµС‚Р° }
+      FPixBPP    :Integer;      { РСЃС…РѕРґРЅР°СЏ РіР»СѓР±РёРЅР° С†РІРµС‚Р° (BPP) }
+      FPixBPP2   :Integer;      { РЎРєРѕРЅРІРµС‚РёСЂРѕРІР°РЅРЅР°СЏ РіР»СѓР±РёРЅР° С†РІРµС‚Р° }
+      FAlpha     :Boolean;      { РќР°Р»РёС‡РёРµ Р°Р»СЊС„Р°-РєР°РЅР°Р»Р° РЅР° СЃС‚СЂР°РЅРёС†Рµ }
       FTransp    :Boolean;
-      FDelay     :Integer;      { Задержка страницы, для анимированных изображений }
-      FOrient0   :Integer;      { Ориентация страницы }
-      FRowSize   :Integer;      { Количество байт на строку (FSize2.CX * 3 или 4) }
+      FDelay     :Integer;      { Р—Р°РґРµСЂР¶РєР° СЃС‚СЂР°РЅРёС†С‹, РґР»СЏ Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№ }
+      FOrient0   :Integer;      { РћСЂРёРµРЅС‚Р°С†РёСЏ СЃС‚СЂР°РЅРёС†С‹ }
+      FRowSize   :Integer;      { РљРѕР»РёС‡РµСЃС‚РІРѕ Р±Р°Р№С‚ РЅР° СЃС‚СЂРѕРєСѓ (FSize2.CX * 3 РёР»Рё 4) }
       FBuffer    :Pointer;
       FThumbnail :Boolean;
       FStrTag    :TString;
@@ -727,7 +727,7 @@ interface
     ((FSize2.CX = FSize.CX) and (FSize2.CY = FSize.CY)) and
     (
       {$ifdef b64}
-       False   { Иначе иногда почему-то падает. Пока не разобрался. }
+       False   { РРЅР°С‡Рµ РёРЅРѕРіРґР° РїРѕС‡РµРјСѓ-С‚Рѕ РїР°РґР°РµС‚. РџРѕРєР° РЅРµ СЂР°Р·РѕР±СЂР°Р»СЃСЏ. }
       {$else}
 //     IsEqualGUID(FPixFmt, GUID_WICPixelFormat32bppCMYK) or
        IsEqualGUID(FPixFmt, GUID_WICPixelFormat24bppBGR) or
@@ -736,12 +736,12 @@ interface
       {$endif b64}
     )
     then begin
-      { Конвертация формата не требуется }
+      { РљРѕРЅРІРµСЂС‚Р°С†РёСЏ С„РѕСЂРјР°С‚Р° РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ }
       FBitmap2 := FBitmap;
       FPixBPP2 := FPixBPP;
     end else
     begin
-      { Сконвертируем в формат, поддерживаемый Review }
+      { РЎРєРѕРЅРІРµСЂС‚РёСЂСѓРµРј РІ С„РѕСЂРјР°С‚, РїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Р№ Review }
 
      {$ifdef bTrace}
       TraceBeg('ConvertFormat...');
@@ -773,7 +773,7 @@ interface
     end;
 
     FRowSize := FSize2.CX * IntIf(FPixBPP2 = 24, 3, 4);
-    FRowSize := (FRowSize + 3) div 4 * 4; { Выравниваем, чтобы избежать RealignBits в CreateBitmap }
+    FRowSize := (FRowSize + 3) div 4 * 4; { Р’С‹СЂР°РІРЅРёРІР°РµРј, С‡С‚РѕР±С‹ РёР·Р±РµР¶Р°С‚СЊ RealignBits РІ CreateBitmap }
     vBufSize := FRowSize * FSize2.CY;
     FBuffer := MemAlloc(vBufSize);
 
@@ -809,7 +809,7 @@ interface
 
     FThumbnail := False;
     if AThumbnail then begin
-      { Извлекаем эскиз }
+      { РР·РІР»РµРєР°РµРј СЌСЃРєРёР· }
       if not Succeeded(FFrame.GetThumbnail(FBitmap2)) then
         Exit;
 
@@ -842,7 +842,7 @@ interface
     if (FTransp <> FAlpha) or not
     (
       {$ifdef b64}
-       False   { Иначе иногда почему-то падает. Пока не разобрался. }
+       False   { РРЅР°С‡Рµ РёРЅРѕРіРґР° РїРѕС‡РµРјСѓ-С‚Рѕ РїР°РґР°РµС‚. РџРѕРєР° РЅРµ СЂР°Р·РѕР±СЂР°Р»СЃСЏ. }
       {$else}
 //     IsEqualGUID(vPixFmt, GUID_WICPixelFormat32bppCMYK) or
        IsEqualGUID(vPixFmt, GUID_WICPixelFormat24bppBGR) or
@@ -874,7 +874,7 @@ interface
     FAlpha := IsEqualGUID(vPixFmt, GUID_WICPixelFormat32bppBGRA);
 
     FRowSize := FSize2.CX * IntIf(FPixBPP2 = 24, 3, 4);
-    FRowSize := (FRowSize + 3) div 4 * 4; { Выравниваем, чтобы избежать RealignBits в CreateBitmap }
+    FRowSize := (FRowSize + 3) div 4 * 4; { Р’С‹СЂР°РІРЅРёРІР°РµРј, С‡С‚РѕР±С‹ РёР·Р±РµР¶Р°С‚СЊ RealignBits РІ CreateBitmap }
     vBufSize := FRowSize * FSize2.CY;
     FBuffer := MemAlloc(vBufSize);
 
@@ -973,7 +973,7 @@ interface
           end;
       if Result then begin
         if vIsSM then
-          { Разрешение в сантиметрах, пересчитываем в дюймы }
+          { Р Р°Р·СЂРµС€РµРЅРёРµ РІ СЃР°РЅС‚РёРјРµС‚СЂР°С…, РїРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РІ РґСЋР№РјС‹ }
           vInt := Trunc(vInt * 2.54);
         aValue := Pointer(TIntPtr(vInt));
         aType := PVD_TagType_Int;
@@ -1012,7 +1012,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Экспортируемые функции                                                      }
+ { Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ С„СѓРЅРєС†РёРё                                                      }
  {-----------------------------------------------------------------------------}
 
   threadvar

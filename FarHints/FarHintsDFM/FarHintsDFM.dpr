@@ -1,4 +1,4 @@
-{$I Defines.inc} { см. также \AppFar\FarHintsDFM\DefApp.Pas }
+{$I Defines.inc} { СЃРј. С‚Р°РєР¶Рµ \AppFar\FarHintsDFM\DefApp.Pas }
 
 {$ifdef bDelphi}
  {$E hll}

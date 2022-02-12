@@ -634,7 +634,7 @@ begin
 end;
 
 
-{!!! Упрощенно}
+{!!! РЈРїСЂРѕС‰РµРЅРЅРѕ}
 
 function FormatFloat(const Format :TString; Value :Extended) :TString;
 var

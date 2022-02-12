@@ -43,12 +43,12 @@ interface
 
     SmoothFadePeriod    :Integer  =   300;
     StatusUpdatePeriod  :Integer  =  1000;
-    PlaylistUpdateDelay :Integer  =    10;   { Период между изменением playlista (добавление/удаление трека) и его публикацией }
-    PlaylistInfoDelay   :Integer  =   500;   { Период периодической публикации playlistа во время фонового извлечения тегов }
+    PlaylistUpdateDelay :Integer  =    10;   { РџРµСЂРёРѕРґ РјРµР¶РґСѓ РёР·РјРµРЅРµРЅРёРµРј playlista (РґРѕР±Р°РІР»РµРЅРёРµ/СѓРґР°Р»РµРЅРёРµ С‚СЂРµРєР°) Рё РµРіРѕ РїСѓР±Р»РёРєР°С†РёРµР№ }
+    PlaylistInfoDelay   :Integer  =   500;   { РџРµСЂРёРѕРґ РїРµСЂРёРѕРґРёС‡РµСЃРєРѕР№ РїСѓР±Р»РёРєР°С†РёРё playlistР° РІРѕ РІСЂРµРјСЏ С„РѕРЅРѕРІРѕРіРѕ РёР·РІР»РµС‡РµРЅРёСЏ С‚РµРіРѕРІ }
     IdleShutdownPeriod  :Integer  = 30000;
     TooltipPeriod       :Integer  =  3000;
-    ResyncPeriod        :Integer  =   500;   { Задержка синхронизация Shoutcast потока (на всякий случай) }
-    AsyncSeekPeriod     :Integer  =   500;   { Задержка при асинхронном Seek'е }
+    ResyncPeriod        :Integer  =   500;   { Р—Р°РґРµСЂР¶РєР° СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ Shoutcast РїРѕС‚РѕРєР° (РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№) }
+    AsyncSeekPeriod     :Integer  =   500;   { Р—Р°РґРµСЂР¶РєР° РїСЂРё Р°СЃРёРЅС…СЂРѕРЅРЅРѕРј Seek'Рµ }
 
     BassPlugins         :TString  = '';
     HistoryLength       :Integer  = 100;

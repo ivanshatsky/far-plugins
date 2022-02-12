@@ -275,7 +275,7 @@ interface
       if vDlg.FList.Count = 1 then
         with TStackItem(vDlg.FList[0]) do
           if FLoc <> '' then begin
-            { Если адрес один и позиция найдена - сразу перейдем на него... }
+            { Р•СЃР»Рё Р°РґСЂРµСЃ РѕРґРёРЅ Рё РїРѕР·РёС†РёСЏ РЅР°Р№РґРµРЅР° - СЃСЂР°Р·Сѓ РїРµСЂРµР№РґРµРј РЅР° РЅРµРіРѕ... }
             LocateByAddr( FAddr );
             Exit;
           end;

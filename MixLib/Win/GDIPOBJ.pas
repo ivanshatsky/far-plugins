@@ -7964,7 +7964,7 @@ implementation
 
   constructor TGPPathGradientBrush.Create;
   begin
-     // écrase la fonction parent
+     // Ã©crase la fonction parent
   end;
 
 initialization

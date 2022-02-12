@@ -6,7 +6,7 @@ unit PlugMenuPlugs;
 {* (c) 2008-2012 Max Rusov                                                    *}
 {*                                                                            *}
 {* PlugMenu Far Plugin                                                        *}
-{* Работа с плагинами                                                         *}
+{* Р Р°Р±РѕС‚Р° СЃ РїР»Р°РіРёРЅР°РјРё                                                         *}
 {******************************************************************************}
 
 {$ifdef CPUX86_64}
@@ -625,7 +625,7 @@ interface
 
     FHasCommands := FCommands.Count > 0;
     if not FHasCommands then
-      { Добавляем одну фиктивную команду }
+      { Р”РѕР±Р°РІР»СЏРµРј РѕРґРЅСѓ С„РёРєС‚РёРІРЅСѓСЋ РєРѕРјР°РЅРґСѓ }
       FCommands.Add( TFarPluginCmd.CreateEx(Self, 0, '', GUID_NULL) );
 
     FConfigString := '';
@@ -655,7 +655,7 @@ interface
     FUnicode := True;
 
     if ARegPath <> '' then begin
-      { Считаем информацию из кэша в реестре }
+      { РЎС‡РёС‚Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РёР· РєСЌС€Р° РІ СЂРµРµСЃС‚СЂРµ }
       FPreload := RegGetIntValue(HKCU, ARegPath, 'Preload', 0) = 1;
       if not FPreload then begin
         FFlags := RegGetIntValue(HKCU, ARegPath, 'Flags', 0);
@@ -679,7 +679,7 @@ interface
     end;
 
     if AHandle <> 0 then begin
-      { Плугин уже загружен, спросим у него самого }
+      { РџР»СѓРіРёРЅ СѓР¶Рµ Р·Р°РіСЂСѓР¶РµРЅ, СЃРїСЂРѕСЃРёРј Сѓ РЅРµРіРѕ СЃР°РјРѕРіРѕ }
       vGetPluginInfo := GetProcAddress( AHandle, 'GetPluginInfoW' );
       if Assigned(vGetPluginInfo) then begin
         FillChar(vInfo, SizeOf(vInfo), 0);
@@ -701,7 +701,7 @@ interface
       end;
 
       if not Assigned(vGetPluginInfo) then begin
-        { Возможно, это ансишный плагин... }
+        { Р’РѕР·РјРѕР¶РЅРѕ, СЌС‚Рѕ Р°РЅСЃРёС€РЅС‹Р№ РїР»Р°РіРёРЅ... }
         vGetPluginInfoA := GetProcAddress( AHandle, 'GetPluginInfo' );
         if Assigned(vGetPluginInfoA) then begin
           FUnicode := False;
@@ -728,7 +728,7 @@ interface
 
     FHasCommands := FCommands.Count > 0;
     if not FHasCommands then
-      { Добавляем одну фиктивную команду }
+      { Р”РѕР±Р°РІР»СЏРµРј РѕРґРЅСѓ С„РёРєС‚РёРІРЅСѓСЋ РєРѕРјР°РЅРґСѓ }
       FCommands.Add( TFarPluginCmd.CreateEx(Self, 0, '') );
 
     FConfigString := StrDeleteChars(FConfigString, ['&']);
@@ -750,7 +750,7 @@ interface
         try
           if FarGetPluginInfo(vHandle, vPlugInfo) then begin
             UpdatePluginInfo(vPlugInfo^);
-            UpdateSettings;  // Без этого пропадают настройки команды после F9.
+            UpdateSettings;  // Р‘РµР· СЌС‚РѕРіРѕ РїСЂРѕРїР°РґР°СЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РєРѕРјР°РЅРґС‹ РїРѕСЃР»Рµ F9.
             FUnregistered := False;
           end;
         finally
@@ -921,7 +921,7 @@ interface
     if FUnicode then
       Result := GUIDToString(FGUID)
     else
-      {ANSI-плагины не обладают устойчивым GUID. Он меняется после очистки кэша}
+      {ANSI-РїР»Р°РіРёРЅС‹ РЅРµ РѕР±Р»Р°РґР°СЋС‚ СѓСЃС‚РѕР№С‡РёРІС‹Рј GUID. РћРЅ РјРµРЅСЏРµС‚СЃСЏ РїРѕСЃР»Рµ РѕС‡РёСЃС‚РєРё РєСЌС€Р°}
       Result := StrReplaceChars(GetPluginRelativePath, ['\'], '/');
   end;
 
@@ -947,7 +947,7 @@ interface
 
   function TFarPlugin.FindRegCachePath :TString;
   begin
-    { Новый формат кэша плагинов Far/2 build 910+ }
+    { РќРѕРІС‹Р№ С„РѕСЂРјР°С‚ РєСЌС€Р° РїР»Р°РіРёРЅРѕРІ Far/2 build 910+ }
     Result := AddFileName(FCacheRoot, StrReplaceChars(FFileName, ['\'], '/'));
   end;
 
@@ -980,7 +980,7 @@ interface
   begin
     vHandle := GetPluginModuleHandle;
     if vHandle = 0 then begin
-      { Принуждаем FAR загрузит плагин в память }
+      { РџСЂРёРЅСѓР¶РґР°РµРј FAR Р·Р°РіСЂСѓР·РёС‚ РїР»Р°РіРёРЅ РІ РїР°РјСЏС‚СЊ }
       FarPluginControl(PCTL_UNLOADPLUGIN, PLT_PATH, PFarChar(FFileName));
       MarkAsPreload(True);
       FarPluginControl(PCTL_LOADPLUGIN, PLT_PATH, PFarChar(FFileName));
@@ -1050,7 +1050,7 @@ interface
        end;
 
        if not Result then begin
-         { Возможно, это ансишный плагин... }
+         { Р’РѕР·РјРѕР¶РЅРѕ, СЌС‚Рѕ Р°РЅСЃРёС€РЅС‹Р№ РїР»Р°РіРёРЅ... }
          vConfigureA := GetProcAddress( vHandle, 'Configure' );
          if Assigned(vConfigureA) then begin
            vConfigureA(0);
@@ -1107,7 +1107,7 @@ interface
 (*    vPtr, vEnd :PWideChar;  *)
     begin
 (*
-      { Ищем сканированием, потому что иногда Translation не совпадает с StringInfo }
+      { РС‰РµРј СЃРєР°РЅРёСЂРѕРІР°РЅРёРµРј, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РёРЅРѕРіРґР° Translation РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ StringInfo }
       vPtr := vBuf;
       vEnd := vBuf + (vSize div SizeOf(WideChar)) - Length(cStrInfo) - 4 - 8;
       while vPtr < vEnd do begin
@@ -1119,7 +1119,7 @@ interface
         Inc(vPtr);
       end;
 *)
-      { Не нашли сканированием (возможно 16-ти разрядная программа), попробуем через Translation}
+      { РќРµ РЅР°С€Р»Рё СЃРєР°РЅРёСЂРѕРІР°РЅРёРµРј (РІРѕР·РјРѕР¶РЅРѕ 16-С‚Рё СЂР°Р·СЂСЏРґРЅР°СЏ РїСЂРѕРіСЂР°РјРјР°), РїРѕРїСЂРѕР±СѓРµРј С‡РµСЂРµР· Translation}
       if VerQueryValue(vBuf, '\VarFileInfo\Translation', Pointer(vCP), vLen) then
         vLang := Format('%.4x%.4x', [vCP.wLanguage, vCP.wCodePage]);
     end;
@@ -1362,13 +1362,13 @@ interface
       vDlls := TStrList.Create;
       vCache := TObjList.Create;
 
-      { Просканируем каталог плагинов (ищем все *.dll) }
+      { РџСЂРѕСЃРєР°РЅРёСЂСѓРµРј РєР°С‚Р°Р»РѕРі РїР»Р°РіРёРЅРѕРІ (РёС‰РµРј РІСЃРµ *.dll) }
       LocSearchOnPath(FPluginsPath);
 
       if FAddPluginsPaths <> '' then
         LocSearchOnPath(FAddPluginsPaths);
 
-      { Просканируем кэш плагинов в реестре}
+      { РџСЂРѕСЃРєР°РЅРёСЂСѓРµРј РєСЌС€ РїР»Р°РіРёРЅРѕРІ РІ СЂРµРµСЃС‚СЂРµ}
       if RegOpenKey(HKCU, PTChar(FCacheRoot), vKey) = 0 then begin
         try
           I := 0;
@@ -1380,7 +1380,7 @@ interface
             SetString(vName, PTChar(@vStr), vLen);
             vPath := AddFileName(FCacheRoot, vName);
 
-            { Новый формат кэша плагинов Far/2 build 910+ }
+            { РќРѕРІС‹Р№ С„РѕСЂРјР°С‚ РєСЌС€Р° РїР»Р°РіРёРЅРѕРІ Far/2 build 910+ }
             vDllName := StrReplaceChars(vName, ['/'], '\');
 
             vCache.AddSorted( TDescrObject.CreateEx(vDllName, vPath), 0, dupIgnore );
@@ -1391,18 +1391,18 @@ interface
         end;
       end;
 
-      { Пытаемся определить, какие из dll являются плагинами }
+      { РџС‹С‚Р°РµРјСЃСЏ РѕРїСЂРµРґРµР»РёС‚СЊ, РєР°РєРёРµ РёР· dll СЏРІР»СЏСЋС‚СЃСЏ РїР»Р°РіРёРЅР°РјРё }
       for I := 0 to vDlls.Count - 1 do begin
         vDllName := vDlls[I];
 //      TraceF('DLL: %s', [vDllName]);
 
-        { Сначала проверим, есть ли DLL в кэше }
+        { РЎРЅР°С‡Р°Р»Р° РїСЂРѕРІРµСЂРёРј, РµСЃС‚СЊ Р»Рё DLL РІ РєСЌС€Рµ }
         if vCache.FindKey(Pointer(vDllName), 0, [foBinary], J) then begin
           vPath := TDescrObject(vCache[J]).Descr;
           FPlugins.Add( TFarPlugin.CreateEx(vDllName, vPath, 0) );
         end else
         begin
-          { Если нет - посмотрим, может dll уже загружена? }
+          { Р•СЃР»Рё РЅРµС‚ - РїРѕСЃРјРѕС‚СЂРёРј, РјРѕР¶РµС‚ dll СѓР¶Рµ Р·Р°РіСЂСѓР¶РµРЅР°? }
           vName := ExtractFileName(vDllName);
           vHandle := GetModuleHandle(PTChar(vName));
           if vHandle <> 0 then begin
@@ -1512,7 +1512,7 @@ interface
       gLang := vLang;
     end else
     if vLang <> gLang then begin
-      { Обновление списка плагинов, после смены языка }
+      { РћР±РЅРѕРІР»РµРЅРёРµ СЃРїРёСЃРєР° РїР»Р°РіРёРЅРѕРІ, РїРѕСЃР»Рµ СЃРјРµРЅС‹ СЏР·С‹РєР° }
       UpdatePluginList;
       FPlugins.SortList(True, 0);
       gLang := vLang;

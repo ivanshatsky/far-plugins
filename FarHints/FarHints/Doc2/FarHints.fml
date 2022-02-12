@@ -18,10 +18,10 @@ macro Descr="Far Hints: Close hint or toggle panels" Area="Shell" Key="Esc"
 macro Descr="Far Hints: Keyboard Hint" Area="Shell TreePanel" // Key="`" 
 {{
   $if (Env("FarHint") == "1") 
-    // Убрать хинт
+    // РЈР±СЂР°С‚СЊ С…РёРЅС‚
     CallPlugin(#%FarHints, 43) 
   $else 
-    // Показать хинт
+    // РџРѕРєР°Р·Р°С‚СЊ С…РёРЅС‚
     CallPlugin(#%FarHints, 2)
   $end
 }}

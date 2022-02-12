@@ -363,19 +363,19 @@ interface
     vStr := CRC2Str(vCRC);
 
     if (AIndex >= 0) and (AIndex < Count) then begin
-      { Playlist уже в истории, проверим не изменился ли он }
+      { Playlist СѓР¶Рµ РІ РёСЃС‚РѕСЂРёРё, РїСЂРѕРІРµСЂРёРј РЅРµ РёР·РјРµРЅРёР»СЃСЏ Р»Рё РѕРЅ }
       vReview := Objects[AIndex] as TPlaylistReview;
 
       if vStr <> Strings[AIndex] then begin
-        { Изменился, снимаем флаг FSaved }
+        { РР·РјРµРЅРёР»СЃСЏ, СЃРЅРёРјР°РµРј С„Р»Р°Рі FSaved }
         Strings[AIndex] := vStr;
         vReview.FTrackCount := APlaylist.Count;
         vReview.FLastAccess := Now;
         vReview.FSaved := False;
-        {!!!Надо бы удалить...}
+        {!!!РќР°РґРѕ Р±С‹ СѓРґР°Р»РёС‚СЊ...}
       end;
 
-      { Дайджест мог измениться из-за извлечения новых тэгов }
+      { Р”Р°Р№РґР¶РµСЃС‚ РјРѕРі РёР·РјРµРЅРёС‚СЊСЃСЏ РёР·-Р·Р° РёР·РІР»РµС‡РµРЅРёСЏ РЅРѕРІС‹С… С‚СЌРіРѕРІ }
       vReview.FDidgest := MakePlaylistDidgest(APlaylist);
       Result := AIndex;
 
@@ -384,7 +384,7 @@ interface
       vIndex := IndexOf(vStr);
 
       if vIndex = -1 then begin
-        { Добавляем текущий Playlist в историю, но не сохраняем его }
+        { Р”РѕР±Р°РІР»СЏРµРј С‚РµРєСѓС‰РёР№ Playlist РІ РёСЃС‚РѕСЂРёСЋ, РЅРѕ РЅРµ СЃРѕС…СЂР°РЅСЏРµРј РµРіРѕ }
         vReview := TPlaylistReview.Create;
         vReview.FDidgest := MakePlaylistDidgest(APlaylist);
         vReview.FTrackCount := APlaylist.Count;
@@ -392,7 +392,7 @@ interface
         InsertObject(0, vStr, vReview);
       end else
       begin
-        { Переместим найденый Playlist в конец списка }
+        { РџРµСЂРµРјРµСЃС‚РёРј РЅР°Р№РґРµРЅС‹Р№ Playlist РІ РєРѕРЅРµС† СЃРїРёСЃРєР° }
         vReview := Objects[vIndex] as TPlaylistReview;
         vReview.FDidgest := MakePlaylistDidgest(APlaylist);
         vReview.FLastAccess := Now;

@@ -144,7 +144,7 @@ interface
   begin
     vNext := 0; vLine1 := MaxInt; vLine2 := 0;
     vPtr := PTChar(AStr);
-    vStr := ExtractNextLine(vPtr); { Пропускаем заголовок }
+    vStr := ExtractNextLine(vPtr); { РџСЂРѕРїСѓСЃРєР°РµРј Р·Р°РіРѕР»РѕРІРѕРє }
     while vPtr^ <> #0 do begin
       vStr := ExtractNextLine(vPtr);
       if vPtr^ = #0 then
@@ -183,7 +183,7 @@ interface
 
     if vLine2 >= vLine1 then begin
       try
-        { Запрашиваем листинг исходного файла }
+        { Р—Р°РїСЂР°С€РёРІР°РµРј Р»РёСЃС‚РёРЅРі РёСЃС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р° }
         RedirCall(Format('list %0:s:%1:d,%0:s:%2:d', [vFileName, vLine1, vLine2]), @vStr);
       except
         on E :Exception do begin
@@ -579,12 +579,12 @@ interface
 
     vNeedReinit := (DebugAddrN < FAddr1) or (DebugAddrN > FAddr2);
     if vNeedReinit then
-      { Перешли на другую процедуру. Дизассемблируем ее. }
+      { РџРµСЂРµС€Р»Рё РЅР° РґСЂСѓРіСѓСЋ РїСЂРѕС†РµРґСѓСЂСѓ. Р”РёР·Р°СЃСЃРµРјР±Р»РёСЂСѓРµРј РµРµ. }
       DisasmAddr(FCode, DebugAddr);
 
 
     if not StrEqual(FSrcFile, DebugSource) or (FSrcLine <> DebugLine) then begin
-      { Переоткроем диалог, чтобы спозиционировать редактор }
+      { РџРµСЂРµРѕС‚РєСЂРѕРµРј РґРёР°Р»РѕРі, С‡С‚РѕР±С‹ СЃРїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°С‚СЊ СЂРµРґР°РєС‚РѕСЂ }
       FResCmd := 2;
       SendMsg(DM_CLOSE, -1, 0);
     end else

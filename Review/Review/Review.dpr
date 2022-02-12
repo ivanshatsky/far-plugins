@@ -2,12 +2,12 @@
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 library Review;
 
-{$I Defines.inc} { ÒÏ. Ú‡ÍÊÂ DefApp.inc }
+{$I Defines.inc} { —Å–º. —Ç–∞–∫–∂–µ DefApp.inc }
 
 {$APPTYPE CONSOLE}
 {$ifdef Debug}

@@ -265,11 +265,11 @@ interface
         if FileNameIsLocal(AItem.Path) {IsFullFilePath(vItem.Path)} then begin
           vType := DriveType(AItem.Path);
           if vType = 0 then
-            { Отсутствует }
+            { РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ }
             AItem.Avail := 2
           else
           if vType = 2 then
-            { Не проверяем }
+            { РќРµ РїСЂРѕРІРµСЂСЏРµРј }
             AItem.Avail := 1
           else begin
             if not WinFolderExists(AItem.Path) then begin
@@ -530,7 +530,7 @@ interface
       KEY_CTRL5:
         ToggleOption(optShowSaves);
 
-      { Сортировка }
+      { РЎРѕСЂС‚РёСЂРѕРІРєР° }
       KEY_CTRLF4, KEY_CTRLSHIFTF4:
         SetOrder(-4);
       KEY_CTRLF5, KEY_CTRLSHIFTF5:
@@ -630,7 +630,7 @@ interface
 
         case vDlg.FResCmd of
 //        1: JumpToPathBy(vDlg.FResItem as TFldHistoryEntry);
-          1: JumpToPath(vDlg.FResStr, vDlg.FResStr2, False, True);  { Может быть FResStr <> AItem.Path, если каталог не существует... }
+          1: JumpToPath(vDlg.FResStr, vDlg.FResStr2, False, True);  { РњРѕР¶РµС‚ Р±С‹С‚СЊ FResStr <> AItem.Path, РµСЃР»Рё РєР°С‚Р°Р»РѕРі РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚... }
           2: InsertText(vDlg.FResStr);
           3: JumpToPath(RemoveBackSlash(ExtractFilePath(vDlg.FResStr)), ExtractFileName(vDlg.FResStr), False);
         end;

@@ -94,8 +94,8 @@ interface
 (*
 {pvdColorModel}
 const
-  // Сейчас допустимы только "PVD_CM_BGR" и "PVD_CM_BGRA"
-  PVD_CM_UNKNOWN =  0;  // -- Такое изображение скорее всего не будет показано плагином
+  // РЎРµР№С‡Р°СЃ РґРѕРїСѓСЃС‚РёРјС‹ С‚РѕР»СЊРєРѕ "PVD_CM_BGR" Рё "PVD_CM_BGRA"
+  PVD_CM_UNKNOWN =  0;  // -- РўР°РєРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЃРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµ Р±СѓРґРµС‚ РїРѕРєР°Р·Р°РЅРѕ РїР»Р°РіРёРЅРѕРј
   PVD_CM_GRAY    =  1;  // "Gray scale"  -- UNSUPPORTED !!!
   PVD_CM_AG      =  2;  // "Alpha_Gray"  -- UNSUPPORTED !!!
   PVD_CM_RGB     =  3;  // "RGB"         -- UNSUPPORTED !!!
@@ -107,7 +107,7 @@ const
   PVD_CM_BGRA    =  9;  // "BGRA"
   PVD_CM_RGBA    = 10;  // "RGBA"        -- UNSUPPORTED !!!
   PVD_CM_ABRG    = 11;  // "ABRG"        -- UNSUPPORTED !!!
-  PVD_CM_PRIVATE = 12;  // Только если Дисплей==Декодер и биты не возвращаются
+  PVD_CM_PRIVATE = 12;  // РўРѕР»СЊРєРѕ РµСЃР»Рё Р”РёСЃРїР»РµР№==Р”РµРєРѕРґРµСЂ Рё Р±РёС‚С‹ РЅРµ РІРѕР·РІСЂР°С‰Р°СЋС‚СЃСЏ
 
 const
   GFL_BINARY = $0001;
@@ -376,15 +376,15 @@ const
       FCurFrame   :Integer;
       FSize       :TSize;
       FColorModel :GFL_COLORMODEL;
-      FPixBPP     :Integer;      { Исходная глубина цвета (BPP) }
-      FDelay      :Integer;      { Задержка страницы, для анимированных изображений }
-      FOrient0    :Integer;      { Ориентация страницы }
+      FPixBPP     :Integer;      { РСЃС…РѕРґРЅР°СЏ РіР»СѓР±РёРЅР° С†РІРµС‚Р° (BPP) }
+      FDelay      :Integer;      { Р—Р°РґРµСЂР¶РєР° СЃС‚СЂР°РЅРёС†С‹, РґР»СЏ Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№ }
+      FOrient0    :Integer;      { РћСЂРёРµРЅС‚Р°С†РёСЏ СЃС‚СЂР°РЅРёС†С‹ }
 
       FBmp        :PGFL_BITMAP;
       FPalette    :Pointer;
-      FBmpBPP     :Integer;      { Декодированная глубина цвета (BPP) }
+      FBmpBPP     :Integer;      { Р”РµРєРѕРґРёСЂРѕРІР°РЅРЅР°СЏ РіР»СѓР±РёРЅР° С†РІРµС‚Р° (BPP) }
       FBmpCM      :byte;         { PPVDColorModel }
-      FAlpha      :Boolean;      { Наличие альфа-канала на странице }
+      FAlpha      :Boolean;      { РќР°Р»РёС‡РёРµ Р°Р»СЊС„Р°-РєР°РЅР°Р»Р° РЅР° СЃС‚СЂР°РЅРёС†Рµ }
       FCanThumb   :Boolean;
       FThumbnail  :Boolean;
 
@@ -475,13 +475,13 @@ const
 
     FCurFrame := -1;
 
-    { Количество страниц в GIF'ах определяется только при декодировании. Ошибка GFL? }
+    { РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂР°РЅРёС† РІ GIF'Р°С… РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёРё. РћС€РёР±РєР° GFL? }
 //  FCanThumb := True;
 //  FCanThumb := FFmtName <> 'GIF';
     FCanThumb := FFmtName = 'JPEG';
 
 //  if FFmtName = 'GIF' then
-//    { Неважно - установится при Decode }
+//    { РќРµРІР°Р¶РЅРѕ - СѓСЃС‚Р°РЅРѕРІРёС‚СЃСЏ РїСЂРё Decode }
 //    SetPage(0);
 
     Result := True;
@@ -591,7 +591,7 @@ const
     FillZero(vInfo, SizeOf(vInfo));
     FThumbnail := False;
     if vThumb then begin
-      { Извлекаем эскиз }
+      { РР·РІР»РµРєР°РµРј СЌСЃРєРёР· }
       if AThumbnail then begin
         ACX := 0; ACY := 0;
         vParam.Flags := vParam.Flags or GFL_LOAD_EMBEDDED_THUMBNAIL;
@@ -685,7 +685,7 @@ const
 
     FPalette := MemAllocZero(aColors * SizeOf(TRGBQuad) );
     if FBmp.ColorMap = nil then begin
-      { Нет палитры - используем GrayScale }
+      { РќРµС‚ РїР°Р»РёС‚СЂС‹ - РёСЃРїРѕР»СЊР·СѓРµРј GrayScale }
       vRGB := FPalette;
       for i := 0 to aColors - 1 do begin
         vRGB.rgbRed := MulDiv(i, 255, aColors - 1);
@@ -808,7 +808,7 @@ const
       end;
       if Result then begin
         if vIsSM then
-          { Разрешение в сантиметрах, пересчитываем в дюймы }
+          { Р Р°Р·СЂРµС€РµРЅРёРµ РІ СЃР°РЅС‚РёРјРµС‚СЂР°С…, РїРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РІ РґСЋР№РјС‹ }
           vInt := Trunc(vInt * 2.54);
         aValue := Pointer(TIntPtr(vInt));
         aType := PVD_TagType_Int;
@@ -850,7 +850,7 @@ const
   end;
 
  {-----------------------------------------------------------------------------}
- { Экспортируемые функции                                                      }
+ { Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ С„СѓРЅРєС†РёРё                                                      }
  {-----------------------------------------------------------------------------}
 
   threadvar
@@ -953,10 +953,10 @@ const
       vView := pImageContext;
 
       if (pPageInfo.iPage = 0) and (vView.FCurFrame = -1) then
-        { Получение полной информации о странице возможно только(?) одновременно с }
-        { декодированием, что не подходит для работы ThumbView. }
-        { Для первой страницы возвращаем информацию, полученную при FileOpen, }
-        { хотя она и не совсем полная (некорректна FOrient) }
+        { РџРѕР»СѓС‡РµРЅРёРµ РїРѕР»РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃС‚СЂР°РЅРёС†Рµ РІРѕР·РјРѕР¶РЅРѕ С‚РѕР»СЊРєРѕ(?) РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ СЃ }
+        { РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµРј, С‡С‚Рѕ РЅРµ РїРѕРґС…РѕРґРёС‚ РґР»СЏ СЂР°Р±РѕС‚С‹ ThumbView. }
+        { Р”Р»СЏ РїРµСЂРІРѕР№ СЃС‚СЂР°РЅРёС†С‹ РІРѕР·РІСЂР°С‰Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ, РїРѕР»СѓС‡РµРЅРЅСѓСЋ РїСЂРё FileOpen, }
+        { С…РѕС‚СЏ РѕРЅР° Рё РЅРµ СЃРѕРІСЃРµРј РїРѕР»РЅР°СЏ (РЅРµРєРѕСЂСЂРµРєС‚РЅР° FOrient) }
         NOP
       else begin
         Result := True;

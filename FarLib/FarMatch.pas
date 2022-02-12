@@ -7,7 +7,7 @@ unit FarMatch;
 {* (c) 2008 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* Поиск подстроки с поддержкой масок                                         *}
+{* РџРѕРёСЃРє РїРѕРґСЃС‚СЂРѕРєРё СЃ РїРѕРґРґРµСЂР¶РєРѕР№ РјР°СЃРѕРє                                         *}
 {******************************************************************************}
 
 interface
@@ -21,8 +21,8 @@ interface
 
   type
     TMatchOption = (
-      moIgnoreCase,  // Пока игнорируется
-      moWilcards,    // Пока игнорируется
+      moIgnoreCase,  // РџРѕРєР° РёРіРЅРѕСЂРёСЂСѓРµС‚СЃСЏ
+      moWilcards,    // РџРѕРєР° РёРіРЅРѕСЂРёСЂСѓРµС‚СЃСЏ
       moWithin,
       moWordBegin
     );
@@ -77,7 +77,7 @@ interface
 
     if not (moWithin in AOpt) then begin
 
-      { Сравнение с начальной частью маски, не содержащей "*" или "?" }
+      { РЎСЂР°РІРЅРµРЅРёРµ СЃ РЅР°С‡Р°Р»СЊРЅРѕР№ С‡Р°СЃС‚СЊСЋ РјР°СЃРєРё, РЅРµ СЃРѕРґРµСЂР¶Р°С‰РµР№ "*" РёР»Рё "?" }
       while (vMsk^ <> #0) and (vMsk^ <> '*') do begin
         if (vStr^ = #0) or not ((vMsk^ = '?') or ChrMatch(vStr^, vMsk^, vXMsk^)) then
           Exit;
@@ -87,7 +87,7 @@ interface
       end;
 
       if vMsk^ = #0 then begin
-        { Маска не содержит wildcard'ов }
+        { РњР°СЃРєР° РЅРµ СЃРѕРґРµСЂР¶РёС‚ wildcard'РѕРІ }
         if vStr^ = #0 then begin
           ALen := vStr - PTChar(AStr);
           Result := True;
@@ -112,7 +112,7 @@ interface
       end;
 
       if vMsk^ = #0 then begin
-        { Маска закончилась '*' }
+        { РњР°СЃРєР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ '*' }
         if vBeg = nil then
           vBeg := AStr;
         APos := vBeg - AStr;
@@ -123,7 +123,7 @@ interface
 
       while True do begin
 
-        { Ищем совпадение первого символа }
+        { РС‰РµРј СЃРѕРІРїР°РґРµРЅРёРµ РїРµСЂРІРѕРіРѕ СЃРёРјРІРѕР»Р° }
         if vMsk^ <> '?' then begin
           vChr1 := CharUpCase(vMsk^);
           vChr2 := CharLoCase(vMsk^);
@@ -152,7 +152,7 @@ interface
         if vStr^ = #0 then
           Exit;
 
-        { Нашли первое совпадение, посмотрим дальше... }
+        { РќР°С€Р»Рё РїРµСЂРІРѕРµ СЃРѕРІРїР°РґРµРЅРёРµ, РїРѕСЃРјРѕС‚СЂРёРј РґР°Р»СЊС€Рµ... }
         vMsk1  := vMsk + 1;
         vXMsk1 := vXMsk + 1;
         vStr1  := vStr + 1;
@@ -165,7 +165,7 @@ interface
         end;
 
         if (vMsk1^ = #0) and ((vStr1^ = #0) or (moWithin in AOpt)) then begin
-          { Маска закончилась, полное совпадение}
+          { РњР°СЃРєР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ, РїРѕР»РЅРѕРµ СЃРѕРІРїР°РґРµРЅРёРµ}
           if vBeg = nil then
             vBeg := vStr;
           APos := vBeg - AStr;
@@ -184,7 +184,7 @@ interface
           Break;
         end;
 
-        { Продолжим поиск }
+        { РџСЂРѕРґРѕР»Р¶РёРј РїРѕРёСЃРє }
         Inc(vStr);
       end;
     end;

@@ -6,7 +6,7 @@ unit ReviewConst;
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -57,7 +57,7 @@ interface
     cDefGDIDecoderTitle = 'GDI+';
     cBackgroundFile = 'Background.bmp';
 
-    cRegPath = 'Software\Far Manager\Plugins\Review';  { Для старых субплагинов... }
+    cRegPath = 'Software\Far Manager\Plugins\Review';  { Р”Р»СЏ СЃС‚Р°СЂС‹С… СЃСѓР±РїР»Р°РіРёРЅРѕРІ... }
 
     cDecodersRegFolder  = 'Decoders';
     cDecoderRegFolder  = 'Decoder';
@@ -87,31 +87,31 @@ interface
     optAsyncQView     :Boolean = True;
     optQViewShowFrame :Boolean = True;
     optPrecache       :Boolean = True;
-    optKeepScale      :Boolean = True;        { Сохранять масштаб/позицию при смене изображений }
-    optInitialScale   :Integer = 100;         { Начальное увеличение изображений }
+    optKeepScale      :Boolean = True;        { РЎРѕС…СЂР°РЅСЏС‚СЊ РјР°СЃС€С‚Р°Р±/РїРѕР·РёС†РёСЋ РїСЂРё СЃРјРµРЅРµ РёР·РѕР±СЂР°Р¶РµРЅРёР№ }
+    optInitialScale   :Integer = 100;         { РќР°С‡Р°Р»СЊРЅРѕРµ СѓРІРµР»РёС‡РµРЅРёРµ РёР·РѕР±СЂР°Р¶РµРЅРёР№ }
 
-    optTranspBack     :Boolean = True;        { Использовать заливку на полупрозрачных картинках }
+    optTranspBack     :Boolean = True;        { РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р·Р°Р»РёРІРєСѓ РЅР° РїРѕР»СѓРїСЂРѕР·СЂР°С‡РЅС‹С… РєР°СЂС‚РёРЅРєР°С… }
     optTileMode       :Boolean = False;
     optFullscreen     :Boolean = False;
-    optSmoothScale    :Boolean = True;        { Использовать сглаживание при увеличении }
+    optSmoothScale    :Boolean = True;        { РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃРіР»Р°Р¶РёРІР°РЅРёРµ РїСЂРё СѓРІРµР»РёС‡РµРЅРёРё }
     optShowInfo       :Integer = 1;
 
-    optRotateOnEXIF   :Boolean = True;        { Автоматический поворот на основе информации из EXIF }
-    optUseThumbnail   :Boolean = True;        { Использовать эскизы для быстрого листания }
-    optCorrectThumb   :Boolean = True;        { Корректируем эскиз, чтобы убрать черные полосы }
-    optUseWinSize     :Boolean = True;        { Декодировать под размер окна }
-    optKeepDateOnSave :Boolean = True;        { Сохранять дату при декодировании }
-    optUnlockFile     :Boolean = True;        { Не блокировать файл, по возможности }
+    optRotateOnEXIF   :Boolean = True;        { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РїРѕРІРѕСЂРѕС‚ РЅР° РѕСЃРЅРѕРІРµ РёРЅС„РѕСЂРјР°С†РёРё РёР· EXIF }
+    optUseThumbnail   :Boolean = True;        { РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌСЃРєРёР·С‹ РґР»СЏ Р±С‹СЃС‚СЂРѕРіРѕ Р»РёСЃС‚Р°РЅРёСЏ }
+    optCorrectThumb   :Boolean = True;        { РљРѕСЂСЂРµРєС‚РёСЂСѓРµРј СЌСЃРєРёР·, С‡С‚РѕР±С‹ СѓР±СЂР°С‚СЊ С‡РµСЂРЅС‹Рµ РїРѕР»РѕСЃС‹ }
+    optUseWinSize     :Boolean = True;        { Р”РµРєРѕРґРёСЂРѕРІР°С‚СЊ РїРѕРґ СЂР°Р·РјРµСЂ РѕРєРЅР° }
+    optKeepDateOnSave :Boolean = True;        { РЎРѕС…СЂР°РЅСЏС‚СЊ РґР°С‚Сѓ РїСЂРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёРё }
+    optUnlockFile     :Boolean = True;        { РќРµ Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ С„Р°Р№Р», РїРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё }
 
     optDraftDelay     :Integer = 150; {ms}
-    optSyncDelay      :Integer = 250; {ms}    { Задержка смены картинки в QuickView (только если включен optAsyncQView) }
+    optSyncDelay      :Integer = 250; {ms}    { Р—Р°РґРµСЂР¶РєР° СЃРјРµРЅС‹ РєР°СЂС‚РёРЅРєРё РІ QuickView (С‚РѕР»СЊРєРѕ РµСЃР»Рё РІРєР»СЋС‡РµРЅ optAsyncQView) }
     optCacheDelay     :Integer = 100; {ms}
     optTempMsgDelay   :Integer = 2000; {ms}
 
-    optSlideDelay     :Integer = 3000; {ms}   { Задержка SlideShow }
+    optSlideDelay     :Integer = 3000; {ms}   { Р—Р°РґРµСЂР¶РєР° SlideShow }
     optEffectType     :Integer = 1;
-    optEffectPeriod   :Integer = 250;  {ms}   { Длительность эффекта перехода }
-    optEffectOnManual :Boolean = True;        { Использовать эффект перехода при ручном переключении }
+    optEffectPeriod   :Integer = 250;  {ms}   { Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ СЌС„С„РµРєС‚Р° РїРµСЂРµС…РѕРґР° }
+    optEffectOnManual :Boolean = True;        { РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌС„С„РµРєС‚ РїРµСЂРµС…РѕРґР° РїСЂРё СЂСѓС‡РЅРѕРј РїРµСЂРµРєР»СЋС‡РµРЅРёРё }
 
    {$ifdef bUseLibJPEG}
     optUseLibJPEG     :Boolean = True;
@@ -137,31 +137,31 @@ interface
    {$ifdef bThumbs}
     optThumbSize       :Integer = 96;
     optThumbFullscreen :Boolean = False;
-    optThumbShowTitle  :Boolean = True;    { Показывать имена файлов }
-    optThumbFoldTitle  :Boolean = False;   { Сворачивать имена файлов }
-    optThumbShowInfo   :Boolean = False;   { Показывать информацию о декодере (для отладки) }
-    optZoomThumb       :Boolean = False;   { Масштабировать эскиз по наименьшей размерности (растягивать до "квадрата") }
-    optVerticalScroll  :Boolean = True;    { Вертикальная или горизонтальная прокрутка }
-    optExtractPriority :Integer = 1;       { 0-Нет, 1-Sys-PVD, 2-Pvd-Sys 3-Sys 4-Pvd }
-    optExtractSize     :Boolean = True;    { При извлечении системных эскизов сначала пытаемся получить информацию через pvd }
-    optThumbAutoRotate :Boolean = True;    { Автоматический поворот эскизов на основе информации из EXIF }
-    optThumbFirst      :Boolean = False;   { Сначала декодировать эскизы, для которых есть preview (быстрое декодирование) }
-    optRenderAhead     :Boolean = True;    { Декодировать на экран больше эскизов (в направлении прокрутки) }
-    optMouseSelect     :Boolean = False;   { Выделеять мышкой (без Shift) }
+    optThumbShowTitle  :Boolean = True;    { РџРѕРєР°Р·С‹РІР°С‚СЊ РёРјРµРЅР° С„Р°Р№Р»РѕРІ }
+    optThumbFoldTitle  :Boolean = False;   { РЎРІРѕСЂР°С‡РёРІР°С‚СЊ РёРјРµРЅР° С„Р°Р№Р»РѕРІ }
+    optThumbShowInfo   :Boolean = False;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РґРµРєРѕРґРµСЂРµ (РґР»СЏ РѕС‚Р»Р°РґРєРё) }
+    optZoomThumb       :Boolean = False;   { РњР°СЃС€С‚Р°Р±РёСЂРѕРІР°С‚СЊ СЌСЃРєРёР· РїРѕ РЅР°РёРјРµРЅСЊС€РµР№ СЂР°Р·РјРµСЂРЅРѕСЃС‚Рё (СЂР°СЃС‚СЏРіРёРІР°С‚СЊ РґРѕ "РєРІР°РґСЂР°С‚Р°") }
+    optVerticalScroll  :Boolean = True;    { Р’РµСЂС‚РёРєР°Р»СЊРЅР°СЏ РёР»Рё РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ РїСЂРѕРєСЂСѓС‚РєР° }
+    optExtractPriority :Integer = 1;       { 0-РќРµС‚, 1-Sys-PVD, 2-Pvd-Sys 3-Sys 4-Pvd }
+    optExtractSize     :Boolean = True;    { РџСЂРё РёР·РІР»РµС‡РµРЅРёРё СЃРёСЃС‚РµРјРЅС‹С… СЌСЃРєРёР·РѕРІ СЃРЅР°С‡Р°Р»Р° РїС‹С‚Р°РµРјСЃСЏ РїРѕР»СѓС‡РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ С‡РµСЂРµР· pvd }
+    optThumbAutoRotate :Boolean = True;    { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РїРѕРІРѕСЂРѕС‚ СЌСЃРєРёР·РѕРІ РЅР° РѕСЃРЅРѕРІРµ РёРЅС„РѕСЂРјР°С†РёРё РёР· EXIF }
+    optThumbFirst      :Boolean = False;   { РЎРЅР°С‡Р°Р»Р° РґРµРєРѕРґРёСЂРѕРІР°С‚СЊ СЌСЃРєРёР·С‹, РґР»СЏ РєРѕС‚РѕСЂС‹С… РµСЃС‚СЊ preview (Р±С‹СЃС‚СЂРѕРµ РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ) }
+    optRenderAhead     :Boolean = True;    { Р”РµРєРѕРґРёСЂРѕРІР°С‚СЊ РЅР° СЌРєСЂР°РЅ Р±РѕР»СЊС€Рµ СЌСЃРєРёР·РѕРІ (РІ РЅР°РїСЂР°РІР»РµРЅРёРё РїСЂРѕРєСЂСѓС‚РєРё) }
+    optMouseSelect     :Boolean = False;   { Р’С‹РґРµР»РµСЏС‚СЊ РјС‹С€РєРѕР№ (Р±РµР· Shift) }
     optSmoothScroll    :Boolean = True;
     optScrollPeriod    :Integer = 250;
     optThumbFontSize   :Integer = 8;
     optThumbFontName   :TString = '';
 
-    optHandlesLimit    :Integer = 1000;    { Макс кол-во GDI Handles }
+    optHandlesLimit    :Integer = 1000;    { РњР°РєСЃ РєРѕР»-РІРѕ GDI Handles }
    {$endif bThumbs}
 
   var
-    optBigImageLimit  :Integer = 128;      { Если размер картинки превышает эту величину, DecodeWaitDelay считается = 0 }
-    DecodeWaitDelay   :Integer = 1000;     { Сколько ждем декодирование, прежде чем показать эскиз. Только при первом открытии. }
-    StretchDelay      :Integer = 500;      { Задержка для масштабирования }
-    FastListDelay     :Integer = 250;      { Период между декодированиями, по которому определяется быстрое перелистывание }
-    ThumbDelay        :Integer = 250;      { Задержка до начала декодирования при перелистывании }
+    optBigImageLimit  :Integer = 128;      { Р•СЃР»Рё СЂР°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё РїСЂРµРІС‹С€Р°РµС‚ СЌС‚Сѓ РІРµР»РёС‡РёРЅСѓ, DecodeWaitDelay СЃС‡РёС‚Р°РµС‚СЃСЏ = 0 }
+    DecodeWaitDelay   :Integer = 1000;     { РЎРєРѕР»СЊРєРѕ Р¶РґРµРј РґРµРєРѕРґРёСЂРѕРІР°РЅРёРµ, РїСЂРµР¶РґРµ С‡РµРј РїРѕРєР°Р·Р°С‚СЊ СЌСЃРєРёР·. РўРѕР»СЊРєРѕ РїСЂРё РїРµСЂРІРѕРј РѕС‚РєСЂС‹С‚РёРё. }
+    StretchDelay      :Integer = 500;      { Р—Р°РґРµСЂР¶РєР° РґР»СЏ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ }
+    FastListDelay     :Integer = 250;      { РџРµСЂРёРѕРґ РјРµР¶РґСѓ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏРјРё, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ Р±С‹СЃС‚СЂРѕРµ РїРµСЂРµР»РёСЃС‚С‹РІР°РЅРёРµ }
+    ThumbDelay        :Integer = 250;      { Р—Р°РґРµСЂР¶РєР° РґРѕ РЅР°С‡Р°Р»Р° РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ РїСЂРё РїРµСЂРµР»РёСЃС‚С‹РІР°РЅРёРё }
 
 
   var
@@ -193,7 +193,7 @@ interface
 
 
   const
-    { Команды CM_Transform }
+    { РљРѕРјР°РЅРґС‹ CM_Transform }
     cmtInvalidate = 0;
     cmtRotate     = 1;
     cmtOrient     = 2;

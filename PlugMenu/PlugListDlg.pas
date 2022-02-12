@@ -6,7 +6,7 @@ unit PlugListDlg;
 {* (c) 2008-2012 Max Rusov                                                    *}
 {*                                                                            *}
 {* PlugMenu Far Plugin                                                        *}
-{* Основное окно - список команд                                              *}
+{* РћСЃРЅРѕРІРЅРѕРµ РѕРєРЅРѕ - СЃРїРёСЃРѕРє РєРѕРјР°РЅРґ                                              *}
 {******************************************************************************}
 
 interface
@@ -429,7 +429,7 @@ interface
 
   procedure TMenuDlg.GridPosChange(ASender :TFarGrid);
   begin
-    { Обновляем status-line }
+    { РћР±РЅРѕРІР»СЏРµРј status-line }
     UpdateFooter;
   end;
 
@@ -488,7 +488,7 @@ interface
 
         if ACol = 0 then begin
           if True then begin
-            { Назначенный Hotkey }
+            { РќР°Р·РЅР°С‡РµРЅРЅС‹Р№ Hotkey }
             if Hotkey <> #0 then begin
               vColor := FHotkeyColor1;
               if vSelected then
@@ -501,7 +501,7 @@ interface
 
           vMark[1] := #0;
           if (AWidth > 0) and (PluginShowHidden > 0) then begin
-            { Метка недоступного плагина }
+            { РњРµС‚РєР° РЅРµРґРѕСЃС‚СѓРїРЅРѕРіРѕ РїР»Р°РіРёРЅР° }
             vMark[0] := #0;
             if not CheckWinType(FWindowType, Plugin) then
               vMark[0] := chrUnaccessibleMark
@@ -518,7 +518,7 @@ interface
 
           if PluginShowLoaded then begin
             if (Plugin.Loaded or Plugin.Unregistered) then begin
-              { Метка загруженного или разрегистрированного плагина }
+              { РњРµС‚РєР° Р·Р°РіСЂСѓР¶РµРЅРЅРѕРіРѕ РёР»Рё СЂР°Р·СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕРіРѕ РїР»Р°РіРёРЅР° }
               if Plugin.Loaded then
                 vMark[0] := chrLoadedMark
               else
@@ -530,7 +530,7 @@ interface
 
           if PluginShowAnsi then begin
             if not Plugin.Unicode then begin
-              { Метка ansi-шного плагина }
+              { РњРµС‚РєР° ansi-С€РЅРѕРіРѕ РїР»Р°РіРёРЅР° }
               vMark[0] := 'A';
               FGrid.DrawChr(X1, Y, @vMark[0], 1, AColor);
             end;
@@ -543,7 +543,7 @@ interface
           vStr := GridGetDlgText(ASender, ACol, ARow);
 
           if (vRec.FLen > 0) and (FGrid.Column[ACol].Tag = FFilterColumn) then
-            { Выделение части строки, совпадающей с фильтром... }
+            { Р’С‹РґРµР»РµРЅРёРµ С‡Р°СЃС‚Рё СЃС‚СЂРѕРєРё, СЃРѕРІРїР°РґР°СЋС‰РµР№ СЃ С„РёР»СЊС‚СЂРѕРј... }
             FGrid.DrawChrEx(X, Y, PTChar(vStr), AWidth, vRec.FPos, vRec.FLen, AColor, ChangeFG(AColor, optFoundColor))
           else begin
             vPos := -1;
@@ -587,7 +587,7 @@ interface
     vMask := FFilterMask;
     if vMask <> '' then begin
       if (FFilterColumn = 5) and (vMask[1] <> '*') then
-        { Фильтрация по флагам - всегда по вхождению }
+        { Р¤РёР»СЊС‚СЂР°С†РёСЏ РїРѕ С„Р»Р°РіР°Рј - РІСЃРµРіРґР° РїРѕ РІС…РѕР¶РґРµРЅРёСЋ }
         vMask := '*' + vMask;
 
       vHasMask := (ChrPos('*', vMask) <> 0) or (ChrPos('?', vMask) <> 0);
@@ -737,7 +737,7 @@ interface
     if vIndex < 0 then
       vIndex := 0;
     SetCurrent( vIndex, False );
-//  UpdateHeader; { Чтобы не стирался SortMark}
+//  UpdateHeader; { Р§С‚РѕР±С‹ РЅРµ СЃС‚РёСЂР°Р»СЃСЏ SortMark}
   end;
 
 
@@ -1375,7 +1375,7 @@ interface
       DN_RESIZECONSOLE: begin
 (*
         ResizeDialog;
-        UpdateFooter; { Чтобы центрировался status-line }
+        UpdateFooter; { Р§С‚РѕР±С‹ С†РµРЅС‚СЂРёСЂРѕРІР°Р»СЃСЏ status-line }
         SetCurrent(FGrid.CurRow, False);
 *)
         ReinitAndSaveCurrent
@@ -1439,7 +1439,7 @@ interface
 
     if Result then begin
       AssignAutoHotkeys(FWindowType);
-      { В результате вызова диалога настройки список команд обновляется }
+      { Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РІС‹Р·РѕРІР° РґРёР°Р»РѕРіР° РЅР°СЃС‚СЂРѕР№РєРё СЃРїРёСЃРѕРє РєРѕРјР°РЅРґ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ }
       FChoosenCmd := vPlugin.Command[0]
     end else
       Result := True;
@@ -1511,7 +1511,7 @@ interface
           1: vFinish := vDlg.RunCurrentCommand;
           2: vDlg.FChoosenCmd.Plugin.PluginHelp;
           3: vFinish := not vDlg.OpenConfig(True);
-          4: vFinish := not vDlg.OpenConfig(False {Без попытки загрузки плагина} );
+          4: vFinish := not vDlg.OpenConfig(False {Р‘РµР· РїРѕРїС‹С‚РєРё Р·Р°РіСЂСѓР·РєРё РїР»Р°РіРёРЅР°} );
           5: vFinish := vDlg.GotoPluginFolder;
         end;
       end;

@@ -99,11 +99,11 @@ interface
   begin
     Result := hFarWindow;
     if not IsWindowVisible(hFarWindow) then begin
-      { Запущено из-под ConEmu?... }
+      { Р—Р°РїСѓС‰РµРЅРѕ РёР·-РїРѕРґ ConEmu?... }
       hWnd := GetAncestor(hFarWindow, GA_PARENT);
 
       if (hWnd = 0) or (hWnd = GetDesktopWindow) then begin
-        { Новая версия ConEmu не делает SetParent... }
+        { РќРѕРІР°СЏ РІРµСЂСЃРёСЏ ConEmu РЅРµ РґРµР»Р°РµС‚ SetParent... }
         if hConEmuWnd = THandle(-1) then
           hConEmuWnd := CheckConEmuWnd;
         hWnd := hConEmuWnd;
@@ -171,7 +171,7 @@ interface
         Exit;
 
 //    if CanCheckWindow then
-//      { Контролируем смену консольного окна (на случай Detach'а консоли) }
+//      { РљРѕРЅС‚СЂРѕР»РёСЂСѓРµРј СЃРјРµРЅСѓ РєРѕРЅСЃРѕР»СЊРЅРѕРіРѕ РѕРєРЅР° (РЅР° СЃР»СѓС‡Р°Р№ Detach'Р° РєРѕРЅСЃРѕР»Рё) }
 //      hFarWindow := GetConsoleWindow;
 
       vActive := IsActiveConsole;
@@ -383,7 +383,7 @@ interface
     hStdin := GetStdHandle(STD_INPUT_HANDLE);
     hStdOut := GetStdHandle(STD_OUTPUT_HANDLE);
 
-    { Получаем Handle консоли Far'а }
+    { РџРѕР»СѓС‡Р°РµРј Handle РєРѕРЅСЃРѕР»Рё Far'Р° }
     hFarWindow := FarAdvControl(ACTL_GETFARHWND, nil);
 
     RestoreDefColor;
@@ -711,12 +711,12 @@ interface
   begin
     try
       if AParam <> nil then
-        { Асинхронная команда }
+        { РђСЃРёРЅС…СЂРѕРЅРЅР°СЏ РєРѕРјР°РЅРґР° }
         RunCommand(TPluginCmd(TUnsPtr(AParam) - 1))
       else begin
-        { Pool текущего каталога }
+        { Pool С‚РµРєСѓС‰РµРіРѕ РєР°С‚Р°Р»РѕРіР° }
 
-        { История не должна меняться, пока активен диалог }
+        { РСЃС‚РѕСЂРёСЏ РЅРµ РґРѕР»Р¶РЅР° РјРµРЅСЏС‚СЊСЃСЏ, РїРѕРєР° Р°РєС‚РёРІРµРЅ РґРёР°Р»РѕРі }
         if HistDlgOpened then
           Exit;
 
@@ -733,8 +733,8 @@ interface
             end;
           end else
           if FLastFolder <> '' then begin
-            { Текущий контекст - не панель (редактор, viewer, dialog): }
-            { считаем активным действием в последнем  каталоге }
+            { РўРµРєСѓС‰РёР№ РєРѕРЅС‚РµРєСЃС‚ - РЅРµ РїР°РЅРµР»СЊ (СЂРµРґР°РєС‚РѕСЂ, viewer, dialog): }
+            { СЃС‡РёС‚Р°РµРј Р°РєС‚РёРІРЅС‹Рј РґРµР№СЃС‚РІРёРµРј РІ РїРѕСЃР»РµРґРЅРµРј  РєР°С‚Р°Р»РѕРіРµ }
             FldHistory.AddHistory(FLastFolder, faActivity);
             FldHistory.RememberCurrentPos;
           end;
@@ -771,8 +771,8 @@ interface
       EE_CHANGE:
         with PEditorChange(AParam)^ do begin
 //        TraceF('EE_CHANGE: Type=%d, Row=%d', [_Type, StringNumber]);
-          { Из события EE_CHANGE нельзя вызывать EditorControl, да и вообще - }
-          { оно должно быть максимально быстрым, чтобы не замедлять модификацию файла... }
+          { РР· СЃРѕР±С‹С‚РёСЏ EE_CHANGE РЅРµР»СЊР·СЏ РІС‹Р·С‹РІР°С‚СЊ EditorControl, РґР° Рё РІРѕРѕР±С‰Рµ - }
+          { РѕРЅРѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕ Р±С‹СЃС‚СЂС‹Рј, С‡С‚РѕР±С‹ РЅРµ Р·Р°РјРµРґР»СЏС‚СЊ РјРѕРґРёС„РёРєР°С†РёСЋ С„Р°Р№Р»Р°... }
           FModEdtID := AID;
           Exit;
         end;

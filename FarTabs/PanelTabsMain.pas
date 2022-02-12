@@ -183,7 +183,7 @@ interface
 
 
 
-  { Получаем символ из позиции X, Y }
+  { РџРѕР»СѓС‡Р°РµРј СЃРёРјРІРѕР» РёР· РїРѕР·РёС†РёРё X, Y }
 
   function ReadScreenChar(X, Y :Integer) :TChar;
   var
@@ -196,7 +196,7 @@ interface
     if not GetConsoleScreenBufferInfo(hStdOut, vInfo) then
       Exit;
 
-    { Коррекция для режима "большого буфера" (/w) }
+    { РљРѕСЂСЂРµРєС†РёСЏ РґР»СЏ СЂРµР¶РёРјР° "Р±РѕР»СЊС€РѕРіРѕ Р±СѓС„РµСЂР°" (/w) }
     with FarGetWindowRect do begin
       Inc(Y, Top);
       Inc(X, Left);

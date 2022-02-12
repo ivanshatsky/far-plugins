@@ -8,7 +8,7 @@ unit ReviewDecoders;
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -38,41 +38,41 @@ interface
 
     TReviewImageRec = class(TComBasis)
     public
-      FName        :TString;           { Имя файла (не обязательно с путем) }
+      FName        :TString;           { РРјСЏ С„Р°Р№Р»Р° (РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ СЃ РїСѓС‚РµРј) }
 
-      FSize        :Int64;             { Размер файла }
-      FTime        :Integer;           { Время файла }
-      FCacheBuf    :Pointer;           { Считанный файл (первые cPreCacheLimit байт), ...  }
-      FCacheSize   :Integer;           { ... если декодер требует буффер. Используется Memory Mapping. }
+      FSize        :Int64;             { Р Р°Р·РјРµСЂ С„Р°Р№Р»Р° }
+      FTime        :Integer;           { Р’СЂРµРјСЏ С„Р°Р№Р»Р° }
+      FCacheBuf    :Pointer;           { РЎС‡РёС‚Р°РЅРЅС‹Р№ С„Р°Р№Р» (РїРµСЂРІС‹Рµ cPreCacheLimit Р±Р°Р№С‚), ...  }
+      FCacheSize   :Integer;           { ... РµСЃР»Рё РґРµРєРѕРґРµСЂ С‚СЂРµР±СѓРµС‚ Р±СѓС„С„РµСЂ. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Memory Mapping. }
 
-      FContext     :Pointer;           { Контекст для декодирования }
-      FFormat      :TString;           { Имя формата }
-      FCompress    :TString;           { Алгоритм сжатия }
-      FDescr       :TString;           { Описание }
-      FPages       :Integer;           { Количество страниц }
-      FPage        :Integer;           { Текущая страница }
-      FWidth       :Integer;           { Ширина изображения }
-      FHeight      :Integer;           { Высота изображения }
-      FBPP         :Integer;           { Цветность }
-      FTransparent :Boolean;           { Полупрозрачное изображение }
-      FAnimated    :Boolean;           { Анимированное изображение }
-      FMovie       :Boolean;           { Видео-файл }
-      FLength      :Integer;           { Длительность видео в MS }
-      FDelay       :Integer;           { Задержка текущей страницы при анимации }
-      FOrient0     :Integer;           { Начальная ориентация (по EXIF) }
-      FOrient      :Integer;           { Текущая ориентация (дополнительный поворот после декодирования) }
+      FContext     :Pointer;           { РљРѕРЅС‚РµРєСЃС‚ РґР»СЏ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
+      FFormat      :TString;           { РРјСЏ С„РѕСЂРјР°С‚Р° }
+      FCompress    :TString;           { РђР»РіРѕСЂРёС‚Рј СЃР¶Р°С‚РёСЏ }
+      FDescr       :TString;           { РћРїРёСЃР°РЅРёРµ }
+      FPages       :Integer;           { РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂР°РЅРёС† }
+      FPage        :Integer;           { РўРµРєСѓС‰Р°СЏ СЃС‚СЂР°РЅРёС†Р° }
+      FWidth       :Integer;           { РЁРёСЂРёРЅР° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ }
+      FHeight      :Integer;           { Р’С‹СЃРѕС‚Р° РёР·РѕР±СЂР°Р¶РµРЅРёСЏ }
+      FBPP         :Integer;           { Р¦РІРµС‚РЅРѕСЃС‚СЊ }
+      FTransparent :Boolean;           { РџРѕР»СѓРїСЂРѕР·СЂР°С‡РЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FAnimated    :Boolean;           { РђРЅРёРјРёСЂРѕРІР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FMovie       :Boolean;           { Р’РёРґРµРѕ-С„Р°Р№Р» }
+      FLength      :Integer;           { Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РІРёРґРµРѕ РІ MS }
+      FDelay       :Integer;           { Р—Р°РґРµСЂР¶РєР° С‚РµРєСѓС‰РµР№ СЃС‚СЂР°РЅРёС†С‹ РїСЂРё Р°РЅРёРјР°С†РёРё }
+      FOrient0     :Integer;           { РќР°С‡Р°Р»СЊРЅР°СЏ РѕСЂРёРµРЅС‚Р°С†РёСЏ (РїРѕ EXIF) }
+      FOrient      :Integer;           { РўРµРєСѓС‰Р°СЏ РѕСЂРёРµРЅС‚Р°С†РёСЏ (РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РїРѕРІРѕСЂРѕС‚ РїРѕСЃР»Рµ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ) }
 
       FSelfdraw    :Boolean;
       FSelfPaint   :Boolean;
 
-      FDecodeInfo  :Pointer;           { Временные данные декодирования }
-      FDisplayCtx  :Pointer;           { Контекст для отображения (только для Selfdraw) }
+      FDecodeInfo  :Pointer;           { Р’СЂРµРјРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
+      FDisplayCtx  :Pointer;           { РљРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ (С‚РѕР»СЊРєРѕ РґР»СЏ Selfdraw) }
 
       FMapFile     :THandle;
       FMapHandle   :THandle;
 
-      FDecoder     :TReviewDecoder;    { Выбранный декодер }
-      FBitmap      :TReviewBitmap;     { Bitmap (только для не Selfdraw) }
+      FDecoder     :TReviewDecoder;    { Р’С‹Р±СЂР°РЅРЅС‹Р№ РґРµРєРѕРґРµСЂ }
+      FBitmap      :TReviewBitmap;     { Bitmap (С‚РѕР»СЊРєРѕ РґР»СЏ РЅРµ Selfdraw) }
 
       destructor Destroy; override;
 
@@ -95,9 +95,9 @@ interface
     );
 
     TDecodeMode = (
-      dmImage,                  { Основное изображение }
-      dmThumbnail,              { Эскиз. Если эскиза нет - возвращаем ошибку }
-      dmThumbnailOrImage        { Эскиз, а если его нет - основное изображение }
+      dmImage,                  { РћСЃРЅРѕРІРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      dmThumbnail,              { Р­СЃРєРёР·. Р•СЃР»Рё СЌСЃРєРёР·Р° РЅРµС‚ - РІРѕР·РІСЂР°С‰Р°РµРј РѕС€РёР±РєСѓ }
+      dmThumbnailOrImage        { Р­СЃРєРёР·, Р° РµСЃР»Рё РµРіРѕ РЅРµС‚ - РѕСЃРЅРѕРІРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
     );
 
     TSaveOptions = set of (
@@ -131,7 +131,7 @@ interface
       function CanShowThumbFor(const AName :TString) :Boolean;
       function GetMaskAsStr :TString;
 
-      { Функции декодирования }
+      { Р¤СѓРЅРєС†РёРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
       function pvdFileOpen(const AFileName :TString; AImage :TReviewImageRec) :Boolean; virtual; abstract;
       function pvdGetPageInfo(AImage :TReviewImageRec) :Boolean; virtual; abstract;
       function pvdPageDecode(AImage :TReviewImageRec; AWidth, AHeight :Integer; AMode :TDecodeMode;
@@ -139,7 +139,7 @@ interface
       procedure pvdPageFree(AImage :TReviewImageRec); virtual; abstract;
       procedure pvdFileClose(AImage :TReviewImageRec); virtual; abstract;
 
-      { Функции отображения (для Selfdraw) }
+      { Р¤СѓРЅРєС†РёРё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ (РґР»СЏ Selfdraw) }
       function pvdDisplayInit(AWnd :THandle) :Boolean; virtual;
       procedure pvdDisplayDone(AWnd :THandle); virtual;
       function pvdDisplayShow(AWnd :THandle; AImage :TReviewImageRec) :Boolean; virtual;
@@ -149,7 +149,7 @@ interface
 //    function pvdPlayControl(AImage :TReviewImageRec; aCmd :Integer; aInfo :TIntPtr) :Integer; {virtual;}
       function pvdTagInfo(AImage :TReviewImageRec; aCode :Integer; var aType :Integer; var aValue :Pointer) :Boolean; virtual;
 
-      { Расширенные функции, пока не вынесенные в pvd интерфейс }
+      { Р Р°СЃС€РёСЂРµРЅРЅС‹Рµ С„СѓРЅРєС†РёРё, РїРѕРєР° РЅРµ РІС‹РЅРµСЃРµРЅРЅС‹Рµ РІ pvd РёРЅС‚РµСЂС„РµР№СЃ }
       function GetBitmapHandle(AImage :TReviewImageRec; var aIsThumbnail :Boolean) :HBitmap; virtual;
       function Save(AImage :TReviewImageRec; const ANewName, AFmtName :TString; aOrient, aQuality :Integer; aOptions :TSaveOptions) :Boolean; virtual;
       function Idle(AImage :TReviewImageRec; AWidth, AHeight :Integer) :Boolean; virtual;
@@ -161,14 +161,14 @@ interface
       FComment    :TString;
       FPriority   :Integer;
 
-      FInitState  :Integer;  { 0-не инициализирован, 1-инициализирован, 2-ошибка при инициализации }
-      FModified   :Integer;  { Дата модификации PVD файла - для проверки актуальности кэша }
+      FInitState  :Integer;  { 0-РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ, 1-РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ, 2-РѕС€РёР±РєР° РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё }
+      FModified   :Integer;  { Р”Р°С‚Р° РјРѕРґРёС„РёРєР°С†РёРё PVD С„Р°Р№Р»Р° - РґР»СЏ РїСЂРѕРІРµСЂРєРё Р°РєС‚СѓР°Р»СЊРЅРѕСЃС‚Рё РєСЌС€Р° }
       FEnabled    :Boolean;
-      FWasInCache :Boolean;  { Вспом. при инициализации }
+      FWasInCache :Boolean;  { Р’СЃРїРѕРј. РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё }
 
       FActiveStr  :TString;
       FIgnoreStr  :TString;
-      FCustomMask :Boolean;  { Список расширений был изменен пользователем }
+      FCustomMask :Boolean;  { РЎРїРёСЃРѕРє СЂР°СЃС€РёСЂРµРЅРёР№ Р±С‹Р» РёР·РјРµРЅРµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј }
 
       FActiveMask :TString;
       FIgnoreMask :TString;
@@ -206,7 +206,7 @@ interface
       FHandle         :THandle;
       FDllName        :TString;
 
-      { Параметры, возвращаемые плагином }
+      { РџР°СЂР°РјРµС‚СЂС‹, РІРѕР·РІСЂР°С‰Р°РµРјС‹Рµ РїР»Р°РіРёРЅРѕРј }
       FInitError      :Integer;
       FInitContext    :Pointer;
     end;
@@ -216,12 +216,12 @@ interface
     public
       constructor Create; override;
 
-      { Функции инициализации }
+      { Р¤СѓРЅРєС†РёРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё }
       procedure pvdInit;
       procedure pvdExit;
       procedure pvdGetInfo;
 
-      { Функции декодирования }
+      { Р¤СѓРЅРєС†РёРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
       function pvdFileOpen(const AFileName :TString; AImage :TReviewImageRec) :Boolean; override;
       function pvdGetPageInfo(AImage :TReviewImageRec) :Boolean; override;
       function pvdPageDecode(AImage :TReviewImageRec; AWidth, AHeight :Integer; AMode :TDecodeMode;
@@ -256,14 +256,14 @@ interface
       function NeedPrecache :boolean; override;
       procedure ResetSettings; override;
 
-      { Функции инициализации }
+      { Р¤СѓРЅРєС†РёРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё }
       procedure pvdInit;
       procedure pvdExit;
       procedure pvdGetInfo;
       procedure pvdGetFormats;
       function pvdTranslateError(aCode :DWORD) :TString;
 
-      { Функции декодирования }
+      { Р¤СѓРЅРєС†РёРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ }
       function pvdFileOpen(const AFileName :TString; AImage :TReviewImageRec) :Boolean; override;
       function pvdGetPageInfo(AImage :TReviewImageRec) :Boolean; override;
       function pvdPageDecode(AImage :TReviewImageRec; AWidth, AHeight :Integer; AMode :TDecodeMode;
@@ -271,7 +271,7 @@ interface
       procedure pvdPageFree(AImage :TReviewImageRec); override;
       procedure pvdFileClose(AImage :TReviewImageRec); override;
 
-      { Функции отображения (для Selfdraw) }
+      { Р¤СѓРЅРєС†РёРё РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ (РґР»СЏ Selfdraw) }
       function pvdDisplayInit(AWnd :THandle) :Boolean; override;
       procedure pvdDisplayDone(AWnd :THandle); override;
       function pvdDisplayShow(AWnd :THandle; AImage :TReviewImageRec) :Boolean; override;
@@ -289,7 +289,7 @@ interface
 
     private
       FRegKey            :TString;
-      FPlugFlags         :UINT;         { Возможные флаги PVD_IP_xxx }
+      FPlugFlags         :UINT;         { Р’РѕР·РјРѕР¶РЅС‹Рµ С„Р»Р°РіРё PVD_IP_xxx }
 
       { PictureView2 interface }
       FpvdInit           :TpvdInit2;
@@ -713,7 +713,7 @@ interface
       Result := FInitState < 2
     else begin
       if FInitState = 0 then begin
-        { Декодер был закэширован, теперь инициализируем его}
+        { Р”РµРєРѕРґРµСЂ Р±С‹Р» Р·Р°РєСЌС€РёСЂРѕРІР°РЅ, С‚РµРїРµСЂСЊ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РµРіРѕ}
 
         if not CustomMask then
           vOldExts := GetMaskAsStr;
@@ -727,8 +727,8 @@ interface
         end;
 
         if not CustomMask and not StrEqual(vOldExts, GetMaskAsStr) then
-          { Изменился состав масок, обрабатываемых декодером по умолчанию. }
-          { Например, установили новый кодек... }
+          { РР·РјРµРЅРёР»СЃСЏ СЃРѕСЃС‚Р°РІ РјР°СЃРѕРє, РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјС‹С… РґРµРєРѕРґРµСЂРѕРј РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ. }
+          { РќР°РїСЂРёРјРµСЂ, СѓСЃС‚Р°РЅРѕРІРёР»Рё РЅРѕРІС‹Р№ РєРѕРґРµРє... }
           NeedStoreCache := True;
       end;
       Result := FInitState = 1;
@@ -1145,7 +1145,7 @@ interface
       AImage.FDelay   := vInfo.lFrameTime;
       AImage.FOrient0 := vInfo.Orientation;
 
-      { Коррекция 1 }
+      { РљРѕСЂСЂРµРєС†РёСЏ 1 }
       if vInfo.nPages <> 0 then
         AImage.FPages := vInfo.nPages;
       if vInfo.pFormatName <> nil then
@@ -1205,7 +1205,7 @@ interface
       if vInfo.Orientation <> 0 then
         AImage.FOrient0 := vInfo.Orientation;
 
-      { Коррекция 2 }
+      { РљРѕСЂСЂРµРєС†РёСЏ 2 }
       if vInfo.nPages <> 0 then
         AImage.FPages := vInfo.nPages;
       if vInfo.pFormatName <> nil then
@@ -1265,22 +1265,22 @@ interface
  {-----------------------------------------------------------------------------}
 
 {
-  // Инициализация контекста дисплея. Используется тот pContext, который был получен в pvdInit2
+  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРЅС‚РµРєСЃС‚Р° РґРёСЃРїР»РµСЏ. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕС‚ pContext, РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» РїРѕР»СѓС‡РµРЅ РІ pvdInit2
   function pvdDisplayInit2(pContext :Pointer; pDisplayInit :PPVDInfoDisplayInit2) :BOOL; stdcall;
 
-  // Прицепиться или отцепиться от окна вывода
+  // РџСЂРёС†РµРїРёС‚СЊСЃСЏ РёР»Рё РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РѕРєРЅР° РІС‹РІРѕРґР°
   function pvdDisplayAttach2(pContext :Pointer; pDisplayAttach :PPVDInfoDisplayAttach2) :BOOL; stdcall;
 
-  // Создать контекст для отображения картинки в pContext (перенос декодированных данных в видеопамять)
+  // РЎРѕР·РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё РІ pContext (РїРµСЂРµРЅРѕСЃ РґРµРєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С… РІ РІРёРґРµРѕРїР°РјСЏС‚СЊ)
   function pvdDisplayCreate2(pContext :Pointer; pDisplayCreate :PPVDInfoDisplayCreate2) :BOOL; stdcall;
 
-  // Собственно отрисовка. Функция должна при необходимости выполнять "Stretch"
+  // РЎРѕР±СЃС‚РІРµРЅРЅРѕ РѕС‚СЂРёСЃРѕРІРєР°. Р¤СѓРЅРєС†РёСЏ РґРѕР»Р¶РЅР° РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РІС‹РїРѕР»РЅСЏС‚СЊ "Stretch"
   function pvdDisplayPaint2(pContext :Pointer; pDisplayContext :Pointer; pDisplayPaint :PPVDInfoDisplayPaint2) :BOOL; stdcall;
 
-  // Закрыть контекст для отображения картинки (освободить видеопамять)
+  // Р—Р°РєСЂС‹С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё (РѕСЃРІРѕР±РѕРґРёС‚СЊ РІРёРґРµРѕРїР°РјСЏС‚СЊ)
   procedure pvdDisplayClose2(pContext :Pointer; pDisplayContext :Pointer); stdcall;
 
-  // Закрыть модуль вывода (освобождение интерфейсов DX, отцепиться от окна)
+  // Р—Р°РєСЂС‹С‚СЊ РјРѕРґСѓР»СЊ РІС‹РІРѕРґР° (РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РёРЅС‚РµСЂС„РµР№СЃРѕРІ DX, РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РѕРєРЅР°)
   procedure pvdDisplayExit2(pContext :Pointer); stdcall;
 }
 
@@ -1306,7 +1306,7 @@ interface
     if not Result then
       Exit;
 
-    {??? Может вообще не нужно?...}
+    {??? РњРѕР¶РµС‚ РІРѕРѕР±С‰Рµ РЅРµ РЅСѓР¶РЅРѕ?...}
     if Assigned(FpvdDisplayAttach) then begin
       FillZero(vAttach, SizeOf(vAttach));
       vAttach.cbSize := SizeOf(vAttach);
@@ -1579,7 +1579,7 @@ interface
       if vCache and aDecoders.FindKey(Pointer(vName), 0, [], vIndex) then begin
         vDecoder := aDecoders[vIndex];
         if (vDecoder is TReviewDllDecoder) and (vDecoder.Modified = vFileDate) then begin
-          { Информация в кэше соответствует файлу, загрузим декодер позже - по необходимости }
+          { РРЅС„РѕСЂРјР°С†РёСЏ РІ РєСЌС€Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ С„Р°Р№Р»Сѓ, Р·Р°РіСЂСѓР·РёРј РґРµРєРѕРґРµСЂ РїРѕР·Р¶Рµ - РїРѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё }
           TReviewDllDecoder(vDecoder).FDllName := vFileName;
           Exit;
         end;
@@ -1599,7 +1599,7 @@ interface
         end;
 
         if (vDecoder <> nil) and (vDecoder.ClassType = vClass) then begin
-          { Обновляем настройки декодера }
+          { РћР±РЅРѕРІР»СЏРµРј РЅР°СЃС‚СЂРѕР№РєРё РґРµРєРѕРґРµСЂР° }
           with TReviewDllDecoder(vDecoder) do begin
             FDllName := vFileName;
             FModified := vFileDate;
@@ -1608,7 +1608,7 @@ interface
         end else
         begin
           if vDecoder <> nil then
-            { Изменился тип декодера - экзотическая ситуация, но - на всякий случай }
+            { РР·РјРµРЅРёР»СЃСЏ С‚РёРї РґРµРєРѕРґРµСЂР° - СЌРєР·РѕС‚РёС‡РµСЃРєР°СЏ СЃРёС‚СѓР°С†РёСЏ, РЅРѕ - РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ }
             aDecoders.FreeAt(vIndex)
           else
             vIndex := aDecoders.Count;
@@ -1644,9 +1644,9 @@ interface
       WinEnumFilesEx(aPath, cPluginsMask, faEnumFiles, [efoRecursive],  LocalAddr(@LocEnumPlugin));
 
       if not vCache then
-        { Если это первая загрузка - сортируем декодеры по приоритетам }
-        { Если декодеры были добавлены потом - приоритеты игнорируются, }
-        { новые декодеры окажутся в конце списка. }
+        { Р•СЃР»Рё СЌС‚Рѕ РїРµСЂРІР°СЏ Р·Р°РіСЂСѓР·РєР° - СЃРѕСЂС‚РёСЂСѓРµРј РґРµРєРѕРґРµСЂС‹ РїРѕ РїСЂРёРѕСЂРёС‚РµС‚Р°Рј }
+        { Р•СЃР»Рё РґРµРєРѕРґРµСЂС‹ Р±С‹Р»Рё РґРѕР±Р°РІР»РµРЅС‹ РїРѕС‚РѕРј - РїСЂРёРѕСЂРёС‚РµС‚С‹ РёРіРЅРѕСЂРёСЂСѓСЋС‚СЃСЏ, }
+        { РЅРѕРІС‹Рµ РґРµРєРѕРґРµСЂС‹ РѕРєР°Р¶СѓС‚СЃСЏ РІ РєРѕРЅС†Рµ СЃРїРёСЃРєР°. }
         aDecoders.SortList(False, 1)
       else begin
        {$ifdef bUseLibJPEG}
@@ -1656,7 +1656,7 @@ interface
       end;
     end;
 
-    { Удалим декодеры, для которых не найдено DLL }
+    { РЈРґР°Р»РёРј РґРµРєРѕРґРµСЂС‹, РґР»СЏ РєРѕС‚РѕСЂС‹С… РЅРµ РЅР°Р№РґРµРЅРѕ DLL }
     for I := aDecoders.Count - 1 downto 0 do begin
       vDecoder := aDecoders[I];
       if (vDecoder is TReviewDllDecoder) and (TReviewDllDecoder(vDecoder).FDllName = '') then

@@ -6,7 +6,7 @@ unit FontsHints;
 {* (c) 2008-2009, Max Rusov                                                   *}
 {*                                                                            *}
 {* FontMan Far plugin                                                         *}
-{* Интеграция с FAR Hints                                                     *}
+{* РРЅС‚РµРіСЂР°С†РёСЏ СЃ FAR Hints                                                     *}
 {******************************************************************************}
 
 interface
@@ -542,7 +542,7 @@ interface
 
   procedure THintPluginObject.UnloadFarHints; {stdcall;}
   begin
-    { На случай, если FarHints выгружается раньше, чем данный плагин }
+    { РќР° СЃР»СѓС‡Р°Р№, РµСЃР»Рё FarHints РІС‹РіСЂСѓР¶Р°РµС‚СЃСЏ СЂР°РЅСЊС€Рµ, С‡РµРј РґР°РЅРЅС‹Р№ РїР»Р°РіРёРЅ }
     UnRegisterFontHints;
   end;
 
@@ -567,17 +567,17 @@ interface
       try
         vHandle := GetModuleHandle('FarHints.dll');
         if vHandle = 0 then
-          Exit; {FarHints не установлен}
+          Exit; {FarHints РЅРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅ}
 
         vGetApiProc := GetProcAddress( vHandle, 'GetFarHinstAPI' );
         if not Assigned(vGetApiProc) then
-          Exit; {FarHints неподходящей версии }
+          Exit; {FarHints РЅРµРїРѕРґС…РѕРґСЏС‰РµР№ РІРµСЂСЃРёРё }
 
         vFarHintsApi := vGetApiProc;
 
         vFarHintsAPI.QueryInterface(IFarHintsIntegrationAPI, FIntegrationAPI);
         if not Assigned(FIntegrationAPI) then
-          Exit; {FarHints неподходящей версии }
+          Exit; {FarHints РЅРµРїРѕРґС…РѕРґСЏС‰РµР№ РІРµСЂСЃРёРё }
 
         FHintObject := THintPluginObject.Create;
         FIntegrationAPI.RegisterEmbeddedPlugin(FHintObject);
@@ -606,7 +606,7 @@ interface
 
 initialization
 finalization
-  { Чтобы не было AV при закрытии по "крестику" }
+  { Р§С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ AV РїСЂРё Р·Р°РєСЂС‹С‚РёРё РїРѕ "РєСЂРµСЃС‚РёРєСѓ" }
   FHintRegistered := False;
   Pointer(FIntegrationAPI) := nil;
   pointer(FHintObject) := nil;

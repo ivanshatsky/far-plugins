@@ -115,28 +115,28 @@ interface
   end;
 
  {-----------------------------------------------------------------------------}
- { Трассировка через Memory Mapped файлы (recommend)                           }
+ { РўСЂР°СЃСЃРёСЂРѕРІРєР° С‡РµСЂРµР· Memory Mapped С„Р°Р№Р»С‹ (recommend)                           }
  {-----------------------------------------------------------------------------}
 
   const
    {$ifdef bTraceVer6}
 
-    TraceMutexName       = 'DbWinOLE6TraceMutex';       { Критическая секция для трассировки }
+    TraceMutexName       = 'DbWinOLE6TraceMutex';       { РљСЂРёС‚РёС‡РµСЃРєР°СЏ СЃРµРєС†РёСЏ РґР»СЏ С‚СЂР°СЃСЃРёСЂРѕРІРєРё }
 
-    TraceEnableFlagName  = 'DbWinOLE6TraceEnabled';     { Поток трассировки работает }
-    TraceFilledFlagName  = 'DbWinOLE6TraceFilled';      { Буфер данны заполнен }
-    TraceEmptyFlagName   = 'DbWinOLE6TraceEmpty';       { Буфер данных очищен }
+    TraceEnableFlagName  = 'DbWinOLE6TraceEnabled';     { РџРѕС‚РѕРє С‚СЂР°СЃСЃРёСЂРѕРІРєРё СЂР°Р±РѕС‚Р°РµС‚ }
+    TraceFilledFlagName  = 'DbWinOLE6TraceFilled';      { Р‘СѓС„РµСЂ РґР°РЅРЅС‹ Р·Р°РїРѕР»РЅРµРЅ }
+    TraceEmptyFlagName   = 'DbWinOLE6TraceEmpty';       { Р‘СѓС„РµСЂ РґР°РЅРЅС‹С… РѕС‡РёС‰РµРЅ }
 
     TraceBufferName      = 'DbWinOLE6TraceBuffer';
     TraceBufferSize      = 1024 * 64;
 
    {$else}
 
-    TraceMutexName       = 'DbWinOLE5TraceMutex';       { Критическая секция для трассировки }
+    TraceMutexName       = 'DbWinOLE5TraceMutex';       { РљСЂРёС‚РёС‡РµСЃРєР°СЏ СЃРµРєС†РёСЏ РґР»СЏ С‚СЂР°СЃСЃРёСЂРѕРІРєРё }
 
-    TraceEnableFlagName  = 'DbWinOLE5TraceEnabled';     { Поток трассировки работает }
-    TraceFilledFlagName  = 'DbWinOLE5TraceFilled';      { Буфер данны заполнен }
-    TraceEmptyFlagName   = 'DbWinOLE5TraceEmpty';       { Буфер данных очищен }
+    TraceEnableFlagName  = 'DbWinOLE5TraceEnabled';     { РџРѕС‚РѕРє С‚СЂР°СЃСЃРёСЂРѕРІРєРё СЂР°Р±РѕС‚Р°РµС‚ }
+    TraceFilledFlagName  = 'DbWinOLE5TraceFilled';      { Р‘СѓС„РµСЂ РґР°РЅРЅС‹ Р·Р°РїРѕР»РЅРµРЅ }
+    TraceEmptyFlagName   = 'DbWinOLE5TraceEmpty';       { Р‘СѓС„РµСЂ РґР°РЅРЅС‹С… РѕС‡РёС‰РµРЅ }
 
     TraceBufferName      = 'DbWinOLE5TraceBuffer';
     TraceBufferSize      = 1024 * 8;
@@ -198,10 +198,10 @@ interface
       vAttr := @SecAttr;
     end;
 
-    { Создаем именованый mutex для блокировки trace'ов }
+    { РЎРѕР·РґР°РµРј РёРјРµРЅРѕРІР°РЅС‹Р№ mutex РґР»СЏ Р±Р»РѕРєРёСЂРѕРІРєРё trace'РѕРІ }
     TraceMutex := CreateMutex(vAttr, False, TraceMutexName);
 
-    { Создаем флаги (event) для синхронизации с Debug Window }
+    { РЎРѕР·РґР°РµРј С„Р»Р°РіРё (event) РґР»СЏ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё СЃ Debug Window }
     EnableEvent := CreateEvent(vAttr, True, False, TraceEnableFlagName);
     FilledEvent := CreateEvent(vAttr, True, False, TraceFilledFlagName);
     EmptyEvent  := CreateEvent(vAttr, True, True,  TraceEmptyFlagName);
@@ -213,7 +213,7 @@ interface
 
   procedure InitBuffer;
   begin
-    { Создаем разделяемую область памяти }
+    { РЎРѕР·РґР°РµРј СЂР°Р·РґРµР»СЏРµРјСѓСЋ РѕР±Р»Р°СЃС‚СЊ РїР°РјСЏС‚Рё }
     TraceFileHandle := OpenFileMapping(FILE_MAP_WRITE, False, TraceBufferName);
     TraceBufferPtr := MapViewOfFile(TraceFileHandle, FILE_MAP_WRITE, 0, 0, TraceBufferSize);
   end;
@@ -357,7 +357,7 @@ interface
   begin
     Result := False;
     if TraceEnabled then begin
-      { Этот код пришлось вынести перед TraceExclusive, чтобы не нарушать DllMain restrictions}
+      { Р­С‚РѕС‚ РєРѕРґ РїСЂРёС€Р»РѕСЃСЊ РІС‹РЅРµСЃС‚Рё РїРµСЂРµРґ TraceExclusive, С‡С‚РѕР±С‹ РЅРµ РЅР°СЂСѓС€Р°С‚СЊ DllMain restrictions}
       vLen1 := GetModuleNameA(AInst, vBuf1);
       vLen2 := GetProcessNameA(vBuf2);
 
@@ -388,7 +388,7 @@ interface
   begin
     Result := False;
     if TraceEnabled then begin
-      { Этот код пришлось вынести перед TraceExclusive, чтобы не нарушать DllMain restrictions}
+      { Р­С‚РѕС‚ РєРѕРґ РїСЂРёС€Р»РѕСЃСЊ РІС‹РЅРµСЃС‚Рё РїРµСЂРµРґ TraceExclusive, С‡С‚РѕР±С‹ РЅРµ РЅР°СЂСѓС€Р°С‚СЊ DllMain restrictions}
       vLen1 := GetModuleNameW(AInst, vBuf1);
       vLen2 := GetProcessNameW(vBuf2);
 

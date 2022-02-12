@@ -42,10 +42,10 @@ interface
 
 
   var
-    FVKToken  :TString;   { Êëþ÷ VK.com }
+    FVKToken  :TString;   { ÐšÐ»ÑŽÑ‡ VK.com }
     FVKUser   :TString;   
 
-    FLFM_SK   :TString;   { Êëþ÷ Last.FM }
+    FLFM_SK   :TString;   { ÐšÐ»ÑŽÑ‡ Last.FM }
     FLFMUser  :TString;
 
   function CreateComObject(const ClassID :TGUID) :IUnknown;

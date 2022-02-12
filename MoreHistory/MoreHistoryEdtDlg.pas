@@ -224,11 +224,11 @@ interface
         if FileNameIsLocal(AItem.Path) {IsFullFilePath(vItem.Path)} then begin
           vType := DriveType(AItem.Path);
           if vType = 0 then
-            { Отсутствует }
+            { РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ }
             AItem.Avail := 2
           else
           if vType = 2 then
-            { Не проверяем }
+            { РќРµ РїСЂРѕРІРµСЂСЏРµРј }
             AItem.Avail := 1
           else begin
             if not WinFileExists(AItem.Path) then begin
@@ -287,7 +287,7 @@ interface
       if optSeparateName or not optShowFullPath then begin
 
         if FHierarchical and (vRec.FSel and 2 <> 0) then begin
-          { Группа }
+          { Р“СЂСѓРїРїР° }
           if ACol = 1 then begin
             vDelta := FGrid.Column[0].RealWidth;
 //          if optShowGrid then
@@ -355,11 +355,11 @@ interface
       if not CheckFileExists(vItem.Path) then
         Exit;
 
-      { Глючит, если в процессе просмотра/редактирования файла изменить размер консоли...}
+      { Р“Р»СЋС‡РёС‚, РµСЃР»Рё РІ РїСЂРѕС†РµСЃСЃРµ РїСЂРѕСЃРјРѕС‚СЂР°/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С„Р°Р№Р»Р° РёР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ РєРѕРЅСЃРѕР»Рё...}
       SendMsg(DM_ShowDialog, 0, 0);
       vSave := FARAPI.SaveScreen(0, 0, -1, -1);
       try
-        {!!! Проверить, что файл уже открыт на редактирование }
+        {!!! РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ С„Р°Р№Р» СѓР¶Рµ РѕС‚РєСЂС‹С‚ РЅР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ }
         FarEditOrView(vItem.Path, AEdit, EF_ENABLE_F6);
       finally
         FARAPI.RestoreScreen(vSave);
@@ -547,7 +547,7 @@ interface
       KEY_CTRL5:
         ToggleOption(optShowSaves);
 
-      { Сортировка }
+      { РЎРѕСЂС‚РёСЂРѕРІРєР° }
       KEY_CTRLF4, KEY_CTRLSHIFTF4:
         SetOrder(-4);
       KEY_CTRLF5, KEY_CTRLSHIFTF5:
@@ -604,7 +604,7 @@ interface
       if ATopLine = 0 then
         vHeight := vInfo.WindowSizeY
       else
-        vHeight := ATopLine - 1{Строка состояния редактора};
+        vHeight := ATopLine - 1{РЎС‚СЂРѕРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР°};
       if (ARow < vInfo.TopScreenLine) or (ARow >= vInfo.TopScreenLine + vHeight) then
         vNewTop := RangeLimit(ARow - (vHeight div 2), 0, MaxInt{???});
     end;
@@ -651,7 +651,7 @@ interface
         GotoPosition(ARow, ACol, ATopLine)
     end else
     begin
-      {!!!Кодировка???}
+      {!!!РљРѕРґРёСЂРѕРІРєР°???}
       if AEdit then begin
         FARAPI.Editor(PFarChar(AFileName), nil, 0, 0, -1, -1, EF_NONMODAL or EF_IMMEDIATERETURN or EF_ENABLE_F6, ARow, ACol, CP_DEFAULT);
         if ATopLine <> 0 then

@@ -39,7 +39,7 @@ macro Key = "AltF11" Area = "Shell Editor Viewer Dialog" Descr = "More history: 
 
 
 /*
-Не поддерживается для Far2
+РќРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ РґР»СЏ Far2
 
 macro Key = "AltF8" Area = "Shell Editor Viewer Dialog" Descr = "More history: Commands History"
 {{
@@ -66,7 +66,7 @@ macro Key = "CtrlShiftE" Area = "Shell" Descr = "More history: Next command"
 */
 
 ;;
-;; Стандартные истории
+;; РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РёСЃС‚РѕСЂРёРё
 ;;
 
 macro Key = "AltShiftF12" Area = "Shell" Descr = "Standart History: Folders"

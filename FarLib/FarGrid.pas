@@ -2,7 +2,7 @@
 {* (c) 2009 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* TFarGrid - элемент диалога "таблица"                                       *}
+{* TFarGrid - СЌР»РµРјРµРЅС‚ РґРёР°Р»РѕРіР° "С‚Р°Р±Р»РёС†Р°"                                       *}
 {******************************************************************************}
 
 {$I Defines.inc}
@@ -180,7 +180,7 @@ interface
      FDragWhat       :TGridDragWhat;
      FDragButton     :Integer;
 
-     FMousePos       :TCoord;          { Чтобы лучше работал режим goFollowMouse }
+     FMousePos       :TCoord;          { Р§С‚РѕР±С‹ Р»СѓС‡С€Рµ СЂР°Р±РѕС‚Р°Р» СЂРµР¶РёРј goFollowMouse }
 
      FRowBuf         :PFarChar;
      FRowLen         :Integer;
@@ -679,7 +679,7 @@ interface
   var
     vCol, vRow :Integer;
   begin
-    { Нажатие }
+    { РќР°Р¶Р°С‚РёРµ }
     case HitTest( APos.X, APos.Y, vCol, vRow) of
       ghsCell:
         begin
@@ -780,15 +780,15 @@ interface
       NOP;
 
     if ((AMouse.dwEventFlags = 0) or (AMouse.dwEventFlags = DOUBLE_CLICK)) and (vButton <> 0) then begin
-      { Нажатие }
+      { РќР°Р¶Р°С‚РёРµ }
       MouseDown(vPos, vButton, AMouse.dwEventFlags = DOUBLE_CLICK)
     end else
     if (AMouse.dwEventFlags = 0) and (AMouse.dwButtonState = 0) then begin
-      { Отпускание }
+      { РћС‚РїСѓСЃРєР°РЅРёРµ }
       MouseUp(vPos, vButton);
     end else
     if (AMouse.dwEventFlags = MOUSE_MOVED) then begin
-      { Перемещение }
+      { РџРµСЂРµРјРµС‰РµРЅРёРµ }
       MouseMove(vPos, vButton);
     end;
   end;
@@ -809,7 +809,7 @@ interface
     if (X >= 0) and (X < CLientWidth) and (Y >= 0) and (Y < ClientHeight) then begin
       vHeight := ClientHeight;
       if (FRowCount > vHeight) and (X = ClientWidth - 1) and not (goNoVScroller in FOptions) then begin
-        { Скроллер... }
+        { РЎРєСЂРѕР»Р»РµСЂ... }
         if Y = 0 then
           Result := ghsScrollUp
         else
@@ -856,7 +856,7 @@ interface
     vCols := FColumns.Count;
     vCol := 0;
     vDX := 0;
-    while vCol < vCols { - 1 } { Может вернуть номер клолнки = FColumns.Count } do begin
+    while vCol < vCols { - 1 } { РњРѕР¶РµС‚ РІРµСЂРЅСѓС‚СЊ РЅРѕРјРµСЂ РєР»РѕР»РЅРєРё = FColumns.Count } do begin
       vColumn := Column[vCol];
       vWidth := vColumn.FRealWidth;
       if not (coNoVertLine in vColumn.FOptions) then
@@ -990,7 +990,7 @@ interface
       if K > 0 then begin
         W := ClientWidth - FAllWidth;
         if (FRowCount > ClientHeight) and not (goNoVScroller in FOptions) then
-          Dec(W); { Есть скроллер }
+          Dec(W); { Р•СЃС‚СЊ СЃРєСЂРѕР»Р»РµСЂ }
 
         for I := 0 to M - 1 do begin
           vColumn := Column[I];
@@ -1111,23 +1111,23 @@ interface
           vNextWidth := AWidths[ vIndex[AIndex] ];
           Assert(vNextWidth <= vWidth);
           if vNextWidth < vWidth then
-            { Нашли "ступеньку"}
+            { РќР°С€Р»Рё "СЃС‚СѓРїРµРЅСЊРєСѓ"}
             Break;
         end;
       end;
 
       if (AIndex < vIndex.Count) and ((vWidth - vNextWidth) * AIndex < AOversize) then begin
-        { Стешем вершки... }
+        { РЎС‚РµС€РµРј РІРµСЂС€РєРё... }
         for I := 0 to AIndex - 1 do begin
           vWidth := AWidths[ vIndex[I] ];
           AWidths[ vIndex[I] ] := vNextWidth;
           Dec( AOversize, vWidth - vNextWidth );
         end;
-        { И попробуем снова... }
+        { Р РїРѕРїСЂРѕР±СѓРµРј СЃРЅРѕРІР°... }
         LocReduce(AIndex);
       end else
       begin
-        { Последний "стес" }
+        { РџРѕСЃР»РµРґРЅРёР№ "СЃС‚РµСЃ" }
         for I := AIndex - 1 downto 0 do begin
           vDelta := AOversize div (I + 1);
           vWidth := AWidths[ vIndex[I] ];

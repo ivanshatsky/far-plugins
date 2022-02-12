@@ -25,8 +25,8 @@ interface
 //  cDefWaitTimeout = 0; //3000;
 
   var
-    { Символ-терминатор (признак завершения ожидания ответа) }
-    { Глобальный терминатор используется, если не задан явно при вызове ReadAnswer }
+    { РЎРёРјРІРѕР»-С‚РµСЂРјРёРЅР°С‚РѕСЂ (РїСЂРёР·РЅР°Рє Р·Р°РІРµСЂС€РµРЅРёСЏ РѕР¶РёРґР°РЅРёСЏ РѕС‚РІРµС‚Р°) }
+    { Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ С‚РµСЂРјРёРЅР°С‚РѕСЂ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ, РµСЃР»Рё РЅРµ Р·Р°РґР°РЅ СЏРІРЅРѕ РїСЂРё РІС‹Р·РѕРІРµ ReadAnswer }
     TerminatorChar :AnsiChar = #0;
 
 
@@ -221,25 +221,25 @@ interface
 
     vProcess := GetCurrentProcess;
 
-    { Создаем pipe #1 (Для чтения из stdout дочернего процесса) }
+    { РЎРѕР·РґР°РµРј pipe #1 (Р”Р»СЏ С‡С‚РµРЅРёСЏ РёР· stdout РґРѕС‡РµСЂРЅРµРіРѕ РїСЂРѕС†РµСЃСЃР°) }
     ApiCheck( CreatePipe(vTmpPipe, FChildWrite, @vAttrs, 0) );
-    { Создаем копию pipe, которая не может наследоваться }
+    { РЎРѕР·РґР°РµРј РєРѕРїРёСЋ pipe, РєРѕС‚РѕСЂР°СЏ РЅРµ РјРѕР¶РµС‚ РЅР°СЃР»РµРґРѕРІР°С‚СЊСЃСЏ }
     ApiCheck( DuplicateHandle(vProcess, vTmpPipe, vProcess, @FParentRead, 0, False, DUPLICATE_SAME_ACCESS) );
-    { Закрываем временный handle, который наследуется }
+    { Р—Р°РєСЂС‹РІР°РµРј РІСЂРµРјРµРЅРЅС‹Р№ handle, РєРѕС‚РѕСЂС‹Р№ РЅР°СЃР»РµРґСѓРµС‚СЃСЏ }
     CloseHandle(vTmpPipe);
 
-    { Создаем pipe #2(Для записи в stdin дочернего процесса) }
+    { РЎРѕР·РґР°РµРј pipe #2(Р”Р»СЏ Р·Р°РїРёСЃРё РІ stdin РґРѕС‡РµСЂРЅРµРіРѕ РїСЂРѕС†РµСЃСЃР°) }
     ApiCheck( CreatePipe(FChildRead, vTmpPipe, @vAttrs, 0) );
-    { Создаем копию pipe, которая не может наследоваться }
+    { РЎРѕР·РґР°РµРј РєРѕРїРёСЋ pipe, РєРѕС‚РѕСЂР°СЏ РЅРµ РјРѕР¶РµС‚ РЅР°СЃР»РµРґРѕРІР°С‚СЊСЃСЏ }
     ApiCheck( DuplicateHandle(vProcess, vTmpPipe, vProcess, @FParentWrite, 0, False, DUPLICATE_SAME_ACCESS) );
-    { Закрываем временный handle, который наследуется }
+    { Р—Р°РєСЂС‹РІР°РµРј РІСЂРµРјРµРЅРЅС‹Р№ handle, РєРѕС‚РѕСЂС‹Р№ РЅР°СЃР»РµРґСѓРµС‚СЃСЏ }
     CloseHandle(vTmpPipe);
 
-    { Создаем pipe #3 (Для чтения из stderror дочернего процесса) }
+    { РЎРѕР·РґР°РµРј pipe #3 (Р”Р»СЏ С‡С‚РµРЅРёСЏ РёР· stderror РґРѕС‡РµСЂРЅРµРіРѕ РїСЂРѕС†РµСЃСЃР°) }
     ApiCheck( CreatePipe(vTmpPipe, FChildError, @vAttrs, 0) );
-    { Создаем копию pipe, которая не может наследоваться }
+    { РЎРѕР·РґР°РµРј РєРѕРїРёСЋ pipe, РєРѕС‚РѕСЂР°СЏ РЅРµ РјРѕР¶РµС‚ РЅР°СЃР»РµРґРѕРІР°С‚СЊСЃСЏ }
     ApiCheck( DuplicateHandle(vProcess, vTmpPipe, vProcess, @FParentError, 0, False, DUPLICATE_SAME_ACCESS) );
-    { Закрываем временный handle, который наследуется }
+    { Р—Р°РєСЂС‹РІР°РµРј РІСЂРµРјРµРЅРЅС‹Р№ handle, РєРѕС‚РѕСЂС‹Р№ РЅР°СЃР»РµРґСѓРµС‚СЃСЏ }
     CloseHandle(vTmpPipe);
 
     FOutReader := THandleReader.CreateEx(FParentRead);
@@ -275,7 +275,7 @@ interface
     vProcessInfo :TProcessInformation;
     vTmpStr :TString;
   begin
-    {Заполняем структуру startup info }
+    {Р—Р°РїРѕР»РЅСЏРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ startup info }
     FillZero(vStartup, sizeof(vStartup));
     vStartup.cb := sizeof(vStartup);
     GetStartupInfo(vStartup);
@@ -289,7 +289,7 @@ interface
 
     SetString(vTmpStr, PTChar(ACommand), length(ACommand));
 
-    { Запускаем процесс }
+    { Р—Р°РїСѓСЃРєР°РµРј РїСЂРѕС†РµСЃСЃ }
     ApiCheck( CreateProcess(
       nil,      // pointer to name of executable module
       PTChar(vTmpStr),	// pointer to command line string

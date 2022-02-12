@@ -625,7 +625,7 @@ interface
 
   function StrUpPos(const Substr, Str :TString) :Integer;
   begin
-    {!!! - Повысить эффективность}
+    {!!! - РџРѕРІС‹СЃРёС‚СЊ СЌС„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ}
     Result := Pos( StrUpCase(SubStr), StrUpCase(Str) );
   end;
 
@@ -933,7 +933,7 @@ interface
 
   function Int2StrLen(Num :Integer) :Integer;
   begin
-    {!!!Оптимизировать}
+    {!!!РћРїС‚РёРјРёР·РёСЂРѕРІР°С‚СЊ}
     Result := Length(Int2Str(Num));
   end;
 
@@ -1648,10 +1648,10 @@ interface
   function CombineFileName(const Path, FileName :TString) :TString;
   begin
     if IsFullFilePath(FileName) then begin
-      { FileName содержит абсолютный путь }
+      { FileName СЃРѕРґРµСЂР¶РёС‚ Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ }
       Result := FileName;
     end else begin
-      { FileName содержит относительный путь }
+      { FileName СЃРѕРґРµСЂР¶РёС‚ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ }
       Result := AddFileName(Path, FileName);
     end;
   end;

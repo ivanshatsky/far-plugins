@@ -6,7 +6,7 @@ unit FarConMan;
 {* (c) 2007-2009 Max Rusov                                                    *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* Поддержка ConMan/ConEmu                                                    *}
+{* РџРѕРґРґРµСЂР¶РєР° ConMan/ConEmu                                                    *}
 {******************************************************************************}
 
 interface
@@ -188,7 +188,7 @@ interface
         Result := True;
 
     except
-      { На случай выгрузки плагина ConEmu... }
+      { РќР° СЃР»СѓС‡Р°Р№ РІС‹РіСЂСѓР·РєРё РїР»Р°РіРёРЅР° ConEmu... }
       MultiConDetected := False;
       IsConsoleActive := nil;
       Result := True;

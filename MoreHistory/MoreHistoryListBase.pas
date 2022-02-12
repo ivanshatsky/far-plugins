@@ -33,9 +33,9 @@ interface
   type
     PFilterRec = ^TFilterRec;
     TFilterRec = packed record
-      FIdx :Integer; { Индекс записи истории (для группы - индекс первой записи группы) }
-      FPos :Word;    { Позиция быстрого фильтра (для группы - число элементов в группе) }
-      FLen :Byte;    { Длина быстрого фильтра }
+      FIdx :Integer; { РРЅРґРµРєСЃ Р·Р°РїРёСЃРё РёСЃС‚РѕСЂРёРё (РґР»СЏ РіСЂСѓРїРїС‹ - РёРЅРґРµРєСЃ РїРµСЂРІРѕР№ Р·Р°РїРёСЃРё РіСЂСѓРїРїС‹) }
+      FPos :Word;    { РџРѕР·РёС†РёСЏ Р±С‹СЃС‚СЂРѕРіРѕ С„РёР»СЊС‚СЂР° (РґР»СЏ РіСЂСѓРїРїС‹ - С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РіСЂСѓРїРїРµ) }
+      FLen :Byte;    { Р”Р»РёРЅР° Р±С‹СЃС‚СЂРѕРіРѕ С„РёР»СЊС‚СЂР° }
       FSel :Byte;    { 1 - Selected, 2 - Group, 4 - Expanded Group }
     end;
 
@@ -105,8 +105,8 @@ interface
       FFilter         :TMyFilter;
 //    FFilterMode     :Boolean;
       FMaskStack      :TStrList;
-      FTotalCount     :Integer;     { Общее число элементов истории (с учетом Mode и ShowHidden) }
-      FShowCount      :Integer;     { Число элементов, попавшее под фильтр }
+      FTotalCount     :Integer;     { РћР±С‰РµРµ С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ РёСЃС‚РѕСЂРёРё (СЃ СѓС‡РµС‚РѕРј Mode Рё ShowHidden) }
+      FShowCount      :Integer;     { Р§РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ, РїРѕРїР°РІС€РµРµ РїРѕРґ С„РёР»СЊС‚СЂ }
       FFixedCount     :Integer;
       FFilterMask     :TString;
       FSelectedCount  :Integer;
@@ -569,7 +569,7 @@ interface
     if AGroup <> nil then begin
       if GroupByDomain then
         vLen := length(AItem.GetNameWithoutDomain(vDelta));
-      Inc(vLen); { Отступ в группе }
+      Inc(vLen); { РћС‚СЃС‚СѓРї РІ РіСЂСѓРїРїРµ }
     end;
     FMenuMaxWidth := IntMax(FMenuMaxWidth, vLen)
   end;
@@ -675,7 +675,7 @@ interface
               vGroup.FDomain := vHist.GetDomain;
               vGroups.Add(vGroup);
               if FDomain = #0 then
-                { Автоматически раскрываем первую группу }
+                { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЂР°СЃРєСЂС‹РІР°РµРј РїРµСЂРІСѓСЋ РіСЂСѓРїРїСѓ }
                 FDomain := vGroupName;
               vGroup.FExpanded := (vFilters.Count > 0) or StrEqual(vGroupName, FDomain);
             end;
@@ -686,7 +686,7 @@ interface
           end;
         end;
 
-        { Больше не нужен - освободим память. }
+        { Р‘РѕР»СЊС€Рµ РЅРµ РЅСѓР¶РµРЅ - РѕСЃРІРѕР±РѕРґРёРј РїР°РјСЏС‚СЊ. }
         FreeObj(vFilter);
 
         vPrevExpanded := False;
@@ -803,7 +803,7 @@ interface
           vIndex := FFilter.Count - 1;
       end;
       SetCurrent( vIndex, lmCenter );
-//    UpdateHeader; { Чтобы не стирался SortMark}
+//    UpdateHeader; { Р§С‚РѕР±С‹ РЅРµ СЃС‚РёСЂР°Р»СЃСЏ SortMark}
     finally
       SendMsg(DM_ENABLEREDRAW, 1, 0);
     end;
@@ -1117,7 +1117,7 @@ interface
     if (i >= 0) and (i < cMaxDrives) then
       if (1 shl i) and FDrives <> 0 then
         if (1 shl i) and FTmpDrives <> 0 then
-          Result := 2 { Не проверяем }
+          Result := 2 { РќРµ РїСЂРѕРІРµСЂСЏРµРј }
         else
           Result := 1;
   end;
@@ -1325,7 +1325,7 @@ interface
         ReinitAndSaveCurrent;
       end;
 
-      { Выделение }
+      { Р’С‹РґРµР»РµРЅРёРµ }
       KEY_INS:
         LocSelectCurrent;
       KEY_CTRLADD:
@@ -1341,13 +1341,13 @@ interface
       KEY_CTRL+KEY_DIVIDE:
         LocSelectUnavail;
 
-      { Операции над выделенными... }
+      { РћРїРµСЂР°С†РёРё РЅР°Рґ РІС‹РґРµР»РµРЅРЅС‹РјРё... }
       KEY_CTRLINS:
         LocCopySelected;
       KEY_CTRLDEL, KEY_F8:
         DeleteSelected;
 
-      { Управление отображением }
+      { РЈРїСЂР°РІР»РµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµРј }
       KEY_CTRLH:
         ToggleOption(optShowUnavail);
 
@@ -1372,7 +1372,7 @@ interface
       KEY_CTRL0:
         ToggleOption(optShowGrid);
 
-      { Сортировка }
+      { РЎРѕСЂС‚РёСЂРѕРІРєР° }
       KEY_CTRLF1, KEY_CTRLSHIFTF1:
         SetOrder(1);
       KEY_CTRLF2, KEY_CTRLSHIFTF2:
@@ -1382,7 +1382,7 @@ interface
       KEY_CTRLF11:
         SetOrder(0);
 
-      { Фильтрация }
+      { Р¤РёР»СЊС‚СЂР°С†РёСЏ }
       KEY_DEL, KEY_ALT, KEY_RALT:
         LocSetFilter('');
       KEY_BS:

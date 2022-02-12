@@ -1034,7 +1034,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Экспортируемые функции                                                      }
+ { Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ С„СѓРЅРєС†РёРё                                                      }
  {-----------------------------------------------------------------------------}
 
   function pvdInit2(pInit :PPVDInitPlugin2) :integer; stdcall;
@@ -1175,7 +1175,7 @@ interface
 
  {-----------------------------------------------------------------------------}
 
-  // Инициализация контекста дисплея. Используется тот pContext, который был получен в pvdInit2
+  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРѕРЅС‚РµРєСЃС‚Р° РґРёСЃРїР»РµСЏ. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕС‚ pContext, РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» РїРѕР»СѓС‡РµРЅ РІ pvdInit2
   function pvdDisplayInit2(pContext :Pointer; pDisplayInit :PPVDInfoDisplayInit2) :BOOL; stdcall;
   begin
    {$ifdef bTracePvd}
@@ -1186,7 +1186,7 @@ interface
   end;
 
 
-  // Прицепиться или отцепиться от окна вывода
+  // РџСЂРёС†РµРїРёС‚СЊСЃСЏ РёР»Рё РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РѕРєРЅР° РІС‹РІРѕРґР°
   function pvdDisplayAttach2(pContext :Pointer; pDisplayAttach :PPVDInfoDisplayAttach2) :BOOL; stdcall;
   begin
    {$ifdef bTracePvd}
@@ -1196,7 +1196,7 @@ interface
   end;
 
 
-  // Создать контекст для отображения картинки в pContext (перенос декодированных данных в видеопамять)
+  // РЎРѕР·РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё РІ pContext (РїРµСЂРµРЅРѕСЃ РґРµРєРѕРґРёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С… РІ РІРёРґРµРѕРїР°РјСЏС‚СЊ)
   function pvdDisplayCreate2(pContext :Pointer; pDisplayCreate :PPVDInfoDisplayCreate2) :BOOL; stdcall;
   var
     vView :TView;
@@ -1221,7 +1221,7 @@ interface
   end;
 
 
-  // Закрыть контекст для отображения картинки (освободить видеопамять)
+  // Р—Р°РєСЂС‹С‚СЊ РєРѕРЅС‚РµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё (РѕСЃРІРѕР±РѕРґРёС‚СЊ РІРёРґРµРѕРїР°РјСЏС‚СЊ)
   procedure pvdDisplayClose2(pContext :Pointer; pDisplayContext :Pointer); stdcall;
   var
     vView :TView;
@@ -1239,7 +1239,7 @@ interface
     end;
   end;
 
-  // Закрыть модуль вывода (освобождение интерфейсов DX, отцепиться от окна)
+  // Р—Р°РєСЂС‹С‚СЊ РјРѕРґСѓР»СЊ РІС‹РІРѕРґР° (РѕСЃРІРѕР±РѕР¶РґРµРЅРёРµ РёРЅС‚РµСЂС„РµР№СЃРѕРІ DX, РѕС‚С†РµРїРёС‚СЊСЃСЏ РѕС‚ РѕРєРЅР°)
   procedure pvdDisplayExit2(pContext :Pointer); stdcall;
   begin
    {$ifdef bTracePvd}

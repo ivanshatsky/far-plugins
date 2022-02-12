@@ -346,7 +346,7 @@ interface
 
   function FormatTrackFileName(const ATrack, AArtist, AAlbum, AExt :TString; AIndex :Integer) :TString;
   begin
-    {!!! Настройка}
+    {!!! РќР°СЃС‚СЂРѕР№РєР°}
     Result := Format('%d) %s', [AIndex, ATrack]);
     Result := AddFileExtension(CleanFileName(Result), AExt);
   end;
@@ -1762,7 +1762,7 @@ interface
     if ShowMessageBut(GetMsgStr(strAddToLib), vPrompt, [GetMsgStr(strAddToLibBut), GetMsgStr(strCancel)]) <> 0 then
       Exit;
 
-    { Обновляем пассивную панель, если на ней FarFM }
+    { РћР±РЅРѕРІР»СЏРµРј РїР°СЃСЃРёРІРЅСѓСЋ РїР°РЅРµР»СЊ, РµСЃР»Рё РЅР° РЅРµР№ FarFM }
     vPanel := GetPassivePanel;
     vList := TExList.Create;
     try
@@ -2086,7 +2086,7 @@ interface
     procedure LocGoInto(ALevel :TFarFmLevel; const AName, AInfo :TString);
     begin
       if (ALevel = fflArtistSimilar) and (AMode and OPM_FIND <> 0) then
-        { Во избежании зацикливания поиска... }
+        { Р’Рѕ РёР·Р±РµР¶Р°РЅРёРё Р·Р°С†РёРєР»РёРІР°РЅРёСЏ РїРѕРёСЃРєР°... }
         Abort;
 
       PushStack;
@@ -2967,7 +2967,7 @@ interface
         on E :EAbort do
           raise;
         on E :Exception do
-          AppError('Ошибка авторизации на Last.FM');
+          AppError('РћС€РёР±РєР° Р°РІС‚РѕСЂРёР·Р°С†РёРё РЅР° Last.FM');
       end;
     end;
 

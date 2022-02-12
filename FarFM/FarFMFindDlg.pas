@@ -122,7 +122,7 @@ interface
       procedure ErrorHandler(E :Exception); override;
 
     private
-      FMode     :Integer; { FMode: 1 - поиск исполнителей, 2 - поиск пользователей, 3 - поиск URL }
+      FMode     :Integer; { FMode: 1 - РїРѕРёСЃРє РёСЃРїРѕР»РЅРёС‚РµР»РµР№, 2 - РїРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, 3 - РїРѕРёСЃРє URL }
 
 
       FPrompt   :TString;

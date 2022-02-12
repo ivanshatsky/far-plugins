@@ -40,7 +40,7 @@ interface
 
   procedure FillWindowRect(AHandle :THandle; const ARect :TRect; AColor :TColor);
   procedure FillWindowRegion(AHandle :THandle; ARegion :HRgn; AColor :TColor);
-    { Тестовая процедура: закрашивает у окна AHandle регион ARegion цветом AColor }
+    { РўРµСЃС‚РѕРІР°СЏ РїСЂРѕС†РµРґСѓСЂР°: Р·Р°РєСЂР°С€РёРІР°РµС‚ Сѓ РѕРєРЅР° AHandle СЂРµРіРёРѕРЅ ARegion С†РІРµС‚РѕРј AColor }
 
 
 {******************************************************************************}

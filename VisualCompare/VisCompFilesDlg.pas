@@ -42,7 +42,7 @@ interface
       FItem :TCmpFileItem;
       FPos  :Word;
       FLen  :Byte;
-      FSel  :Byte;  { 1 - выделено слева, 2 - выделено справа, 3 - выделены обе}
+      FSel  :Byte;  { 1 - РІС‹РґРµР»РµРЅРѕ СЃР»РµРІР°, 2 - РІС‹РґРµР»РµРЅРѕ СЃРїСЂР°РІР°, 3 - РІС‹РґРµР»РµРЅС‹ РѕР±Рµ}
     end;
 
     TMyFilter = class(TExList)
@@ -202,12 +202,12 @@ interface
 
     Result := -LogCompare(vItem1.IsFolder, vItem2.IsFolder);
     if Context <> 0 then
-      {Файлы вначале (Unfold режим)}
+      {Р¤Р°Р№Р»С‹ РІРЅР°С‡Р°Р»Рµ (Unfold СЂРµР¶РёРј)}
       Result := -Result;
 
     if Result = 0 then begin
       if optDiffAtTop then
-        { Изменения вначале }
+        { РР·РјРµРЅРµРЅРёСЏ РІРЅР°С‡Р°Р»Рµ }
         Result := -IntCompare(Integer(vItem1.GetResume), Integer(vItem2.GetResume));
 
       if Result = 0 then begin
@@ -437,7 +437,7 @@ interface
 
   procedure TFilesDlg.GridPosChange(ASender :TFarGrid);
   begin
-    { Обновляем status-line }
+    { РћР±РЅРѕРІР»СЏРµРј status-line }
     UpdateFooter;
   end;
 
@@ -452,7 +452,7 @@ interface
     if ARow < FFilter.Count then begin
       vItem := GetFileItem(ARow);
       if vItem = nil then
-        Exit; { Элемент ".."}
+        Exit; { Р­Р»РµРјРµРЅС‚ ".."}
 
       vTag := FGrid.Column[ACol].Tag;
       vVer := (vTag and $00FF) - 1;
@@ -495,7 +495,7 @@ interface
       vRec := FFilter.PItems[ARow];
       vItem := vRec.FItem;
       if vItem = nil then
-        Exit; { Элемент ".."}
+        Exit; { Р­Р»РµРјРµРЅС‚ ".."}
 
       if ACol < 0 then begin
 
@@ -506,7 +506,7 @@ interface
           {}
         else begin
           if optHilightDiff then begin
-            { Подсвечивается вся строка, в которой обнаружены хоть какие-то различия }
+            { РџРѕРґСЃРІРµС‡РёРІР°РµС‚СЃСЏ РІСЃСЏ СЃС‚СЂРѕРєР°, РІ РєРѕС‚РѕСЂРѕР№ РѕР±РЅР°СЂСѓР¶РµРЅС‹ С…РѕС‚СЊ РєР°РєРёРµ-С‚Рѕ СЂР°Р·Р»РёС‡РёСЏ }
 
             if vItem.GetResume <> crSame then
               AColor := optDiffColor
@@ -529,12 +529,12 @@ interface
 
         vColor := UndefColor;
         if vItem.BothAttr(faPresent) then begin
-          { Подсвечивается ячейка, в которой обнаружены различия }
+          { РџРѕРґСЃРІРµС‡РёРІР°РµС‚СЃСЏ СЏС‡РµР№РєР°, РІ РєРѕС‚РѕСЂРѕР№ РѕР±РЅР°СЂСѓР¶РµРЅС‹ СЂР°Р·Р»РёС‡РёСЏ }
 
           case vTag of
             1:
               if optCompareContents then begin
-                { Сравниваем содержимое }
+                { РЎСЂР°РІРЅРёРІР°РµРј СЃРѕРґРµСЂР¶РёРјРѕРµ }
                 if vItem.HasAttr(faDirectory) then begin
 
                   if not FUnfold and (vItem.Subs <> nil) and ([crUncomp, crDiff, crOrphan] * vItem.GetFolderResume = []) then
@@ -552,7 +552,7 @@ interface
 
             2:
               if (optCompareSize and (faDirectory and vItem.Attr[vVer] = 0)) then begin
-                { Сравнимаем размер }
+                { РЎСЂР°РІРЅРёРјР°РµРј СЂР°Р·РјРµСЂ }
                 if vItem.Size[vVer] <> vItem.Size[1-vVer] then
                   vColor := optNewerColor
                 else
@@ -561,7 +561,7 @@ interface
 
             3:
               if optCompareTime and (optCompareFolderAttrs or (faDirectory and vItem.Attr[vVer] = 0)) then begin
-                { Сравнимаем даты }
+                { РЎСЂР°РІРЅРёРјР°РµРј РґР°С‚С‹ }
                 if vItem.Time[vVer] > vItem.Time[1-vVer] then
                   vColor := optNewerColor
                 else
@@ -573,7 +573,7 @@ interface
 
             4:
               if optCompareAttr and (optCompareFolderAttrs or (faDirectory and vItem.Attr[vVer] = 0)) then begin
-                { Сравнимаем атрибуты }
+                { РЎСЂР°РІРЅРёРјР°РµРј Р°С‚СЂРёР±СѓС‚С‹ }
                 if vItem.Attr[vVer] and faComparedAttrs <> vItem.Attr[1-vVer] and faComparedAttrs then
                   vColor := optNewerColor
                 else
@@ -584,7 +584,7 @@ interface
         end else
         begin
           if faPresent and vItem.Attr[vVer] <> 0 then
-            { Непарный элемент (сирота) }
+            { РќРµРїР°СЂРЅС‹Р№ СЌР»РµРјРµРЅС‚ (СЃРёСЂРѕС‚Р°) }
             vColor := optOrphanColor;
         end;
 
@@ -614,7 +614,7 @@ interface
         Inc(X); Dec(AWidth);
         vStr := Int2Str(ACount);
         if EqualColor(AColor, FGrid.SelColor) and (GetColorBG(AColor) = GetColorFG(ATxtColor)) then
-          { Чтобы не пропадали цифры, если их цвет совпадает с фоном текущей строки }
+          { Р§С‚РѕР±С‹ РЅРµ РїСЂРѕРїР°РґР°Р»Рё С†РёС„СЂС‹, РµСЃР»Рё РёС… С†РІРµС‚ СЃРѕРІРїР°РґР°РµС‚ СЃ С„РѕРЅРѕРј С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё }
           ATxtColor := FGrid.SelColor;
         ATxtColor := ChangeBG( ATxtColor, AColor );
         FGrid.DrawChr(X, Y, PTChar(vStr), AWidth, ATxtColor);
@@ -625,7 +625,7 @@ interface
     procedure LocDrawEx(const AStr :TString; APos, ALen :Integer);
     begin
       if (ALen > 0) (*and (FGrid.Column[ACol].Tag = FFilterColumn)*) then
-        { Выделение части строки, совпадающей с фильтром... }
+        { Р’С‹РґРµР»РµРЅРёРµ С‡Р°СЃС‚Рё СЃС‚СЂРѕРєРё, СЃРѕРІРїР°РґР°СЋС‰РµР№ СЃ С„РёР»СЊС‚СЂРѕРј... }
         FGrid.DrawChrEx(X, Y, PTChar(AStr), AWidth, APos, ALen, AColor, ChangeFG(AColor, optFoundColor))
       else
         FGrid.DrawChr(X, Y, PTChar(AStr), AWidth, AColor);
@@ -637,7 +637,7 @@ interface
       vRec := FFilter.PItems[ARow];
       vItem := vRec.FItem;
       if vItem = nil then begin
-        { Элемент ".."}
+        { Р­Р»РµРјРµРЅС‚ ".."}
         FGrid.DrawChr(X+1, Y, '..', AWidth-1, AColor);
         Exit;
       end;
@@ -781,14 +781,14 @@ interface
         if vMask <> '' then begin
           if not CheckMask(vMask, vTitle, vHasMask, vPos, vLen) then
             if FUnfold and (vItem.Subs <> nil) then
-              { Папки пока оставляем - они отфильтруются по содержимому. }
+              { РџР°РїРєРё РїРѕРєР° РѕСЃС‚Р°РІР»СЏРµРј - РѕРЅРё РѕС‚С„РёР»СЊС‚СЂСѓСЋС‚СЃСЏ РїРѕ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ. }
             else
               Continue;
         end;
 
         AFilter.Add(vItem, vPos, vLen);
 
-        {!!! Учесть Folder Summary}
+        {!!! РЈС‡РµСЃС‚СЊ Folder Summary}
         vMaxLen := IntMax(vMaxLen, Length(vTitle));
         if vItem.Size[0] > vMaxSize then
           vMaxSize := vItem.Size[0];
@@ -808,7 +808,7 @@ interface
       vTmpFilter := TMyFilter.CreateSize(SizeOf(TFilterRec));
       try
         LocAddList(vTmpFilter, AList);
-        vTmpFilter.SortList(True, 1); {Файлы вначале}
+        vTmpFilter.SortList(True, 1); {Р¤Р°Р№Р»С‹ РІРЅР°С‡Р°Р»Рµ}
 
         for I := 0 to vTmpFilter.Count - 1 do begin
           vRec := vTmpFilter.PItems[I];
@@ -816,7 +816,7 @@ interface
 
           if vItem.Subs = nil then begin
             if AParent <> nil then begin
-              { Вставляем заголовок группы, только когда в нее попадает хотя бы один файл... }
+              { Р’СЃС‚Р°РІР»СЏРµРј Р·Р°РіРѕР»РѕРІРѕРє РіСЂСѓРїРїС‹, С‚РѕР»СЊРєРѕ РєРѕРіРґР° РІ РЅРµРµ РїРѕРїР°РґР°РµС‚ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ С„Р°Р№Р»... }
               FFilter.Add(AParent, 0, 0);
               AParent := nil;
             end;
@@ -824,7 +824,7 @@ interface
           end else
           begin
             if vRec.FLen > 0 then begin
-              { Группа попадает под фильтр, оставляем ее безусловно }
+              { Р“СЂСѓРїРїР° РїРѕРїР°РґР°РµС‚ РїРѕРґ С„РёР»СЊС‚СЂ, РѕСЃС‚Р°РІР»СЏРµРј РµРµ Р±РµР·СѓСЃР»РѕРІРЅРѕ }
               FFilter.Add(vItem, vRec.FPos, vRec.FLen);
               LocAddUnfold(nil, vItem.Subs)
             end else
@@ -860,7 +860,7 @@ interface
       LocAddList(FFilter, FItems);
       FFilter.SortList(True, 0);
       if FComp.Results <> FItems then
-        { Элемент ".." для выхода из группы }
+        { Р­Р»РµРјРµРЅС‚ ".." РґР»СЏ РІС‹С…РѕРґР° РёР· РіСЂСѓРїРїС‹ }
         FFilter.Add(nil, 0, 0, 0);
     end else
       LocAddUnfold(nil, FItems);
@@ -1423,7 +1423,7 @@ interface
       if not FComp.CanGetFile(vVer) then
         begin Beep; Exit; end;
 
-      { Глючит, если в процессе просмотра/редактирования файла изменить размер консоли...}
+      { Р“Р»СЋС‡РёС‚, РµСЃР»Рё РІ РїСЂРѕС†РµСЃСЃРµ РїСЂРѕСЃРјРѕС‚СЂР°/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С„Р°Р№Р»Р° РёР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ РєРѕРЅСЃРѕР»Рё...}
       SendMsg(DM_ShowDialog, 0, 0);
       vSave := FARAPI.SaveScreen(0, 0, -1, -1);
       try
@@ -1474,13 +1474,13 @@ interface
     vVer := GetCurSide;
 
     if (vItem = nil) and not FUnfold then
-      { Позиция - ".." }
+      { РџРѕР·РёС†РёСЏ - ".." }
       vItem := FItems.ParentItem;
 
     if (vItem <> nil) then begin
       vSelected := TStringList.Create;
       try
-        { Строим сортированный список, чтобы быстрее работал FarPanelSetSelectedItems }
+        { РЎС‚СЂРѕРёРј СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє, С‡С‚РѕР±С‹ Р±С‹СЃС‚СЂРµРµ СЂР°Р±РѕС‚Р°Р» FarPanelSetSelectedItems }
         vSelected.Sorted := True;
 
         vName := vItem.Name;
@@ -1808,7 +1808,7 @@ interface
       KEY_F9:
         OptionsMenu;
 
-      { Выделение }
+      { Р’С‹РґРµР»РµРЅРёРµ }
       KEY_INS:
         LocSelectCurrent;
       KEY_CTRLADD:
@@ -1865,7 +1865,7 @@ interface
       KEY_CTRLF12:
         SortByDlg;
 
-      { Фильтрация }
+      { Р¤РёР»СЊС‚СЂР°С†РёСЏ }
       KEY_DEL, KEY_ALT, KEY_RALT:
         LocSetFilter('');
       KEY_BS:
@@ -1933,7 +1933,7 @@ interface
         UpdateHeader;
         ResizeDialog;
         UpdateTitles;
-        UpdateFooter; { Чтобы центрировался status-line }
+        UpdateFooter; { Р§С‚РѕР±С‹ С†РµРЅС‚СЂРёСЂРѕРІР°Р»СЃСЏ status-line }
         SetCurrent(FGrid.CurRow, lmScroll);
       end;
 

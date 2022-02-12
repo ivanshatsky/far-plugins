@@ -148,7 +148,7 @@ interface
 
 
   var
-    optGDBName        :TString = cDefGDBName;   { Например, "GDB64" }
+    optGDBName        :TString = cDefGDBName;   { РќР°РїСЂРёРјРµСЂ, "GDB64" }
     optGDBPresets     :TString = '';
     optCygwinRoot     :TString = '';
 
@@ -161,7 +161,7 @@ interface
     {CPU View}
     optCPUShowAddr    :Integer = 1;     { 0-No; 1-Addr; 2-Delta; 3-Addr+Delta }
     optCPUShowSrc     :Integer = 1;     { 0-File:Line 1-File:Line Str 2-Line Str 3-Str }
-    optCPUMixSrc      :Boolean = True;  { Включать исходный код... }
+    optCPUMixSrc      :Boolean = True;  { Р’РєР»СЋС‡Р°С‚СЊ РёСЃС…РѕРґРЅС‹Р№ РєРѕРґ... }
 
     optCPUCurChar     :TChar   = #16;
 
@@ -351,7 +351,7 @@ interface
       if ATopLine = 0 then
         vHeight := vInfo.WindowSizeY
       else
-        vHeight := ATopLine - 1{Строка состояния редактора};
+        vHeight := ATopLine - 1{РЎС‚СЂРѕРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР°};
       if (ARow < vInfo.TopScreenLine) or (ARow >= vInfo.TopScreenLine + vHeight) then
         vNewTop := RangeLimit(ARow - (vHeight div 2), 0, MaxInt{???});
     end;

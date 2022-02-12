@@ -90,7 +90,7 @@ interface
     private
      {$ifdef bDebug}
      {$ifndef bUnicodeRTL}
-      FMessage0 :TAnsiStr;  { Чтобы не глючил отладчик }
+      FMessage0 :TAnsiStr;  { Р§С‚РѕР±С‹ РЅРµ РіР»СЋС‡РёР» РѕС‚Р»Р°РґС‡РёРє }
      {$endif bUnicodeRTL}
      {$endif bDebug}
       FMessage :TString;

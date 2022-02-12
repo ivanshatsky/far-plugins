@@ -276,7 +276,7 @@ interface
               FImpact := IntMax(FImpact - vDelta, 0);
 
             if (FImpact = 0) or (vDir <> FDirection) then
-              { Принудительная остановка }
+              { РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅР°СЏ РѕСЃС‚Р°РЅРѕРІРєР° }
               Break;
 
             vDelta := IntMin((FImpact div 10) + 1, opt_MaxSpeed);
@@ -509,7 +509,7 @@ interface
   begin
     if ARec.EventType = _MOUSE_EVENT then
       if ARec.Event.MouseEvent.dwEventFlags = 0 then
-        { Клик мышкой останавливает прокрутку }
+        { РљР»РёРє РјС‹С€РєРѕР№ РѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїСЂРѕРєСЂСѓС‚РєСѓ }
         ImmediateStop;
     Result := 0;
   end;

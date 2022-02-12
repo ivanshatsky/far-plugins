@@ -6,7 +6,7 @@ unit FarListDlg;
 {* (c) 2008 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* Типовой диалог - список                                                    *}
+{* РўРёРїРѕРІРѕР№ РґРёР°Р»РѕРі - СЃРїРёСЃРѕРє                                                    *}
 {******************************************************************************}
 
 interface
@@ -47,8 +47,8 @@ interface
     protected
       FGrid           :TFarGrid;
       FMenuMaxWidth   :Integer;
-      FMaxHeightPerc  :Integer;   { Ограничитель высоты диалога }
-      FBottomAlign    :Boolean;   { Прижимать диалог к нижней части окна }
+      FMaxHeightPerc  :Integer;   { РћРіСЂР°РЅРёС‡РёС‚РµР»СЊ РІС‹СЃРѕС‚С‹ РґРёР°Р»РѕРіР° }
+      FBottomAlign    :Boolean;   { РџСЂРёР¶РёРјР°С‚СЊ РґРёР°Р»РѕРі Рє РЅРёР¶РЅРµР№ С‡Р°СЃС‚Рё РѕРєРЅР° }
 
       procedure ResizeDialog;
       procedure SetCurrent(AIndex :Integer; AMode :TLocationMode = lmScroll);
@@ -446,7 +446,7 @@ interface
       KEY_ENTER:
         SelectItem(2);
 
-      { Фильтрация }
+      { Р¤РёР»СЊС‚СЂР°С†РёСЏ }
       KEY_DEL, KEY_ALT, KEY_RALT:
         LocSetFilter('');
       KEY_BS:

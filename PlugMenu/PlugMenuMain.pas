@@ -6,7 +6,7 @@ unit PlugMenuMain;
 {* (c) 2008-2012 Max Rusov                                                    *}
 {*                                                                            *}
 {* PlugMenu Far Plugin                                                        *}
-{* Экспортируемые функции                                                     *}
+{* Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ С„СѓРЅРєС†РёРё                                                     *}
 {******************************************************************************}
 
 interface
@@ -88,7 +88,7 @@ interface
     vHandle := GetModuleHandle('Underscore.dll');
 
     if vHandle <> 0 then begin
-      { Под Underscore не смотрим на командную строку... }
+      { РџРѕРґ Underscore РЅРµ СЃРјРѕС‚СЂРёРј РЅР° РєРѕРјР°РЅРґРЅСѓСЋ СЃС‚СЂРѕРєСѓ... }
 
       vStr := GetExeModuleFileName;
       Result := AddFileName(ExtractFilePath(vStr), 'Plugins');
@@ -135,8 +135,8 @@ interface
 //  FMinFarVer := MakeVersion(3, 0, 2927);   { Release }
     FMinFarVer := MakeVersion(3, 0, 3600);   { Instance }
    {$else}
-//  FMinFarVer := MakeVersion(2, 0, 910);    { Новый формат кэша плагинов. }
-//  FMinFarVer := MakeVersion(2, 0, 995);    { Изменена TWindowInfo }
+//  FMinFarVer := MakeVersion(2, 0, 910);    { РќРѕРІС‹Р№ С„РѕСЂРјР°С‚ РєСЌС€Р° РїР»Р°РіРёРЅРѕРІ. }
+//  FMinFarVer := MakeVersion(2, 0, 995);    { РР·РјРµРЅРµРЅР° TWindowInfo }
 //  FMinFarVer := MakeVersion(2, 0, 1148);   { ConvertPath }
     FMinFarVer := MakeVersion(2, 0, 1573);   { ACTL_GETFARRECT }
    {$endif Far3}

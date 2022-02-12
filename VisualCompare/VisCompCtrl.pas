@@ -233,8 +233,8 @@ interface
     optScanRecursive       :Boolean = True;
     optNoScanHidden        :Boolean = True;
     optNoScanOrphan        :Boolean = True;
-    optScanContents        :Boolean = True;   { Сравнивать содержимое }
-    optCompareAsText       :Boolean = False;  { ...как текст (по возможности) }
+    optScanContents        :Boolean = True;   { РЎСЂР°РІРЅРёРІР°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ }
+    optCompareAsText       :Boolean = False;  { ...РєР°Рє С‚РµРєСЃС‚ (РїРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё) }
     optScanFileMask        :TString = '*.*';
 
     optShowFilesInFolders  :Boolean = True;
@@ -243,12 +243,12 @@ interface
     optShowAttr            :Boolean = False;
     optShowFolderAttrs     :Boolean = False;
 
-    optShowLinesNumber     :Boolean = True;    { Показывать номера строк }
-    optShowSpaces          :Boolean = False;   { Показывать пробелы и символы табуляции }
-    optShowCRLF            :Boolean = False;   { Показывать символы завершения строк }
-    optShowCurrentRows     :Boolean = True;    { Показывать снизу сравнение для текущей строки }
-    optHilightRowsDiff     :Boolean = True;    { Выделять цветом различия в строке }
-    optTextHorzDiv         :Boolean = False;   { Горизонтальное разделение окна сравнения}
+    optShowLinesNumber     :Boolean = True;    { РџРѕРєР°Р·С‹РІР°С‚СЊ РЅРѕРјРµСЂР° СЃС‚СЂРѕРє }
+    optShowSpaces          :Boolean = False;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РїСЂРѕР±РµР»С‹ Рё СЃРёРјРІРѕР»С‹ С‚Р°Р±СѓР»СЏС†РёРё }
+    optShowCRLF            :Boolean = False;   { РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРёРјРІРѕР»С‹ Р·Р°РІРµСЂС€РµРЅРёСЏ СЃС‚СЂРѕРє }
+    optShowCurrentRows     :Boolean = True;    { РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРЅРёР·Сѓ СЃСЂР°РІРЅРµРЅРёРµ РґР»СЏ С‚РµРєСѓС‰РµР№ СЃС‚СЂРѕРєРё }
+    optHilightRowsDiff     :Boolean = True;    { Р’С‹РґРµР»СЏС‚СЊ С†РІРµС‚РѕРј СЂР°Р·Р»РёС‡РёСЏ РІ СЃС‚СЂРѕРєРµ }
+    optTextHorzDiv         :Boolean = False;   { Р“РѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕРµ СЂР°Р·РґРµР»РµРЅРёРµ РѕРєРЅР° СЃСЂР°РІРЅРµРЅРёСЏ}
 
     optCompareContents     :Boolean = True;
     optCompareSize         :Boolean = True;
@@ -266,20 +266,20 @@ interface
     optDiffAtTop           :Boolean = True;
     optFileSortMode        :Integer = smByName;
 
-    optTextIgnoreEmptyLine :Boolean = True;    { Игнорировать пустые строки }
-    optTextIgnoreSpace     :Boolean = True;    { Игнорировать пробельные символы }
-    optTextIgnoreCase      :Boolean = True;    { Игнорировать регистр }
-    optTextIgnoreCRLF      :Boolean = True;    { Игнорировать символы окончания строк }
+    optTextIgnoreEmptyLine :Boolean = True;    { РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё }
+    optTextIgnoreSpace     :Boolean = True;    { РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РїСЂРѕР±РµР»СЊРЅС‹Рµ СЃРёРјРІРѕР»С‹ }
+    optTextIgnoreCase      :Boolean = True;    { РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЂРµРіРёСЃС‚СЂ }
+    optTextIgnoreCRLF      :Boolean = True;    { РРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЃРёРјРІРѕР»С‹ РѕРєРѕРЅС‡Р°РЅРёСЏ СЃС‚СЂРѕРє }
 
     optMaximized           :Boolean = False;
 
     optSpaceChar           :TChar   = #$B7;
     optTabChar             :TChar   = #$1A; //#$BB;
     optTabSpaceChar        :TChar   = ' ';
-    optShowCursor          :Boolean = False;   { Показывать мигающий курсор (сильно тормозит :( ) }
+    optShowCursor          :Boolean = False;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РјРёРіР°СЋС‰РёР№ РєСѓСЂСЃРѕСЂ (СЃРёР»СЊРЅРѕ С‚РѕСЂРјРѕР·РёС‚ :( ) }
 
     optTabSize             :Integer = 8;
-    optEdtAutoscroll       :Boolean = False;   { Автоматически переходить на первое различие }
+    optEdtAutoscroll       :Boolean = False;   { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїРµСЂРµС…РѕРґРёС‚СЊ РЅР° РїРµСЂРІРѕРµ СЂР°Р·Р»РёС‡РёРµ }
     optTextFileSizeLimit   :Integer = 10 * 1024 * 1024;
 
     optDefaultFormat       :TStrFileFormat = sffAnsi;
@@ -288,7 +288,7 @@ interface
     optOptimization1       :Boolean = True;
     optOptimization2       :Boolean = True;
 
-    optPostOptimization    :Boolean = False;    { Оптимизация сравнения }
+    optPostOptimization    :Boolean = False;    { РћРїС‚РёРјРёР·Р°С†РёСЏ СЃСЂР°РІРЅРµРЅРёСЏ }
 
   var
     optDlgColor            :TFarColor;
@@ -312,7 +312,7 @@ interface
     optTextHeadColor       :TFarColor;
     optTextActCursorColor  :TFarColor;
     optTextPasCursorColor  :TFarColor;
-    optTextSpecColor       :TFarColor;         { Цвет спец-символов (Space, Tab, CR, LF) }
+    optTextSpecColor       :TFarColor;         { Р¦РІРµС‚ СЃРїРµС†-СЃРёРјРІРѕР»РѕРІ (Space, Tab, CR, LF) }
 
 
   function GetMsg(AMess :TMessages) :PFarChar;

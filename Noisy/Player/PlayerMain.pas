@@ -82,25 +82,25 @@ interface
       FExts         :TStringList;
       FHistory      :TPlaylistHistory;
 
-      FExePath      :TString;      { Каталог exe-шника }
-      FRunPath      :TString;      { Каталог запуска }
-      FCurPath      :TString;      { Текущий (установленный) каталог }
-      FLocked       :Integer;      { Блокировка player'а, чтобы он не заершал свою работу }
-      FDlgLock      :Integer;      { Открыт диалог выбора файлов }
-      FAsyncLock    :Integer;      { Блокировка выполнения асинхронных команд }
+      FExePath      :TString;      { РљР°С‚Р°Р»РѕРі exe-С€РЅРёРєР° }
+      FRunPath      :TString;      { РљР°С‚Р°Р»РѕРі Р·Р°РїСѓСЃРєР° }
+      FCurPath      :TString;      { РўРµРєСѓС‰РёР№ (СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№) РєР°С‚Р°Р»РѕРі }
+      FLocked       :Integer;      { Р‘Р»РѕРєРёСЂРѕРІРєР° player'Р°, С‡С‚РѕР±С‹ РѕРЅ РЅРµ Р·Р°РµСЂС€Р°Р» СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ }
+      FDlgLock      :Integer;      { РћС‚РєСЂС‹С‚ РґРёР°Р»РѕРі РІС‹Р±РѕСЂР° С„Р°Р№Р»РѕРІ }
+      FAsyncLock    :Integer;      { Р‘Р»РѕРєРёСЂРѕРІРєР° РІС‹РїРѕР»РЅРµРЅРёСЏ Р°СЃРёРЅС…СЂРѕРЅРЅС‹С… РєРѕРјР°РЅРґ }
 
       FInited       :Boolean;
       FState        :TPlayerState;
 
-      FCommands     :TStringList;  { Зарегистрированные команды }
-      FAsyncCmds    :TStringList;  { Очередь асинхронных команд }
+      FCommands     :TStringList;  { Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹Рµ РєРѕРјР°РЅРґС‹ }
+      FAsyncCmds    :TStringList;  { РћС‡РµСЂРµРґСЊ Р°СЃРёРЅС…СЂРѕРЅРЅС‹С… РєРѕРјР°РЅРґ }
       FPlayList     :TPlaylist;
       FShuffleList  :TExList;
-      FIndex        :Integer;      { Индекс текущего трека в playlist'е }
+      FIndex        :Integer;      { РРЅРґРµРєСЃ С‚РµРєСѓС‰РµРіРѕ С‚СЂРµРєР° РІ playlist'Рµ }
       FUpdIndex     :Integer;
       FPlaylistRev  :Integer;
 
-      FHistIndex    :Integer;      { Индекс текущего playlist'а в истории }
+      FHistIndex    :Integer;      { РРЅРґРµРєСЃ С‚РµРєСѓС‰РµРіРѕ playlist'Р° РІ РёСЃС‚РѕСЂРёРё }
 
       FStream       :HSTREAM;
       FTrackFile    :TString;
@@ -124,16 +124,16 @@ interface
       FHotkeyList    :TStringList;
       FHotkeyCmds    :TStringList;
 
-      FSeekReq       :FLOAT;       { Асинхронный Seek запрос }
+      FSeekReq       :FLOAT;       { РђСЃРёРЅС…СЂРѕРЅРЅС‹Р№ Seek Р·Р°РїСЂРѕСЃ }
       FSeekTick      :Cardinal;
 
-      FIdleTick      :Cardinal;    { Период бездействия, для автоматического закрытия }
-      FUpdateTick    :Cardinal;    { Период обновления, для обновления MemState }
-      FTooltipTick   :Cardinal;    { Период показа tooltip'а, для его сокрытия }
-      FStartTick     :Cardinal;    { Период проигрывания track'а, чтобы отключать плавное приглушение }
-      FSyncTick      :Cardinal;    { Синхронизация Shoutcast потока }
-      FPlaylistTick  :Cardinal;    { Момент изменения Playlist'а, для его асинхронного обновления }
-      FPlaylistTick1 :Cardinal;    { Момент извлечения тэга, для асинхронного обновления Playlist'а }
+      FIdleTick      :Cardinal;    { РџРµСЂРёРѕРґ Р±РµР·РґРµР№СЃС‚РІРёСЏ, РґР»СЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРіРѕ Р·Р°РєСЂС‹С‚РёСЏ }
+      FUpdateTick    :Cardinal;    { РџРµСЂРёРѕРґ РѕР±РЅРѕРІР»РµРЅРёСЏ, РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ MemState }
+      FTooltipTick   :Cardinal;    { РџРµСЂРёРѕРґ РїРѕРєР°Р·Р° tooltip'Р°, РґР»СЏ РµРіРѕ СЃРѕРєСЂС‹С‚РёСЏ }
+      FStartTick     :Cardinal;    { РџРµСЂРёРѕРґ РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ track'Р°, С‡С‚РѕР±С‹ РѕС‚РєР»СЋС‡Р°С‚СЊ РїР»Р°РІРЅРѕРµ РїСЂРёРіР»СѓС€РµРЅРёРµ }
+      FSyncTick      :Cardinal;    { РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ Shoutcast РїРѕС‚РѕРєР° }
+      FPlaylistTick  :Cardinal;    { РњРѕРјРµРЅС‚ РёР·РјРµРЅРµРЅРёСЏ Playlist'Р°, РґР»СЏ РµРіРѕ Р°СЃРёРЅС…СЂРѕРЅРЅРѕРіРѕ РѕР±РЅРѕРІР»РµРЅРёСЏ }
+      FPlaylistTick1 :Cardinal;    { РњРѕРјРµРЅС‚ РёР·РІР»РµС‡РµРЅРёСЏ С‚СЌРіР°, РґР»СЏ Р°СЃРёРЅС…СЂРѕРЅРЅРѕРіРѕ РѕР±РЅРѕРІР»РµРЅРёСЏ Playlist'Р° }
 
       FMemSize       :Integer;
       FMemHandle     :THandle;
@@ -166,7 +166,7 @@ interface
       procedure RunHotkey(ANum :Integer);
 
       {------------------------------------------------------------------------}
-      { Команды                                                                }
+      { РљРѕРјР°РЅРґС‹                                                                }
       procedure AddFile(const AFile :TString; ARecursive, AClear :Boolean);
       procedure BeginPlay;
       procedure BeginPlayIndex(AIndex :Integer);
@@ -439,10 +439,10 @@ interface
         if FGestrude = 0 then begin
           if (Abs(DX) > 5) or (Abs(DY) > 5) then begin
             if Abs(DY) > Abs(DX) then
-              { Изменение громкости }
+              { РР·РјРµРЅРµРЅРёРµ РіСЂРѕРјРєРѕСЃС‚Рё }
               FGestrude := 1
             else
-              { Изменение позиции }
+              { РР·РјРµРЅРµРЅРёРµ РїРѕР·РёС†РёРё }
               FGestrude := 2;
             SetCursorPos(FStartPos.X, FStartPos.Y);
             ShowCursor(False);
@@ -575,7 +575,7 @@ interface
     if not CreateMutexEx(MutexName, FMutex, False) then
       AppError('Another copy of player already running');
 
-    { До InitBass, так как понадобится список плагинов }
+    { Р”Рѕ InitBass, С‚Р°Рє РєР°Рє РїРѕРЅР°РґРѕР±РёС‚СЃСЏ СЃРїРёСЃРѕРє РїР»Р°РіРёРЅРѕРІ }
     ReadSettings;
 
     InitCommands;
@@ -969,7 +969,7 @@ interface
       if MainThread = GetCurrentThreadID then
         DisplayInfo(GetTrackName, 'Buffering...');
       if ABuffer = nil then
-        { Завершение загрузки - повторное извлечение тэга }
+        { Р—Р°РІРµСЂС€РµРЅРёРµ Р·Р°РіСЂСѓР·РєРё - РїРѕРІС‚РѕСЂРЅРѕРµ РёР·РІР»РµС‡РµРЅРёРµ С‚СЌРіР° }
         Player.FSyncTick := GetTickCount;
     end;
   end;
@@ -1089,7 +1089,7 @@ interface
   begin
     if FState <> psStopped then begin
       if TrackActive then begin
-        { Чтобы плавное приглушение громкости не тормозило переключение каналов }
+        { Р§С‚РѕР±С‹ РїР»Р°РІРЅРѕРµ РїСЂРёРіР»СѓС€РµРЅРёРµ РіСЂРѕРјРєРѕСЃС‚Рё РЅРµ С‚РѕСЂРјРѕР·РёР»Рѕ РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РєР°РЅР°Р»РѕРІ }
         if TickCountDiff(GetTickCount, FStartTick) > 1000 then
           VolumeSmoothDown(0);
         BASS_ChannelStop(FStream);
@@ -1249,7 +1249,7 @@ interface
       if WinFileExists(vFileName) then begin
         LoadPlaylist(vFileName);
 
-        {!!! Сохранять Index?}
+        {!!! РЎРѕС…СЂР°РЅСЏС‚СЊ Index?}
 
         if FPlaylist.Count > 0 then
           BeginPlayIndex(0);
@@ -1348,13 +1348,13 @@ interface
   procedure TBassPalyer.Mute(AVolume :Float);
   begin
     if FMute < 0 then begin
-      { Приглушаем звук }
+      { РџСЂРёРіР»СѓС€Р°РµРј Р·РІСѓРє }
       VolumeSmoothDown(AVolume);
       DisplayInfo('', 'Mute: On');
       FMute := AVolume;
     end else
     begin
-      { Восстанавливаем громкость }
+      { Р’РѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РіСЂРѕРјРєРѕСЃС‚СЊ }
       VolumeSmoothUp;
       DisplayInfo('', 'Mute: Off');
       FMute := -1;
@@ -1696,7 +1696,7 @@ interface
         FTrackArtist := vArtist;
         FTrackAlbum := vAlbum;
 
-        { Обновляем данные Playlist-а }
+        { РћР±РЅРѕРІР»СЏРµРј РґР°РЅРЅС‹Рµ Playlist-Р° }
         if (FIndex >= 0) and (FIndex < FPlaylist.Count) then begin
           if StrEqual(FPlaylist[FIndex], FTrackFile) then begin
             with FPlaylist.TrackInfo[Findex] do begin
@@ -1727,7 +1727,7 @@ interface
   begin
     Result := False;
 
-    { Получаем Tag'и }
+    { РџРѕР»СѓС‡Р°РµРј Tag'Рё }
     FillChar(vInfo, SizeOf(vInfo), 0);
     BASS_ChannelGetInfo(AStream, vInfo);
 
@@ -1773,7 +1773,7 @@ interface
     end;
 
     if FPlaylistTick <> 0 then
-      { Чтобы обновление TrackInfo не начиналось пока добавляются треки... }
+      { Р§С‚РѕР±С‹ РѕР±РЅРѕРІР»РµРЅРёРµ TrackInfo РЅРµ РЅР°С‡РёРЅР°Р»РѕСЃСЊ РїРѕРєР° РґРѕР±Р°РІР»СЏСЋС‚СЃСЏ С‚СЂРµРєРё... }
       Exit;
 
     vStr := FPlaylist[FUpdIndex];
@@ -1863,7 +1863,7 @@ interface
     FillChar(FPlayerInfo^, vSize, 0);
     FPlayerInfo.FStructSize := SizeOf(TPlayerInfo);
 
-    { Сразу публикуем статическую информацию - о плагинах и форматах}
+    { РЎСЂР°Р·Сѓ РїСѓР±Р»РёРєСѓРµРј СЃС‚Р°С‚РёС‡РµСЃРєСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ - Рѕ РїР»Р°РіРёРЅР°С… Рё С„РѕСЂРјР°С‚Р°С…}
     vPluginInfo := Pointer(Pointer1(FPlayerInfo) + SizeOf(TPlayerInfo));
     for I := 0 to FPlugins.Count - 1 do begin
       vPlugin := FPlugins.Objects[I] as TBassPlugin;
@@ -2250,7 +2250,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Подержка Hotkey                                                             }
+ { РџРѕРґРµСЂР¶РєР° Hotkey                                                             }
 
   procedure TBassPalyer.RunHotkey(ANum :Integer);
   begin
@@ -2315,7 +2315,7 @@ interface
   begin
     FHotkeyCmds.Clear;
     if not ReadHotkeysFromReg(FHotkeyCmds) then begin
-      { Инициализируем умолчания... }
+      { РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СѓРјРѕР»С‡Р°РЅРёСЏ... }
       FHotkeyCmds.AddObject('/PlayPause', Pointer(HotkeyPlay));
       FHotkeyCmds.AddObject('/Stop', Pointer(HotkeyStop));
       FHotkeyCmds.AddObject('/Next', Pointer(HotkeyNext));
@@ -2583,7 +2583,7 @@ interface
 
         end else
         begin
-          { Не команда, а имя файла }
+          { РќРµ РєРѕРјР°РЅРґР°, Р° РёРјСЏ С„Р°Р№Р»Р° }
 //        if not vAdd then
 //          ClearPlaylist(False);
           AddFile(vCmd, vRecursive, not vAdd);
@@ -2630,13 +2630,13 @@ interface
     end;
 
     if FUpdIndex <> -1 then
-      { Фоновое извлечение тегов для треков playlist'а }
+      { Р¤РѕРЅРѕРІРѕРµ РёР·РІР»РµС‡РµРЅРёРµ С‚РµРіРѕРІ РґР»СЏ С‚СЂРµРєРѕРІ playlist'Р° }
       IdleUpdateTrackInfo;
 
     vTick := GetTickCount;
 
     if (FSyncTick <> 0) and (TickCountDiff(vTick, FSyncTick) > ResyncPeriod) then begin
-      { Синхронизация Shoutcast потока (или извлечение тэгов по окончании буферизации) }
+      { РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ Shoutcast РїРѕС‚РѕРєР° (РёР»Рё РёР·РІР»РµС‡РµРЅРёРµ С‚СЌРіРѕРІ РїРѕ РѕРєРѕРЅС‡Р°РЅРёРё Р±СѓС„РµСЂРёР·Р°С†РёРё) }
       FSyncTick := 0;
       FInfoChanged := True;
       UpdateTrackInfo;

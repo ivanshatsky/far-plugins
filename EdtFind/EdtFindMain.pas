@@ -169,7 +169,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Старый макро-интерфейс - для совместимости                                  }
+ { РЎС‚Р°СЂС‹Р№ РјР°РєСЂРѕ-РёРЅС‚РµСЂС„РµР№СЃ - РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё                                  }
 
   procedure SkipSpaces(var AStr :PTChar);
   begin
@@ -211,7 +211,7 @@ interface
     if ACmd <> nil then
       SkipSpaces(ACmd);
     if (ACmd = nil) or (ACmd^ = #0) then begin
-      { Возможно - проверка наличия плагина }
+      { Р’РѕР·РјРѕР¶РЅРѕ - РїСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РїР»Р°РіРёРЅР° }
       Result := True;
       Exit;
     end;
@@ -332,7 +332,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Новый макро-интерфейс                                                       }
+ { РќРѕРІС‹Р№ РјР°РєСЂРѕ-РёРЅС‚РµСЂС„РµР№СЃ                                                       }
 
  {$ifdef Far3}
   const
@@ -759,8 +759,8 @@ interface
           if AParam = EEREDRAW_LINE then
             Exit;
           if AParam = EEREDRAW_CHANGE then begin
-//          EdtClearMark({ClearMatches=}True, {Redraw=}False);  { Сбросить }
-            RefreshEdtMatches;  { Поддерживать }
+//          EdtClearMark({ClearMatches=}True, {Redraw=}False);  { РЎР±СЂРѕСЃРёС‚СЊ }
+            RefreshEdtMatches;  { РџРѕРґРґРµСЂР¶РёРІР°С‚СЊ }
           end;
          {$endif Far3}
 

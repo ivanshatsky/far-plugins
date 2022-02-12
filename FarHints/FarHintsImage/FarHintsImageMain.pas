@@ -23,14 +23,14 @@ interface
   const
     cAnimationStep     = 100;   {ms, }
 
-    cThumbSize         = 128;   { Размер извлекаемого эскиза }
+    cThumbSize         = 128;   { Р Р°Р·РјРµСЂ РёР·РІР»РµРєР°РµРјРѕРіРѕ СЌСЃРєРёР·Р° }
     cThumbMinSize      = 32;
     cRescalePerc       = 10;
 
   var
     StretchDelay     :Cardinal = 250;   {ms, }
-    AsyncRenderDelay :Cardinal = 250;   {ms, Задержка фонового извлечения эскиза (чтобы не делать лишнюю работу при быстром пермещении хинта) }
-    ThreadIdlePeriod :Cardinal = 5000;  {ms, Период простоя, после которого фоновый поток завершает работу }
+    AsyncRenderDelay :Cardinal = 250;   {ms, Р—Р°РґРµСЂР¶РєР° С„РѕРЅРѕРІРѕРіРѕ РёР·РІР»РµС‡РµРЅРёСЏ СЌСЃРєРёР·Р° (С‡С‚РѕР±С‹ РЅРµ РґРµР»Р°С‚СЊ Р»РёС€РЅСЋСЋ СЂР°Р±РѕС‚Сѓ РїСЂРё Р±С‹СЃС‚СЂРѕРј РїРµСЂРјРµС‰РµРЅРёРё С…РёРЅС‚Р°) }
+    ThreadIdlePeriod :Cardinal = 5000;  {ms, РџРµСЂРёРѕРґ РїСЂРѕСЃС‚РѕСЏ, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ С„РѕРЅРѕРІС‹Р№ РїРѕС‚РѕРє Р·Р°РІРµСЂС€Р°РµС‚ СЂР°Р±РѕС‚Сѓ }
 
     MaxViewSize      :Integer = 128;
     UseThumbnail     :Boolean = True;
@@ -278,18 +278,18 @@ interface
       FAPI         :IFarHintsApi;
       FInited      :Boolean;
       FNeedWrite   :Boolean;
-      FImgSize     :TSize;        { Оригинальный размер картинки }
-      FViewSize    :TSize;        { Размер отображаемой области }
-      FThumbSize   :TSize;        { Размер Preview'шки }
-      FDirectDraw  :Boolean;      { Полупрозрачное или анимированное изображение, не используем preview'шки }
+      FImgSize     :TSize;        { РћСЂРёРіРёРЅР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё }
+      FViewSize    :TSize;        { Р Р°Р·РјРµСЂ РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕР№ РѕР±Р»Р°СЃС‚Рё }
+      FThumbSize   :TSize;        { Р Р°Р·РјРµСЂ Preview'С€РєРё }
+      FDirectDraw  :Boolean;      { РџРѕР»СѓРїСЂРѕР·СЂР°С‡РЅРѕРµ РёР»Рё Р°РЅРёРјРёСЂРѕРІР°РЅРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ, РЅРµ РёСЃРїРѕР»СЊР·СѓРµРј preview'С€РєРё }
 
-      FSrcImage    :TGPImageEx;   { Исходное изображение }
-      FThumbImage  :TMemDC;       { Изображение, буферизированное как Bitmap }
+      FSrcImage    :TGPImageEx;   { РСЃС…РѕРґРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FThumbImage  :TMemDC;       { РР·РѕР±СЂР°Р¶РµРЅРёРµ, Р±СѓС„РµСЂРёР·РёСЂРѕРІР°РЅРЅРѕРµ РєР°Рє Bitmap }
 
       FResizeStart :Cardinal;
       FLowQuality  :Boolean;
 
-      { Для поддержки анимированных изображений... }
+      { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё Р°РЅРёРјРёСЂРѕРІР°РЅРЅС‹С… РёР·РѕР±СЂР°Р¶РµРЅРёР№... }
       FFrame       :Integer;
       FFrames      :Integer;
       FDelCount    :Integer;
@@ -297,17 +297,17 @@ interface
       FDimID       :TGUID;
       FTime        :Cardinal;
 
-      { Для поддержки фоновой декомпрессии картинок}
+      { Р”Р»СЏ РїРѕРґРґРµСЂР¶РєРё С„РѕРЅРѕРІРѕР№ РґРµРєРѕРјРїСЂРµСЃСЃРёРё РєР°СЂС‚РёРЅРѕРє}
       FCSection     :TRTLCriticalSection;
       FHandle       :THandle;
       FThreadID     :TThreadID;
       FTerminated   :Boolean;
       FThreadGoDown :Boolean;
-      FThumbWait    :Boolean;     { Извлечение продолжается }
+      FThumbWait    :Boolean;     { РР·РІР»РµС‡РµРЅРёРµ РїСЂРѕРґРѕР»Р¶Р°РµС‚СЃСЏ }
       FLock         :Integer;
 
-      FTaskImage    :TGPImageEx;  { Исходное изображение }
-      FTaskStart    :Cardinal;    { Время постановки задачи }
+      FTaskImage    :TGPImageEx;  { РСЃС…РѕРґРЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ }
+      FTaskStart    :Cardinal;    { Р’СЂРµРјСЏ РїРѕСЃС‚Р°РЅРѕРІРєРё Р·Р°РґР°С‡Рё }
       FTaskSize     :TSize;
       FTaskState    :TTaskState;
       FResThumb     :TMemDC;
@@ -546,7 +546,7 @@ interface
         CheckAsyncTask;
         if not FThumbWait then begin
           AItem.UpdateHintWindow(uhwInvalidateImage);
-          { На случай, если эскиз извлекался слишком долго и стал неактуального размера }
+          { РќР° СЃР»СѓС‡Р°Р№, РµСЃР»Рё СЌСЃРєРёР· РёР·РІР»РµРєР°Р»СЃСЏ СЃР»РёС€РєРѕРј РґРѕР»РіРѕ Рё СЃС‚Р°Р» РЅРµР°РєС‚СѓР°Р»СЊРЅРѕРіРѕ СЂР°Р·РјРµСЂР° }
           UpdateThumbnail(AItem, False, False);
         end;
       end;
@@ -612,10 +612,10 @@ interface
       end else
       begin
         if FLowQuality then
-          { Быстрый, но не аккуратный }
+          { Р‘С‹СЃС‚СЂС‹Р№, РЅРѕ РЅРµ Р°РєРєСѓСЂР°С‚РЅС‹Р№ }
           SetStretchBltMode(ADC, COLORONCOLOR)
         else
-          { Аккуратный, но медленный }
+          { РђРєРєСѓСЂР°С‚РЅС‹Р№, РЅРѕ РјРµРґР»РµРЅРЅС‹Р№ }
           SetStretchBltMode(ADC, HALFTONE);
         StretchBlt(ADC, ARect.Left, ARect.Top, FViewSize.cx, FViewSize.cy,
           FThumbImage.FDC, 0, 0, FThumbImage.FWidth, FThumbImage.FHeight, SRCCOPY);
@@ -677,7 +677,7 @@ interface
     if not FDirectDraw then begin
 
       if AFromProcess then begin
-        { Уменьшим размер эскиза до некоторого разумного значения... }
+        { РЈРјРµРЅСЊС€РёРј СЂР°Р·РјРµСЂ СЌСЃРєРёР·Р° РґРѕ РЅРµРєРѕС‚РѕСЂРѕРіРѕ СЂР°Р·СѓРјРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ... }
         vSize := FViewSize;
         vThmImage := FSrcImage;
 
@@ -723,17 +723,17 @@ interface
         end;
       end;
 
-      { Проверяем размеры эскиза на допустимые размеры, только если предыдущее }
-      { задание на декомпрессию уже завершено. В противном случае ждем завершения }
-      { задания, даже если извлекаемый эскиз неподходящего размера. }
-      { Повторное извлечение будет инициализировано в Idle'е... }
+      { РџСЂРѕРІРµСЂСЏРµРј СЂР°Р·РјРµСЂС‹ СЌСЃРєРёР·Р° РЅР° РґРѕРїСѓСЃС‚РёРјС‹Рµ СЂР°Р·РјРµСЂС‹, С‚РѕР»СЊРєРѕ РµСЃР»Рё РїСЂРµРґС‹РґСѓС‰РµРµ }
+      { Р·Р°РґР°РЅРёРµ РЅР° РґРµРєРѕРјРїСЂРµСЃСЃРёСЋ СѓР¶Рµ Р·Р°РІРµСЂС€РµРЅРѕ. Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ Р¶РґРµРј Р·Р°РІРµСЂС€РµРЅРёСЏ }
+      { Р·Р°РґР°РЅРёСЏ, РґР°Р¶Рµ РµСЃР»Рё РёР·РІР»РµРєР°РµРјС‹Р№ СЌСЃРєРёР· РЅРµРїРѕРґС…РѕРґСЏС‰РµРіРѕ СЂР°Р·РјРµСЂР°. }
+      { РџРѕРІС‚РѕСЂРЅРѕРµ РёР·РІР»РµС‡РµРЅРёРµ Р±СѓРґРµС‚ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅРѕ РІ Idle'Рµ... }
       if not FThumbWait then begin
         vThumbLimit := IntMax(FThumbSize.cx, FThumbSize.cy);
         vViewLimit := IntMax(FViewSize.cx, FViewSize.cy);
         vViewDelta := MulDiv(vViewLimit, cRescalePerc, 100);
 
         if (vThumbLimit = 0) or (vThumbLimit < vViewLimit - vViewDelta) or (vThumbLimit > vViewLimit + vViewDelta) then
-          { Ставим задание на асинхронную декомпрессию }
+          { РЎС‚Р°РІРёРј Р·Р°РґР°РЅРёРµ РЅР° Р°СЃРёРЅС…СЂРѕРЅРЅСѓСЋ РґРµРєРѕРјРїСЂРµСЃСЃРёСЋ }
           SetAsyncTask(FViewSize);
       end;
 
@@ -742,7 +742,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Поток для фоновой декомпрессии картинок                                     }
+ { РџРѕС‚РѕРє РґР»СЏ С„РѕРЅРѕРІРѕР№ РґРµРєРѕРјРїСЂРµСЃСЃРёРё РєР°СЂС‚РёРЅРѕРє                                     }
 
   function ThreadProc(Thread :Pointer) :{$ifdef bFreePascal}TIntPtr{$else}Integer{$endif};
   begin
@@ -857,7 +857,7 @@ interface
         FResThumb := vThumb;
         FTaskState := tsComplete;
       end else
-        { Пока эскиз извлекался, была поставлена новая задача, результат никого не интересует }
+        { РџРѕРєР° СЌСЃРєРёР· РёР·РІР»РµРєР°Р»СЃСЏ, Р±С‹Р»Р° РїРѕСЃС‚Р°РІР»РµРЅР° РЅРѕРІР°СЏ Р·Р°РґР°С‡Р°, СЂРµР·СѓР»СЊС‚Р°С‚ РЅРёРєРѕРіРѕ РЅРµ РёРЅС‚РµСЂРµСЃСѓРµС‚ }
         FreeObj(vThumb);
     finally
       LeaveCriticalSection(FCSection);

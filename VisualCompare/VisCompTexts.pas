@@ -76,9 +76,9 @@ interface
     end;
 
     TStrCompareRes = (
-      scrEqual,      { Строки совпадают }
-      scrSimilar,    { Строки различаются только пробелами или регистром }
-      scrDiff        { Строки различаются }
+      scrEqual,      { РЎС‚СЂРѕРєРё СЃРѕРІРїР°РґР°СЋС‚ }
+      scrSimilar,    { РЎС‚СЂРѕРєРё СЂР°Р·Р»РёС‡Р°СЋС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРѕР±РµР»Р°РјРё РёР»Рё СЂРµРіРёСЃС‚СЂРѕРј }
+      scrDiff        { РЎС‚СЂРѕРєРё СЂР°Р·Р»РёС‡Р°СЋС‚СЃСЏ }
     );
 
     TTextDiff = class(TBasis)
@@ -245,7 +245,7 @@ interface
 
 
   procedure LocCorrectFactor(var AFactor :Integer; ADelta1, ADelta2 :Integer);
-    { Фактор не может превышать размеры максимальной сравниваемой области }
+    { Р¤Р°РєС‚РѕСЂ РЅРµ РјРѕР¶РµС‚ РїСЂРµРІС‹С€Р°С‚СЊ СЂР°Р·РјРµСЂС‹ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ СЃСЂР°РІРЅРёРІР°РµРјРѕР№ РѕР±Р»Р°СЃС‚Рё }
   var
     vMin :Integer;
   begin
@@ -550,7 +550,7 @@ interface
         vMaxRows := IntMax( ACount1, ACount2 );
 
         if (AFactor > cTextMinFactor) and (vMinRows > 0) and (vMaxRows > 1) then begin
-          { Рекурсивно попробуем с меньшим фактором... }
+          { Р РµРєСѓСЂСЃРёРІРЅРѕ РїРѕРїСЂРѕР±СѓРµРј СЃ РјРµРЅСЊС€РёРј С„Р°РєС‚РѕСЂРѕРј... }
           ComparePart(ARow1, ARow2, ARow1 + ACount1, ARow2 + ACount2, AFactor div 2);
           Inc(ARow1, ACount1);
           Inc(ARow2, ACount2);
@@ -613,7 +613,7 @@ interface
 
      {$ifdef bFastCompare}
 
-      { Двоичный взаимный поиск. }
+      { Р”РІРѕРёС‡РЅС‹Р№ РІР·Р°РёРјРЅС‹Р№ РїРѕРёСЃРє. }
 
       function LocResync(ARow1, ARow2 :Integer; var ADelta1, ADelta2 :Integer) :Boolean;
       var
@@ -624,7 +624,7 @@ interface
           vIndex, vRow, vRow1, vRow2, vDelta :Integer;
         begin
           if AKey = 0 then
-            Exit; { Пустая строка }
+            Exit; { РџСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР° }
 
 //        TraceF('%d. %d: %s', [AVer, ASrcRow, FText[AVer][ASrcRow]]);
 
@@ -639,14 +639,14 @@ interface
               if vRow >= AEndRow then
                 Break;
               if ABaseDelta + vRow - ABegRow >= vBest then
-                Break; { Лучше уже не будет... }
+                Break; { Р›СѓС‡С€Рµ СѓР¶Рµ РЅРµ Р±СѓРґРµС‚... }
 
               if AVer = 0 then
                 vRow2 := vRow
               else
                 vRow1 := vRow;
 
-              { Найденная по CRC строка сравнивается повторно, так как CRC мог совпасть случайно... }
+              { РќР°Р№РґРµРЅРЅР°СЏ РїРѕ CRC СЃС‚СЂРѕРєР° СЃСЂР°РІРЅРёРІР°РµС‚СЃСЏ РїРѕРІС‚РѕСЂРЅРѕ, С‚Р°Рє РєР°Рє CRC РјРѕРі СЃРѕРІРїР°СЃС‚СЊ СЃР»СѓС‡Р°Р№РЅРѕ... }
               if CompareRows(vRow1, vRow2, AEndRow1, AEndRow2, AFactor) then begin
 
                 while (vRow1 > ARow1) and (vRow2 > ARow2) and (FTextCRCs1[vRow1 - 1] = 0) and (FTextCRCs2[vRow2 - 1] = 0) do begin
@@ -684,7 +684,7 @@ interface
         vBest := MaxInt;
         for I := 0 to IntMin(AEndRow1 - ARow1, AEndRow2 - ARow2) - 1 do begin
           if I > vBest then
-            Break; { Лучше уже не будет... }
+            Break; { Р›СѓС‡С€Рµ СѓР¶Рµ РЅРµ Р±СѓРґРµС‚... }
           if ARow1 + I < AEndRow1 then
             LocFind( 0, I, ARow1 + I, FTextCRCs1[ARow1 + I], TTextIndex(FIndexes2), ARow2 + I, AEndRow2 );
           if ARow2 + I < AEndRow2 then
@@ -694,7 +694,7 @@ interface
 
      {$else}
 
-      { Линейный взаимный поиск. Очень тормозит на больших разрывах. }
+      { Р›РёРЅРµР№РЅС‹Р№ РІР·Р°РёРјРЅС‹Р№ РїРѕРёСЃРє. РћС‡РµРЅСЊ С‚РѕСЂРјРѕР·РёС‚ РЅР° Р±РѕР»СЊС€РёС… СЂР°Р·СЂС‹РІР°С…. }
 
       function LocResync(ARow1, ARow2 :Integer; var ADelta1, ADelta2 :Integer) :Boolean;
 
@@ -754,17 +754,17 @@ interface
           Inc(vRow2);
         end else
         begin
-          { Пробуем восстановить синхронизацию с фактором совпадения AFactor }
-          { Используем взаимный поиск... }
+          { РџСЂРѕР±СѓРµРј РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ СЃ С„Р°РєС‚РѕСЂРѕРј СЃРѕРІРїР°РґРµРЅРёСЏ AFactor }
+          { РСЃРїРѕР»СЊР·СѓРµРј РІР·Р°РёРјРЅС‹Р№ РїРѕРёСЃРє... }
           if not LocResync(vRow1, vRow2, vDelta1, vDelta2) then
             Break;
 
-          { Добавляем несовпадающий диапазон }
+          { Р”РѕР±Р°РІР»СЏРµРј РЅРµСЃРѕРІРїР°РґР°СЋС‰РёР№ РґРёР°РїР°Р·РѕРЅ }
           LocAddDiffs(vRow1, vRow2, vDelta1, vDelta2);
         end;
       end;
 
-      { Добавляем хвосты, как несовпадающий диапазон }
+      { Р”РѕР±Р°РІР»СЏРµРј С…РІРѕСЃС‚С‹, РєР°Рє РЅРµСЃРѕРІРїР°РґР°СЋС‰РёР№ РґРёР°РїР°Р·РѕРЅ }
       LocAddDiffs(vRow1, vRow2, AEndRow1 - vRow1, AEndRow2 - vRow2);
     end;
 
@@ -866,7 +866,7 @@ interface
 
  {$ifdef bFastCompare}
   function TTextDiff.CalcStrCRC(AStr :PTChar) :TCRC;
-    { При подсчете CRC строки приводятся к верхнему регистру и выбрасываются все пробельные символы }
+    { РџСЂРё РїРѕРґСЃС‡РµС‚Рµ CRC СЃС‚СЂРѕРєРё РїСЂРёРІРѕРґСЏС‚СЃСЏ Рє РІРµСЂС…РЅРµРјСѓ СЂРµРіРёСЃС‚СЂСѓ Рё РІС‹Р±СЂР°СЃС‹РІР°СЋС‚СЃСЏ РІСЃРµ РїСЂРѕР±РµР»СЊРЅС‹Рµ СЃРёРјРІРѕР»С‹ }
   const
     cBufSize = 256;
   var
@@ -916,7 +916,7 @@ interface
       LocAddCRC;
 
     if Result = 0 then
-      Result := TCRC(-1); { Чтобы случайно не совпало с пустой строкой }
+      Result := TCRC(-1); { Р§С‚РѕР±С‹ СЃР»СѓС‡Р°Р№РЅРѕ РЅРµ СЃРѕРІРїР°Р»Рѕ СЃ РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРѕР№ }
   end;
 
 
@@ -1032,12 +1032,12 @@ interface
         end;
 
         if (vCount1 = 0) or (vCount2 = 0) then begin
-          { Вставка }
+          { Р’СЃС‚Р°РІРєР° }
           if vIdx < FDiff.Count then
             Inc(vIdx, TryMoveForward(IntIf(vCount1 <> 0, 0, 1), vBeg, vIdx));
         end else
         begin
-          { Правка }
+          { РџСЂР°РІРєР° }
 
         end;
 
@@ -1113,7 +1113,7 @@ interface
         vMin := IntMin( ACount1, ACount2 );
         vMax := IntMax( ACount1, ACount2 );
         if (AFactor > cStrMinFactor) and (vMin > 0) and (vMax > 1) then begin
-          { Рекурсивно попробуем с меньшим фактором... }
+          { Р РµРєСѓСЂСЃРёРІРЅРѕ РїРѕРїСЂРѕР±СѓРµРј СЃ РјРµРЅСЊС€РёРј С„Р°РєС‚РѕСЂРѕРј... }
           ComparePart(AStr1, AStr2, AStr1 + ACount1, AStr2 + ACount2, AFactor div 2);
           Inc(AStr1, ACount1);
           Inc(AStr2, ACount2);
@@ -1135,7 +1135,7 @@ interface
 
      {$ifdef bFastCompareRow}
 
-      { Двоичный взаимный поиск }
+      { Р”РІРѕРёС‡РЅС‹Р№ РІР·Р°РёРјРЅС‹Р№ РїРѕРёСЃРє }
 
       function LocResync(AStr1, AStr2 :PTChar; var ADelta1, ADelta2 :Integer) :Boolean;
       var
@@ -1163,7 +1163,7 @@ interface
               if vPos >= AEndPos then
                 Break;
               if ABaseDelta + vPos - ABegPos >= vBest then
-                Break; { Лучше уже не будет... }
+                Break; { Р›СѓС‡С€Рµ СѓР¶Рµ РЅРµ Р±СѓРґРµС‚... }
 
               if AVer = 0 then
                 vPos2 := vPos
@@ -1207,7 +1207,7 @@ interface
         vBest := MaxInt;
         for I := 0 to IntMin(AEndStr1 - AStr1, AEndStr2 - AStr2) - 1 do begin
           if I > vBest then
-            Break; { Лучше уже не будет... }
+            Break; { Р›СѓС‡С€Рµ СѓР¶Рµ РЅРµ Р±СѓРґРµС‚... }
           if AStr1 + I < AEndStr1 then
             LocFind( 0, I, vAPos1 + I, (FUpStr1 + vAPos1 + I)^, TRowIndex(FIndexes2), vAPos2 + I, AEndStr2 - AAStr2 );
           if AStr2 + I < AEndStr2 then
@@ -1217,7 +1217,7 @@ interface
 
      {$else}
 
-      { Линейный взаимный поиск (тормозит) }
+      { Р›РёРЅРµР№РЅС‹Р№ РІР·Р°РёРјРЅС‹Р№ РїРѕРёСЃРє (С‚РѕСЂРјРѕР·РёС‚) }
 
       function LocResync(AStr1, AStr2 :PTChar; var ADelta1, ADelta2 :Integer) :Boolean;
 
@@ -1267,7 +1267,7 @@ interface
 
         if vRes in [scrEqual, scrSimilar] then begin
           if vRes <> scrEqual then
-            { Разный регистр или Space/Tab}
+            { Р Р°Р·РЅС‹Р№ СЂРµРіРёСЃС‚СЂ РёР»Рё Space/Tab}
             MarkStr(vStr1, vStr2, 1);
           Inc(vStr1);
           Inc(vStr2);
@@ -1286,16 +1286,16 @@ interface
             Continue;
           end;
 
-          { Пробуем восстановить синхронизацию с фактором совпадения AFactor (взаимный поиск)... }
+          { РџСЂРѕР±СѓРµРј РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ СЃ С„Р°РєС‚РѕСЂРѕРј СЃРѕРІРїР°РґРµРЅРёСЏ AFactor (РІР·Р°РёРјРЅС‹Р№ РїРѕРёСЃРє)... }
           if not LocResync(vStr1, vStr2, vDelta1, vDelta2) then
             Break;
 
-          { Добавляем несовпадающий диапазон }
+          { Р”РѕР±Р°РІР»СЏРµРј РЅРµСЃРѕРІРїР°РґР°СЋС‰РёР№ РґРёР°РїР°Р·РѕРЅ }
           LocAddDiffs(vStr1, vStr2, vDelta1, vDelta2);
         end;
       end;
 
-      { Добавляем хвосты, как несовпадающий диапазон }
+      { Р”РѕР±Р°РІР»СЏРµРј С…РІРѕСЃС‚С‹, РєР°Рє РЅРµСЃРѕРІРїР°РґР°СЋС‰РёР№ РґРёР°РїР°Р·РѕРЅ }
       LocAddDiffs(vStr1, vStr2, AEndStr1 - vStr1, AEndStr2 - vStr2);
     end;
 
@@ -1363,7 +1363,7 @@ interface
       end;
 
       if CharIsWordChar(AChr) then begin
-        Result := 0.34; { Три совпадающих символа подряд восстанавливают синхронизацию }
+        Result := 0.34; { РўСЂРё СЃРѕРІРїР°РґР°СЋС‰РёС… СЃРёРјРІРѕР»Р° РїРѕРґСЂСЏРґ РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°СЋС‚ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёСЋ }
         exit;
       end;
 

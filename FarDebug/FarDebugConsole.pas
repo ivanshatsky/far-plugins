@@ -302,7 +302,7 @@ interface
 
   procedure TConsoleDlg.GridPosChange(ASender :TFarGrid);
   begin
-    { Обновляем status-line }
+    { РћР±РЅРѕРІР»СЏРµРј status-line }
   end;
 
 

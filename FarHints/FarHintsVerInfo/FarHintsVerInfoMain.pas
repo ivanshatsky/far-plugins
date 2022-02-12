@@ -99,7 +99,7 @@ interface
       vCP  :^LANGANDCODEPAGE;
       vPtr, vEnd :PWideChar;
     begin
-      { Ищем сканированием, потому что иногда Translation не совпадает с StringInfo }
+      { РС‰РµРј СЃРєР°РЅРёСЂРѕРІР°РЅРёРµРј, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РёРЅРѕРіРґР° Translation РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ StringInfo }
       vPtr := vBuf;
       vEnd := vBuf + (vSize div SizeOf(WideChar)) - Length(cStrInfo) - 4 - 8;
       while vPtr < vEnd do begin
@@ -111,7 +111,7 @@ interface
         Inc(vPtr);
       end;
 
-      { Не нашли сканированием (возможно 16-ти разрядная программа), попробуем через Translation}
+      { РќРµ РЅР°С€Р»Рё СЃРєР°РЅРёСЂРѕРІР°РЅРёРµРј (РІРѕР·РјРѕР¶РЅРѕ 16-С‚Рё СЂР°Р·СЂСЏРґРЅР°СЏ РїСЂРѕРіСЂР°РјРјР°), РїРѕРїСЂРѕР±СѓРµРј С‡РµСЂРµР· Translation}
       if VerQueryValue(vBuf, '\VarFileInfo\Translation', Pointer(vCP), vLen) then
         vLang := FAPI.Format('%.4x%.4x', [vCP.wLanguage, vCP.wCodePage]);
     end;

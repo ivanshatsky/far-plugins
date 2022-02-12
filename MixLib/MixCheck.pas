@@ -165,7 +165,7 @@ interface
     else
       vStr := vStr + '!!!ST ';
 
-   {ifopt O+ - не работает}
+   {ifopt O+ - РЅРµ СЂР°Р±РѕС‚Р°РµС‚}
    {$ifdef bOptimization}
     vStr := vStr + 'Optimize ';
    {$endif bOptimization}

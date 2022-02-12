@@ -1,11 +1,11 @@
 {------------------------------------------------------------------------------}
 
-{$Define bUnicode}       { Ansi-версия использует Unicode-строки }
+{$Define bUnicode}       { Ansi-РІРµСЂСЃРёСЏ РёСЃРїРѕР»СЊР·СѓРµС‚ Unicode-СЃС‚СЂРѕРєРё }
 
-{$Define bThumbnail}     { Показывать Explorer Thumbnail }
+{$Define bThumbnail}     { РџРѕРєР°Р·С‹РІР°С‚СЊ Explorer Thumbnail }
 
 {$ifdef bUnicodeFar}
- {$Define bSynchroCall}  { Вызов хинта через ProcessSynchroEventW }
+ {$Define bSynchroCall}  { Р’С‹Р·РѕРІ С…РёРЅС‚Р° С‡РµСЂРµР· ProcessSynchroEventW }
 {$endif bUnicodeFar}
 
 {$ifdef bTrace}

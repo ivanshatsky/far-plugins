@@ -82,12 +82,12 @@ interface
       FCSection     :TRTLCriticalSection;
 
       FLock         :Integer;
-      FTaskInc      :Integer;   { Инкремент задач }
-      FTaskReq      :Integer;   { Требуемая задача }
-      FTaskRun      :Integer;   { Обрабатываемая задача }
+      FTaskInc      :Integer;   { РРЅРєСЂРµРјРµРЅС‚ Р·Р°РґР°С‡ }
+      FTaskReq      :Integer;   { РўСЂРµР±СѓРµРјР°СЏ Р·Р°РґР°С‡Р° }
+      FTaskRun      :Integer;   { РћР±СЂР°Р±Р°С‚С‹РІР°РµРјР°СЏ Р·Р°РґР°С‡Р° }
       FTaskView     :Integer;
-      FTaskStart    :Cardinal;  { Время постановки задачи }
-      FLastRefresh  :Cardinal;  { Последнее обновление }
+      FTaskStart    :Cardinal;  { Р’СЂРµРјСЏ РїРѕСЃС‚Р°РЅРѕРІРєРё Р·Р°РґР°С‡Рё }
+      FLastRefresh  :Cardinal;  { РџРѕСЃР»РµРґРЅРµРµ РѕР±РЅРѕРІР»РµРЅРёРµ }
 
       FFolder       :TString;
       FFileCount    :Integer;
@@ -129,7 +129,7 @@ interface
       if AItem.FarItem <> nil then
         AItem.AddStringInfo(GetMsg(strName), AItem.Name)
       else
-        { Плагин вызван из дерева - показываем полный путь }
+        { РџР»Р°РіРёРЅ РІС‹Р·РІР°РЅ РёР· РґРµСЂРµРІР° - РїРѕРєР°Р·С‹РІР°РµРј РїРѕР»РЅС‹Р№ РїСѓС‚СЊ }
         AItem.AddStringInfo(GetMsg(strName), AItem.FullName);
 
       if AItem.Modified <> 0 then

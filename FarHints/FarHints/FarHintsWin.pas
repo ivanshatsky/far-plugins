@@ -115,23 +115,23 @@ interface
       FFont2       :HFont;
       FContext     :THintCallContext;
       FCallMode    :THintCallMode;
-      FShowTime    :Cardinal;      { Время появления хинта }
-      FLifePeriod  :Integer;       { Время жизни хинта }
+      FShowTime    :Cardinal;      { Р’СЂРµРјСЏ РїРѕСЏРІР»РµРЅРёСЏ С…РёРЅС‚Р° }
+      FLifePeriod  :Integer;       { Р’СЂРµРјСЏ Р¶РёР·РЅРё С…РёРЅС‚Р° }
       FPlugin      :IHintPlugin;
       FItem        :IFarItem;
       FFolder      :Boolean;
       FIcon        :HIcon;         { Extracted image }
-      FThumbWait   :Boolean;       { Извлечение продолжается }
-      FWaitStart   :Cardinal;      { Для мигания иконки во время извлечения... }
+      FThumbWait   :Boolean;       { РР·РІР»РµС‡РµРЅРёРµ РїСЂРѕРґРѕР»Р¶Р°РµС‚СЃСЏ }
+      FWaitStart   :Cardinal;      { Р”Р»СЏ РјРёРіР°РЅРёСЏ РёРєРѕРЅРєРё РІРѕ РІСЂРµРјСЏ РёР·РІР»РµС‡РµРЅРёСЏ... }
       FWaitPulsed  :Boolean;       { -/-/- }
-      FSizeStart   :Cardinal;      { Для временного показа размера эскиза... }
+      FSizeStart   :Cardinal;      { Р”Р»СЏ РІСЂРµРјРµРЅРЅРѕРіРѕ РїРѕРєР°Р·Р° СЂР°Р·РјРµСЂР° СЌСЃРєРёР·Р°... }
       FBitmap      :HBitmap;       { Thumbnail bitmap }
-      FAlpha       :Boolean;       { ... имеет альфа-канал }
+      FAlpha       :Boolean;       { ... РёРјРµРµС‚ Р°Р»СЊС„Р°-РєР°РЅР°Р» }
       FShowImage   :Boolean;
-      FIconSize    :TSize;         { Размер иконки }
-      FBitmapSize  :TSize;         { Оригинальный размер bitmap-а эскиза }
-      FThumbSize   :TSize;         { Отображаемый размер эскиза }
-      FImageSize   :TSize;         { Размер области рисунка (эскиз и/или иконка или рисунок субплагина) }
+      FIconSize    :TSize;         { Р Р°Р·РјРµСЂ РёРєРѕРЅРєРё }
+      FBitmapSize  :TSize;         { РћСЂРёРіРёРЅР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ bitmap-Р° СЌСЃРєРёР·Р° }
+      FThumbSize   :TSize;         { РћС‚РѕР±СЂР°Р¶Р°РµРјС‹Р№ СЂР°Р·РјРµСЂ СЌСЃРєРёР·Р° }
+      FImageSize   :TSize;         { Р Р°Р·РјРµСЂ РѕР±Р»Р°СЃС‚Рё СЂРёСЃСѓРЅРєР° (СЌСЃРєРёР· Рё/РёР»Рё РёРєРѕРЅРєР° РёР»Рё СЂРёСЃСѓРЅРѕРє СЃСѓР±РїР»Р°РіРёРЅР°) }
       FInitPosX    :Integer;
       FInitPosY    :Integer;
       FShowPrompt  :Boolean;
@@ -142,7 +142,7 @@ interface
       FFontColor2  :Integer;
       FColor1      :Integer;
       FColor2      :Integer;
-      FDelta1      :Integer;       { Вспом. размер }
+      FDelta1      :Integer;       { Р’СЃРїРѕРј. СЂР°Р·РјРµСЂ }
 
       procedure SetItem(const APlugin :IHintPlugin; const AItem :IFarItem);
       procedure UpdateIcon(ANewIcon :Boolean);
@@ -451,7 +451,7 @@ interface
 
        {$ifdef bThumbnail}
         if FThumbWait then
-          { Может уже готово? }
+          { РњРѕР¶РµС‚ СѓР¶Рµ РіРѕС‚РѕРІРѕ? }
           CheckForUpdatedThumbnail;
 
         if FThumbWait then
@@ -551,7 +551,7 @@ interface
           vPSize := @FarHintThumbSize2;
 
         if (FBitmap <> 0) or (vPSize^ < cMinThumbSize) then begin
-          { Изменение размера эскиза... }
+          { РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° СЌСЃРєРёР·Р°... }
 //        vSize := IntMax(FThumbSize.CX, FThumbSize.CY);
           vSize := vPSize^;
           vOldSize := vSize;
@@ -582,7 +582,7 @@ interface
 
         end else
         begin
-          {Изменение размеров иконки...}
+          {РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂРѕРІ РёРєРѕРЅРєРё...}
 
         end;
       end;
@@ -721,7 +721,7 @@ interface
       UpdateWindow(Handle);
     end else
     begin
-      { Под XP не получается аккуратно включить Layered атрибут - промаргивает черное пятно :( }
+      { РџРѕРґ XP РЅРµ РїРѕР»СѓС‡Р°РµС‚СЃСЏ Р°РєРєСѓСЂР°С‚РЅРѕ РІРєР»СЋС‡РёС‚СЊ Layered Р°С‚СЂРёР±СѓС‚ - РїСЂРѕРјР°СЂРіРёРІР°РµС‚ С‡РµСЂРЅРѕРµ РїСЏС‚РЅРѕ :( }
       if CheckWin32Version(6, 0) then
         if GetWindowLong(Handle, GWL_EXSTYLE) and WS_EX_LAYERED = 0 then begin
           SetLayered(True);
@@ -744,8 +744,8 @@ interface
 
     if AShow then begin
       LocSetAlphaBlend( vLimit );
-      { Лучше бы, конечно, сразу выключать Layered, но тогда под XP плохо работает SmoothHide }
-      { Используем компромиссный вариант - выключаем Layered, если окно Resize'ится... }
+      { Р›СѓС‡С€Рµ Р±С‹, РєРѕРЅРµС‡РЅРѕ, СЃСЂР°Р·Сѓ РІС‹РєР»СЋС‡Р°С‚СЊ Layered, РЅРѕ С‚РѕРіРґР° РїРѕРґ XP РїР»РѕС…Рѕ СЂР°Р±РѕС‚Р°РµС‚ SmoothHide }
+      { РСЃРїРѕР»СЊР·СѓРµРј РєРѕРјРїСЂРѕРјРёСЃСЃРЅС‹Р№ РІР°СЂРёР°РЅС‚ - РІС‹РєР»СЋС‡Р°РµРј Layered, РµСЃР»Рё РѕРєРЅРѕ Resize'РёС‚СЃСЏ... }
 //    if vLimit = 255 then
 //      SetLayered(False);
     end;
@@ -827,7 +827,7 @@ interface
             vSize := FThumbSize;
 
             DrawBitmap(DC, FBitmap, vRect.Left, vRect.Top, FThumbSize.CX, FThumbSize.CY, 0, 0, FBitmapSize.CX, FBitmapSize.CY,
-              FAlpha and FFolder { Затычка...}  );
+              FAlpha and FFolder { Р—Р°С‚С‹С‡РєР°...}  );
 
             if (FarHintIconOnThumb and not FFolder) and (FIcon <> 0) and not FWaitPulsed then
               with GetOverlayIconRect do
@@ -1022,7 +1022,7 @@ interface
     if IsWindowVisible(FHandle) then begin
 
       if ASmooth and (FarHintSmothSteps > 0) then begin
-        { Типа плавное перемещение }
+        { РўРёРїР° РїР»Р°РІРЅРѕРµ РїРµСЂРµРјРµС‰РµРЅРёРµ }
         vSrcRect := GetBoundsRect;
         for I := 1 to FarHintSmothSteps do begin
           Xi := vSrcRect.Left + MulDiv( vDestRect.Left - vSrcRect.Left, I, FarHintSmothSteps);
@@ -1036,7 +1036,7 @@ interface
         vSrcRect := GetBoundsRect;
         if (vSrcRect.Right - vSrcRect.Left <> vDestRect.Right - vDestRect.Left) or (vSrcRect.Bottom - vSrcRect.Top <> vDestRect.Bottom - vDestRect.Top) then begin
           if FTransp = 255 then
-            { Выключение режима Layered повышает быстродействие масштабирования и уменьшает моргание... }
+            { Р’С‹РєР»СЋС‡РµРЅРёРµ СЂРµР¶РёРјР° Layered РїРѕРІС‹С€Р°РµС‚ Р±С‹СЃС‚СЂРѕРґРµР№СЃС‚РІРёРµ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ Рё СѓРјРµРЅСЊС€Р°РµС‚ РјРѕСЂРіР°РЅРёРµ... }
             SetLayered(False)
           else
             vFlags := SWP_NOREDRAW;
@@ -1113,7 +1113,7 @@ interface
       with vRect do
         vRgn2 := CreateRectRgn(Left, Top, Right, Bottom);
       try
-        { Перерисовываем все, за исключением картинки }
+        { РџРµСЂРµСЂРёСЃРѕРІС‹РІР°РµРј РІСЃРµ, Р·Р° РёСЃРєР»СЋС‡РµРЅРёРµРј РєР°СЂС‚РёРЅРєРё }
         if CombineRgn(vRgn1, vRgn1, vRgn2, RGN_XOR) in [SimpleRegion, ComplexRegion] then
           RedrawWindow(FHandle, nil, vRgn1, RDW_INVALIDATE or RDW_ERASE or RDW_ERASENOW);
       finally
@@ -1121,7 +1121,7 @@ interface
         DeleteObject(vRgn2);
       end;
 
-      { Перерисовываем картинку }
+      { РџРµСЂРµСЂРёСЃРѕРІС‹РІР°РµРј РєР°СЂС‚РёРЅРєСѓ }
       InvalidateRect(FHandle, @vRect, False);
 
     end else
@@ -1218,7 +1218,7 @@ interface
   begin
     FThumbWait := not AsyncCheckFileThumbnail(vBitmap, vAlpha);
     if vBitmap <> 0 then
-      { Появился обновленный эскиз }
+      { РџРѕСЏРІРёР»СЃСЏ РѕР±РЅРѕРІР»РµРЅРЅС‹Р№ СЌСЃРєРёР· }
       SetThumbnail(vBitmap, vAlpha);
   end;
 

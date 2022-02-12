@@ -805,12 +805,12 @@ interface
 
     vName := AName;
     if faDirectory and Attr <> 0 then begin
-      { Маска каталогов... }
+      { РњР°СЃРєР° РєР°С‚Р°Р»РѕРіРѕРІ... }
     end else
     begin
       vNeedPoint := ChrPos('.', vName) = 0;
       if vNeedPoint then
-        vName := vName + '.'; { Чтобы работали маски, типа "*."}
+        vName := vName + '.'; { Р§С‚РѕР±С‹ СЂР°Р±РѕС‚Р°Р»Рё РјР°СЃРєРё, С‚РёРїР° "*."}
 
       if (FInclMasks <> nil) and not FInclMasks.Check(vName, vPos, vLen) then
         Exit;
@@ -881,7 +881,7 @@ interface
           vItem := AList[I];
           if vItem.IsFolder then begin
             if optNoScanOrphan and not vItem.BothAttr(faPresent) then
-              { Пропускаем непарные каталоги }
+              { РџСЂРѕРїСѓСЃРєР°РµРј РЅРµРїР°СЂРЅС‹Рµ РєР°С‚Р°Р»РѕРіРё }
               Continue;
 
             vItem.Subs := TCmpFolder.Create;
@@ -986,7 +986,7 @@ interface
 
       if not AItem.HasAttr(faDirectory) then begin
         if not NeedCompareFiles(AItem) then
-          { Не совпадает размер - незачем сравнивать }
+          { РќРµ СЃРѕРІРїР°РґР°РµС‚ СЂР°Р·РјРµСЂ - РЅРµР·Р°С‡РµРј СЃСЂР°РІРЅРёРІР°С‚СЊ }
           AItem.Content := ccDiff
         else begin
           {!!!}
@@ -1140,7 +1140,7 @@ interface
       vStr2 := StrFromFile(AFileName2, optDefaultFormat);
 
       if (ChrPos(#0, vStr1) > 0) or (ChrPos(#0, vStr1) > 0) then begin
-        { Сравниваем как двоичные файлы }
+        { РЎСЂР°РІРЅРёРІР°РµРј РєР°Рє РґРІРѕРёС‡РЅС‹Рµ С„Р°Р№Р»С‹ }
         Result := vStr1 = vStr2;
         Exit;
       end;
@@ -1353,11 +1353,11 @@ interface
       if vItem.BothAttr(faPresent) then begin
 
         if vItem.BothAttr(faDirectory) then begin
-          { С обоих сторон каталоги... }
+          { РЎ РѕР±РѕРёС… СЃС‚РѕСЂРѕРЅ РєР°С‚Р°Р»РѕРіРё... }
           {...}
         end else
         begin
-          { С обоих сторон файлы (смешанный вариант невозможен) }
+          { РЎ РѕР±РѕРёС… СЃС‚РѕСЂРѕРЅ С„Р°Р№Р»С‹ (СЃРјРµС€Р°РЅРЅС‹Р№ РІР°СЂРёР°РЅС‚ РЅРµРІРѕР·РјРѕР¶РµРЅ) }
           if vItem.IsDifferent then
             Inc(AList.DiffCount)
           else begin

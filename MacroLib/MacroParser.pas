@@ -6,7 +6,7 @@ unit MacroParser;
 {* (c) 2011 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Macro Library                                                          *}
-{* Парсер макрофайла                                                          *}
+{* РџР°СЂСЃРµСЂ РјР°РєСЂРѕС„Р°Р№Р»Р°                                                          *}
 {******************************************************************************}
 
 interface
@@ -199,28 +199,28 @@ interface
 
 
     TMacroRec = record
-      Name     :TString;            { Имя макроса (для вызова по имени, необязательное) }
-      Descr    :TString;            { Описание макроса (для показа пользователю) }
-      Bind     :TKeyArray;          { Массив кодов клавиш с модификаторами - array of TKeyRec }
+      Name     :TString;            { РРјСЏ РјР°РєСЂРѕСЃР° (РґР»СЏ РІС‹Р·РѕРІР° РїРѕ РёРјРµРЅРё, РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕРµ) }
+      Descr    :TString;            { РћРїРёСЃР°РЅРёРµ РјР°РєСЂРѕСЃР° (РґР»СЏ РїРѕРєР°Р·Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ) }
+      Bind     :TKeyArray;          { РњР°СЃСЃРёРІ РєРѕРґРѕРІ РєР»Р°РІРёС€ СЃ РјРѕРґРёС„РёРєР°С‚РѕСЂР°РјРё - array of TKeyRec }
      {$ifdef bUseKeyMask}
-      Bind1    :TKeyMaskArray;      { Альтернативная привязка - по регулярным выражениям }
+      Bind1    :TKeyMaskArray;      { РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅР°СЏ РїСЂРёРІСЏР·РєР° - РїРѕ СЂРµРіСѓР»СЏСЂРЅС‹Рј РІС‹СЂР°Р¶РµРЅРёСЏРј }
      {$endif bUseKeyMask}
-      Area     :TMacroAreas;        { Битовая маска MacroAreas }
-      Dlgs     :TGUIDArray;         { Массив GUID-ов диалогов - для привязки макроса к диалогу }
-      Dlgs1    :TStrArray;          { Массив Заголовков диалогов - альтернативный вариант привязки }
-      Edts     :TStrArray;          { Массив масок файлов для привязки к редактору }
-      Views    :TStrArray;          { -/-/- к viewer'у }
-      Cond     :TMacroConditions;   { Битовая маска для стандартных условий срабатывания }
-      Events   :TMacroEvents;       { Условия срабатывания по событиям }
-      Where    :TString;            { Условие срабатывания в виде логического выражения - на будущее, пока не используется }
-      Priority :Integer;            { Приоритет макроса, для разрешения конфликтов }
-      Options  :TMacroOptions;      { Опции исполнения макроса: DisableOutput, SendToPlugins, EatOnRun }
+      Area     :TMacroAreas;        { Р‘РёС‚РѕРІР°СЏ РјР°СЃРєР° MacroAreas }
+      Dlgs     :TGUIDArray;         { РњР°СЃСЃРёРІ GUID-РѕРІ РґРёР°Р»РѕРіРѕРІ - РґР»СЏ РїСЂРёРІСЏР·РєРё РјР°РєСЂРѕСЃР° Рє РґРёР°Р»РѕРіСѓ }
+      Dlgs1    :TStrArray;          { РњР°СЃСЃРёРІ Р—Р°РіРѕР»РѕРІРєРѕРІ РґРёР°Р»РѕРіРѕРІ - Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ РІР°СЂРёР°РЅС‚ РїСЂРёРІСЏР·РєРё }
+      Edts     :TStrArray;          { РњР°СЃСЃРёРІ РјР°СЃРѕРє С„Р°Р№Р»РѕРІ РґР»СЏ РїСЂРёРІСЏР·РєРё Рє СЂРµРґР°РєС‚РѕСЂСѓ }
+      Views    :TStrArray;          { -/-/- Рє viewer'Сѓ }
+      Cond     :TMacroConditions;   { Р‘РёС‚РѕРІР°СЏ РјР°СЃРєР° РґР»СЏ СЃС‚Р°РЅРґР°СЂС‚РЅС‹С… СѓСЃР»РѕРІРёР№ СЃСЂР°Р±Р°С‚С‹РІР°РЅРёСЏ }
+      Events   :TMacroEvents;       { РЈСЃР»РѕРІРёСЏ СЃСЂР°Р±Р°С‚С‹РІР°РЅРёСЏ РїРѕ СЃРѕР±С‹С‚РёСЏРј }
+      Where    :TString;            { РЈСЃР»РѕРІРёРµ СЃСЂР°Р±Р°С‚С‹РІР°РЅРёСЏ РІ РІРёРґРµ Р»РѕРіРёС‡РµСЃРєРѕРіРѕ РІС‹СЂР°Р¶РµРЅРёСЏ - РЅР° Р±СѓРґСѓС‰РµРµ, РїРѕРєР° РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ }
+      Priority :Integer;            { РџСЂРёРѕСЂРёС‚РµС‚ РјР°РєСЂРѕСЃР°, РґР»СЏ СЂР°Р·СЂРµС€РµРЅРёСЏ РєРѕРЅС„Р»РёРєС‚РѕРІ }
+      Options  :TMacroOptions;      { РћРїС†РёРё РёСЃРїРѕР»РЅРµРЅРёСЏ РјР°РєСЂРѕСЃР°: DisableOutput, SendToPlugins, EatOnRun }
      {$ifdef bMacroInclude}
-      Includes :TMacroIncludeArray; { Макроподстановки }
+      Includes :TMacroIncludeArray; { РњР°РєСЂРѕРїРѕРґСЃС‚Р°РЅРѕРІРєРё }
      {$endif bMacroInclude}
-      Text     :TString;            { Текст макропоследовательности }
-      Row, Col :Integer;            { Привязка к исходному тексту }
-      Index    :Integer;            { Порядковый номер макроса }
+      Text     :TString;            { РўРµРєСЃС‚ РјР°РєСЂРѕРїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё }
+      Row, Col :Integer;            { РџСЂРёРІСЏР·РєР° Рє РёСЃС…РѕРґРЅРѕРјСѓ С‚РµРєСЃС‚Сѓ }
+      Index    :Integer;            { РџРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РјР°РєСЂРѕСЃР° }
     end;
 
     PStackRec = ^TStackRec;
@@ -822,7 +822,7 @@ interface
     if AKey = -1 then
       Exit;
 
-//  AMod := kmPress;  Устанавливается перед вызовом
+//  AMod := kmPress;  РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРµСЂРµРґ РІС‹Р·РѕРІРѕРј
     if vPtr <> nil then
       if not KeyModParse(vPtr, AMod) then
         Exit;
@@ -859,7 +859,7 @@ interface
 
     AMask := AName;
 
-//  AMod := kmPress;  Устанавливается пере вызовом
+//  AMod := kmPress;  РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРµСЂРµ РІС‹Р·РѕРІРѕРј
     if vPtr <> nil then
       if not KeyModParse(vPtr, AMod) then
         Exit;
@@ -917,26 +917,26 @@ interface
 
 
   const
-    MFLAGS_ENABLEOUTPUT            =$0000000000000001; // не подавлять обновление экрана во время выполнения макроса
-    MFLAGS_NOSENDKEYSTOPLUGINS     =$0000000000000002; // НЕ передавать плагинам клавиши во время записи/воспроизведения макроса
-    MFLAGS_RUNAFTERFARSTART        =$0000000000000008; // этот макрос запускается при старте ФАРа
+    MFLAGS_ENABLEOUTPUT            =$0000000000000001; // РЅРµ РїРѕРґР°РІР»СЏС‚СЊ РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° РІРѕ РІСЂРµРјСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РјР°РєСЂРѕСЃР°
+    MFLAGS_NOSENDKEYSTOPLUGINS     =$0000000000000002; // РќР• РїРµСЂРµРґР°РІР°С‚СЊ РїР»Р°РіРёРЅР°Рј РєР»Р°РІРёС€Рё РІРѕ РІСЂРµРјСЏ Р·Р°РїРёСЃРё/РІРѕСЃРїСЂРѕРёР·РІРµРґРµРЅРёСЏ РјР°РєСЂРѕСЃР°
+    MFLAGS_RUNAFTERFARSTART        =$0000000000000008; // СЌС‚РѕС‚ РјР°РєСЂРѕСЃ Р·Р°РїСѓСЃРєР°РµС‚СЃСЏ РїСЂРё СЃС‚Р°СЂС‚Рµ Р¤РђР Р°
 
-    MFLAGS_EMPTYCOMMANDLINE        =$0000000000000010; // запускать, если командная линия пуста
-    MFLAGS_NOTEMPTYCOMMANDLINE     =$0000000000000020; // запускать, если командная линия не пуста
-    MFLAGS_EDITSELECTION           =$0000000000000040; // запускать, если есть выделение в редакторе
-    MFLAGS_EDITNOSELECTION         =$0000000000000080; // запускать, если есть нет выделения в редакторе
-    MFLAGS_SELECTION               =$0000000000000100; // активная:  запускать, если есть выделение
-    MFLAGS_PSELECTION              =$0000000000000200; // пассивная: запускать, если есть выделение
-    MFLAGS_NOSELECTION             =$0000000000000400; // активная:  запускать, если есть нет выделения
-    MFLAGS_PNOSELECTION            =$0000000000000800; // пассивная: запускать, если есть нет выделения
-    MFLAGS_NOFILEPANELS            =$0000000000001000; // активная:  запускать, если это плагиновая панель
-    MFLAGS_PNOFILEPANELS           =$0000000000002000; // пассивная: запускать, если это плагиновая панель
-    MFLAGS_NOPLUGINPANELS          =$0000000000004000; // активная:  запускать, если это файловая панель
-    MFLAGS_PNOPLUGINPANELS         =$0000000000008000; // пассивная: запускать, если это файловая панель
-    MFLAGS_NOFOLDERS               =$0000000000010000; // активная:  запускать, если текущий объект "файл"
-    MFLAGS_PNOFOLDERS              =$0000000000020000; // пассивная: запускать, если текущий объект "файл"
-    MFLAGS_NOFILES                 =$0000000000040000; // активная:  запускать, если текущий объект "папка"
-    MFLAGS_PNOFILES                =$0000000000080000; // пассивная: запускать, если текущий объект "папка"
+    MFLAGS_EMPTYCOMMANDLINE        =$0000000000000010; // Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РєРѕРјР°РЅРґРЅР°СЏ Р»РёРЅРёСЏ РїСѓСЃС‚Р°
+    MFLAGS_NOTEMPTYCOMMANDLINE     =$0000000000000020; // Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РєРѕРјР°РЅРґРЅР°СЏ Р»РёРЅРёСЏ РЅРµ РїСѓСЃС‚Р°
+    MFLAGS_EDITSELECTION           =$0000000000000040; // Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РµСЃС‚СЊ РІС‹РґРµР»РµРЅРёРµ РІ СЂРµРґР°РєС‚РѕСЂРµ
+    MFLAGS_EDITNOSELECTION         =$0000000000000080; // Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РµСЃС‚СЊ РЅРµС‚ РІС‹РґРµР»РµРЅРёСЏ РІ СЂРµРґР°РєС‚РѕСЂРµ
+    MFLAGS_SELECTION               =$0000000000000100; // Р°РєС‚РёРІРЅР°СЏ:  Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РµСЃС‚СЊ РІС‹РґРµР»РµРЅРёРµ
+    MFLAGS_PSELECTION              =$0000000000000200; // РїР°СЃСЃРёРІРЅР°СЏ: Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РµСЃС‚СЊ РІС‹РґРµР»РµРЅРёРµ
+    MFLAGS_NOSELECTION             =$0000000000000400; // Р°РєС‚РёРІРЅР°СЏ:  Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РµСЃС‚СЊ РЅРµС‚ РІС‹РґРµР»РµРЅРёСЏ
+    MFLAGS_PNOSELECTION            =$0000000000000800; // РїР°СЃСЃРёРІРЅР°СЏ: Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё РµСЃС‚СЊ РЅРµС‚ РІС‹РґРµР»РµРЅРёСЏ
+    MFLAGS_NOFILEPANELS            =$0000000000001000; // Р°РєС‚РёРІРЅР°СЏ:  Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё СЌС‚Рѕ РїР»Р°РіРёРЅРѕРІР°СЏ РїР°РЅРµР»СЊ
+    MFLAGS_PNOFILEPANELS           =$0000000000002000; // РїР°СЃСЃРёРІРЅР°СЏ: Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё СЌС‚Рѕ РїР»Р°РіРёРЅРѕРІР°СЏ РїР°РЅРµР»СЊ
+    MFLAGS_NOPLUGINPANELS          =$0000000000004000; // Р°РєС‚РёРІРЅР°СЏ:  Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё СЌС‚Рѕ С„Р°Р№Р»РѕРІР°СЏ РїР°РЅРµР»СЊ
+    MFLAGS_PNOPLUGINPANELS         =$0000000000008000; // РїР°СЃСЃРёРІРЅР°СЏ: Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё СЌС‚Рѕ С„Р°Р№Р»РѕРІР°СЏ РїР°РЅРµР»СЊ
+    MFLAGS_NOFOLDERS               =$0000000000010000; // Р°РєС‚РёРІРЅР°СЏ:  Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё С‚РµРєСѓС‰РёР№ РѕР±СЉРµРєС‚ "С„Р°Р№Р»"
+    MFLAGS_PNOFOLDERS              =$0000000000020000; // РїР°СЃСЃРёРІРЅР°СЏ: Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё С‚РµРєСѓС‰РёР№ РѕР±СЉРµРєС‚ "С„Р°Р№Р»"
+    MFLAGS_NOFILES                 =$0000000000040000; // Р°РєС‚РёРІРЅР°СЏ:  Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё С‚РµРєСѓС‰РёР№ РѕР±СЉРµРєС‚ "РїР°РїРєР°"
+    MFLAGS_PNOFILES                =$0000000000080000; // РїР°СЃСЃРёРІРЅР°СЏ: Р·Р°РїСѓСЃРєР°С‚СЊ, РµСЃР»Рё С‚РµРєСѓС‰РёР№ РѕР±СЉРµРєС‚ "РїР°РїРєР°"
 
 
   procedure MacroSetFlags(var aMacro :TMacroRec; AFlags :DWORD);
@@ -1139,7 +1139,7 @@ interface
   begin
     FFileName := AFileName;
 
-    { Читаем файл }
+    { Р§РёС‚Р°РµРј С„Р°Р№Р» }
     FText := StrFromFile(AFileName);
 
     Result := Parse(PTChar(FText));
@@ -1454,7 +1454,7 @@ interface
 
      {$ifdef bLua}
       if MatchStr(APtr, cLineComment3) then begin
-        { Комментарий (однострочный или многострочный)  }
+        { РљРѕРјРјРµРЅС‚Р°СЂРёР№ (РѕРґРЅРѕСЃС‚СЂРѕС‡РЅС‹Р№ РёР»Рё РјРЅРѕРіРѕСЃС‚СЂРѕС‡РЅС‹Р№)  }
         vPos := APtr;
         inc(APtr, length(cLineComment3));
         if (APtr^ = '[') and IsMultilineQuote(APtr, vEndStr) then
@@ -1464,18 +1464,18 @@ interface
         FSeq.Add(vPos, APtr - vPos);
       end else
       if (APtr^ = '[') and IsMultilineQuote(APtr, vEndStr) then begin
-        { Многострочный строковый литерал }
+        { РњРЅРѕРіРѕСЃС‚СЂРѕС‡РЅС‹Р№ СЃС‚СЂРѕРєРѕРІС‹Р№ Р»РёС‚РµСЂР°Р» }
         vPos := APtr;
         SkipMultilineComment(APtr, PTChar(vEndStr));
         FSeq.Add(vPos, APtr - vPos);
       end else
      {$else}
       if MatchStr(APtr, cLineComment1) or MatchStr(APtr, cLineComment2) then
-        { Однострочный комментарий }
+        { РћРґРЅРѕСЃС‚СЂРѕС‡РЅС‹Р№ РєРѕРјРјРµРЅС‚Р°СЂРёР№ }
         SkipLineComment(APtr)
       else
       if MatchStr(APtr, cCommentBeg) then begin
-        { Многострочный комментарий }
+        { РњРЅРѕРіРѕСЃС‚СЂРѕС‡РЅС‹Р№ РєРѕРјРјРµРЅС‚Р°СЂРёР№ }
         vRow := FRow;
         vPos := APtr;
         SkipMultilineComment(APtr, cCommentEnd);
@@ -1508,7 +1508,7 @@ interface
       end else
      {$ifndef bLua}
       if MatchStr(APtr, '@"') then begin
-        { Поддержка строковых литералов - verbatim string }
+        { РџРѕРґРґРµСЂР¶РєР° СЃС‚СЂРѕРєРѕРІС‹С… Р»РёС‚РµСЂР°Р»РѕРІ - verbatim string }
         FCur := APtr;
         vPos := APtr;
         Inc(APtr, 2);
@@ -1526,7 +1526,7 @@ interface
      {$endif ~bLua}
 
       if APtr^ = '#' then begin
-        { Препроцессор }
+        { РџСЂРµРїСЂРѕС†РµСЃСЃРѕСЂ }
        {$ifdef bLua}
         vPos := APtr;
        {$endif bLua}
@@ -1537,7 +1537,7 @@ interface
           Error(errUnexpectedEOF);
 
         if vLex = lexWord then begin
-          { Директива препроцессора  }
+          { Р”РёСЂРµРєС‚РёРІР° РїСЂРµРїСЂРѕС†РµСЃСЃРѕСЂР°  }
           vKey := KeyPrepr.GetKeyword(vParam, vLen);
           if vKey = kwpInclude then begin
             ParseInclude(APtr);
@@ -1558,14 +1558,14 @@ interface
             Include(FMacro.Options, moDefineAKey);
           end else
            {$ifdef bLUA}
-            { В LUA # может являться частью синтаксиса }
+            { Р’ LUA # РјРѕР¶РµС‚ СЏРІР»СЏС‚СЊСЃСЏ С‡Р°СЃС‚СЊСЋ СЃРёРЅС‚Р°РєСЃРёСЃР° }
             FSeq.Add(vPos, APtr - vPos);
            {$else}
             Warning(errUnknownKeyword);
            {$endif bLUA}
         end else
         if (vLex = lexSymbol) and (vParam^ = '%') then begin
-          { Константа препроцессора }
+          { РљРѕРЅСЃС‚Р°РЅС‚Р° РїСЂРµРїСЂРѕС†РµСЃСЃРѕСЂР° }
           vLex := GetLex(APtr, vParam, vLen);
           if vLex = lexWord then begin
             vConst := FindMacroConst(vParam, vLen);
@@ -1875,7 +1875,7 @@ interface
           end;
 
           if (vPtr^ = '{') then begin
-            { Привязка по GUID }
+            { РџСЂРёРІСЏР·РєР° РїРѕ GUID }
             FillZero(vGUID, SizeOf(TGUID));
             if CLSIDFRomString(vPtr, vGUID) <> 0 then
               begin Warning1(errBadGUID, APtr); Exit; end;
@@ -1887,7 +1887,7 @@ interface
             FMacro.Dlgs[Length(FMacro.Dlgs) - 1] := vGUID;
           end else
           begin
-            { Привязка по Caption }
+            { РџСЂРёРІСЏР·РєР° РїРѕ Caption }
             if vArea = MACROAREA_DIALOG then
               vArr := @FMacro.Dlgs1
             else
@@ -1997,7 +1997,7 @@ interface
     I :Integer;
   begin
     if moRunOnRelease in FMacro.Options then
-      { Конвертируем в новый формат - для совместимости }
+      { РљРѕРЅРІРµСЂС‚РёСЂСѓРµРј РІ РЅРѕРІС‹Р№ С„РѕСЂРјР°С‚ - РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё }
       for I := 0 to length(FMacro.Bind) - 1 do
         with FMacro.Bind[I] do begin
           if KMod = kmPress then

@@ -141,7 +141,7 @@ typedef struct _NOTIFYICONDATAA{
       dwState :DWORD;
       dwStateMask :DWORD;
       szInfo : array [0..256-1] of WideChar;
-      uTimeout :UINT;  {он же uVersion}
+      uTimeout :UINT;  {РѕРЅ Р¶Рµ uVersion}
       szInfoTitle : array [0..64-1] of WideChar;
       dwInfoFlags :DWORD;
 //    guidItem :tGUID;

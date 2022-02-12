@@ -151,7 +151,7 @@ interface
    {$endif bTrace}
 
     if UpCompareSubStr('//', vFrmt) = 0  then begin
-      {FTP плагин}
+      {FTP РїР»Р°РіРёРЅ}
 
       if UpCompareSubStr('//Hosts', vFrmt) = 0 then
         Exit;
@@ -174,7 +174,7 @@ interface
 //    StrEqual(vFrmt, 'PDA') or
 //    StrEqual(vFrmt, 'PPC')
     then
-      { "Правильные" плагины }
+      { "РџСЂР°РІРёР»СЊРЅС‹Рµ" РїР»Р°РіРёРЅС‹ }
       Result := vFrmt + ':' + vPath;
   end;
  {$endif Far3}
@@ -225,7 +225,7 @@ interface
       vPath := FarPanelGetCurrentDirectory(vSrcPanel);
 
       if vPlugin and FileNameIsUNC(vPath) and (LastDelimiter('\', vPath) <= 2) then begin
-        { Исключение для плагина Network }
+        { РСЃРєР»СЋС‡РµРЅРёРµ РґР»СЏ РїР»Р°РіРёРЅР° Network }
 //      vPath := ConvertPluginPath(ClearTitle(GetConsoleTitleStr));
         vPath := GetPluginPath(vSrcPanel);
 
@@ -235,14 +235,14 @@ interface
 
     end else
     begin
-      { За неимением подходящего API - анализируем заголовок консоли}
+      { Р—Р° РЅРµРёРјРµРЅРёРµРј РїРѕРґС…РѕРґСЏС‰РµРіРѕ API - Р°РЅР°Р»РёР·РёСЂСѓРµРј Р·Р°РіРѕР»РѕРІРѕРє РєРѕРЅСЃРѕР»Рё}
 //    vPath := ConvertPluginPath(ClearTitle(GetConsoleTitleStr));
 
-      { А вот и API подоспело... }
+      { Рђ РІРѕС‚ Рё API РїРѕРґРѕСЃРїРµР»Рѕ... }
       vPath := GetPluginPath(vSrcPanel);
 
       if vPath = '' then begin
-        { Неподдерживаемый плагин. Устанавливаем текущий путь _под_ плагинной панелью }
+        { РќРµРїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Р№ РїР»Р°РіРёРЅ. РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚РµРєСѓС‰РёР№ РїСѓС‚СЊ _РїРѕРґ_ РїР»Р°РіРёРЅРЅРѕР№ РїР°РЅРµР»СЊСЋ }
         vPath := FarGetCurrentDirectory;
         vFile := ExtractFileName(FarPanelString(vSrcPanel, FCTL_GETPANELHOSTFILE));
         vRealFolder := True;
@@ -309,10 +309,10 @@ interface
         Exit;
 
       if vRealFolder and (vMacro = '') then
-        { Установка каталога и файла через API }
+        { РЈСЃС‚Р°РЅРѕРІРєР° РєР°С‚Р°Р»РѕРіР° Рё С„Р°Р№Р»Р° С‡РµСЂРµР· API }
         FarPanelSetPath(vDstPanel, vPath, vFile)
       else begin
-        { ...или через макрос }
+        { ...РёР»Рё С‡РµСЂРµР· РјР°РєСЂРѕСЃ }
         if vMacro <> '' then
           vMacro := vMacro + ' ';
 

@@ -6,7 +6,7 @@ unit ReviewJPEG;
 {* Review - Media viewer plugin for FAR                                       *}
 {* 2013, Max Rusov                                                            *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface
@@ -259,7 +259,7 @@ interface
     vThumb :HBitmap;
   begin
     vSize := FImgSize;
-    if (ADX > 0) and (ADY > 0) {and optUseWinSize Ïðè âûçîâå} then
+    if (ADX > 0) and (ADY > 0) {and optUseWinSize ÐŸÑ€Ð¸ Ð²Ñ‹Ð·Ð¾Ð²Ðµ} then
 //    CorrectBoundEx(vSize, Size(ADX, ADY));
       vSize := Size(ADX, ADY);
 

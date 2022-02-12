@@ -1,6 +1,6 @@
 program Noisy;
 
-{$I Defines.inc} { см. также DefApp.inc }
+{$I Defines.inc} { СЃРј. С‚Р°РєР¶Рµ DefApp.inc }
 
 {$ImageBase $01000000}
 

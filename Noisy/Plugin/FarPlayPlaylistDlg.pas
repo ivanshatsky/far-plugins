@@ -7,7 +7,7 @@ unit FarPlayPlaylistDlg;
 {* Noisy - Noisy Player Far plugin                                            *}
 {* 2008-2014, Max Rusov                                                       *}
 {* License: WTFPL                                                             *}
-{* Home: http://code.google.com/p/far-plugins/                                *}
+{* Home: https://github.com/MaxRusov/far-plugins                              *}
 {******************************************************************************}
 
 interface

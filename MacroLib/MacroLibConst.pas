@@ -125,15 +125,15 @@ interface
 
 
   var
-    optProcessHotkey :Boolean = True;   { Обрабатывать нажатия горячих клавиш }
-    optProcessMouse  :Boolean = True;   { Обрабатывать события мыши }
-    optExtendFarKey  :Boolean = False;  { Расширенная привязка кнопок для native макросов FAR }
-    optMacroPaths    :TString = '';     { Путь к каталогу с макросами }
+    optProcessHotkey :Boolean = True;   { РћР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РЅР°Р¶Р°С‚РёСЏ РіРѕСЂСЏС‡РёС… РєР»Р°РІРёС€ }
+    optProcessMouse  :Boolean = True;   { РћР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ СЃРѕР±С‹С‚РёСЏ РјС‹С€Рё }
+    optExtendFarKey  :Boolean = False;  { Р Р°СЃС€РёСЂРµРЅРЅР°СЏ РїСЂРёРІСЏР·РєР° РєРЅРѕРїРѕРє РґР»СЏ native РјР°РєСЂРѕСЃРѕРІ FAR }
+    optMacroPaths    :TString = '';     { РџСѓС‚СЊ Рє РєР°С‚Р°Р»РѕРіСѓ СЃ РјР°РєСЂРѕСЃР°РјРё }
 
-    optXLatMask      :Boolean = True;   { Автоматическое XLAT преобразование при поиске }
-    optShowHints     :Boolean = True;   { Показывать подсказки (требуется FarHints) }
-    optShowTitles    :Boolean = True;   { Показывать заголовки колонок }
-    optShowHidden    :boolean = False;  { Показывать скрытые макросы (описание пусто, или начинается с точки) }
+    optXLatMask      :Boolean = True;   { РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРѕРµ XLAT РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РїСЂРё РїРѕРёСЃРєРµ }
+    optShowHints     :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ РїРѕРґСЃРєР°Р·РєРё (С‚СЂРµР±СѓРµС‚СЃСЏ FarHints) }
+    optShowTitles    :Boolean = True;   { РџРѕРєР°Р·С‹РІР°С‚СЊ Р·Р°РіРѕР»РѕРІРєРё РєРѕР»РѕРЅРѕРє }
+    optShowHidden    :boolean = False;  { РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРєСЂС‹С‚С‹Рµ РјР°РєСЂРѕСЃС‹ (РѕРїРёСЃР°РЅРёРµ РїСѓСЃС‚Рѕ, РёР»Рё РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ С‚РѕС‡РєРё) }
 
     optShowBind      :Integer = 0;
     optShowArea      :Integer = 0;
@@ -150,9 +150,9 @@ interface
 
     optCmdPrefix     :TString = 'FML';
 
-   { Использовать инжектинг, для обработки клавиатуры }
-   { Данная опция имеет смысл в FAR3, если включены оба ключа: }
-   { bUseProcessConsoleInput и bUseInject }
+   { РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РёРЅР¶РµРєС‚РёРЅРі, РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё РєР»Р°РІРёР°С‚СѓСЂС‹ }
+   { Р”Р°РЅРЅР°СЏ РѕРїС†РёСЏ РёРјРµРµС‚ СЃРјС‹СЃР» РІ FAR3, РµСЃР»Рё РІРєР»СЋС‡РµРЅС‹ РѕР±Р° РєР»СЋС‡Р°: }
+   { bUseProcessConsoleInput Рё bUseInject }
 
    {$ifdef bUseProcessConsoleInput}
     optUseInject     :Boolean = False;
@@ -259,7 +259,7 @@ interface
     if FarKeyToInputRecord(AKey, vRec) then begin
       Result := FarInputRecordToName(vRec);
 
-      {Какая то лабуда в новых билдах FAR}
+      {РљР°РєР°СЏ С‚Рѕ Р»Р°Р±СѓРґР° РІ РЅРѕРІС‹С… Р±РёР»РґР°С… FAR}
       if (Result = '') and (vRec.Event.KeyEvent.wVirtualKeyCode in [VK_Shift, VK_CONTROL, VK_MENU]) then begin
         if vRec.Event.KeyEvent.dwControlKeyState and (LEFT_CTRL_PRESSED + RIGHT_CTRL_PRESSED) <> 0 then
           Result := Result + 'Ctrl';
@@ -378,7 +378,7 @@ interface
       if ATopLine = 0 then
         vHeight := vInfo.WindowSizeY
       else
-        vHeight := ATopLine - 1{Строка состояния редактора};
+        vHeight := ATopLine - 1{РЎС‚СЂРѕРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ СЂРµРґР°РєС‚РѕСЂР°};
       if (ARow < vInfo.TopScreenLine) or (ARow >= vInfo.TopScreenLine + vHeight) then
         vNewTop := RangeLimit(ARow - (vHeight div 2), 0, MaxInt{???});
     end;

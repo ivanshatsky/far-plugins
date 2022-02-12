@@ -851,7 +851,7 @@ end;
 
 
  {-----------------------------------------------------------------------------}
- { Поддержка сортировки                                                        }
+ { РџРѕРґРґРµСЂР¶РєР° СЃРѕСЂС‚РёСЂРѕРІРєРё                                                        }
 
   function TGrepDlg.ItemCompare(AIndex1, AIndex2 :Integer; Context :TIntPtr) :Integer; {override;}
   var
@@ -875,7 +875,7 @@ end;
         2:
           begin
             if optGrepTrimSpaces then begin
-              vLen1 := MaxInt; vLen2 := MaxInt; { Не важно... }
+              vLen1 := MaxInt; vLen2 := MaxInt; { РќРµ РІР°Р¶РЅРѕ... }
               StrTrimFirst(vStr1, vLen1);
               StrTrimFirst(vStr2, vLen2);
             end;

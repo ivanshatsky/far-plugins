@@ -49,7 +49,7 @@ interface
 
 
   function CompareFiles(AFileName1, AFileName2 :PTChar; AOptions :DWORD) :Integer; stdcall;
-    { Экспорт, для межплагинного взаимодействия... }
+    { Р­РєСЃРїРѕСЂС‚, РґР»СЏ РјРµР¶РїР»Р°РіРёРЅРЅРѕРіРѕ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ... }
 
 {******************************************************************************}
 {******************************} implementation {******************************}
@@ -60,7 +60,7 @@ interface
  
 
   function CompareFiles(AFileName1, AFileName2 :PTChar; AOptions :DWORD) :Integer;
-    { Экспорт, для межплагинного взаимодействия... }
+    { Р­РєСЃРїРѕСЂС‚, РґР»СЏ РјРµР¶РїР»Р°РіРёРЅРЅРѕРіРѕ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ... }
   begin
     try
       CompareTexts(AFileName1, AFileName2);
@@ -157,7 +157,7 @@ interface
     hStdin := GetStdHandle(STD_INPUT_HANDLE);
     hStdOut := GetStdHandle(STD_OUTPUT_HANDLE);
 
-    { Получаем Handle консоли Far'а }
+    { РџРѕР»СѓС‡Р°РµРј Handle РєРѕРЅСЃРѕР»Рё Far'Р° }
     hFarWindow := FarAdvControl(ACTL_GETFARHWND, nil);
 
     RestoreDefFilesColor;

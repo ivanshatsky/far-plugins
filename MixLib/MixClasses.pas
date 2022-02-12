@@ -55,7 +55,7 @@ interface
 
     protected
      {$ifdef bAsserts}
-      { Указатель на класс объекта, для проверки ValidInstance }
+      { РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РєР»Р°СЃСЃ РѕР±СЉРµРєС‚Р°, РґР»СЏ РїСЂРѕРІРµСЂРєРё ValidInstance }
       FClass  :{$ifdef bDelphi}TBasisClass;{$else}Pointer;{$endif bDelphi}
      {$endif bAsserts}
 
@@ -98,8 +98,8 @@ interface
     );
 
     TListOption  = (
-      loItemFree,      { Для Item'а надо вызывать процедуру уничтожения }
-      loItemSave       { Для Item'а надо вызывать процедуру ItemToStream/ItemFromStream }
+      loItemFree,      { Р”Р»СЏ Item'Р° РЅР°РґРѕ РІС‹Р·С‹РІР°С‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ }
+      loItemSave       { Р”Р»СЏ Item'Р° РЅР°РґРѕ РІС‹Р·С‹РІР°С‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ ItemToStream/ItemFromStream }
     );
     TListOptions = set of TListOption;
 
@@ -116,8 +116,8 @@ interface
       procedure WriteToStream(Stream :TStream); override;
       procedure ReadFromStream(Stream :TStream); override;
       procedure AppendFromStream(Stream :TStream); virtual;
-        { Для чтения/записи Item'а вызываются ItemToStream/ItemFromStream }
-        { Для данного базового класса - абстрактные и генерируют ошибку }
+        { Р”Р»СЏ С‡С‚РµРЅРёСЏ/Р·Р°РїРёСЃРё Item'Р° РІС‹Р·С‹РІР°СЋС‚СЃСЏ ItemToStream/ItemFromStream }
+        { Р”Р»СЏ РґР°РЅРЅРѕРіРѕ Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР° - Р°Р±СЃС‚СЂР°РєС‚РЅС‹Рµ Рё РіРµРЅРµСЂРёСЂСѓСЋС‚ РѕС€РёР±РєСѓ }
      {$endif bUseStreams}
 
       procedure Clear;
@@ -128,7 +128,7 @@ interface
       procedure Insert(Index :Integer; Item: Pointer);
 
       function AddSorted(Item :Pointer; Context :TIntPtr; Duplicates :TDuplicates) :Integer;
-        { Вставляет элемент с сортировкой }
+        { Р’СЃС‚Р°РІР»СЏРµС‚ СЌР»РµРјРµРЅС‚ СЃ СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ }
 
       function AddData(const Item) :Integer;
       procedure InsertData(Index :Integer; const Item);
@@ -151,11 +151,11 @@ interface
       function Last: Pointer;
 
       function FindKey(Key :Pointer; Context :TIntPtr; Opt :TFindOptions; var Index :Integer) :Boolean; virtual;
-        { Альтернативный вариант поиска. Постепенно переходим к нему }
+        { РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅС‹Р№ РІР°СЂРёР°РЅС‚ РїРѕРёСЃРєР°. РџРѕСЃС‚РµРїРµРЅРЅРѕ РїРµСЂРµС…РѕРґРёРј Рє РЅРµРјСѓ }
       procedure SortList(Ascend :Boolean; Context :TIntPtr); {virtual;}
-        { Быстрая сортировка списка }
+        { Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° СЃРїРёСЃРєР° }
 
-      { Следующие функции работают только для частного случая : FItemSize = 4 }
+      { РЎР»РµРґСѓСЋС‰РёРµ С„СѓРЅРєС†РёРё СЂР°Р±РѕС‚Р°СЋС‚ С‚РѕР»СЊРєРѕ РґР»СЏ С‡Р°СЃС‚РЅРѕРіРѕ СЃР»СѓС‡Р°СЏ : FItemSize = 4 }
 
       procedure Exchange(Index1, Index2: Integer); virtual;
       procedure Move(CurIndex, NewIndex: Integer; ACount :Integer = 1);
@@ -194,7 +194,7 @@ interface
       property Capacity :Integer read FCapacity write SetCapacity;
       property List :PPointerList read FList;
 
-      { Свойство Items работает только для частного случая : FItemSize = 4 }
+      { РЎРІРѕР№СЃС‚РІРѕ Items СЂР°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ РґР»СЏ С‡Р°СЃС‚РЅРѕРіРѕ СЃР»СѓС‡Р°СЏ : FItemSize = 4 }
       property Items[I :Integer]: Pointer read GetItems write PutItems; default;
 
       property PItems[I :Integer]: Pointer read GetPItems;
@@ -1074,7 +1074,7 @@ interface
     Result := False;
 
     if not (foBinary in Opt) then begin
-      { Поиск простым перебором }
+      { РџРѕРёСЃРє РїСЂРѕСЃС‚С‹Рј РїРµСЂРµР±РѕСЂРѕРј }
 
       P := FList;
       for I := 0 to FCount - 1 do begin
@@ -1093,7 +1093,7 @@ interface
       Index := FCount;
     end else
     begin
-      { Двоичный поиск. Должны быть уверены, что коллекция отсортирована! }
+      { Р”РІРѕРёС‡РЅС‹Р№ РїРѕРёСЃРє. Р”РѕР»Р¶РЅС‹ Р±С‹С‚СЊ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ РєРѕР»Р»РµРєС†РёСЏ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅР°! }
 
       L := 0;
       H := FCount - 1;
@@ -1470,7 +1470,7 @@ interface
   begin
     vTmp := nil;
     TString(vTmp) := AStr;
-    { В InsertData нужно добавлять не AStr, а vTmp, иначе ошибка в Unicode-версии }
+    { Р’ InsertData РЅСѓР¶РЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ РЅРµ AStr, Р° vTmp, РёРЅР°С‡Рµ РѕС€РёР±РєР° РІ Unicode-РІРµСЂСЃРёРё }
     InsertData(Index, vTmp);
   end;
 

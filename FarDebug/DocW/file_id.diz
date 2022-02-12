@@ -1,9 +1,11 @@
-
+﻿
 FarDebug v 1.0 for FAR/2
 ------------------------
 
-���������� FAR � GNU Debugger (GDB)
+Интеграция FAR с GNU Debugger (GDB)
 http://www.gnu.org/software/gdb/
                         
-�����: ������ ����� (Max.Rusov@gmail.com)
+Автор: Максим Русов (Max.Rusov@gmail.com)
 
+Последние версии и исходные тексты:
+https://github.com/MaxRusov/far-plugins

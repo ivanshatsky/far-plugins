@@ -2,7 +2,7 @@
 {* (c) 2008 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Library                                                                *}
-{* Вспомогательные интерфейсные процедуры                                     *}
+{* Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РёРЅС‚РµСЂС„РµР№СЃРЅС‹Рµ РїСЂРѕС†РµРґСѓСЂС‹                                     *}
 {******************************************************************************}
 
 {$I Defines.inc}
@@ -58,22 +58,22 @@ interface
 
 
   const
-    clBlack    = 0;   // Черный
-    clNavy     = 1;   // Темно синий
-    clGreen    = 2;   // Темно зеленый
-    clTeal     = 3;   // Темный циан
-    clMaroon   = 4;   // Темно красный
-    clPurple   = 5;   // Пурпурный
-    clOlive    = 6;   // Темно желтый
-    clSilver   = 7;   // Светло серый
-    clGray     = 8;   // Темно серый
-    clBlue     = 9;   // Голубой
-    clLime     = $A;  // Светло зеленый
+    clBlack    = 0;   // Р§РµСЂРЅС‹Р№
+    clNavy     = 1;   // РўРµРјРЅРѕ СЃРёРЅРёР№
+    clGreen    = 2;   // РўРµРјРЅРѕ Р·РµР»РµРЅС‹Р№
+    clTeal     = 3;   // РўРµРјРЅС‹Р№ С†РёР°РЅ
+    clMaroon   = 4;   // РўРµРјРЅРѕ РєСЂР°СЃРЅС‹Р№
+    clPurple   = 5;   // РџСѓСЂРїСѓСЂРЅС‹Р№
+    clOlive    = 6;   // РўРµРјРЅРѕ Р¶РµР»С‚С‹Р№
+    clSilver   = 7;   // РЎРІРµС‚Р»Рѕ СЃРµСЂС‹Р№
+    clGray     = 8;   // РўРµРјРЅРѕ СЃРµСЂС‹Р№
+    clBlue     = 9;   // Р“РѕР»СѓР±РѕР№
+    clLime     = $A;  // РЎРІРµС‚Р»Рѕ Р·РµР»РµРЅС‹Р№
     clCyan     = $B;  // Aqua
-    clRed      = $C;  // Ярко красный
+    clRed      = $C;  // РЇСЂРєРѕ РєСЂР°СЃРЅС‹Р№
     clMagenta  = $D;  // Fuchsia
-    clYellow   = $E;  // Желтый
-    clWhite    = $F;  // Белый
+    clYellow   = $E;  // Р–РµР»С‚С‹Р№
+    clWhite    = $F;  // Р‘РµР»С‹Р№
 
    {$ifdef Far3}
    {$else}
@@ -300,7 +300,7 @@ interface
   function FarXLatStr(const AStr :TString) :TString;
   function FarMaskStr(const AStr :TString) :TString;
 
-  { Для совместимости к KEY_ кодами FAR2 }
+  { Р”Р»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё Рє KEY_ РєРѕРґР°РјРё FAR2 }
   function KeyEventToFarKey(const AEvent :TKeyEventRecord) :Integer;
   function KeyEventToFarKeyDlg(const AEvent :TKeyEventRecord) :Integer;
   function FarKeyToKeyEvent(AKey :Integer; var AEvent :TKeyEventRecord) :Boolean;
@@ -322,7 +322,7 @@ interface
   procedure UpdateConsoleWnd;
   function GetConsoleWnd :THandle;
   function GetConsoleMousePos(AWnd :THandle = 0) :TPoint;
-    { Вычисляем позицию мыши в консольных координатах }
+    { Р’С‹С‡РёСЃР»СЏРµРј РїРѕР·РёС†РёСЋ РјС‹С€Рё РІ РєРѕРЅСЃРѕР»СЊРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… }
 
   procedure FarAddToHistory(const AHist, AStr :TString);
 
@@ -1045,12 +1045,12 @@ interface
            MSSC_POST
              Param2=MacroSendMacroText*
              Return=0|1
-           MSSC_EXEC (пока заглушка, не используется)
+           MSSC_EXEC (РїРѕРєР° Р·Р°РіР»СѓС€РєР°, РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ)
              Param2=MacroSendMacroText*
              Return=0|1
            MSSC_CHECK
              Param2=MacroCheckMacroText* (Text)
-             Return=0|1 в Param2=MacroCheckMacroText* (Check)
+             Return=0|1 РІ Param2=MacroCheckMacroText* (Check)
        MCTL_GETSTATE
          Param1=0
          Param2=0
@@ -1131,10 +1131,10 @@ interface
       ACoord^ := vMacro.Check.Result.ErrPos;
 *)
 (*
-1. Мелкое изменение в API:
-   MacroCheckMacroText больше нет, MSSC_CHECK ожидает MacroSendMacroText.
-   И новая команда, MCTL_GETLASTERROR ->  Param1=размер, Param2=MacroParseResult*.
-   Возвращает требуемый размер.
+1. РњРµР»РєРѕРµ РёР·РјРµРЅРµРЅРёРµ РІ API:
+   MacroCheckMacroText Р±РѕР»СЊС€Рµ РЅРµС‚, MSSC_CHECK РѕР¶РёРґР°РµС‚ MacroSendMacroText.
+   Р РЅРѕРІР°СЏ РєРѕРјР°РЅРґР°, MCTL_GETLASTERROR ->  Param1=СЂР°Р·РјРµСЂ, Param2=MacroParseResult*.
+   Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚СЂРµР±СѓРµРјС‹Р№ СЂР°Р·РјРµСЂ.
 *)
   var
     vMacro :TMacroSendMacroText;
@@ -1406,7 +1406,7 @@ interface
     vSize := FARAPI.PluginsControl(AHandle, PCTL_GETPLUGININFORMATION, vSize0, AInfo);
     if vSize > 0 then begin
       if vSize > vSize0 then begin
-        { Зарезервированного места не хватило. Надо увеличить... }
+        { Р—Р°СЂРµР·РµСЂРІРёСЂРѕРІР°РЅРЅРѕРіРѕ РјРµСЃС‚Р° РЅРµ С…РІР°С‚РёР»Рѕ. РќР°РґРѕ СѓРІРµР»РёС‡РёС‚СЊ... }
         ReallocMem(AInfo, vSize);
         vSize0 := vSize;
         Result := FARAPI.PluginsControl(AHandle, PCTL_GETPLUGININFORMATION, vSize0, AInfo) > 0;
@@ -1560,8 +1560,8 @@ interface
         vItem := FarPanelItem(vHandle, FCTL_GETSELECTEDPANELITEM, I);
         try
 
-          { Требуется проверка флага, потому что даже если не выделено ни одного элемента }
-          { SelectedItemsNumber = 1, и возвращает текущий элемент...}
+          { РўСЂРµР±СѓРµС‚СЃСЏ РїСЂРѕРІРµСЂРєР° С„Р»Р°РіР°, РїРѕС‚РѕРјСѓ С‡С‚Рѕ РґР°Р¶Рµ РµСЃР»Рё РЅРµ РІС‹РґРµР»РµРЅРѕ РЅРё РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° }
+          { SelectedItemsNumber = 1, Рё РІРѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚...}
           if PPIF_SELECTED and vItem.Flags <> 0 then begin
            {$ifdef Far3}
             vStr := vItem.FileName;
@@ -1860,7 +1860,7 @@ interface
 
 
   function FarMaskStr(const AStr :TString) :TString;
-    {...Оптимизировать}
+    {...РћРїС‚РёРјРёР·РёСЂРѕРІР°С‚СЊ}
   var
     I :Integer;
     C :TChar;
@@ -1988,7 +1988,7 @@ interface
     else begin
       vEvent := AEvent;
       if not (vEvent.wVirtualKeyCode in [VK_SHIFT, VK_CONTROL, VK_MENU]) then begin
-        { Игнорируем различия между правыми и левыми шифтами }
+        { РРіРЅРѕСЂРёСЂСѓРµРј СЂР°Р·Р»РёС‡РёСЏ РјРµР¶РґСѓ РїСЂР°РІС‹РјРё Рё Р»РµРІС‹РјРё С€РёС„С‚Р°РјРё }
         if vEvent.dwControlKeyState and RIGHT_CTRL_PRESSED <> 0 then
           vEvent.dwControlKeyState := (vEvent.dwControlKeyState or LEFT_CTRL_PRESSED) and not RIGHT_CTRL_PRESSED;
         if vEvent.dwControlKeyState and RIGHT_ALT_PRESSED <> 0 then
@@ -2266,11 +2266,11 @@ interface
     Result := hFarWindow;
 
     if not IsWindowVisible(hFarWindow) then begin
-      { Запущено из-под ConEmu?... }
+      { Р—Р°РїСѓС‰РµРЅРѕ РёР·-РїРѕРґ ConEmu?... }
       hWnd := GetAncestor(hFarWindow, GA_PARENT);
 
       if (hWnd = 0) or (hWnd = GetDesktopWindow) then begin
-        { Новая версия ConEmu не делает SetParent... }
+        { РќРѕРІР°СЏ РІРµСЂСЃРёСЏ ConEmu РЅРµ РґРµР»Р°РµС‚ SetParent... }
         if hConEmuWnd = THandle(-1) then
           hConEmuWnd := CheckConEmuWnd;
         hWnd := hConEmuWnd;
@@ -2299,7 +2299,7 @@ interface
 
 
   function GetConsoleMousePos(AWnd :THandle) :TPoint;
-    { Вычисляем позицию мыши в консольных координатах }
+    { Р’С‹С‡РёСЃР»СЏРµРј РїРѕР·РёС†РёСЋ РјС‹С€Рё РІ РєРѕРЅСЃРѕР»СЊРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… }
   var
     vPos  :TPoint;
     vRect :TRect;
@@ -2322,7 +2322,7 @@ interface
       Result.X := Left + MulDivTrunc(vPos.X, Right - Left + 1, vRect.Right - vRect.Left);
     end;
 
-    { Коррекция для режима "большого буфера" (/w) }
+    { РљРѕСЂСЂРµРєС†РёСЏ РґР»СЏ СЂРµР¶РёРјР° "Р±РѕР»СЊС€РѕРіРѕ Р±СѓС„РµСЂР°" (/w) }
     with FarGetWindowRect do begin
 //    TraceF('FWR: %d-%d, %d-%d', [Top, Bottom, Left, Right]);
       Dec(Result.Y, Top);

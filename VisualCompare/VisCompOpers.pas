@@ -134,7 +134,7 @@ interface
           end;
 
           if vDelReadOnly = 2 then
-            { Попустить файл }
+            { РџРѕРїСѓСЃС‚РёС‚СЊ С„Р°Р№Р» }
             Exit;
 
           FileSetAttr(AName, vAttr and not faReadOnly);
@@ -211,7 +211,7 @@ interface
           end;
 
           if vDelNotEmpty = 2 then
-            { Попустить папку }
+            { РџРѕРїСѓСЃС‚РёС‚СЊ РїР°РїРєСѓ }
             Exit;
 
           if not LocClearFolder(AName) then
@@ -303,7 +303,7 @@ interface
           end;
 
           if vDelReadOnly = 2 then
-            { Попустить файл }
+            { РџРѕРїСѓСЃС‚РёС‚СЊ С„Р°Р№Р» }
             Exit;
 
           FileSetAttr(AName, vAttr and not faReadOnly);
@@ -387,7 +387,7 @@ interface
             end;
 
             if vDelNotEmpty = 2 then
-              { Попустить папку }
+              { РџРѕРїСѓСЃС‚РёС‚СЊ РїР°РїРєСѓ }
               Exit;
 
             if AItem.Subs <> nil then begin
@@ -477,7 +477,7 @@ interface
           end;
 
           if vDelReadOnly = 2 then
-            { Попустить файл }
+            { РџРѕРїСѓСЃС‚РёС‚СЊ С„Р°Р№Р» }
             Exit;
 
           FileSetAttr(AName, vAttr and not faReadOnly);
@@ -559,7 +559,7 @@ interface
           end;
 
           if vDelNotEmpty = 2 then
-            { Попустить папку }
+            { РџРѕРїСѓСЃС‚РёС‚СЊ РїР°РїРєСѓ }
             Exit;
 
           if not LocClearFolder(AName) then

@@ -1,10 +1,10 @@
 --
 -- Console Control
 -- (c) Max Rusov
--- http://code.google.com/p/far-plugins
+-- https://github.com/MaxRusov/far-plugins
 --
--- Интерфейсный модуль
--- Поместите файл в %FARPROFILE%\Macros\Modules
+-- РРЅС‚РµСЂС„РµР№СЃРЅС‹Р№ РјРѕРґСѓР»СЊ
+-- РџРѕРјРµСЃС‚РёС‚Рµ С„Р°Р№Р» РІ %FARPROFILE%\Macros\Modules
 --
 
 ConsoleControl = {}

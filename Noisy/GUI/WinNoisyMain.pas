@@ -358,7 +358,7 @@ interface
       (vRect1.Bottom - vRect1.Top) + (cMainHeight - vRect.Bottom));
 
     if PopupMode then begin
-      { Прижимаем окно к SysTray }
+      { РџСЂРёР¶РёРјР°РµРј РѕРєРЅРѕ Рє SysTray }
       vWnd := GetSystrayWindow;
       if vWnd <> 0 then begin
         GetWindowRect(vWnd, vSysRect);
@@ -492,7 +492,7 @@ interface
 
     vRect := GetBoundsRect;
     if PopupMode then begin
-      { Прижимаем окно к SysTray }
+      { РџСЂРёР¶РёРјР°РµРј РѕРєРЅРѕ Рє SysTray }
       vWnd := GetSystrayWindow;
       if vWnd <> 0 then
         GetWindowRect(vWnd, vRect);

@@ -63,11 +63,11 @@ interface
     faSkipHidden  = (faHidden) * $10000 + 0;
 
   type
-    { Тип процедуры перечисления элементов каталога. }
+    { РўРёРї РїСЂРѕС†РµРґСѓСЂС‹ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РєР°С‚Р°Р»РѕРіР°. }
     TEnumFilesFunc = function(const aPath :TString; const aSRec :TWin32FindData) :Boolean
       {$ifndef bOldLocalCall}of object{$endif};
 
-    { Параметры перечисления элементов каталога. }
+    { РџР°СЂР°РјРµС‚СЂС‹ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РєР°С‚Р°Р»РѕРіР°. }
     TEnumFileOptions = set of (
       efoRecursive,
       efoIncludeDir,
@@ -315,7 +315,7 @@ interface
  {-----------------------------------------------------------------------------}
 
   function WinFileExists(const AFileName :TString) :Boolean;
-    { Вариант с FileGetAttr себя дискредитировал... }
+    { Р’Р°СЂРёР°РЅС‚ СЃ FileGetAttr СЃРµР±СЏ РґРёСЃРєСЂРµРґРёС‚РёСЂРѕРІР°Р»... }
   var
     vHandle :THandle;
     vFindData :TWin32FindData;

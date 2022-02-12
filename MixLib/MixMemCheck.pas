@@ -7,8 +7,8 @@
  {$ifdef DebugInfo} {$D+,L+,Y+} {$else} {$D-} {$endif}
 {$endif bDelphi}
 
-{ Эта опция включает ведение статистики по аллокации памяти в течении всего }
-{ времени работы программы }
+{ Р­С‚Р° РѕРїС†РёСЏ РІРєР»СЋС‡Р°РµС‚ РІРµРґРµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё РїРѕ Р°Р»Р»РѕРєР°С†РёРё РїР°РјСЏС‚Рё РІ С‚РµС‡РµРЅРёРё РІСЃРµРіРѕ }
+{ РІСЂРµРјРµРЅРё СЂР°Р±РѕС‚С‹ РїСЂРѕРіСЂР°РјРјС‹ }
 
 {-$Define bMemReport}
 
@@ -366,7 +366,7 @@ interface
 //end;
 
   function DetectAllocAddr :Pointer;
-    { Delphi версия }
+    { Delphi РІРµСЂСЃРёСЏ }
   begin
     Result := ReturnAddr2;
     if IsGetMem(Result) then begin
@@ -383,7 +383,7 @@ interface
         Result := ReturnAddrNewRecord;
       end else
       if IsNewAnsiString(Result) then begin
-        Result := Pointer(1); { Для строк не поддерживается... }
+        Result := Pointer(1); { Р”Р»СЏ СЃС‚СЂРѕРє РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ... }
 //      Result := GetStackFrame3;
 //      if Result <> Pointer(1) then
 //        Result := ReturnAddr3;
@@ -456,7 +456,7 @@ interface
 
 
   function DetectAllocAddr :Pointer;
-    { Kylix версия }
+    { Kylix РІРµСЂСЃРёСЏ }
   begin
     Result := ReturnAddr2;
     if IsGetMem(Result) then begin
@@ -770,7 +770,7 @@ interface
     DataSize  := AllocPtr.MSize;
     AllocSize := SizeAlign(DataSize) + SizeOf(TAllocFrame) + SizeOf(TAllocGuard);
 
-    { Проверяем, не был ли переописан блок }
+    { РџСЂРѕРІРµСЂСЏРµРј, РЅРµ Р±С‹Р» Р»Рё РїРµСЂРµРѕРїРёСЃР°РЅ Р±Р»РѕРє }
     Result :=
       GuardCheck(@PAllocFrame(AllocPtr).MGuard, SizeOf(TAllocGuard)) and
       GuardCheck(Pointer1(DataPtr) + DataSize, AllocSize - SizeOf(TAllocFrame) - DataSize);
@@ -831,7 +831,7 @@ interface
       P := BuildSortedList(False);
 
       if ASort <> ByAddr then
-        { Пересортировываем список по размеру }
+        { РџРµСЂРµСЃРѕСЂС‚РёСЂРѕРІС‹РІР°РµРј СЃРїРёСЃРѕРє РїРѕ СЂР°Р·РјРµСЂСѓ }
         P := SortLeakBy(P, ASort);
 
       I := 0; B := 0; S:= 0;
@@ -862,7 +862,7 @@ interface
 
 
  {-----------------------------------------------------------------------------}
- { Ведение статистики по аллокации памяти                                      }
+ { Р’РµРґРµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё РїРѕ Р°Р»Р»РѕРєР°С†РёРё РїР°РјСЏС‚Рё                                      }
  {-----------------------------------------------------------------------------}
 
  {$ifdef bMemReport}
@@ -942,7 +942,7 @@ interface
       end;
 
       if ASort <> ByAddr then
-        { Пересортировываем список по размеру }
+        { РџРµСЂРµСЃРѕСЂС‚РёСЂРѕРІС‹РІР°РµРј СЃРїРёСЃРѕРє РїРѕ СЂР°Р·РјРµСЂСѓ }
         vRoot := SortLeakBy(vRoot, ASort);
 
       I := 0; B := 0; S:= 0;
@@ -999,19 +999,19 @@ interface
       vAddr := GetAndClearAllocFrame;
       if vAddr = nil then
         vAddr := GetStackFrame2;
-      { Определение callstack'а вызова, глубиной cStackDepth }
+      { РћРїСЂРµРґРµР»РµРЅРёРµ callstack'Р° РІС‹Р·РѕРІР°, РіР»СѓР±РёРЅРѕР№ cStackDepth }
       DetectCallstack(vStack, vAddr);
      {$else}
       vAddr := GetAndClearAllocAddr;
       if vAddr = nil then
-        { Определение адреса вызывающей процедуры }
+        { РћРїСЂРµРґРµР»РµРЅРёРµ Р°РґСЂРµСЃР° РІС‹Р·С‹РІР°СЋС‰РµР№ РїСЂРѕС†РµРґСѓСЂС‹ }
         vAddr := DetectAllocAddr;
       vStack[0] := vAddr;
      {$endif bMemCallstack}
 
       AllocSize := SizeAlign(DataSize) + SizeOf(TAllocFrame) + SizeOf(TAllocGuard);
 
-      { Вызываем стандартный обработчик }
+      { Р’С‹Р·С‹РІР°РµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє }
       AllocPtr := OldMemMgr.GetMem(AllocSize);
       if AllocPtr = nil then
         Exit;
@@ -1035,7 +1035,7 @@ interface
       AllocPtr.MStack  := vStack;
 
       if MemOverrunCount = 0 then
-        { Добавляем в цепочку (только если не было ошибок overrun) }
+        { Р”РѕР±Р°РІР»СЏРµРј РІ С†РµРїРѕС‡РєСѓ (С‚РѕР»СЊРєРѕ РµСЃР»Рё РЅРµ Р±С‹Р»Рѕ РѕС€РёР±РѕРє overrun) }
         AddFrame(AllocPtr);
 
       Inc(MemAllocSize, DataSize);
@@ -1091,12 +1091,12 @@ interface
       AllocSize := SizeAlign(DataSize) + SizeOf(TAllocFrame) + SizeOf(TAllocGuard);
 
       if MemOverrunCount = 0 then
-        { Удаляем из цепочки (только если не было ошибок overrun) }
+        { РЈРґР°Р»СЏРµРј РёР· С†РµРїРѕС‡РєРё (С‚РѕР»СЊРєРѕ РµСЃР»Рё РЅРµ Р±С‹Р»Рѕ РѕС€РёР±РѕРє overrun) }
         {Ok :=} DelFrame(AllocPtr);
 
       FillChar(AllocPtr^, AllocSize, EmptyFiller);
 
-      { Вызываем стандартный обработчик }
+      { Р’С‹Р·С‹РІР°РµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РѕР±СЂР°Р±РѕС‚С‡РёРє }
       Result := OldMemMgr.FreeMem(AllocPtr);
 
       Dec(MemAllocSize, DataSize);
@@ -1136,7 +1136,7 @@ interface
      {$ifdef bWindows}
       SetAllocAddr( ReturnAddrReallocMem1 );
       if IsStrSetLength(GetAllocAddr) then
-        { Для строк не поддерживается... }
+        { Р”Р»СЏ СЃС‚СЂРѕРє РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ... }
         SetAllocAddr( Pointer(1) );
      {$else}
       SetAllocAddr( ReturnAddrReallocMem1 );

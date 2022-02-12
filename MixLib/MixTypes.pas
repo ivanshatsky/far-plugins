@@ -5,7 +5,7 @@ unit MixTypes;
 interface
 
   type
-    { Платформонезависимые целые }
+    { РџР»Р°С‚С„РѕСЂРјРѕРЅРµР·Р°РІРёСЃРёРјС‹Рµ С†РµР»С‹Рµ }
 
     TInt32 = longint;
     PInt32 = ^TInt32;
@@ -23,7 +23,7 @@ interface
     TUns64 = qword;
     PUns64 = ^TUns64;
 
-    { Платформозависимые целые }
+    { РџР»Р°С‚С„РѕСЂРјРѕР·Р°РІРёСЃРёРјС‹Рµ С†РµР»С‹Рµ }
 
    {$ifdef bFreePascal}
     TIntPtr = PtrInt;

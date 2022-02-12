@@ -10,17 +10,17 @@ unit MacroLibMain;
 
 {
 Ready
-  +Приоритеты
+  +РџСЂРёРѕСЂРёС‚РµС‚С‹
 
 ToDo:
-  -Иногда срабатывает Realses после Hold (если shift отпустили первым)
+  -РРЅРѕРіРґР° СЃСЂР°Р±Р°С‚С‹РІР°РµС‚ Realses РїРѕСЃР»Рµ Hold (РµСЃР»Рё shift РѕС‚РїСѓСЃС‚РёР»Рё РїРµСЂРІС‹Рј)
 
-  - Срабатывание по символьным клавишам
-  - Мароподстановка #AKeyName
+  - РЎСЂР°Р±Р°С‚С‹РІР°РЅРёРµ РїРѕ СЃРёРјРІРѕР»СЊРЅС‹Рј РєР»Р°РІРёС€Р°Рј
+  - РњР°СЂРѕРїРѕРґСЃС‚Р°РЅРѕРІРєР° #AKeyName
 
-  +Настройка тайм-аутов
-    - Через диалог настроек
-  -Диалоги в меню плагинов
+  +РќР°СЃС‚СЂРѕР№РєР° С‚Р°Р№Рј-Р°СѓС‚РѕРІ
+    - Р§РµСЂРµР· РґРёР°Р»РѕРі РЅР°СЃС‚СЂРѕРµРє
+  -Р”РёР°Р»РѕРіРё РІ РјРµРЅСЋ РїР»Р°РіРёРЅРѕРІ
 }
 
 interface
@@ -172,7 +172,7 @@ interface
 
   procedure ClearKeyEvent(var ARec :TKeyEventRecord);
   begin
-    { Нажатие не будет обработано FAR'ом }
+    { РќР°Р¶Р°С‚РёРµ РЅРµ Р±СѓРґРµС‚ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ FAR'РѕРј }
     ARec.wVirtualKeyCode := 0 {VK_NONAME};
     ARec.wVirtualScanCode := 0;
     ARec.dwControlKeyState := 0;
@@ -182,7 +182,7 @@ interface
 
   procedure ClearMouseEvent(var ARec :TMouseEventRecord);
   begin
-    { Событие не будет обработано FAR'ом }
+    { РЎРѕР±С‹С‚РёРµ РЅРµ Р±СѓРґРµС‚ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ FAR'РѕРј }
     ARec.dwEventFlags := 0;
     ARec.dwButtonState := 0;
     ARec.dwControlKeyState := 0;
@@ -410,8 +410,8 @@ interface
 
    {$ifdef Far3}
 //  FMinFarVer := MakeVersion(3, 0, 2376);   { MCTL_GETLASTERROR };
-//  FMinFarVer := MakeVersion(3, 0, 2379);   { MCTL_GETLASTERROR - исправление ошибки };
-//  FMinFarVer := MakeVersion(3, 0, 2380);   { MacroAddMacro - изменена (fuck!) };
+//  FMinFarVer := MakeVersion(3, 0, 2379);   { MCTL_GETLASTERROR - РёСЃРїСЂР°РІР»РµРЅРёРµ РѕС€РёР±РєРё };
+//  FMinFarVer := MakeVersion(3, 0, 2380);   { MacroAddMacro - РёР·РјРµРЅРµРЅР° (fuck!) };
 //  FMinFarVer := MakeVersion(3, 0, 2460);   { OPEN_FROMMACRO }
 //  FMinFarVer := MakeVersion(3, 0, 2572);   { Api changes }
 //  FMinFarVer := MakeVersion(3, 0, 2851);   { LUA }
@@ -614,8 +614,8 @@ interface
       with TRunEvent(vObj) do begin
 
         if Area = maShell then
-          { Вынужденно перенес инициализацию макросов на данный этап. }
-          { Если вызывать MCTL_ADDMACRO из процедур инициализации - Far падает }
+          { Р’С‹РЅСѓР¶РґРµРЅРЅРѕ РїРµСЂРµРЅРµСЃ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ РјР°РєСЂРѕСЃРѕРІ РЅР° РґР°РЅРЅС‹Р№ СЌС‚Р°Рї. }
+          { Р•СЃР»Рё РІС‹Р·С‹РІР°С‚СЊ MCTL_ADDMACRO РёР· РїСЂРѕС†РµРґСѓСЂ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё - Far РїР°РґР°РµС‚ }
           MacroLibrary.RescanMacroses(True);
 
         if FarGetMacroState = MACROSTATE_NOMACRO then
@@ -663,8 +663,8 @@ interface
 
    {$ifdef Far3}
    {$else}
-    { Весь этот геморрой нужен в Far2, чтобы получить Handle диалога, }
-    { который используется для получения GUID }
+    { Р’РµСЃСЊ СЌС‚РѕС‚ РіРµРјРѕСЂСЂРѕР№ РЅСѓР¶РµРЅ РІ Far2, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ Handle РґРёР°Р»РѕРіР°, }
+    { РєРѕС‚РѕСЂС‹Р№ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ GUID }
     if AEvent = DE_DLGPROCEND then
       if AParam.Msg = DN_INITDIALOG then begin
 //      TraceF('InitDialog: %d', [AParam.hDlg]);

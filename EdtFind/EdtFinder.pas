@@ -32,14 +32,14 @@ interface
 
     PRepPart = ^TRepPart;
     TRepPart = record
-      FStr :PTChar;     { указатель на строку замены или nil в случае макроподстановки }
-      FLen :Integer;    { Длина строки замены или индекс макроподстановки }
+      FStr :PTChar;     { СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ Р·Р°РјРµРЅС‹ РёР»Рё nil РІ СЃР»СѓС‡Р°Рµ РјР°РєСЂРѕРїРѕРґСЃС‚Р°РЅРѕРІРєРё }
+      FLen :Integer;    { Р”Р»РёРЅР° СЃС‚СЂРѕРєРё Р·Р°РјРµРЅС‹ РёР»Рё РёРЅРґРµРєСЃ РјР°РєСЂРѕРїРѕРґСЃС‚Р°РЅРѕРІРєРё }
     end;
 
     TEdtFindOptions = set of (
-      efoProgress,      { Показывать прогресс-индикатор во время поиска }
-      efoCalcCount,     { Подсчитываем количество вхождений }
-      efoOnePerRow      { Ищем только одно вхождение на строку (для grep'а) }
+      efoProgress,      { РџРѕРєР°Р·С‹РІР°С‚СЊ РїСЂРѕРіСЂРµСЃСЃ-РёРЅРґРёРєР°С‚РѕСЂ РІРѕ РІСЂРµРјСЏ РїРѕРёСЃРєР° }
+      efoCalcCount,     { РџРѕРґСЃС‡РёС‚С‹РІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РІС…РѕР¶РґРµРЅРёР№ }
+      efoOnePerRow      { РС‰РµРј С‚РѕР»СЊРєРѕ РѕРґРЅРѕ РІС…РѕР¶РґРµРЅРёРµ РЅР° СЃС‚СЂРѕРєСѓ (РґР»СЏ grep'Р°) }
     );
 
     TFinder = class(TBasis)
@@ -69,13 +69,13 @@ interface
       FBrackets   :Integer;
       FMatches    :array of TRegExpMatch;
 
-      { Поддержка замены }
+      { РџРѕРґРґРµСЂР¶РєР° Р·Р°РјРµРЅС‹ }
       FRepExpr    :TString;
       FRepList    :TExList;
 
-      FRepBeg     :Integer;    { Начальная позиция заменяющего фрагмента }
-      FRepLen     :Integer;    { Длина заменяющего фрагмента }
-      FResStrLen  :Integer;    { Длина итоговой строки }
+      FRepBeg     :Integer;    { РќР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ Р·Р°РјРµРЅСЏСЋС‰РµРіРѕ С„СЂР°РіРјРµРЅС‚Р° }
+      FRepLen     :Integer;    { Р”Р»РёРЅР° Р·Р°РјРµРЅСЏСЋС‰РµРіРѕ С„СЂР°РіРјРµРЅС‚Р° }
+      FResStrLen  :Integer;    { Р”Р»РёРЅР° РёС‚РѕРіРѕРІРѕР№ СЃС‚СЂРѕРєРё }
 
       FRepBuf     :PTChar;
       FRepBufLen  :Integer;
@@ -146,9 +146,9 @@ interface
 
 
   function MemSearchSample(ABuf :PTChar; ALen :Integer; ASample :PTChar; ASampleLen :Integer) :Integer;
-    { Поиск в буфере ABuf^[ALen] подстроки ASample^[ASampleLen].
-      Если результат меньше len - подстрока найдена, результат - ее смещение в буфере.
-      Если подстрока не найдена, возвращает ALen.}
+    { РџРѕРёСЃРє РІ Р±СѓС„РµСЂРµ ABuf^[ALen] РїРѕРґСЃС‚СЂРѕРєРё ASample^[ASampleLen].
+      Р•СЃР»Рё СЂРµР·СѓР»СЊС‚Р°С‚ РјРµРЅСЊС€Рµ len - РїРѕРґСЃС‚СЂРѕРєР° РЅР°Р№РґРµРЅР°, СЂРµР·СѓР»СЊС‚Р°С‚ - РµРµ СЃРјРµС‰РµРЅРёРµ РІ Р±СѓС„РµСЂРµ.
+      Р•СЃР»Рё РїРѕРґСЃС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР°, РІРѕР·РІСЂР°С‰Р°РµС‚ ALen.}
   var
     vPtr, vEnd :PTChar;
   begin
@@ -288,7 +288,7 @@ interface
     end;
 
     if foRegexp in FOpt then begin
-      { Поиск по регулярным варажениям }
+      { РџРѕРёСЃРє РїРѕ СЂРµРіСѓР»СЏСЂРЅС‹Рј РІР°СЂР°Р¶РµРЅРёСЏРј }
 
       ADelta0 := ADelta;
 
@@ -356,14 +356,14 @@ interface
       end;
 
       if not (foWholeWords in FOpt) then begin
-        { Простой поиск }
+        { РџСЂРѕСЃС‚РѕР№ РїРѕРёСЃРє }
         if AForward then
           Result := SearchChars(vStr, ALen, PTChar(FExpr), FExprLen, ADelta)
         else
           Result := SearchCharsBack(vStr, ALen, PTChar(FExpr), FExprLen, ADelta);
       end else
       begin
-        { Поиск по словам }
+        { РџРѕРёСЃРє РїРѕ СЃР»РѕРІР°Рј }
         while True do begin
           if AForward then
             Result := SearchChars(vStr, ALen, PTChar(FExpr), FExprLen, ADelta)
@@ -372,7 +372,7 @@ interface
           if not Result then
             Break;
 
-          { Это слово?...}
+          { Р­С‚Рѕ СЃР»РѕРІРѕ?...}
           Result := ((ADelta = 0) or not CharIsWordChar((vStr + ADelta - 1)^)) and
             ((ADelta + FExprLen >= ALen) or not CharIsWordChar((vStr + ADelta + FExprLen)^));
           if Result then
@@ -392,7 +392,7 @@ interface
       end;
 
       if Result then begin
-        { Заполняем FMatches, чтобы "прозрачно" работало Replace }
+        { Р—Р°РїРѕР»РЅСЏРµРј FMatches, С‡С‚РѕР±С‹ "РїСЂРѕР·СЂР°С‡РЅРѕ" СЂР°Р±РѕС‚Р°Р»Рѕ Replace }
         FMatches[0].Start := ADelta;
         FMatches[0].EndPos := ADelta + FExprLen;
         AFindLen := FExprLen;
@@ -529,7 +529,7 @@ interface
           end;
 
           if vCol2 >= vCol1 then begin
-            vDelta := vCol - vCol1; { Может быть меньше 0 и больше (Col2 - Col1) - так и задумано. }
+            vDelta := vCol - vCol1; { РњРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ 0 Рё Р±РѕР»СЊС€Рµ (Col2 - Col1) - С‚Р°Рє Рё Р·Р°РґСѓРјР°РЅРѕ. }
             if Find(vStrInfo.StringText + vCol1, vCol2 - vCol1, AForward, vDelta, vLen, vSelDelta, vSelLen) then begin
               if AResults <> nil then begin
                 if efoCalcCount in AddOpt then

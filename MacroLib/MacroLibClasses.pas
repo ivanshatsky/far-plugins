@@ -6,7 +6,7 @@ unit MacroLibClasses;
 {* (c) 2011 Max Rusov                                                         *}
 {*                                                                            *}
 {* FAR Macro Library                                                          *}
-{* Основные классы                                                            *}
+{* РћСЃРЅРѕРІРЅС‹Рµ РєР»Р°СЃСЃС‹                                                            *}
 {******************************************************************************}
 
 interface
@@ -64,25 +64,25 @@ interface
       function GetSrcLink :TString;
 
     private
-      FName      :TString;            { Имя макрокоманды }
-      FDescr     :TString;            { Описание макрокоманды }
-      FWhere     :TString;            { Условие запуска (пока не используется) }
-      FBind      :TKeyArray;          { Список кнопок для запуска }
+      FName      :TString;            { РРјСЏ РјР°РєСЂРѕРєРѕРјР°РЅРґС‹ }
+      FDescr     :TString;            { РћРїРёСЃР°РЅРёРµ РјР°РєСЂРѕРєРѕРјР°РЅРґС‹ }
+      FWhere     :TString;            { РЈСЃР»РѕРІРёРµ Р·Р°РїСѓСЃРєР° (РїРѕРєР° РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ) }
+      FBind      :TKeyArray;          { РЎРїРёСЃРѕРє РєРЅРѕРїРѕРє РґР»СЏ Р·Р°РїСѓСЃРєР° }
      {$ifdef bUseKeyMask}
-      FBind1     :TKeyMaskArray;      { Альтернативная привязка - по регулярным выражениям }
+      FBind1     :TKeyMaskArray;      { РђР»СЊС‚РµСЂРЅР°С‚РёРІРЅР°СЏ РїСЂРёРІСЏР·РєР° - РїРѕ СЂРµРіСѓР»СЏСЂРЅС‹Рј РІС‹СЂР°Р¶РµРЅРёСЏРј }
      {$endif bUseKeyMask}
-      FEvents    :TMacroEvents;       { Список событий для запуска }
-      FArea      :TMacroAreas;        { Маска макрообластей }
-      FDlgs      :TGUIDArray;         { Список GUID-ов диалогов }
-      FDlgs1     :TStrArray;          { Список Caption-ов диалогов }
-      FEdts      :TStrArray;          { Список масок редактора }
-      FViews     :TStrArray;          { Список масок viewer'а }
-      FCond      :TMacroConditions;   { Условия срабатывания }
+      FEvents    :TMacroEvents;       { РЎРїРёСЃРѕРє СЃРѕР±С‹С‚РёР№ РґР»СЏ Р·Р°РїСѓСЃРєР° }
+      FArea      :TMacroAreas;        { РњР°СЃРєР° РјР°РєСЂРѕРѕР±Р»Р°СЃС‚РµР№ }
+      FDlgs      :TGUIDArray;         { РЎРїРёСЃРѕРє GUID-РѕРІ РґРёР°Р»РѕРіРѕРІ }
+      FDlgs1     :TStrArray;          { РЎРїРёСЃРѕРє Caption-РѕРІ РґРёР°Р»РѕРіРѕРІ }
+      FEdts      :TStrArray;          { РЎРїРёСЃРѕРє РјР°СЃРѕРє СЂРµРґР°РєС‚РѕСЂР° }
+      FViews     :TStrArray;          { РЎРїРёСЃРѕРє РјР°СЃРѕРє viewer'Р° }
+      FCond      :TMacroConditions;   { РЈСЃР»РѕРІРёСЏ СЃСЂР°Р±Р°С‚С‹РІР°РЅРёСЏ }
      {$ifdef bMacroInclude}
-      FIncludes  :TMacroIncludeArray; { Макроподстановки }
+      FIncludes  :TMacroIncludeArray; { РњР°РєСЂРѕРїРѕРґСЃС‚Р°РЅРѕРІРєРё }
      {$endif bMacroInclude}
-      FText      :TString;            { Текст макрокоманды }
-      FPriority  :Integer;            { Приоритет макрокоманды }
+      FText      :TString;            { РўРµРєСЃС‚ РјР°РєСЂРѕРєРѕРјР°РЅРґС‹ }
+      FPriority  :Integer;            { РџСЂРёРѕСЂРёС‚РµС‚ РјР°РєСЂРѕРєРѕРјР°РЅРґС‹ }
       FOptions   :TMacroOptions;
 
       FFileName  :TString;
@@ -90,9 +90,9 @@ interface
       FCol       :Integer;
       FIndex     :Integer;
 
-      FRunCount :Integer;           { Счетчик запусков }
+      FRunCount :Integer;           { РЎС‡РµС‚С‡РёРє Р·Р°РїСѓСЃРєРѕРІ }
 
-      FIDs      :TObjList;          { ID макросов, добавленных в FAR. Для удаления. }
+      FIDs      :TObjList;          { ID РјР°РєСЂРѕСЃРѕРІ, РґРѕР±Р°РІР»РµРЅРЅС‹С… РІ FAR. Р”Р»СЏ СѓРґР°Р»РµРЅРёСЏ. }
 
       function GetHidden :Boolean;
       function CheckArea(Area :TMacroArea) :Boolean;
@@ -181,9 +181,9 @@ interface
       FRevision    :Integer;
       FSilence     :Boolean;
       FHideError   :Boolean;
-      FLastKey     :Integer;            { Последняя нажатая клавиша (для отслеживания автоповтора / отпускания) }
-      FPrevKey     :Integer;            { Предыдущая отжатая клавиша (для Double-press) }
-      FPressTime   :DWORD;              { Время нажатия (для Double-press) }
+      FLastKey     :Integer;            { РџРѕСЃР»РµРґРЅСЏСЏ РЅР°Р¶Р°С‚Р°СЏ РєР»Р°РІРёС€Р° (РґР»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ Р°РІС‚РѕРїРѕРІС‚РѕСЂР° / РѕС‚РїСѓСЃРєР°РЅРёСЏ) }
+      FPrevKey     :Integer;            { РџСЂРµРґС‹РґСѓС‰Р°СЏ РѕС‚Р¶Р°С‚Р°СЏ РєР»Р°РІРёС€Р° (РґР»СЏ Double-press) }
+      FPressTime   :DWORD;              { Р’СЂРµРјСЏ РЅР°Р¶Р°С‚РёСЏ (РґР»СЏ Double-press) }
       FMouseState  :DWORD;
       FCancelled   :Boolean;
 
@@ -387,7 +387,7 @@ interface
   function MacroCallback(AId :Pointer; AFlags :TFarAddKeyMacroFlags) :TIntPtr; stdcall;
   begin
     Result := 0;
-    MacroLibrary.InitConditions;  { !!!Неоптимально }
+    MacroLibrary.InitConditions;  { !!!РќРµРѕРїС‚РёРјР°Р»СЊРЅРѕ }
     if TMacroRef(AId).FMacro.CheckAreaCondition(TMacroArea(FarGetMacroArea), MacroLibrary) then
       Result := 1;
   end;
@@ -417,7 +417,7 @@ interface
     vRec.Id := vRef;
 
     if FARAPI.MacroControl(PluginID, MCTL_ADDMACRO, 0, @vRec) = 0 then
-      { Не удалось... }
+      { РќРµ СѓРґР°Р»РѕСЃСЊ... }
       FreeObj(vRef);
 
     Result := vRef;
@@ -473,41 +473,41 @@ interface
       Result := False;
       case AMod of
         kmPress: begin
-          { Обычный хоткей: все, кроме отпускания }
+          { РћР±С‹С‡РЅС‹Р№ С…РѕС‚РєРµР№: РІСЃРµ, РєСЂРѕРјРµ РѕС‚РїСѓСЃРєР°РЅРёСЏ }
           vRes := not (APress in [kpUp, kpShiftUp]);
           vEat := True;
           Result := True;
         end;
         kmRelease: begin
-          { На отпускание }
+          { РќР° РѕС‚РїСѓСЃРєР°РЅРёРµ }
           vRes := APress in [kpUp, kpAll];
           vEat := True;
           Result := True;
         end;
         kmSingle: begin
-          { На SingleClick }
+          { РќР° SingleClick }
           vRes := APress in [kpDown, kpAuto, kpHold, kpAll];
           vEat := APress <> kpDouble;
         end;
         kmDouble: begin
-          { На DoubleClick }
+          { РќР° DoubleClick }
           vRes := APress in [kpDouble, kpAll];
           vEat := vRes;
           vFin := vRes;
         end;
         kmHold: begin
-          { На удержание }
+          { РќР° СѓРґРµСЂР¶Р°РЅРёРµ }
           vRes := APress in [kpHold, kpAll];
           vEat := vRes;
           vFin := vRes;
         end;
         kmDown: begin
-          { На нажатие }
+          { РќР° РЅР°Р¶Р°С‚РёРµ }
           vRes := APress in [kpDown, kpDouble, kpAll];
           vEat := vRes;
         end;
         kmUp: begin
-          { На отжатие }
+          { РќР° РѕС‚Р¶Р°С‚РёРµ }
           vRes := APress in [kpUp, kpShiftUp, kpAll];
           vEat := vRes;
         end;
@@ -524,7 +524,7 @@ interface
   begin
     Result := False;
 
-    { Поскольку теперь используем индекс, то какая-то кнопка точно совпадет }
+    { РџРѕСЃРєРѕР»СЊРєСѓ С‚РµРїРµСЂСЊ РёСЃРїРѕР»СЊР·СѓРµРј РёРЅРґРµРєСЃ, С‚Рѕ РєР°РєР°СЏ-С‚Рѕ РєРЅРѕРїРєР° С‚РѕС‡РЅРѕ СЃРѕРІРїР°РґРµС‚ }
     if not CheckAreaCondition(Area, ALib) then
       Exit;
 
@@ -598,10 +598,10 @@ interface
     Result := Area in FArea;
 
     if not Result and (Area = maDialog) and ((length(FDlgs) > 0) or ((length(FDlgs1) > 0))) then begin
-      { Возможно, макрос назначен на конкретный диалог, ... }
+      { Р’РѕР·РјРѕР¶РЅРѕ, РјР°РєСЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅ РЅР° РєРѕРЅРєСЂРµС‚РЅС‹Р№ РґРёР°Р»РѕРі, ... }
 
       if length(FDlgs) > 0 then begin
-        { ...по GUID }
+        { ...РїРѕ GUID }
         vGUID := GetTopDlgGUID;
         for I := 0 to length(FDlgs) - 1 do
           if IsEqualGUID( vGUID, FDlgs[I] ) then begin
@@ -611,7 +611,7 @@ interface
       end;
 
       if length(FDlgs1) > 0 then begin
-        { ...или по Caption }
+        { ...РёР»Рё РїРѕ Caption }
         FarGetWindowInfo(-1, vWinInfo, @vTitle);
         if vWinInfo.WindowType = WTYPE_DIALOG then
           for I := 0 to length(FDlgs1) - 1 do
@@ -675,7 +675,7 @@ interface
         vMacro := MacroLibrary.FindMacroByName(FIncludes[i].Name);
         if vMacro <> nil then begin
           if (mifOnce in FIncludes[i].Flags) and (vMacro.FRunCount > 0) then
-            { Уже устанавливался }
+            { РЈР¶Рµ СѓСЃС‚Р°РЅР°РІР»РёРІР°Р»СЃСЏ }
           else begin
             Insert(vMacro.FText, vText, FIncludes[i].Pos);
             Inc(vMacro.FRunCount);
@@ -1071,7 +1071,7 @@ interface
   procedure TMacroLibrary.ParseError(Sender :TMacroParser; ACode :Integer; const AMessage :TString; const AFileName :TString; ARow, ACol :Integer);
   begin
     if FSilence then begin
-      {TODO: Вывести в лог... }
+      {TODO: Р’С‹РІРµСЃС‚Рё РІ Р»РѕРі... }
     end else
     begin
       FreeObj(FNewMacroses);
@@ -1136,7 +1136,7 @@ interface
       vTick := GetTickCount;
 
       if vKey <> FLastKey then begin
-        { Первое нажатие }
+        { РџРµСЂРІРѕРµ РЅР°Р¶Р°С‚РёРµ }
         vPress := kpDown;
         FCancelled := False;
         FLastKey := vKey;
@@ -1147,7 +1147,7 @@ interface
           FPressTime := vTick;
       end else
       begin
-        { Автоповтор }
+        { РђРІС‚РѕРїРѕРІС‚РѕСЂ }
         vPress := kpAuto;
         if (FPressTime <> 0) and (TickCountDiff(vTick, FPressTime) > optHoldDelay) then begin
           FPressTime := 0;
@@ -1161,8 +1161,8 @@ interface
       if vKey = FLastKey then
         FPrevKey := vKey
       else
-      if ((vKey and not KEY_CTRLMASK) = 0){-Только префиксы} and ((vKey and KEY_CTRLMASK) = (FLastKey and KEY_CTRLMASK)) then begin
-        { В случае, если префиксная клавиша отпускается раньше значащей, это рассматривается как два события, типа: }
+      if ((vKey and not KEY_CTRLMASK) = 0){-РўРѕР»СЊРєРѕ РїСЂРµС„РёРєСЃС‹} and ((vKey and KEY_CTRLMASK) = (FLastKey and KEY_CTRLMASK)) then begin
+        { Р’ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РїСЂРµС„РёРєСЃРЅР°СЏ РєР»Р°РІРёС€Р° РѕС‚РїСѓСЃРєР°РµС‚СЃСЏ СЂР°РЅСЊС€Рµ Р·РЅР°С‡Р°С‰РµР№, СЌС‚Рѕ СЂР°СЃСЃРјР°С‚СЂРёРІР°РµС‚СЃСЏ РєР°Рє РґРІР° СЃРѕР±С‹С‚РёСЏ, С‚РёРїР°: }
         { 1. AltX:Release }
         { 2. Alt:Up }
         vKey2 := vKey;
@@ -1250,7 +1250,7 @@ interface
           vList.KeyPress := APress;
 
 //        if (vList.Count = 1) and True then begin
-//          { Быстрый запуск. Возможны глюки (?) }
+//          { Р‘С‹СЃС‚СЂС‹Р№ Р·Р°РїСѓСЃРє. Р’РѕР·РјРѕР¶РЅС‹ РіР»СЋРєРё (?) }
 //          TMacro(vList[0]).Execute(vList.KeyCode)
 //        end else
 //        begin
@@ -1411,7 +1411,7 @@ interface
 
 
   procedure TMacroLibrary.CheckPriority(AList :TExList);
-    { Если в списке есть более приоритетные макросы - оставляем только их }
+    { Р•СЃР»Рё РІ СЃРїРёСЃРєРµ РµСЃС‚СЊ Р±РѕР»РµРµ РїСЂРёРѕСЂРёС‚РµС‚РЅС‹Рµ РјР°РєСЂРѕСЃС‹ - РѕСЃС‚Р°РІР»СЏРµРј С‚РѕР»СЊРєРѕ РёС… }
   var
     I, vMax :Integer;
   begin
@@ -1432,7 +1432,7 @@ interface
   begin
     vIndex := -1;
     if ListMacrosesDlg(AList, vIndex) then begin
-      if AList is TRunList {Всегда?} then begin
+      if AList is TRunList {Р’СЃРµРіРґР°?} then begin
         vList := TRunList.Create;
         vList.Add( AList[vIndex] );
         vList.KeyCode := TRunList(AList).KeyCode;
@@ -1589,8 +1589,8 @@ interface
           MemFree(vItem);
         end;
 
-        { Мы должны проверить флаг PPIF_SELECTED, потому что SelectedItemsNumber = 1}
-        { даже если не выделено ни одного элемента }
+        { РњС‹ РґРѕР»Р¶РЅС‹ РїСЂРѕРІРµСЂРёС‚СЊ С„Р»Р°Рі PPIF_SELECTED, РїРѕС‚РѕРјСѓ С‡С‚Рѕ SelectedItemsNumber = 1}
+        { РґР°Р¶Рµ РµСЃР»Рё РЅРµ РІС‹РґРµР»РµРЅРѕ РЅРё РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° }
         if vPanInfo.SelectedItemsNumber > 0 then begin
           vItem := FarPanelItem(AHandle, FCTL_GETSELECTEDPANELITEM, 0);
           try

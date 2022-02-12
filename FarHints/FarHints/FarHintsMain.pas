@@ -57,7 +57,7 @@ interface
 
     
  {$ifdef b64}
- { Для совместимости с FreePascal }
+ { Р”Р»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃ FreePascal }
   function GetFarHinstAPI :Pointer; stdcall;
  {$else}
   function GetFarHinstAPI :IFarHintsAPI; stdcall;
@@ -102,7 +102,7 @@ interface
 
   function IsActiveConsole :boolean;
   begin
-    Result := WindowIsChildOf(hConsoleWnd, GetForegroundWindow) {and ConManIsActiveConsole - Не так часто...} ;
+    Result := WindowIsChildOf(hConsoleWnd, GetForegroundWindow) {and ConManIsActiveConsole - РќРµ С‚Р°Рє С‡Р°СЃС‚Рѕ...} ;
   end;
 
 
@@ -136,7 +136,7 @@ interface
 
 
   function GetConsoleMousePos :TPoint;
-    { Вычисляем позицию мыши в консольных координатах }
+    { Р’С‹С‡РёСЃР»СЏРµРј РїРѕР·РёС†РёСЋ РјС‹С€Рё РІ РєРѕРЅСЃРѕР»СЊРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… }
   var
     vWnd  :THandle;
     vPos  :TPoint;
@@ -156,7 +156,7 @@ interface
       Result.X := Left + MulDivTrunc(vPos.X, Right - Left + 1, vRect.Right - vRect.Left);
     end;
 
-    { Коррекция для режима "большого буфера" (/w) }
+    { РљРѕСЂСЂРµРєС†РёСЏ РґР»СЏ СЂРµР¶РёРјР° "Р±РѕР»СЊС€РѕРіРѕ Р±СѓС„РµСЂР°" (/w) }
     with FarGetWindowRect do begin
 //    TraceF('FWR: %d-%d, %d-%d', [Top, Bottom, Left, Right]);
       Dec(Result.Y, Top);
@@ -166,7 +166,7 @@ interface
 
 
   function ConsolePosToWindowPos(AX, AY :Integer) :TPoint;
-    { Пересчитываем консольные координаты в координаты Windows }
+    { РџРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РєРѕРЅСЃРѕР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ РєРѕРѕСЂРґРёРЅР°С‚С‹ Windows }
   var
     vWnd  :THandle;
     vRect :TRect;
@@ -176,7 +176,7 @@ interface
     GetClientRect(vWnd, vRect);
     GetConsoleScreenBufferInfo(hStdOut, vInfo);
 
-    { Коррекция для режима "большого буфера" (/w) }
+    { РљРѕСЂСЂРµРєС†РёСЏ РґР»СЏ СЂРµР¶РёРјР° "Р±РѕР»СЊС€РѕРіРѕ Р±СѓС„РµСЂР°" (/w) }
     with FarGetWindowRect do begin
 //    TraceF('FWR: %d-%d, %d-%d', [Top, Bottom, Left, Right]);
       Inc(AY, Top);
@@ -306,7 +306,7 @@ interface
       GetCursorPos(vPos);
       vWin := WindowFromPoint(vPos);
       if (vWin = vConsole) or FarHints.IsHintWindow(vWin)
-        { Поддержка ConEmu с невидимым консольным окном }
+        { РџРѕРґРґРµСЂР¶РєР° ConEmu СЃ РЅРµРІРёРґРёРјС‹Рј РєРѕРЅСЃРѕР»СЊРЅС‹Рј РѕРєРЅРѕРј }
         or ((vConsole = hConEmuWnd) and WindowIsChildOf(vConsole, vWin))  
       then begin
         ScreenToClient(vConsole, vPos);
@@ -329,7 +329,7 @@ interface
       Exit;
 
     if (GetKeyState(VK_LBUTTON) < 0) or (GetKeyState(VK_RBUTTON) < 0) then
-      { Чтобы хинт на сбивал Drag&Drop, да и вообще - нефиг }
+      { Р§С‚РѕР±С‹ С…РёРЅС‚ РЅР° СЃР±РёРІР°Р» Drag&Drop, РґР° Рё РІРѕРѕР±С‰Рµ - РЅРµС„РёРі }
       Exit;
 
     vWinType := FarGetWindowType;
@@ -339,14 +339,14 @@ interface
       GetConsoleCursorInfo(hStdOut, vCursorInfo);
 //    TraceF('Cursor=%d', [Byte(vCursorInfo.bVisible)]);
       if not vCursorInfo.bVisible then
-        { Нет курсора - значит активна не панель. Этой проверкой отсекаем ситуацию, }
-        { когда активно меню и т.п., что не определяется с помощью ACTL_GETWINDOWINFO }
+        { РќРµС‚ РєСѓСЂСЃРѕСЂР° - Р·РЅР°С‡РёС‚ Р°РєС‚РёРІРЅР° РЅРµ РїР°РЅРµР»СЊ. Р­С‚РѕР№ РїСЂРѕРІРµСЂРєРѕР№ РѕС‚СЃРµРєР°РµРј СЃРёС‚СѓР°С†РёСЋ, }
+        { РєРѕРіРґР° Р°РєС‚РёРІРЅРѕ РјРµРЅСЋ Рё С‚.Рї., С‡С‚Рѕ РЅРµ РѕРїСЂРµРґРµР»СЏРµС‚СЃСЏ СЃ РїРѕРјРѕС‰СЊСЋ ACTL_GETWINDOWINFO }
         Exit;
 
       vStr := GetConsoleTitleStr;
 //    TraceF('Title=%s', [vStr]);
       if (vStr = '') or (vStr[1] <> '{') then
-        { Этой проверкой отсекаем ситуацию, когда из под Far'а запущена консольная программа }
+        { Р­С‚РѕР№ РїСЂРѕРІРµСЂРєРѕР№ РѕС‚СЃРµРєР°РµРј СЃРёС‚СѓР°С†РёСЋ, РєРѕРіРґР° РёР· РїРѕРґ Far'Р° Р·Р°РїСѓС‰РµРЅР° РєРѕРЅСЃРѕР»СЊРЅР°СЏ РїСЂРѕРіСЂР°РјРјР° }
         Exit;
 
       Result := hccPanel;
@@ -382,8 +382,8 @@ interface
 
 
   function THintThread.CheckCurrentPanel(var AFolder :TString; var ACurrent :Integer) :Boolean;
-    {-Проверка, что текущая панель видима и содержит элементы. }
-    { Вызвается только при автотрекинге клавиатуры }
+    {-РџСЂРѕРІРµСЂРєР°, С‡С‚Рѕ С‚РµРєСѓС‰Р°СЏ РїР°РЅРµР»СЊ РІРёРґРёРјР° Рё СЃРѕРґРµСЂР¶РёС‚ СЌР»РµРјРµРЅС‚С‹. }
+    { Р’С‹Р·РІР°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё Р°РІС‚РѕС‚СЂРµРєРёРЅРіРµ РєР»Р°РІРёР°С‚СѓСЂС‹ }
   var
     vInfo :TPanelInfo;
   begin
@@ -396,7 +396,7 @@ interface
     if not IsVisiblePanel(vInfo) then
       Exit;
     if not (vInfo.PanelType in [PTYPE_FILEPANEL, PTYPE_TREEPANEL]) then
-      { Другие типы панелей: PTYPE_QVIEWPANEL or PTYPE_INFOPANEL }
+      { Р”СЂСѓРіРёРµ С‚РёРїС‹ РїР°РЅРµР»РµР№: PTYPE_QVIEWPANEL or PTYPE_INFOPANEL }
       Exit;
     if (vInfo.PanelType = PTYPE_FILEPANEL) and (vInfo.ItemsNumber = 0) then
       Exit;
@@ -439,9 +439,9 @@ interface
     GetCursorPos(vLastPos);
 
     if True {not IsWindowVisible(hFarWindow)} then begin
-      { Главное окно невидимо, возможно - работаем под ConEmu }
-      { Выждем небольшую паузу, чтобы успел загрузиться плагин ConEmu.dll }
-      { Выжидаем паузу всегда - чтобы Far успел очистить входную очередь событий... }
+      { Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ РЅРµРІРёРґРёРјРѕ, РІРѕР·РјРѕР¶РЅРѕ - СЂР°Р±РѕС‚Р°РµРј РїРѕРґ ConEmu }
+      { Р’С‹Р¶РґРµРј РЅРµР±РѕР»СЊС€СѓСЋ РїР°СѓР·Сѓ, С‡С‚РѕР±С‹ СѓСЃРїРµР» Р·Р°РіСЂСѓР·РёС‚СЊСЃСЏ РїР»Р°РіРёРЅ ConEmu.dll }
+      { Р’С‹Р¶РёРґР°РµРј РїР°СѓР·Сѓ РІСЃРµРіРґР° - С‡С‚РѕР±С‹ Far СѓСЃРїРµР» РѕС‡РёСЃС‚РёС‚СЊ РІС…РѕРґРЅСѓСЋ РѕС‡РµСЂРµРґСЊ СЃРѕР±С‹С‚РёР№... }
       vStartTime := GetTickCount;
       while not Terminated and (TickCountDiff(GetTickCount, vStartTime) < 1500) do
         Sleep(1);
@@ -451,7 +451,7 @@ interface
     while not Terminated do begin
 
       if CanCheckWindow then
-        { Контролируем смену консольного окна (на случай Detach'а консоли) }
+        { РљРѕРЅС‚СЂРѕР»РёСЂСѓРµРј СЃРјРµРЅСѓ РєРѕРЅСЃРѕР»СЊРЅРѕРіРѕ РѕРєРЅР° (РЅР° СЃР»СѓС‡Р°Р№ Detach'Р° РєРѕРЅСЃРѕР»Рё) }
         hFarWindow := GetConsoleWindow;
 
       vInput := CheckInput;
@@ -460,22 +460,22 @@ interface
       vHintForced := (FarHintForceKey <> 0) and (GetKeyState(FarHintForceKey) < 0);
 
       if FarHintsPermanent then begin
-        { Persistent hint гасится при нажатии Alt - благодоря этому }
-        { он не подвисает при быстром поиске... }
+        { Persistent hint РіР°СЃРёС‚СЃСЏ РїСЂРё РЅР°Р¶Р°С‚РёРё Alt - Р±Р»Р°РіРѕРґРѕСЂСЏ СЌС‚РѕРјСѓ }
+        { РѕРЅ РЅРµ РїРѕРґРІРёСЃР°РµС‚ РїСЂРё Р±С‹СЃС‚СЂРѕРј РїРѕРёСЃРєРµ... }
         vValid := vIsTop and not (GetKeyState(VK_MENU) < 0) and CanCallPluginNow(True);
 
         if ([cetKeyDown, cetMousePress] * vInput <> []) or (vIsTop <> vLastIsTop) or (vValid <> vLastIsValid) then begin
           vLastIsTop := vIsTop;
           vLastIsValid := vValid;
-          GetCursorPos(vLastPos);  { Чтобы потом не появился мышиный курсор }
+          GetCursorPos(vLastPos);  { Р§С‚РѕР±С‹ РїРѕС‚РѕРј РЅРµ РїРѕСЏРІРёР»СЃСЏ РјС‹С€РёРЅС‹Р№ РєСѓСЂСЃРѕСЂ }
 
           if vValid then begin
 
-            { Посылаем команду на вызов хинта в основном потоке }
+            { РџРѕСЃС‹Р»Р°РµРј РєРѕРјР°РЅРґСѓ РЅР° РІС‹Р·РѕРІ С…РёРЅС‚Р° РІ РѕСЃРЅРѕРІРЅРѕРј РїРѕС‚РѕРєРµ }
             ShowHint(3 {Persistent});
 
             {???}
-            { Ждем пока фар не обработает свои сообщения }
+            { Р–РґРµРј РїРѕРєР° С„Р°СЂ РЅРµ РѕР±СЂР°Р±РѕС‚Р°РµС‚ СЃРІРѕРё СЃРѕРѕР±С‰РµРЅРёСЏ }
             while not Terminated and (cetKeyDown in CheckInput) do
               Sleep(1);
 
@@ -498,7 +498,7 @@ interface
       if [cetKeyDown, cetMousePress] * vInput <> [] then begin
 
         if FarHintsAutoKey and (cetKeyDown in vInput) then begin
-          { Запоминаем время последнего нажатия на клавишу, для работы автотрекинга клавиатуры... }
+          { Р—Р°РїРѕРјРёРЅР°РµРј РІСЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РЅР°Р¶Р°С‚РёСЏ РЅР° РєР»Р°РІРёС€Сѓ, РґР»СЏ СЂР°Р±РѕС‚С‹ Р°РІС‚РѕС‚СЂРµРєРёРЅРіР° РєР»Р°РІРёР°С‚СѓСЂС‹... }
           if GetCallContext = hccPanel then begin
 //          Trace('KeyDown in panel');
             vLastKeyTime := GetTickCount
@@ -510,9 +510,9 @@ interface
         end;
 
         if (FarHints.CurrentHintMode <> hcmInfo) and (FarHints.CurrentHintAge >= HideHindAgeLock) then begin
-          { Хинт виден и достаточно длительное время. Делаем запрос на его сокрытие. }
-          { Задержка HideHindAgeLock нужна, чтобы хинт вызываемый вручную, через макрос }
-          { не пропадал сразу после появления. }
+          { РҐРёРЅС‚ РІРёРґРµРЅ Рё РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґР»РёС‚РµР»СЊРЅРѕРµ РІСЂРµРјСЏ. Р”РµР»Р°РµРј Р·Р°РїСЂРѕСЃ РЅР° РµРіРѕ СЃРѕРєСЂС‹С‚РёРµ. }
+          { Р—Р°РґРµСЂР¶РєР° HideHindAgeLock РЅСѓР¶РЅР°, С‡С‚РѕР±С‹ С…РёРЅС‚ РІС‹Р·С‹РІР°РµРјС‹Р№ РІСЂСѓС‡РЅСѓСЋ, С‡РµСЂРµР· РјР°РєСЂРѕСЃ }
+          { РЅРµ РїСЂРѕРїР°РґР°Р» СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ РїРѕСЏРІР»РµРЅРёСЏ. }
           if vStartTime = 0 then begin
             vNeedShow := False;
             vStartTime := GetTickCount;
@@ -520,26 +520,26 @@ interface
             gHintCommand := False;
           end;
         end else
-          { Иначе, просто отменяем запрос на показ (может быть только от мыши) }
+          { РРЅР°С‡Рµ, РїСЂРѕСЃС‚Рѕ РѕС‚РјРµРЅСЏРµРј Р·Р°РїСЂРѕСЃ РЅР° РїРѕРєР°Р· (РјРѕР¶РµС‚ Р±С‹С‚СЊ С‚РѕР»СЊРєРѕ РѕС‚ РјС‹С€Рё) }
           vStartTime := 0;
 
       end else
       begin
         GetCursorPos(vPos);
         if (vPos.X <> vLastPos.X) or (vPos.Y <> vLastPos.Y) or (vLastForced <> vHintForced) or ((vIsTop <> vLastIsTop) and not vIsTop) then begin
-          { Обнаружено перемещение мыши (или нажатие клавиши форсированного вызова) }
+          { РћР±РЅР°СЂСѓР¶РµРЅРѕ РїРµСЂРµРјРµС‰РµРЅРёРµ РјС‹С€Рё (РёР»Рё РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё С„РѕСЂСЃРёСЂРѕРІР°РЅРЅРѕРіРѕ РІС‹Р·РѕРІР°) }
           vLastPos := vPos;
           vLastIsTop := vIsTop;
 
-          { Отменяем автотрекинг клавиатуры, если он был... }
+          { РћС‚РјРµРЅСЏРµРј Р°РІС‚РѕС‚СЂРµРєРёРЅРі РєР»Р°РІРёР°С‚СѓСЂС‹, РµСЃР»Рё РѕРЅ Р±С‹Р»... }
           vLastKeyTime := 0;
 
-          if (FarHintsAutoMouse or vHintForced) and vIsTop and CheckLocation { Курсор мыши в окне Far'а } then begin
+          if (FarHintsAutoMouse or vHintForced) and vIsTop and CheckLocation { РљСѓСЂСЃРѕСЂ РјС‹С€Рё РІ РѕРєРЅРµ Far'Р° } then begin
             vPos := GetConsoleMousePos;
 
             vCurHintMode := FarHints.CurrentHintMode;
             if vCurHintMode = hcmCurrent then
-              { Убиваем клавиатурный хинт }
+              { РЈР±РёРІР°РµРј РєР»Р°РІРёР°С‚СѓСЂРЅС‹Р№ С…РёРЅС‚ }
               HideHint;
 
             if vCurHintMode <> hcmMouse then begin
@@ -576,9 +576,9 @@ interface
         end else
         begin
           if FarHintsAutoKey and (vLastKeyTime <> 0) and (TickCountDiff(GetTickCount, vLastKeyTime) >= ShowHintFirstDelay1) then begin
-            { После последнего нажатия на клавишу прошло более ShowHintFirstDelay1...}
+            { РџРѕСЃР»Рµ РїРѕСЃР»РµРґРЅРµРіРѕ РЅР°Р¶Р°С‚РёСЏ РЅР° РєР»Р°РІРёС€Сѓ РїСЂРѕС€Р»Рѕ Р±РѕР»РµРµ ShowHintFirstDelay1...}
             if CheckCurrentPanel(vFolder, vCurrent) and ((vLastCurrent <> vCurrent) or (vLastFolder <> vFolder))  then begin
-              { Показываем клавиатурный хинт. Сразу, т.к. пауза уже выдержана }
+              { РџРѕРєР°Р·С‹РІР°РµРј РєР»Р°РІРёР°С‚СѓСЂРЅС‹Р№ С…РёРЅС‚. РЎСЂР°Р·Сѓ, С‚.Рє. РїР°СѓР·Р° СѓР¶Рµ РІС‹РґРµСЂР¶Р°РЅР° }
               vLastCurrent := vCurrent;
               vLastFolder := vFolder;
               vNeedShow := True;
@@ -592,7 +592,7 @@ interface
           if vIsTop and (FarHints.CurrentHintMode <> hcmInfo) and (FarHints.CurrentHintAge >= HideHindAgeLock) and (TickCountDiff(GetTickCount, vLastCheckTime) > 100) then begin
             vLastCheckTime := GetTickCount;
             if FarHints.CurrentHintContext <> GetCallContext then begin
-              { Чтобы Hint не "подвисал" в недопустимых контекстах }
+              { Р§С‚РѕР±С‹ Hint РЅРµ "РїРѕРґРІРёСЃР°Р»" РІ РЅРµРґРѕРїСѓСЃС‚РёРјС‹С… РєРѕРЅС‚РµРєСЃС‚Р°С… }
               vStartTime := 0;
               HideHint;
             end;
@@ -605,7 +605,7 @@ interface
         try
           vStartTime := 0;
           if vNeedShow then
-            { Посылаем команду на вызов хинта в основном потоке }
+            { РџРѕСЃС‹Р»Р°РµРј РєРѕРјР°РЅРґСѓ РЅР° РІС‹Р·РѕРІ С…РёРЅС‚Р° РІ РѕСЃРЅРѕРІРЅРѕРј РїРѕС‚РѕРєРµ }
             ShowHint(vCallMode)
           else begin
             if not gHintCommand then
@@ -620,8 +620,8 @@ interface
       end;
 
       if vWasAlert then begin
-        { Защита от повышенной загрузки процессора, если Far не чистит консольный буфер. }
-        { Например, при запуске внешней программы }
+        { Р—Р°С‰РёС‚Р° РѕС‚ РїРѕРІС‹С€РµРЅРЅРѕР№ Р·Р°РіСЂСѓР·РєРё РїСЂРѕС†РµСЃСЃРѕСЂР°, РµСЃР»Рё Far РЅРµ С‡РёСЃС‚РёС‚ РєРѕРЅСЃРѕР»СЊРЅС‹Р№ Р±СѓС„РµСЂ. }
+        { РќР°РїСЂРёРјРµСЂ, РїСЂРё Р·Р°РїСѓСЃРєРµ РІРЅРµС€РЅРµР№ РїСЂРѕРіСЂР°РјРјС‹ }
         vWasAlert := False;
         Sleep(10)
       end else
@@ -664,7 +664,7 @@ interface
    {$ifdef bTrace1}
     TraceF('Call plugin: CallMode=%d', [ACallMode]);
    {$endif bTrace1}
-    { Вызовем плагин в основном потоке, через механизм макросов... }
+    { Р’С‹Р·РѕРІРµРј РїР»Р°РіРёРЅ РІ РѕСЃРЅРѕРІРЅРѕРј РїРѕС‚РѕРєРµ, С‡РµСЂРµР· РјРµС…Р°РЅРёР·Рј РјР°РєСЂРѕСЃРѕРІ... }
     SendKeys(FarHintsKey, FarHintsShift);
     WaitForCallComplete;
    {$ifdef bTrace1}
@@ -720,11 +720,11 @@ interface
   begin
     Result := False;
     if FARAPI.Control({$ifdef Far3}INVALID_HANDLE_VALUE{$else}hModule{$endif}, FCTL_CHECKPANELSEXIST, 0, nil) = 0 then
-      { Нет панелей... }
+      { РќРµС‚ РїР°РЅРµР»РµР№... }
       Exit;
 
     if FarGetWindowType <> WTYPE_PANELS then
-      { Активное окно - не панель }
+      { РђРєС‚РёРІРЅРѕРµ РѕРєРЅРѕ - РЅРµ РїР°РЅРµР»СЊ }
       Exit;
 
     Result := True;
@@ -825,7 +825,7 @@ interface
 
 
       function CalcMouseItemIndex(const vInfo :TPanelInfo; const ARect :TRect) :Integer;
-        { Попытка вычислить индекс Item'а в позиции мыши... }
+        { РџРѕРїС‹С‚РєР° РІС‹С‡РёСЃР»РёС‚СЊ РёРЅРґРµРєСЃ Item'Р° РІ РїРѕР·РёС†РёРё РјС‹С€Рё... }
       var
         X, Y, I, vCount, vSubCol, vDelta :Integer;
         vWidths :PIntegerArray;
@@ -920,7 +920,7 @@ interface
       end else
       if vInfo.PanelType = PTYPE_FILEPANEL then begin
 //      if ((vInfo.Flags and PFLAGS_REALNAMES) = 0) {or (vInfo.Plugin = 1)} then
-//        { Панели не файловых plugin'ов пока не поддерживаются... }
+//        { РџР°РЅРµР»Рё РЅРµ С„Р°Р№Р»РѕРІС‹С… plugin'РѕРІ РїРѕРєР° РЅРµ РїРѕРґРґРµСЂР¶РёРІР°СЋС‚СЃСЏ... }
 //        Exit;
 
         if vInfo.ItemsNumber = 0 then
@@ -954,7 +954,7 @@ interface
 
         Result := True;
       end else
-        { Другие типы панелей: PTYPE_QVIEWPANEL or PTYPE_INFOPANEL };
+        { Р”СЂСѓРіРёРµ С‚РёРїС‹ РїР°РЅРµР»РµР№: PTYPE_QVIEWPANEL or PTYPE_INFOPANEL };
     end;  {CheckPanel}
 
 
@@ -1348,7 +1348,7 @@ interface
 
   procedure TFarHinstPlug.Startup; {override;}
   begin
-    { Получаем Handle консоли Far'а }
+    { РџРѕР»СѓС‡Р°РµРј Handle РєРѕРЅСЃРѕР»Рё Far'Р° }
     hFarWindow := FarAdvControl(ACTL_GETFARHWND, nil);
     hStdin := GetStdHandle(STD_INPUT_HANDLE);
     hStdOut := GetStdHandle(STD_OUTPUT_HANDLE);
