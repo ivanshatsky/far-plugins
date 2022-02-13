@@ -66,6 +66,11 @@ interface
     end;
 
 
+(*
+Класс TComBasis не компилируется с помощью FPC 3.2.2 со следующей ошибкой:
+\MixLib\MixClasses.pas(...) Error: No matching implementation for interface method "QueryInterface(constref TGuid;out <Formal type>):LongInt; StdCall;" found
+(при этом нормально компилируется с помощью FFC 2.4.4)
+
   type
     TComBasis = class(TBasis, IUnknown)
     public
@@ -80,6 +85,7 @@ interface
       property RefCount :Integer read FRefCount;
     end;
 
+*)
 
 
   type
@@ -414,6 +420,17 @@ interface
     end;
 
 
+(*
+Класс TThread не компилируется с помощью FPC 3.2.2 под архитектуру x86_64 со следующей ошибкой:
+\MixLib\MixClasses.pas(...) Error: Call by var for arg no. 6 has to match exactly: Got "QWord" expected "LongWord"
+при компиляции строки
+    FHandle := BeginThread(nil, 0, Pointer(@ThreadProc), Pointer(Self), CREATE_SUSPENDED, FThreadID);
+в конструкторе TThread.Create(CreateSuspended: Boolean);
+(при этом нормально компилируется с помощью FPC 2.4.4)
+Похоже на ошибку в библиотеке RTL
+https://www.freepascal.org/docs-html/rtl/system/beginthread.html
+https://www.freepascal.org/docs-html/rtl/system/tthreadid.html
+
   type
     TThreadPriority = (tpIdle, tpLowest, tpLower, tpNormal, tpHigher, tpHighest, tpTimeCritical);
 
@@ -460,6 +477,8 @@ interface
       property ReturnValue: Integer read FReturnValue write FReturnValue;
 //    property OnTerminate: TNotifyEvent read FOnTerminate write FOnTerminate;
     end;
+
+*)
 
 
   type
@@ -660,6 +679,7 @@ interface
  {$endif bUseStreams}
 
 
+(*
  {-----------------------------------------------------------------------------}
  { TComBasis                                                                   }
  {-----------------------------------------------------------------------------}
@@ -678,13 +698,14 @@ interface
   end;
 
 
-  function TComBasis.QueryInterface(const IID: TGUID; out Obj) :HResult; {virtual;}
+  function TComBasis.QueryInterface(const IID: TGUID; out Obj) :HResult; {virtual;} {stdcall;}
   begin
     if GetInterface(IID, Obj) then
       Result := S_OK
     else
       Result := E_NoInterface;
   end;
+*)
 
 
  {-----------------------------------------------------------------------------}
@@ -1994,6 +2015,7 @@ interface
   end;
 
 
+(*
  {-----------------------------------------------------------------------------}
  { TThread                                                                     }
  {-----------------------------------------------------------------------------}
@@ -2171,6 +2193,7 @@ interface
       WaitForSingleObject(H, INFINITE);
     GetExitCodeThread(H, Result);
   end;
+*)
 
 
  {-----------------------------------------------------------------------------}
