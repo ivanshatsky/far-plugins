@@ -46,12 +46,19 @@ interface
       FMaxDY     :Integer;
      {$ifdef Far3}
       FMenuID    :TGUID;
-     {$endif Far3}
       FBreakKeys :PFarKeyArray;
+      FBreakIdx  :TIntPtr;
+     {$else}
+      FBreakKeys :PIntegerArray;
+      FBreakIdx  :Integer;
+     {$endif Far3}
       FNeedClean :Boolean;
 
-      FBreakIdx  :TIntPtr;
+     {$ifdef Far3}
       FResIdx    :TIntPtr;
+     {$else}
+      FResIdx    :Integer;
+     {$endif Far3}
 
       procedure Cleanup;
       function GetChecked(AIndex :Integer) :Boolean;
@@ -78,8 +85,13 @@ interface
       property Enabled[I :Integer] :Boolean read GetEnabled write SetEnabled;
       property Visible[I :Integer] :Boolean read GetVisible write SetVisible;
 
+     {$ifdef Far3}
       property BreakIdx :TIntPtr read FBreakIdx;
       property ResIdx :TIntPtr read FResIdx;
+     {$else}
+      property BreakIdx :Integer read FBreakIdx;
+      property ResIdx :Integer read FResIdx;
+     {$endif Far3}
     end;
 
 
@@ -165,9 +177,9 @@ interface
   var
     I :Integer;
   begin
-    FBreakKeys := MemAllocZero((High(AKeys) + 2) * SizeOf(TFarKey));
+    FBreakKeys := MemAllocZero((High(AKeys) + 2) * SizeOf( {$ifdef Far3} TFarKey {$else} Integer {$endif} ));
     for I := 0 to High(AKeys) do
-      FBreakKeys[i].VirtualKeyCode := AKeys[I];
+      FBreakKeys[i] {$ifdef Far3} .VirtualKeyCode {$endif} := AKeys[I];
   end;
 
 

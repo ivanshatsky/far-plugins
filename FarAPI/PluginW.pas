@@ -92,6 +92,7 @@ type
   PPCharArray = ^TPCharArray;
   TPCharArray = packed array[0..MaxInt div SizeOf(PFarChar) - 1] of PFarChar;
 
+  PInteger      = ^Integer;
   PIntegerArray = ^TIntegerArray;
   TIntegerArray = packed array[0..Pred(MaxLongint div SizeOf(Integer))] of Integer;
 
@@ -890,7 +891,7 @@ type
     Bottom :PFarChar;
     HelpTopic :PFarChar;
     BreakKeys :PIntegerArray;
-    BreakCode :PIntegerArray;
+    BreakCode :PInteger;
     Item :PFarMenuItemArray;
     ItemsNumber :Integer
   ) : Integer; stdcall;

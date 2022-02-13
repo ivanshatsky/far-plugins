@@ -4,8 +4,14 @@ Bin2x32/
 Bin2x64/
 Bin3/
 Bin3x32/
-Bin3x64
+Bin3x64/
 RTL/
+Units2/
+Units2x32/
+Units2x64/
+Units3/
+Units3x32/
+Units2x64/
 xUnits/
 *.res
 *.dsk
