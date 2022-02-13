@@ -75,7 +75,9 @@ end;
 
 var
   PluginMenuStrings :array[0..0] of PFarChar;
+ {$ifdef Far3}
   PluginMenuGUIDS :array[0..0] of TGUID;
+ {$endif Far3}
 
 procedure GetPluginInfoW(var pi: TPluginInfo); stdcall;
 begin
