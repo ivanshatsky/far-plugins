@@ -2006,7 +2006,7 @@ interface
   begin
     FillZero(AEvent, SizeOf(AEvent));
     vShift := FarKeyStateToShiftState(AKey);
-    AKey := AKey and not KEY_CTRLMASK;
+    AKey := AKey and not Integer(KEY_CTRLMASK);
     if AKey < EXTENDED_KEY_BASE then begin
       vVKey := 0;
       case AKey of
@@ -2127,7 +2127,7 @@ interface
     Result := False;
     FillZero(AEvent, SizeOf(AEvent));
     vFlag := 0; 
-    case AKey and not KEY_CTRLMASK of
+    case AKey and not Integer(KEY_CTRLMASK) of
       KEY_MSLCLICK: vState := FROM_LEFT_1ST_BUTTON_PRESSED;
       KEY_MSRCLICK: vState := RIGHTMOST_BUTTON_PRESSED;
       KEY_MSM3CLICK: vState := FROM_LEFT_2ND_BUTTON_PRESSED;
